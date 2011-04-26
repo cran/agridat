@@ -1,0 +1,196 @@
+
+Ideas for inclusion
+
+bachmaier
+http://www.tec.wzw.tum.de/index.php?id=46
+Requested.  Tentative answer: "no".
+
+http://www.itc.nl/~rossiter/pubs/list.html
+
+15-year apple orchard yields
+http://books.google.com/books?hl=en&lr=&id=SqlJAAAAMAAJ&oi=fnd&pg=PA446&dq=hedrick+%22Necessary+To+Fertilize+An+Apple+Orchard%22&ots=bfQFTZ26Sv&sig=pyc_UFJokfiNMaDusQTnhU-zVJ4#v=onepage&q&f=false
+
+agricolae package
+
+Pioneer library
+
+Biplot/Papers/Onofri2007 AMMI data
+
+Books folder (do last)
+
+Data folder
+
+Designs/NY AES report, p. 91 has Latin Square
+  p. 97 has BIB  (done)
+
+GLMMIX/Gotway - Hessian fly
+GLMMIX/Piepho.  Not sure.  Binomial response?
+
+Plant Pop <--------  Search these files.
+
+PLS/Ortiz2007 - tomato
+   /Vargas2001 - Trt * Year and Variable * year
+
+Split Plot / Loughin 7-error terms.  Ask in future.
+
+Stability/Edwards2006 paper Ask in future.
+  Fan2007
+  Kamidi
+
+
+
+Intercropping expt
+yield monitor expt
+
+Schabenberger book
+
+Gomez datasets
+
+Other books.
+
+Paper copies of journal articles.
+
+Equivalence trial.
+
+TAS.
+
+JABES: Checked: Vol 6..15
+
+Journal of Agricultural Science
+Google Books:
+  Journal of Agricultural Research
+  Agornomy Journal
+
+Papers (probably not, but who knows)
+Yan2002, p 992.  GxE table for biplot (not the 1993 data)
+Pacheco2005.  GxE table for AMMI biplots.
+
+------------------------------------------------------------------------------
+
+Considered
+
+c:x/r/doc/Kuhnert
+
+------------------------------------------------------------------------------
+
+No permission
+
+federer.tobacco
+
+kempton.uniformity
+
+kempton.rowcol
+
+mead.strawberry.  Data from <= 1968.
+
+rothamsted.brussels, from 1934
+
+Federer, Kempton are deceased.
+
+------------------------------------------------------------------------------
+
+Permission obtained
+
+allcroft.lodging
+Permission from Chris Glasbey.
+
+australia.soybean
+Permission from Basford & Kroonenberg
+
+batchelor
+Copyright expired
+
+besag.elbatan
+besag.met
+Permission from Higdon.
+
+cochran.bib
+Produced by USDA
+
+crowder.germination
+Used via GPL license from aod R package.
+
+corsten.interaction
+denis.missing
+Permission from Denis.
+
+durban.competition
+Permission from I. Currie
+
+durban.rowcol
+durban.splitplot
+Permission from Maria Durban.
+
+gilmour.serpentine
+Permission from Gilmour.
+
+gomez.fractionalfactorial
+gomez.groupsplit
+gomez.multilocsplitplot
+gomez.splitplot
+gomez.stripplot
+gomez.stripsplitplot
+gomez.uniformity
+Permission from Kwanchai Gomez.
+
+hughes.disease
+Permission from Madden.
+
+mercer.wheat
+Published 1911.  Copyright expired.
+
+shafii.rapeseed
+Permission from Price.
+
+smith.uniformity3
+From 1910.  Copyright expired.
+
+stroup.nin89
+Used via GPL license from nlme package.
+
+stroup.splitplot
+Permission from Stroup.
+
+student.barley
+Copyright expired.
+
+talbot.potato
+Permission from Mike Talbot.
+
+theobald.covariate
+Permission from Chris Theobald.
+
+thompson.cornsoy
+Government produced.  No copyright.
+
+vargas.durum1
+vargas98.wheat2
+Data supplied by Jose Crossa
+
+verbyla.lupin
+License 2531940313489 from copyright.com
+
+wiebe.wheat
+Government produced -- USDA
+
+williams.trees
+Permission of Emlyn Williams
+
+yan.winterwheat
+Permission from Weikai Yan.
+
+yates.missing 
+Printed 1933.
+
+yates.oats
+Pub 1935. Used via GPL license from nlme package.
+
+------------------------------------------------------------------------------
+
+Announce:
+
+Others that may be interested
+halina@hawaii.edu
+nyggus@gmail.com
+jennifer.kling@oregonstate.edu 
+gumpertz@ncsu.edu 
