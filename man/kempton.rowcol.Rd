@@ -32,6 +32,9 @@ kempton.rowcol
 \examples{
 
 dat <- kempton.rowcol
+
+desplot(yield~col*row|rep, dat, num=gen, out1=rep)
+
 dat <- transform(dat, row=factor(row), col=factor(col))
 # Model with rep, row, col as random.  Kempton, page 62.
 # Use "-1" so that the vcov matrix doesn't include intercept

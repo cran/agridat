@@ -33,7 +33,7 @@ Rice strip-plot experiment
 dat <- gomez.stripplot
 
 # Gomez figure 3.7
-desplot(gen~x*y, data=dat, outline1=rep, num=nitro, cex=1)
+desplot(gen~x*y, data=dat, out1=rep, num=nitro, cex=1)
 
 # Gomez table 3.12
 tapply(dat$yield, dat$rep, sum)

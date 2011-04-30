@@ -39,6 +39,8 @@
 \examples{
 dat <- gilmour.serpentine
 
+desplot(yield~ column*row, data=dat, num=gen, out1=rep)
+
 # Extreme field trend.  Blocking insufficient--needs a spline/smoother
 xyplot(yield~column, data=dat)
 

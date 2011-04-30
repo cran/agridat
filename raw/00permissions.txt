@@ -20,8 +20,13 @@ Books folder (do last)
 
 Data folder
 
+
 Designs/NY AES report, p. 91 has Latin Square
   p. 97 has BIB  (done)
+
+GE
+Crossa1997 - 8 hybs at 59 sites
+Varella2009 - 25 hybs x 4 sites x 4 traits
 
 GLMMIX/Gotway - Hessian fly
 GLMMIX/Piepho.  Not sure.  Binomial response?

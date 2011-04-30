@@ -18,7 +18,8 @@
 \details{ 
   The data is used by Corsten & Denis (1990) to illustrate two-way
   clustering by minimizing the interaction sum of squares.
-  Note that one of the dendrograms in the paper might be wrong.
+  The labels on the location dendrogram are possibly in the wrong
+  order.
 }
 \source{
   L C A Corsten and J B Denis, Structuring Interaction in Two-Way Tables
@@ -35,8 +36,11 @@ require(reshape2)
 m1 <- melt(dat, measure.var='yield')
 dmat <- acast(m1, loc~gen)
 
-# Compare figure 1 of Corsten 1990 (using clustering of _interactions_)
-# with the simple one-way clusterings from 'heatmap'
+# Corsten (1990) uses this data to illustrate simultaneous row and column clustering
+# based on interaction sums-of-squares.  There is no (known) function in R to
+# reproduce this analysis (please contact the package maintainer if this is not true),
+# For comparison, the 'heatmap' function clusters the rows and columns independently
+# of each other.
 heatmap(dmat)
 }
 

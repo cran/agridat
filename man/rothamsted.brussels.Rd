@@ -37,7 +37,7 @@
 dat <- rothamsted.brussels
 
 bwplot(yield~trt, dat)
-desplot(yield~col*row, data=dat, num=trt, outline1=block, cex=1)
+desplot(yield~col*row, data=dat, num=trt, out1=block, cex=1)
 
 }
 

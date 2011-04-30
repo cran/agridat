@@ -48,13 +48,13 @@ dat <- durban.competition
 # Check that genotypes were balanced across wheel tracks.
 with(dat, table(gen,wheel))
 
-desplot(yield ~ column*block, dat, outline1=block, lab=gen, col=wheel)
+desplot(yield ~ column*block, dat, out1=block, text=gen, col=wheel)
 
 # Calculate residual after removing block/genotype effects
 m1 <- lm(yield ~ gen + block, data=dat)
 dat$res <- resid(m1)
 
-desplot(res ~ column*block, dat, outline1=block, lab=gen, col=wheel)
+desplot(res ~ column*block, dat, out1=block, lab=gen, col=wheel)
 
 # Calculate mean of neighboring plots
 dat$comp <- NA

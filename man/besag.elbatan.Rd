@@ -43,7 +43,7 @@ dat <- besag.elbatan
 # Besag figure 1
 xyplot(yield~row, dat, groups=block, type=c('l'))
 
-levelplot(yield~block*row, dat)
+desplot(yield~block*row, dat)
 
 # RCB
 m1 <- lm(yield ~ 0 + gen + block, dat)

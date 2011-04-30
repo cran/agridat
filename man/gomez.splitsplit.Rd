@@ -39,7 +39,7 @@ dat <- gomez.splitsplit
 dat$nf <- factor(dat$nitro)
 
 desplot(yield~x*y, dat)
-desplot(nf~x*y, dat, outline1=rep, col=management, num=gen, cex=1)
+desplot(nf~x*y, dat, out1=rep, col=management, num=gen, cex=1)
 
 if(require(HH)){
 position(dat$nf) <- c(0,50,80,110,140)

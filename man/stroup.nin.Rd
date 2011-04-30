@@ -77,7 +77,7 @@ dat <- transform(dat, x=as.numeric(as.factor(long)),
 dat <- transform(dat, xf=factor(x), yf=factor(y))
 
 # Show experiment layout
-desplot(yield~x*y, dat, outline1="rep", num=gen, main="stroup.nin - yield / design")
+desplot(yield~x*y, dat, out1="rep", num=gen, main="stroup.nin - yield / design")
 
 # Levelplot  
 library(lattice)

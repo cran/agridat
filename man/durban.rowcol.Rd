@@ -38,7 +38,7 @@
 }
 \examples{
 d1 <- durban.rowcol
-desplot(yield~bed*row, d1, outline1=rep)
+desplot(yield~bed*row, d1, out1=rep)
 
 # Durban 2003 Figure 1
 m10 <- lm(yield~gen, data=d1)

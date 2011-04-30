@@ -41,7 +41,7 @@
 \examples{
 
 dat <- yates.oats
-desplot(yield ~ x*y, dat, outline1=block, outline2=gen)
+desplot(yield ~ x*y, dat, out1=block, text=gen, col=nitro, cex=1)
 
 # Roughly linear gradient across the field.  The right-half of each
 # block has lower yield.  The blocking is inadequate!

@@ -48,5 +48,5 @@ mead.strawberry
 dat <- mead.strawberry
 dat$sub <- ifelse(is.element(dat$gen, c('G', 'V', 'R1', 'F')),
               "S1","S2")
-desplot(yield~col*row, dat, lab=gen, cex=1, outline1=block, outline2=sub)
+desplot(yield~col*row, dat, text=gen, cex=1, out1=block, out2=sub)
 }

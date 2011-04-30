@@ -1,17 +1,15 @@
 # desplot.r
-# Time-stamp: <26 Apr 2011 12:20:17 c:/x/rpack/agridat/R/desplot.r>
+# Time-stamp: <30 Apr 2011 10:03:02 c:/x/rpack/agridat/R/desplot.r>
 
 # Needs grid, lattice, reshape2
 
 RedGrayBlue <- colorRampPalette(c("firebrick", "lightgray", "#305a7f"))
 
-desplot <- function(form=formula(NULL ~ x + y),
-                    data,
-                    num=NULL, col=NULL, lab=NULL, outline1=NULL, outline2=NULL,
-                    levels.fill=NULL, levels.col=NULL, levels.lab=NULL,
-                    col.regions=RedGrayBlue, 
-                    outline1.gpar=gpar(col="black", lwd=3),
-                    outline2.gpar=gpar(col="yellow", lwd=1, lty=1),
+desplot <- function(form=formula(NULL ~ x + y), data,
+                    num=NULL, col=NULL, text=NULL, out1=NULL, out2=NULL,
+                    col.regions=RedGrayBlue, col.text=NULL, text.levels=NULL,
+                    out1.gpar=gpar(col="black", lwd=3),
+                    out2.gpar=gpar(col="yellow", lwd=1, lty=1),
                     main=NULL, at,
                     ticks=FALSE,
                     shorten='abb',
@@ -21,30 +19,32 @@ desplot <- function(form=formula(NULL ~ x + y),
                     strip.cex=.75, ...){
 
   if(missing(main)) main <- deparse(substitute(data)) # Use data name by default
-  
-  # Force character, in case we forgot to quote the argument
-  numvar <- substitute(num)
-  colvar <- substitute(col)
-  labvar <- substitute(lab)
-  out1var <- substitute(outline1)
-  out2var <- substitute(outline2)
 
-  if(!is.null(numvar) & !is.character(numvar))
-    numvar <- deparse(numvar)
-  if(!is.null(colvar) & !is.character(colvar))
-    colvar <- deparse(colvar)
-  if(!is.null(labvar) & !is.character(labvar))
-    labvar <- deparse(labvar)
-  if(!is.null(out1var) & !is.character(out1var))
-    out1var <- deparse(out1var)
-  if(!is.null(out2var) & !is.character(out2var))
-    out2var <- deparse(out2var)
+  # Force character, in case we forgot to quote the argument
+  dn <- names(data)
+  cleanup <- function(x, dn){
+    if(is.null(x)) return(x)
+    
+    if(!is.character(x)) x <- deparse(x)
+    if(!is.element(x, dn))
+      stop("Couldn't find '", x,"' in the data frame.")
+    return(x)
+  }  
+  num.var <- cleanup(substitute(num), dn)
+  col.var <- cleanup(substitute(col), dn)
+  text.var <- cleanup(substitute(text), dn)
+  out1.var <- cleanup(substitute(out1), dn)
+  out2.var <- cleanup(substitute(out2), dn)
+
+  # Also check the formula
+  # av <- all.vars(form)
   
-  hasNum <- !is.null(numvar)
-  hasCol <- !is.null(colvar)
-  hasLab <- !is.null(labvar)
-  hasOut1 <- !is.null(out1var)
-  hasOut2 <- !is.null(out2var)
+  has.num <- !is.null(num.var)
+  has.col <- !is.null(col.var)
+  has.text <- !is.null(text.var)
+  has.out1 <- !is.null(out1.var)
+  has.out2 <- !is.null(out2.var)
+  if(has.num & has.text) stop("Specify either 'num' or 'text'")
   
   data <- droplevels(data) # In case the user called with subset(obj, ...)
 
@@ -56,262 +56,58 @@ desplot <- function(form=formula(NULL ~ x + y),
              cond = names(ff$cond))
   if(length(ff$resp)==0L) ff$resp <- NULL
 
-  fillvar <- ff$resp
-  if(is.null(fillvar)) {
-    fillType <- "none"
+  fill.var <- ff$resp
+  x.var <- ff$xy[1]
+  y.var <- ff$xy[3]
+  panel.var <- ff$cond[1]
+
+  x.lab <- ifelse(ticks, x.var, "")
+  y.lab <- ifelse(ticks, y.var, "")
+
+  # Determine what fills the cells: nothing, factor, or numeric
+  if(is.null(fill.var)) fill.type="none"
+  else fill.type <- ifelse(is.factor(data[[fill.var]]), "factor", "num")
+  
+  # Now get the fill values/length
+  if(fill.type=="none") {
+    fill.val <- rep(1, nrow(data))
+    fill.n <- 1
+    # Hack.  We need something to plot, call it .const
     form <- as.formula(paste(".const", form[[1]], deparse(form[[2]]), sep=""))
-    data[['.const']] <- rep(1, nrow(data)) # Hack.  We need something to plot.
-  } else {
-    fillType <- ifelse(is.factor(data[[fillvar]]), "factor", "num")
-  }
-  xvar <- ff$xy[1]
-  yvar <- ff$xy[3]
-  panelvar <- ff$cond[1]
-
-  "%!in%" <- function (a, b) !(a %in% b)
-  # Error checks
-  dn <- names(data)
-  if(!is.null(fillvar) && fillvar %!in% dn)
-    stop("Couldn't find '", fillvar,"' in the data frame.")
-  if(!is.null(panelvar) && panelvar %!in% dn)
-    stop("Couldn't find '", panelvar,"' in the data frame.")
-  if(!is.null(colvar) && colvar %!in% dn)
-    stop("Couldn't find '", colvar,"' in the data frame.")
-  if(!is.null(numvar) && numvar %!in% dn)
-    stop("Couldn't find '", numvar,"' in the data frame.")
-  if(!is.null(labvar) && labvar %!in% dn)
-    stop("Couldn't find '", labvar,"' in the data frame.")
-  if(!is.null(out1var) && out1var %!in% dn)
-    stop("Couldn't find '", out1var,"' in the data frame.")
-  if(!is.null(out2var) && out2var %!in% dn)
-    stop("Couldn't find '", out2var,"' in the data frame.")
-
-  xlab <- ifelse(ticks, xvar, "")
-  ylab <- ifelse(ticks, yvar, "")
-  
-  if(is.null(levels.fill))
-    levels.fill <- c("#E6E6E6","#FFD9D9","#FFB2B2","#FFD7B2","#FDFFB2",
-                     "#D9FFB2","#B2D6FF","#C2B2FF","#F0B2FF","#A6FFC9",
-                     "#FF8C8C","#B2B2B2","#FFBD80","#BFFF80","#80BAFF",
-                     "#9980FF","#E680FF","#D0D192","#59FF9C","#FFA24D",
-                     "#FBFF4D","#4D9FFF","#704DFF","#DB4DFF","#808080",
-                     "#9FFF40","#C9CC3D")
-
-  if(is.null(levels.col))
-    levels.col <- c("black", "red3", "darkorange2", "chartreuse4",
-                  "deepskyblue4", "blue", "purple4", "darkviolet", "maroon")
-
-
-  # Change x/y from factor to numeric if needed.  Add missing levels.
-  fac2num <- function(x) as.numeric(levels(x))[x]
-  if(is.factor(data[[xvar]])) data[[xvar]] <- fac2num(data[[xvar]])
-  if(is.factor(data[[yvar]])) data[[yvar]] <- fac2num(data[[yvar]])
-  data <- .addLevels(data, xvar, yvar, panelvar)  
-
-  x <- data[[xvar]]
-  y <- data[[yvar]]
-  outline1 <- if(hasOut1) data[[out1var]] else NULL
-  outline2 <- if(hasOut2) data[[out2var]] else NULL
-  
-
-  nr <- 0 # cumulative rows in the key
-  levs <- NULL
-
-  # Panel
-  if(!is.null(panelvar)) panel <- data[[panelvar]]
-
-  # Outlines
-  if(hasOut1){
-    nr <- nr + 1
-    levs <- c(levs, out1var)
-  }
-  if(hasOut2){
-    nr <- nr + 1
-    levs <- c(levs, out2var)
-  }
-  nr <- nr + (hasOut1 | hasOut2)
-  
-  # Check for multiple values
-  if(is.null(panelvar)){
-    tt <- table(x,y)
-  } else {
-    tt <- table(x,y,panel)
-  }
-  if(any(tt>1))
-    warning("There are multiple data for each x/y/panel combination")
-  
-  if(fillType=="num"){
-    fill <- data[[fillvar]]
-  } else if(fillType=="factor") { # fill
-    fill <- data[[fillvar]] 
-    levsFill <- levels(fill)
-    nFill <- length(levsFill)
-    nr <- nr + 2 + nFill
-    levs <- c(levs, levsFill)
-    if(length(levels.fill) < nFill) levels.fill <-
-      rep(levels.fill, length=nFill)
+    data[['.const']] <- fill.val
+  } else if(fill.type=="num"){
+    fill.val <- data[[fill.var]]
+  } else { # factor
+    fill.val <- data[[fill.var]]
+    fill.n <- nlevels(fill.val)
   }
 
-  if(hasNum) { # number
-    num <- factor(data[[numvar]])
-    levsNum <- levels(num)
-    nNum <- length(levsNum)
-    nr <- nr + 2 + nNum
-    levs <- c(levs, levsNum)
-  }
-
-  if(hasCol) { # color
-    col <- data[[colvar]]
-    if(!is.factor(col)) col <- factor(col) # In case col is numeric
-    levsCol <- levels(col)
-    nCol <- length(levsCol)
-    nr <- nr + 2 + nCol
-    levs <- c(levs, levsCol)
-    if(length(levels.col) < nCol) levels.col <- rep(levels.col, length=nCol)
-  } else {
-    col <- rep(1, nrow(data)) # Use black by default
-  }
-
-  if(hasLab) { # label
-    lab <- data[[labvar]]
-    levsLab <- levels(lab)
-    nLab <- length(levsLab)
-    nr <- nr + 2 + nLab
-    levs <- c(levs, levsLab)
-    if(length(levels.col) < nLab) levels.col <- rep(levels.col, length=nLab)
-  }
-
-  # Set up short version of labels
-  if(hasLab & is.null(levels.lab)){
-    if(shorten=='no' | shorten=='none')
-      levels.lab <- levsLab
-    else if (shorten=='abb')
-      levels.lab <- abbreviate(levsLab, 2, method='both')
-    else if (shorten=='sub')
-      levels.lab <- substring(levsLab, 1, 3)
-  } else {
-    # Nothing.  Why is this here?
-  }
-
-  # We might not have a key, even though it was requested
-  if (nr==0) show.key <- FALSE
-  
-  # Set up key grobs
-  if(show.key) {
-    longstring <- levs[which.max(nchar(levs))]
-    if(missing(key.cex)) {
-      if(nr < 30) key.cex <- 1
-      else if(nr < 40) key.cex <- .75
-      else key.cex <- 0.5
-    }
-
-    foo <- frameGrob(layout = grid.layout(nrow = nr, ncol = 2,
-                       heights = unit(rep(key.cex, nr), "lines"),
-                       widths = unit(c(1,1), c("cm","strwidth"),
-                         data=list(NULL, longstring))))
-    
-    offset <- 1
-
-    # Outline
-    if(hasOut1){
-      foo <- placeGrob(foo, linesGrob(x = unit(c(.2, .8), "npc"),
-                                      y = unit(.5, "npc"),
-                                      gp=outline1.gpar),
-                       row = offset, col = 1)
-      foo <- placeGrob(foo, textGrob(lab = out1var, gp=gpar(cex=key.cex)),
-                       row = offset, col = 2)
-      offset <- offset + 1
-    }
-    if(hasOut2){
-      foo <- placeGrob(foo, linesGrob(x=c(.2,.8), y=.5, gp=outline2.gpar),
-                       row = offset, col = 1)
-      foo <- placeGrob(foo, textGrob(lab = out2var, gp=gpar(cex=key.cex)),
-                       row = offset, col = 2)
-      offset <- offset + 1
-    }
-    if(hasOut1 | hasOut2) offset <- offset + 1 # blank line
-    
-    # Fill
-    if(fillType=='factor') {  
-      foo <- placeGrob(foo, textGrob(lab = fillvar, gp=gpar(cex=key.cex)),
-                       row = offset, col = 2)
-      for(kk in 1:nFill){
-        foo <- placeGrob(foo, rectGrob(width = 0.6,
-                                       gp = gpar(col="#FFFFCC",
-                                         fill=levels.fill[kk], cex=key.cex)), 
-                         row = offset + kk, col = 1)
-        foo <- placeGrob(foo, textGrob(lab = levsFill[kk],
-                                       gp=gpar(cex=key.cex)),
-                         row = offset+kk, col = 2)
-      }
-      offset <- offset + 1 + nFill + 1
-    } else if(fillType=="none"){
-      # Create a transparent 'fill' variable
-      fill <- rep(1, nrow(data))
-      nFill <- 1
-      levels.fill <- "transparent" 
-    }
-
-    # Number
-    if(hasNum) {  
-      foo <- placeGrob(foo, textGrob(lab = numvar, gp=gpar(cex=key.cex)),
-                       row = offset, col = 2)
-      for(kk in 1:nNum){
-        foo <- placeGrob(foo, textGrob(lab = kk, gp=gpar(cex=key.cex)),
-                         row = offset + kk, col = 1)
-        foo <- placeGrob(foo, textGrob(lab = levsNum[kk], gp=gpar(cex=key.cex)),
-                         row = offset + kk, col = 2)
-      }
-      offset <- offset + 1 + nNum + 1
-    }  
-    # Color
-    if(hasCol) {
-      foo <- placeGrob(foo, textGrob(lab = colvar, gp=gpar(cex=key.cex)),
-                       row = offset, col = 2)
-      for(kk in 1:nCol){
-        foo <- placeGrob(foo, pointsGrob(.5,.5, pch=19,
-                                         gp=gpar(col=levels.col[kk],
-                                           cex=key.cex)),
-                         row = offset + kk, col = 1)
-        foo <- placeGrob(foo, textGrob(lab = levsCol[kk], gp=gpar(cex=key.cex)),
-                         row = offset + kk, col = 2)
-      }
-      offset <- offset + 1 + nCol + 1
-    }
-    # Label
-    if(hasLab) {  
-      foo <- placeGrob(foo, textGrob(lab = labvar, gp=gpar(cex=key.cex)),
-                       row = offset, col = 2)
-      for(kk in 1:nLab){
-        foo <- placeGrob(foo, textGrob(lab=levels.lab[kk],
-                                       gp=gpar(cex=key.cex)),
-                         row = offset + kk, col = 1)
-        foo <- placeGrob(foo, textGrob(lab = levsLab[kk], gp=gpar(cex=key.cex)),
-                         row = offset + kk, col = 2)
-      }
-      offset <- offset + 1 + nLab + 1
-    }  
-
-  } else foo <- NULL
-
-  # Panel text
-  if(hasLab) {
-    ptext <- levels.lab[as.numeric(lab)]
-  } else if(hasNum) {
-    ptext <- as.numeric(num)
-  } else if(hasCol) {
-    ptext <- rep("x", length=nrow(data))
-  }
-    
-  
+  # Define fill colors and 'at' (if not given by the user)
   # at = # cut points for region colors
-  if(fillType=="num") {
-    zrng <- lattice:::extend.limits(range(as.numeric(fill), finite = TRUE))
+   if(fill.type=="none") {
+    col.regions <- "transparent"
+    at <- c(0.5,1.5)
+  }
+  else if(fill.type=="factor"){
+    # If col.regions is a function, switch to default fill colors
+    if(is.function(col.regions))
+      col.regions <- c("#E6E6E6","#FFD9D9","#FFB2B2","#FFD7B2","#FDFFB2",
+                       "#D9FFB2","#B2D6FF","#C2B2FF","#F0B2FF","#A6FFC9",
+                       "#FF8C8C","#B2B2B2","#FFBD80","#BFFF80","#80BAFF",
+                       "#9980FF","#E680FF","#D0D192","#59FF9C","#FFA24D",
+                       "#FBFF4D","#4D9FFF","#704DFF","#DB4DFF","#808080",
+                       "#9FFF40","#C9CC3D")
+    col.regions <- rep(col.regions, length=fill.n)
+    at <- c((0:fill.n)+.5)
+  }
+  else if(fill.type=="num") {
+    # col.regions can be either a function, or vector.  Make it a vector.
+    zrng <- lattice:::extend.limits(range(as.numeric(fill.val), finite = TRUE))
     if(is.function(col.regions)) {
-      if(missing(at)) at <- seq(zrng[1], zrng[2], length.out = 15 + 1)
-      colreg <- col.regions(length(at)-1)
-    } else { # col.regions is a vector
-      colreg <- col.regions
+      # if 'at' is not given, use 16 break points (15 colors)
+      if(missing(at)) at <- seq(zrng[1], zrng[2], length.out = 16)
+      col.regions <- col.regions(length(at)-1)
+    } else {
       nbins <- length(col.regions)
       if(missing(at)) {
         at <- seq(zrng[1], zrng[2], length.out = nbins + 1)
@@ -319,24 +115,208 @@ desplot <- function(form=formula(NULL ~ x + y),
         if(nbins != length(at)-1) stop("Length of 'at' must be 1 more than length of 'col.regions'\n")
       }
     }
-  } else { # fill with a factor
-    at <- c((0:nFill+.5))
-    colreg <- levels.fill[1:nFill]
   }
 
+  # Text colors
+  if(is.null(col.text))
+    col.text <- c("black", "red3", "darkorange2", "chartreuse4",
+                  "deepskyblue4", "blue", "purple4", "darkviolet", "maroon")
+
+  # Change x/y from factor to numeric if needed.  Add missing levels.
+  fac2num <- function(x) as.numeric(levels(x))[x]
+  if(is.factor(data[[x.var]])) data[[x.var]] <- fac2num(data[[x.var]])
+  if(is.factor(data[[y.var]])) data[[y.var]] <- fac2num(data[[y.var]])
+  data <- .addLevels(data, x.var, y.var, panel.var)  
+
+  # Check for multiple values
+  if(is.null(panel.var)){
+    tt <- table(data[[x.var]], data[[y.var]])
+  } else {
+    tt <- table(data[[x.var]], data[[y.var]], data[[panel.var]])
+  }
+  if(any(tt>1))
+    warning("There are multiple data for each x/y/panel combination")
+  
+  # Calculate 'lr' rows in legend, 'lt' legend text strings
+  lr <- 0
+  lt <- NULL
+
+  if(has.out1){ # out1
+    lr <- lr + 1
+    lt <- c(lt, out1.var)
+  }
+  if(has.out2){ # out2
+    lr <- lr + 1
+    lt <- c(lt, out2.var)
+  }
+  if(has.out1 | has.out2) lr <- lr + 1 # blank line
+  
+  if(fill.type=="factor") { # fill
+    lt.fill <- levels(fill.val)
+    lr <- lr + 2 + fill.n
+    lt <- c(lt, lt.fill)
+  }
+
+  if(has.num) { # number
+    num.val <- factor(data[[num.var]])
+    lt.num <- levels(num.val)
+    num.n <- length(lt.num)
+    lr <- lr + 2 + num.n
+    lt <- c(lt, lt.num)
+  }
+
+  if(has.col) { # color
+    col.val <- factor(data[[col.var]]) # In case it is numeric
+    lt.col <- levels(col.val)
+    col.n <- length(lt.col)
+    lr <- lr + 2 + col.n
+    lt <- c(lt, lt.col)
+    if(length(col.text) < col.n) col.text <- rep(col.text, length=col.n)
+  } else {
+    col.val <- rep(1, nrow(data)) # No color specified, use black by default
+  }
+
+  if(has.text) { # text
+    text.val <- factor(data[[text.var]]) # in case not factor
+    lt.text <- levels(text.val)
+    text.n <- length(lt.text)
+    lr <- lr + 2 + text.n
+    lt <- c(lt, lt.text)
+    #if(length(col.text) < text.n) col.text <- rep(col.text, length=text.n)
+  }
+
+  # Set up short version of text
+  if(has.text & is.null(text.levels)){
+    if(shorten=='no' | shorten=='none')
+      text.levels <- lt.text
+    else if (shorten=='abb')
+      text.levels <- abbreviate(lt.text, 2, method='both')
+    else if (shorten=='sub')
+      text.levels <- substring(lt.text, 1, 3)
+  } else {
+    # Nothing.  Why is this here?
+  }
+
+  # We might not have a key, even though it was requested
+  if (lr==0) show.key <- FALSE
+  
+  # ----- Now we can actually set up the legend grobs -----
+  if(show.key) {
+    longstring <- lt[which.max(nchar(lt))]
+    if(missing(key.cex)) {
+      if(lr < 30) key.cex <- 1
+      else if(lr < 40) key.cex <- .75
+      else key.cex <- 0.5
+    }
+
+    foo <- frameGrob(layout = grid.layout(nrow = lr, ncol = 2,
+                       heights = unit(rep(key.cex, lr), "lines"),
+                       widths = unit(c(1,1), c("cm","strwidth"),
+                         data=list(NULL, longstring))))
+
+    offset <- 1
+
+    if(has.out1){ # outline
+      foo <- placeGrob(foo, linesGrob(x = unit(c(.2, .8), "npc"),
+                                      y = unit(.5, "npc"),
+                                      gp=out1.gpar),
+                       row = offset, col = 1)
+      foo <- placeGrob(foo, textGrob(lab = out1.var, gp=gpar(cex=key.cex)),
+                       row = offset, col = 2)
+      offset <- offset + 1
+    }
+    if(has.out2){
+      foo <- placeGrob(foo, linesGrob(x=c(.2,.8), y=.5, gp=out2.gpar),
+                       row = offset, col = 1)
+      foo <- placeGrob(foo, textGrob(lab = out2.var, gp=gpar(cex=key.cex)),
+                       row = offset, col = 2)
+      offset <- offset + 1
+    }
+    if(has.out1 | has.out2) offset <- offset + 1 # blank line
+    
+    if(fill.type=='factor') {  # fill
+      foo <- placeGrob(foo, textGrob(lab = fill.var, gp=gpar(cex=key.cex)),
+                       row = offset, col = 2)
+      for(kk in 1:fill.n){
+        foo <- placeGrob(foo, rectGrob(width = 0.6,
+                                       gp = gpar(col="#FFFFCC",
+                                         fill=col.regions[kk], cex=key.cex)), 
+                         row = offset + kk, col = 1)
+        foo <- placeGrob(foo, textGrob(lab = lt.fill[kk],
+                                       gp=gpar(cex=key.cex)),
+                         row = offset+kk, col = 2)
+      }
+      offset <- offset + 1 + fill.n + 1
+    } 
+
+    if(has.num) { # number
+      foo <- placeGrob(foo, textGrob(lab = num.var, gp=gpar(cex=key.cex)),
+                       row = offset, col = 2)
+      for(kk in 1:num.n){
+        foo <- placeGrob(foo, textGrob(lab = kk, gp=gpar(cex=key.cex)),
+                         row = offset + kk, col = 1)
+        foo <- placeGrob(foo, textGrob(lab = lt.num[kk], gp=gpar(cex=key.cex)),
+                         row = offset + kk, col = 2)
+      }
+      offset <- offset + 1 + num.n + 1
+    }  
+
+    if(has.col) { # color
+      foo <- placeGrob(foo, textGrob(lab = col.var, gp=gpar(cex=key.cex)),
+                       row = offset, col = 2)
+      for(kk in 1:col.n){
+        foo <- placeGrob(foo, pointsGrob(.5,.5, pch=19,
+                                         gp=gpar(col=col.text[kk],
+                                           cex=key.cex)),
+                         row = offset + kk, col = 1)
+        foo <- placeGrob(foo, textGrob(lab = lt.col[kk], gp=gpar(cex=key.cex)),
+                         row = offset + kk, col = 2)
+      }
+      offset <- offset + 1 + col.n + 1
+    }
+
+    if(has.text) { # text
+      foo <- placeGrob(foo, textGrob(lab = text.var, gp=gpar(cex=key.cex)),
+                       row = offset, col = 2)
+      for(kk in 1:text.n){
+        foo <- placeGrob(foo, textGrob(lab=text.levels[kk],
+                                       gp=gpar(cex=key.cex)),
+                         row = offset + kk, col = 1)
+        foo <- placeGrob(foo, textGrob(lab = lt.text[kk], gp=gpar(cex=key.cex)),
+                         row = offset + kk, col = 2)
+      }
+      offset <- offset + 1 + text.n + 1
+    }  
+
+  } else foo <- NULL
+
+  # Cell text
+  if(has.text) {
+    cell.text <- text.levels[as.numeric(text.val)]
+  } else if(has.num) {
+    cell.text <- as.numeric(num.val)
+  } else if(has.col) {
+    cell.text <- rep("x", length=nrow(data))
+  }
+    
+  
+
+  out1.val <- if(has.out1) data[[out1.var]] else NULL
+  out2.val <- if(has.out2) data[[out2.var]] else NULL
+  
   out <-
     levelplot(form,
               data=data
-              , out1f=outline1, out1g=outline1.gpar
-              , out2f=outline2, out2g=outline2.gpar
-              , col.regions=colreg
-              , colorkey = if(fillType=="num") TRUE else FALSE
+              , out1f=out1.val, out1g=out1.gpar
+              , out2f=out2.val, out2g=out2.gpar
+              , col.regions=col.regions
+              , colorkey = if(fill.type=="num") TRUE else FALSE
               , as.table=TRUE
               , at=at
               , legend=if(show.key) list(left=list(fun=foo)) else list()
               , main=main
-              , xlab=xlab
-              , ylab=ylab
+              , xlab=x.lab
+              , ylab=y.lab
               , scales=list(relation='free' # Different scales for each panel
                   , draw=ticks # Don't draw panel axes
                   )
@@ -346,12 +326,12 @@ desplot <- function(form=formula(NULL ~ x + y),
                 panel.outlinelevelplot(x, y, z, subscripts, at, ...,
                                        out1f=out1f, out1g=out1g, 
                                        out2f=out2f, out2g=out2g)
-                # Then, if we have numbers, colors, or labels
-                if(hasNum|hasLab|hasCol)
+                # Then, if we have numbers, colors, or text
+                if(has.num|has.text|has.col)
                   panel.text(x[subscripts], y[subscripts],
-                             ptext[subscripts],
+                             cell.text[subscripts],
                              cex=cex,
-                             col=levels.col[as.numeric(col[subscripts])])
+                             col=col.text[as.numeric(col.val[subscripts])])
               },
     strip=strip.custom(par.strip.text=list(cex=strip.cex)))
 
@@ -535,11 +515,11 @@ if(FALSE){
   desplot(yield~x+y|block, oats35)
 
   # Text over continuous colors
-  desplot(yield~x+y, oats35, outline1=block, lab=gen, cex=1)
+  desplot(yield~x+y, oats35, out1=block, text=gen, cex=1)
 
-  desplot(yield~x+y, oats35, outline2=block)
-  desplot(yield~x+y, oats35, outline1=block, outline2=gen)
-  desplot(gen~x+y, oats35, col=block, num=nitro, cex=1, outline1=block)
+  desplot(yield~x+y, oats35, out2=block)
+  desplot(yield~x+y, oats35, out1=block, out2=gen)
+  desplot(gen~x+y, oats35, col=block, num=nitro, cex=1, out1=block)
 
   # Test 'at' and 'col.regions' for the ribbon
   RedYellowBlue <-
@@ -558,30 +538,38 @@ if(FALSE){
 
 
   # Test abbreviations  
-  desplot(block~x+y, oats35, col=nitro, lab=gen, cex=1, shorten='abb') # def
-  desplot(block~x+y, oats35, col=nitro, lab=gen, cex=1, shorten='sub')
-  desplot(block~x+y, oats35, col=nitro, lab=gen, cex=1, shorten='no')
+  desplot(block~x+y, oats35, col=nitro, text=gen, cex=1, shorten='abb') # def
+  desplot(block~x+y, oats35, col=nitro, text=gen, cex=1, shorten='sub')
+  desplot(block~x+y, oats35, col=nitro, text=gen, cex=1, shorten='no')
 
   
-  # Would be nice if 'character' worked....
-  oats35$yt <- factor(as.character(oats35$yield))
-  desplot(block~x+y, oats35, lab=yt, shorten='no')
+  # Show actual yield values
+  desplot(block~x+y, oats35, text=yield, shorten='no')
   
-  desplot(block~x+y, oats35, col=nitro, lab=gen, cex=1, outline1=block)
-  desplot(block~x+y, oats35, col=nitro, lab=gen, cex=1, outline1=block, outline2=gen)
+  desplot(block~x+y, oats35, col=nitro, text=gen, cex=1, out1=block)
+  desplot(block~x+y, oats35, col=nitro, text=gen, cex=1, out1=block, out2=gen)
   desplot(block~x+y, oats35, num="gen", col="nitro", cex=1)
 
   # Test custom labels
-  desplot(block~x+y, oats35, lab="gen", col="nitro", cex=1, levels.lab=c('V','G','M'))
-  desplot(nitro~x+y, oats35, lab="gen", cex=.9)
+  desplot(block~x+y, oats35, text="gen", col="nitro", cex=1, text.levels=c('V','G','M'))
+  desplot(nitro~x+y, oats35, text="gen", cex=.9)
   desplot(nitro~x+y, oats35)
-  desplot(nitro~x+y|block, oats35, lab="gen", cex=.9)
+  desplot(nitro~x+y|block, oats35, text="gen", cex=.9)
   
   # No fill color at all
-  desplot(~x+y|block, oats35, lab="gen", cex=1)
+  desplot(~x+y|block, oats35, text="gen", cex=1)
   desplot(~x+y, oats35, col="gen", cex=1)
 
-  desplot(nitro~x+y|block, oats35, lab="gen", cex=1)
-  desplot(block~x+y|block, oats35, col="nitro", lab="gen", cex=1)
+  desplot(nitro~x+y|block, oats35, text="gen", cex=1)
+  desplot(block~x+y|block, oats35, col="nitro", text="gen", cex=1)
+
+  # stop
+  
+  # Check the 'cleanup' function.  These all err (as they should)
+  desplot(yield~x+y, oats35, num=junk)
+  desplot(yield~x+y, oats35, col=junk)
+  desplot(yield~x+y, oats35, text=junk)
+  desplot(yield~x+y, oats35, out1=junk)
+  desplot(yield~x+y, oats35, out2=junk)  
 
 }

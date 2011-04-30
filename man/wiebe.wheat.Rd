@@ -41,7 +41,8 @@ dat <- wiebe.wheat
 # Preece (1981) found the last digits have an interesting distribution.
 dig <- substring(dat$yield, nchar(dat$yield))
 dig <- as.numeric(dig)
-hist(dig)
+hist(dig, breaks=0:10-.5)
+table(dat$col, dig) # Table 3 of Preece
 
 # Median yields of rows/columns show obvious trends
 plot(tapply(dat$yield, dat$row, median), xlab="Row", ylab="Yield")

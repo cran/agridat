@@ -17,7 +17,7 @@ name                             \tab gen \tab loc\tab reps\tab years \tab trt \
 \link{batchelor.navel2}          \tab     \tab    \tab     \tab    \tab     \tab xy, uni \cr 
 \link{batchelor.valencia}        \tab     \tab    \tab     \tab    \tab     \tab xy, uni \cr 
 \link{batchelor.walnut}          \tab     \tab    \tab     \tab    \tab     \tab xy, uni \cr 
-\link{besag.elbatan}             \tab 50  \tab    \tab 3   \tab    \tab     \tab       \cr 
+\link{besag.elbatan}             \tab 50  \tab    \tab 3   \tab    \tab     \tab xy      \cr 
 \link{besag.met}                 \tab 64  \tab 6  \tab 3   \tab    \tab     \tab xy, incblock\cr
 \link{cochran.bib}               \tab 13  \tab 13 \tab     \tab    \tab     \tab BIB\cr  
 \link{corsten.interaction}       \tab 20  \tab 7  \tab     \tab    \tab     \tab \cr  
@@ -59,16 +59,20 @@ name                             \tab gen \tab loc\tab reps\tab years \tab trt \
 \link{yates.oats}                \tab 3   \tab    \tab 6   \tab    \tab     \tab xy, nitro\cr  
 }
 
-  The original sources for these data use several different words to refer to
-  genetics including \emph{line}, \emph{cultivar}, \emph{hybrid},
-  \emph{variety}, and \emph{genotype}. For consistency, these datasets
-  all use \code{gen} (genotype).
+Abbreviations in the 'other' column include: xy = coordinates, uni =
+uniformity trial, pls = partial least squares, row-col = row-column
+design.
 
-  Box (1957) said, "I had hoped that we had seen the end of the obscene
-  tribal habit practiced by statisticians of continually exhuming and
-  massaging dead data sets after their purpose in life has long since been
-  forgotten and there was no possibility of doing anything useful as a
-  result of this treatment."
+The original sources for these data use several different words to refer to
+genetics including \emph{line}, \emph{cultivar}, \emph{hybrid},
+\emph{variety}, and \emph{genotype}. For consistency, these datasets
+all use \code{gen} (genotype).
+
+Box (1957) said, "I had hoped that we had seen the end of the obscene
+tribal habit practiced by statisticians of continually exhuming and
+massaging dead data sets after their purpose in life has long since been
+forgotten and there was no possibility of doing anything useful as a
+result of this treatment."
 
 Clearly, massaging these 'dead' data sets will not lead to any of the
 genetics being release for commercial use.  The value of these data is,
@@ -78,6 +82,7 @@ however, multifold:
 3. Illustrating the use of R.
 4. Learning from history so as not to repeat it.
 }
+
 \author{
   Kevin Wright, kw.stat@gmail.com
   
@@ -86,6 +91,7 @@ however, multifold:
   If you use these data, please consider citing this package
   and the original source of the data.  
 }
+
 \references{
   Box G. E. P. (1957), Integration of Techniques in Process Development,
   \emph{Transactions of the American Society for Quality Control}.

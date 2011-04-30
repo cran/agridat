@@ -32,7 +32,7 @@ dat <- gomez.uniformity
 
 # Raw data plot
 require(lattice)
-levelplot(yield ~ x*y, data=dat)
+desplot(yield ~ x*y, data=dat)
 
 # 3x3 moving average.  Gomez figure 12.1
 require(reshape2)
@@ -45,7 +45,6 @@ dmat3 <- (m0[rx+1,cx+1]+m0[rx+1,cx]+m0[rx+1,cx-1]+
           m0[rx,cx+1]+m0[rx,cx]+m0[rx,cx-1]+
           m0[rx-1,cx+1]+m0[rx-1,cx]+m0[rx-1,cx-1])/9
 dat3 <- melt(dmat3)
-levelplot(value~Var2*Var1, dat3, at=c(576,637,695,753,811,870,927))
 desplot(value~Var2*Var1, dat3, at=c(576,637,695,753,811,870,927))
 
 \dontrun{
