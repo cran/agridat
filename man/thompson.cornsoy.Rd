@@ -28,8 +28,9 @@
   }
 }
 \details{
-  Note: The Iowa corn data has sometimes been 
-  identified as coming from 'wheat', but this is incorrect.
+  Note: The Iowa corn data has sometimes been
+  identified (in other sources) as the "Iowa wheat" data,
+  but this is incorrect.
 
   The 'year' variable affects yield through (1) improvements in
   plant genetics (2) changes in management techniques such as
@@ -52,17 +53,17 @@
   driest on record.
 
   Some relevant maps of yield, heat, and precipitation can be found in
-  \emph{Atlas of crop yield and summer weather patterns, 1931-1975}, 
+  \emph{Atlas of crop yield and summer weather patterns, 1931-1975},
   \url{www.isws.illinois.edu/pubdoc/C/ISWSC-150.pdf}.
-  
+
   The following notes pertain to the Iowa data.
-  
+
   The 1947 June precipitation of 10.33 inches was the wettest June on
   record (a new Iowa June record of 10.34 inches was set in 2010).
   As quoted in \emph{Monthly Weather Review} (Dec 1957, p. 396)
   "The dependence of Iowa agriculture upon the vagaries of the weather
   was closely demonstrated during the 1947 season.  A cool wet spring
-  delayed crop planting activity and plant growth; 
+  delayed crop planting activity and plant growth;
   then, in addition, a hard freeze on May 29th ... further set back the
   corn.  The heavy rains and subsequent floods during June caused
   appreciable crop acreage to be abandoned ... followed by a hot dry
@@ -70,7 +71,7 @@
   [sic, probably 'week'] of September."
 
   In 1949 soybean yields were average while corn yields were low.
-  From the same source above, 
+  From the same source above,
   "The year 1949 saw the greatest infestation of corn borer in the
   history of corn in Iowa".
 

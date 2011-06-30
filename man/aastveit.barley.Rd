@@ -5,20 +5,20 @@
   Barley heights and environmental covariates in Norway
 }
 \description{
-  Average height for 15 genotypes of barley and 19 covariates in each of
-  9 years
+  Average height for 15 genotypes of barley in each of 9 years.  A
+  second matrix contains 19 covariates in each of 9 years.
 }
 \usage{aastveit.barley}
 \format{
-  The format is a list of two matrices, \code{height} and \code{covs}.
+  A list of two matrices, \code{height} and \code{covs}.
   See details below.
 }
 \details{
   Experiments were conducted at As, Norway.  Four blocks per year.
-  
+
   The \code{height} matrix contains average plant height (cm) of 15 varieties
   of barley in each of 9 years.
-  
+
   The \code{covs} matrix contains 19 environmental covariates
   for each year.
   \tabular{ll}{
@@ -32,7 +32,7 @@
   Aastveit, A. H. and Martens, H. (1986).
   ANOVA interactions interpreted by partial least squares regression.
   \emph{Biometrics}, 42, 829--844.
-  
+
   Used with permission of Harald Martens.
 }
 \references{

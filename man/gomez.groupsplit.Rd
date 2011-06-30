@@ -28,11 +28,10 @@
   Gomez, K.A. and Gomez, A.A.. 1984,
   \emph{Statistical Procedures for Agricultural Research}.
   Wiley-Interscience. Page 120.
-  
+
   Used with permission of Kwanchai Gomez.
 }
 \examples{
-
 dat <- gomez.groupsplit
 
 # Gomez figure 3.10.  Obvious fert and group effects

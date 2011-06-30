@@ -21,6 +21,9 @@
 \details{
   The rep-level data was retrieved from
   \url{http://www.uiweb.uidaho.edu/ag/statprog/ammi/yld.data}.
+  
+  SAS codes for the analysis can be found at
+  \url{http://www.uiweb.uidaho.edu/ag/statprog/ammi/}
 }
 \source{
   Electronic version retrieved from
@@ -33,9 +36,6 @@
   Analysis of Genotype-by-Environment Interaction Using the
   Additive Main Effects and Multiplicative Interaction Model
   and Stability Estimates, \emph{JABES}, 3, 335--345.
-  
-  SAS codes for the analysis here:
-  \url{http://www.uiweb.uidaho.edu/ag/statprog/ammi/}
 }
 \examples{
 dat <- shafii.rapeseed

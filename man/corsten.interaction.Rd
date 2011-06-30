@@ -18,29 +18,31 @@
 \details{ 
   The data is used by Corsten & Denis (1990) to illustrate two-way
   clustering by minimizing the interaction sum of squares.
-  The labels on the location dendrogram are possibly in the wrong
-  order.
+
+  In their paper, the labels on the location dendrogram have a slight
+  typo.  The order of the loc labels shown is 1 2 3 4 5 6 7.
+  The correct order of the loc labels is 1 2 4 5 6 7 3.
 }
 \source{
   L C A Corsten and J B Denis, Structuring Interaction in Two-Way Tables
   By Clustering, \emph{Biometrics}, 1990, 46, 207--215. Table 1.
 
-  Used with permission.
+  Used with permission of Jean-Baptiste Denis.
 }
 
 \examples{
-
 dat <- corsten.interaction
 
 require(reshape2)
 m1 <- melt(dat, measure.var='yield')
 dmat <- acast(m1, loc~gen)
 
-# Corsten (1990) uses this data to illustrate simultaneous row and column clustering
-# based on interaction sums-of-squares.  There is no (known) function in R to
-# reproduce this analysis (please contact the package maintainer if this is not true),
-# For comparison, the 'heatmap' function clusters the rows and columns independently
-# of each other.
+# Corsten (1990) uses this data to illustrate simultaneous row and
+# column clustering based on interaction sums-of-squares.
+# There is no (known) function in R to reproduce this analysis
+# (please contact the package maintainer if this is not true).
+# For comparison, the 'heatmap' function clusters the rows and
+# columns _independently_ of each other.
 heatmap(dmat)
 }
 

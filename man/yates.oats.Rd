@@ -2,7 +2,7 @@
 \alias{yates.oats}
 \docType{data}
 \title{
-  Yield of oats in a split-block experiment from Yates (1935)
+  Yield of oats in a split-block experiment
 }
 \description{
   The yield of oats from a split-plot field trial using three varieties

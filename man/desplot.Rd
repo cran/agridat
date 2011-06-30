@@ -17,7 +17,7 @@
 \description{Plot the layout/data of a field experiment}
 
 \details{
-  A tool for plotting the layout of an experiment design and also the
+  A tool for plotting the layout of a field experiment and also the
   observed data.
 
   Use \code{col.regions} to specify fill colors.  This can either be a

@@ -11,7 +11,7 @@
 \details{
   The yield is the mean of several reps, measured in metric tons per hectare.
 
-  Included to illustrate GGE biplots.
+  This data has often been used to illustrate GGE biplots.
 }
 
 \usage{yan.winterwheat}

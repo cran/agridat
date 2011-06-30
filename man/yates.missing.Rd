@@ -18,9 +18,9 @@
   }
 }
 \details{
-  The response variable \code{y} is 'intensity of infection of potato
-  tubers innoculated with \emph{Phytophthora Erythroseptica}'.
-  
+  The response variable \code{y} is the intensity of infection of potato
+  tubers innoculated with \emph{Phytophthora Erythroseptica}.
+
   Yates (1933) presents an iterative algorithm to estimate missing
   values in a matrix, using this data as an example.
 }

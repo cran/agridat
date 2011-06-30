@@ -10,7 +10,7 @@
 }
 \usage{talbot.potato}
 \format{
-  The format is a list of two matrices, \code{yield} and \code{char}.
+  A list of two matrices, \code{yield} and \code{char}.
   See details below.
 }
 \details{
@@ -18,7 +18,7 @@
   of potato at 12 centers
   in the United Kingdom over five years 1983-1987.
   The following abbreviations are used for the centers.
-  
+
   \tabular{ll}{
     BU \tab Bush \cr
     CA \tab Cambridge \cr
@@ -33,7 +33,7 @@
     SB \tab Sutton Bonnington \cr
     TE \tab Terrington \cr
   }
-  
+
   The \code{char} matrix contains the scores of 14 traits on
   each of the 9 varities.
 }
@@ -42,7 +42,7 @@
   The analysis of genotype x analysis interactions by partial
   least squares regression.
   \emph{Biuletyn Oceny Odmian}, 21/22, 19--25.
-  
+
   Also: \url{http://www.bioss.ac.uk/smart/unix/mplsgxe/example/t2.g}
 
   Used with permission of Mike Talbot.

@@ -35,7 +35,7 @@
   Adjusting for fertility and competition in variety trials.
   \emph{J. of Agricultural Science}, 136, 129--140.
 
-  Electronically retrieved from
+  Retrieved from
   \url{http://www.ma.hw.ac.uk/~iain/research/JAgSciData/data/Trial1.dat}
 
   Used with permission of Iain Currie.

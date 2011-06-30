@@ -29,9 +29,7 @@
   \emph{Journal of the Royal Statistical Society: Series B (Statistical
     Methodology)},61, 691--746. Table 1.
 
-  Originally retrieved from
-  \url{http://www.stat.duke.edu/~higdon/trials/data.html},
-  now available at
+  Retrieved from
   \url{http://web.archive.org/web/19991008143232/www.stat.duke.edu/~higdon/trials/elbatan.dat}.
 
   Used with permission of David Higdon.

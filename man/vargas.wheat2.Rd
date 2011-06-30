@@ -10,7 +10,7 @@
 }
 \usage{vargas.wheat2}
 \format{
-  The format is a list of two matrices, \code{yield} and \code{covs}.
+  A list of two matrices, \code{yield} and \code{covs}.
   See below.
 }
 \details{

@@ -22,10 +22,9 @@
   The block numbers are arbitrary, and may not match the orignal source.
 }
 \source{
-  Batchelor, LD and Reed, HS. 1918.
-  Relation of the variability of yields of fruit trees to the accuracy
-  of field trials. \emph{J. Agric. Res}, 12, 245--283.
-  \url{http://books.google.com/books?id=Lil6AAAAMAAJ&lr&pg=PA245}.
+  Rothamsted Experimental Station Report 1934-36.
+  Brussels sprouts: effect of sulphate of ammonia, poultry manure, soot
+  and rape dust, pp. 191-192. Harpenden: Lawes Agricultural Trust.
 }
 \references{
   McCullagh, P. and Clifford, D., (2006).

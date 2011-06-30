@@ -10,7 +10,7 @@
   Fruit tree yields from Batchelor (1918)
 }
 \description{
-  Yields of Jonathan apples, Eureka lemons, seedling walnut.
+  Yields of apples, lemons, oranges, and walnuts from uniformity trials.
 }
 \usage{
 batchelor.apple

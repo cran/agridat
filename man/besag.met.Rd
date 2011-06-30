@@ -31,10 +31,8 @@
   \emph{Journal of the Royal Statistical Society: Series B (Statistical
     Methodology)},61, 691--746. Table 1.
 
-  Originally retrieved from
-  \url{http://www.stat.duke.edu/~higdon/trials/data.html},
-  now available at
-  \url{http://web.archive.org/web/19990505223413/www.stat.duke.edu/~higdon/trials/nc.dat}
+  Retrieved from
+  \url{http://web.archive.org/web/19990505223413/www.stat.duke.edu/~higdon/trials/nc.dat}.
 
   Used with permission of David Higdon.
 }
