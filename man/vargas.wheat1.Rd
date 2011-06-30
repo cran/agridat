@@ -10,9 +10,10 @@
 }
 \usage{vargas.wheat1}
 \format{
-  A list of two data frames.
+  A list of two data frames, \code{genvals} and \code{envvals}.
 
-  The \code{genvals} data frame contains 126 observations of genetic variables:
+  The \code{genvals} data frame contains 126 observations of genetic
+  variables for each year*rep*gen:
   \describe{
     \item{\code{year}}{Year, 1990-1995}
     \item{\code{rep}}{Replicate factor, 3 levels}
@@ -35,7 +36,7 @@
     \item{\code{KGR}}{Kernel growth rate, mg/kernel/day}
   }
   
-  The \code{envals} data frame has 6 obs. of 17 variables:
+  The \code{envals} data frame has 17 variables for each of 6 years:
   \describe{
     \item{\code{year}}{Year, 1990-1995}
     \item{\code{MTD}}{Mean daily max temperature December, deg C}
@@ -81,9 +82,9 @@ Y0 <- subset(gv, variable=="yield")
 Y0 <- acast(Y0, gen~year, mean)
 Y0 <- sweep(Y0, 1, rowMeans(Y0))
 Y0 <- sweep(Y0, 2, colMeans(Y0)) # GxE residuals
+Y1 <- scale(Y0) # scaled columns
 X1 <- subset(gv, variable!="yield")
 X1 <- acast(X1, gen~variable, mean)
-Y1 <- scale(Y0) # scaled columns
 X1 <- scale(X1) # scaled columns
 m1 <- plsr(Y1~X1)
 loadings(m1)[,1,drop=FALSE] # X loadings in Table 1 of Vargas

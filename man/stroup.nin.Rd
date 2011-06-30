@@ -12,8 +12,8 @@
     \item{gen}{Genotype factor, 56 levels}
     \item{rep}{Replicate factor, 4 levels}
     \item{yield}{The yield in bu/ac}
-    \item{lat}{Latitude}
-    \item{long}{Longitude}
+    \item{x}{Column ordinate}
+    \item{y}{Row ordinate}
   }
 }
 
@@ -35,11 +35,11 @@
   and Butler et al (2004).  
   
   This version of the data expresses
-  the yield in bushels per acre. The results published in Stroup et al (1994)
-  expressed in kg/ha.  For wheat, 1 bu/ac = 67.25 kg/ha.
+  the yield in bushels per acre. The results published in Stroup et al
+  (1994) are expressed in kg/ha.  For wheat, 1 bu/ac = 67.25 kg/ha.
 
   Some of the gen names are different in Stroup et al (1994).
-  (Sometimes an experimental gen is given a new name when it is
+  (Sometimes an experimental genotype is given a new name when it is
   released for commercial use.)  At a
   minimum, the following differences in gen names should be noted
   \tabular{ll}{
@@ -47,6 +47,10 @@
     NE83498 \tab Rawhide \cr
     KS831374 \tab Karl
   }
+
+  Some published versions of the data use long/lat instead of x/y.
+  To obtain the correct value of 'long', multiply 'x' by 1.2.
+  To obtain the correct value of 'lat', multiply 'y' by 4.3.
 
 }
 
@@ -72,26 +76,21 @@
 
 \examples{
 dat <- stroup.nin
-dat <- transform(dat, x=as.numeric(as.factor(long)),
-                      y=as.numeric(as.factor(lat)))
 dat <- transform(dat, xf=factor(x), yf=factor(y))
 
 # Show experiment layout
-desplot(yield~x*y, dat, out1="rep", num=gen, main="stroup.nin - yield / design")
-
-# Levelplot  
-library(lattice)
-levelplot(yield~ x*y, dat)
+# Note: all "Buckskin" plots are near left side
+desplot(yield~x*y, dat, out1="rep", num=gen, cex=1, main="stroup.nin")
 
 \dontrun{
-# Predict gen means from an RCB analysis
-# dat <- na.omit(dat)
-library(asreml)
+require("asreml")
+
+# RCB analysis
 dat.rcb <- asreml(yield ~ gen, random = ~ rep, data=dat,
             na.method.X="omit")
 pred.rcb <- predict(dat.rcb,classify="gen")$predictions
 
-# Two-dimensional spatial model with predictions
+# Two-dimensional spatial model
 dat <- dat[order(dat$xf, dat$yf),]
 dat.sp <- asreml(yield~gen, rcov=~ar1(xf):ar1(yf),data=dat)
 pred.sp <- predict(dat.sp,classify="gen")$predictions
@@ -103,17 +102,6 @@ text(pred.rcb$pvals[,2],pred.sp$pvals[,2],
      as.character(pred.rcb$pvals[,1]),cex=0.5)
 abline(0,1)
 
-# Why is "Buckskin" so different?  All plots are near bottom
-plot(1~1, xlab="", ylab="", xlim=c(1,22),ylim=c(1,11),type='n')
-with(subset(dat,rep=='R1' | rep=='R3'),{
-  text(xf,yf,as.character(gen),cex=0.5,adj=0.5,srt=45)})
-with(subset(dat,rep=='R2' | rep=='R4'),{
-  text(xf,yf,as.character(gen),cex=0.5,adj=0.5,srt=45,col="red")})
-
-dat.asr <- asreml(fixed=yield ~ gen, random=~ rep,
-na.method.X='include', data=dat)
-
-predict(dat.asr, classify="gen")$predictions
 }
 
 }

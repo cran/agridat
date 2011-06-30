@@ -64,14 +64,26 @@ Myallie \tab 1995\cr
 }
 
 \examples{
+dat <- verbyla.lupin
+
+# The same RCB randomization was used at all sites in each year
+desplot(gen~col+row|site, data=dat)
+
 # Figure 3 of Verbyla
-require(latticeExtra)
-foo <- xyplot(yield ~ rate|loc*gen, data=verbyla.lupin, subset=year==92,
+require("latticeExtra")
+foo <- xyplot(yield ~ rate|loc*gen, data=dat, subset=year==92,
               type=c('p','smooth'), cex=.5,
               main="1992", xlab="Seed rate (plants/m^2)",
-              ylab="Yield (tons/ha)")
-useOuterStrips(foo, strip=strip.custom(par.strip.text=list(cex=.75)),
-               strip.left=strip.custom(par.strip.text=list(cex=.75)))
-
+              ylab="Yield (tons/ha)",
+              strip=strip.custom(par.strip.text=list(cex=.7)),
+)
+# useOuterStrips really helps increase the plotting area
+if (require(latticeExtra)) {
+useOuterStrips(foo,
+strip=strip.custom(par.strip.text=list(cex=.7)),
+strip.left=strip.custom(par.strip.text=list(cex=.7)))
+} else {
+print(foo)
+}
 }
 

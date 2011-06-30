@@ -1,5 +1,5 @@
 # desplot.r
-# Time-stamp: <30 Apr 2011 10:03:02 c:/x/rpack/agridat/R/desplot.r>
+# Time-stamp: <17 Jun 2011 10:37:01 c:/x/rpack/agridat/R/desplot.r>
 
 # Needs grid, lattice, reshape2
 
@@ -12,6 +12,7 @@ desplot <- function(form=formula(NULL ~ x + y), data,
                     out2.gpar=gpar(col="yellow", lwd=1, lty=1),
                     main=NULL, at,
                     ticks=FALSE,
+                    xlab, ylab,
                     shorten='abb',
                     show.key=TRUE,
                     key.cex, # left legend cex
@@ -61,8 +62,10 @@ desplot <- function(form=formula(NULL ~ x + y), data,
   y.var <- ff$xy[3]
   panel.var <- ff$cond[1]
 
-  x.lab <- ifelse(ticks, x.var, "")
-  y.lab <- ifelse(ticks, y.var, "")
+  if (missing(xlab)) 
+    xlab <- ifelse(ticks, x.var, "")
+  if (missing(ylab)) 
+    ylab <- ifelse(ticks, y.var, "")
 
   # Determine what fills the cells: nothing, factor, or numeric
   if(is.null(fill.var)) fill.type="none"
@@ -315,8 +318,8 @@ desplot <- function(form=formula(NULL ~ x + y), data,
               , at=at
               , legend=if(show.key) list(left=list(fun=foo)) else list()
               , main=main
-              , xlab=x.lab
-              , ylab=y.lab
+              , xlab=xlab
+              , ylab=ylab
               , scales=list(relation='free' # Different scales for each panel
                   , draw=ticks # Don't draw panel axes
                   )
@@ -515,7 +518,8 @@ if(FALSE){
   desplot(yield~x+y|block, oats35)
 
   # Text over continuous colors
-  desplot(yield~x+y, oats35, out1=block, text=gen, cex=1)
+  desplot(yield~x+y, oats35, out1=block, text=gen, cex=1,
+          xlab="x axis", ylab="y axis", ticks=TRUE)
 
   desplot(yield~x+y, oats35, out2=block)
   desplot(yield~x+y, oats35, out1=block, out2=gen)

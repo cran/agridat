@@ -10,10 +10,11 @@
 }
 \usage{talbot.potato}
 \format{
-  The format is a list of two matrices, 'yield' and 'char'.  See below.
+  The format is a list of two matrices, \code{yield} and \code{char}.
+  See details below.
 }
 \details{
-  The 'yield' matrix contains mean tuber yields (t/ha) of 9 varieties
+  The \code{yield} matrix contains mean tuber yields (t/ha) of 9 varieties
   of potato at 12 centers
   in the United Kingdom over five years 1983-1987.
   The following abbreviations are used for the centers.
@@ -33,7 +34,8 @@
     TE \tab Terrington \cr
   }
   
-  The 'char' matrix contains the scores of 14 traits on each of the 9 varities.
+  The \code{char} matrix contains the scores of 14 traits on
+  each of the 9 varities.
 }
 \source{
   Mike Talbot and A V Wheelwright, 1989,

@@ -50,8 +50,8 @@ dat <- hughes.grapes
 dat <- transform(dat, rate = diseased/total, plot=trt:block)
 
 # Trt 1 has higher rate, more variable, Trt 3 lower rate, less variable
-require(latticeExtra)
-useOuterStrips(bwplot(rate ~ vine|block*trt, dat))
+foo <- bwplot(rate ~ vine|block*trt, dat)
+if (require(latticeExtra)) useOuterStrips(foo) else print(foo) 
 
 # Table 1 of Piepho 1999
 tapply(dat$rate, dat$trt, mean) # trt 1 does not match Piepho

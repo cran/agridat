@@ -10,7 +10,7 @@
   col.regions=RedGrayBlue, col.text=NULL, text.levels=NULL, 
   out1.gpar=gpar(col = "black", lwd = 3),
   out2.gpar=gpar(col = "yellow", lwd = 1, lty = 1),
-  main, at, ticks=FALSE,
+  main, at, ticks=FALSE, xlab, ylab,
   shorten="abb", show.key=TRUE, key.cex, cex=0.4, strip.cex=0.75, ...)
 }
 
@@ -57,6 +57,8 @@
 \item{main}{Main title}
 \item{at}{Breakpoints for the color ribbon}
 \item{ticks}{If TRUE, show tick marks row/column}
+\item{xlab}{Label for x axis}
+\item{ylab}{Label for y axis}
 \item{shorten}{Method for shortening text in the key}
 \item{show.key}{If TRUE, show the key}
 \item{cex}{Expansion factor for text/number in each cell}

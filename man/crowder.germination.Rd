@@ -44,7 +44,7 @@
 }
 \examples{
 dat <- crowder.germination
-m1.glm <- m1.glmm <- m1.bb <- m1.hglm <- NA
+m1.glm <- m1.glmm <- m1.bb <- NA
 
 # Graphic
 require(lattice)
@@ -67,18 +67,9 @@ if(require(aod)){
   summary(m1.bb)
 }
 
-# HGML package. Beta-binomial with beta-distributed random effects
-if(require(hglm)){
-  m1.hglm <- hglm(fixed= germ/n ~ I(gen=="O75")*extract, weights=n, data=dat,
-                  random=~1|plate, family=binomial(), rand.family=Beta(),
-                  fix.disp=1)
-  plot(m1.hglm)
-}
-
 # Compare coefficients
 round(summary(m1.glm)$coef,2)
 round(summary(m1.glmm)$tTable,2)
 round(summary(m1.bb)@Coef,2)
-round(summary(m1.hglm)$FixCoefMat,2)
 }
 

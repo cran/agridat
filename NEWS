@@ -1,17 +1,27 @@
 News for 'agridat'
 
-Changes in version 1.01
+Changes in version 1.2
+
+New features:
+
+  * New data: aastveit, gathmann.bt, kempton.competition, wedderburn.barley
+
+  * desplot now supports xlab, ylab
+
+  * Removed 'hglm' example due to hglm code breakage.
+
+Changes in version 1.1
 
 Bugs:
 
   * The 'desplot' function now passes more tests.  Some arguments changed.
 
-Changes in version 1.00 (2011-04-26)
+Changes in version 1.0 (2011-04-26)
 
 New features:
 
   * First release to CRAN
 
-Changes in version 0.00 (2010-10-07)
+Changes in version 0.0 (2010-10-07)
 
-  * Package begun.
+  * Package development begins.
