@@ -19,9 +19,6 @@
   }
 }
 \details{
-  The rep-level data was retrieved from
-  \url{http://www.uiweb.uidaho.edu/ag/statprog/ammi/yld.data}.
-  
   SAS codes for the analysis can be found at
   \url{http://www.uiweb.uidaho.edu/ag/statprog/ammi/}
 }
@@ -69,6 +66,7 @@ dotplot(loc~yield|gen,group=year,data=datm,auto.key=TRUE)
 m1.lm <- lm(yield ~ gen + locyr, data=datm)
 datm$res <- resid(m1.lm)
 # Convert to a matrix
+require("reshape2")
 dm <- melt(datm, measure.var='res', id.var=c('gen', 'locyr'))
 dmat <- acast(dm, gen~locyr)
 # AMMI biplot.  Figure 1 of Shafii (1998)

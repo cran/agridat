@@ -19,13 +19,13 @@ Rice strip-plot experiment
     \item{\code{y}}{Ordinate in the field}
   }
 }
-\details{
-  Used with permission of Kwanchai Gomez.
-}
+
 \source{
   Gomez, K.A. and Gomez, A.A.. 1984,
   \emph{Statistical Procedures for Agricultural Research}.
   Wiley-Interscience. Page 110.
+
+  Used with permission of Kwanchai Gomez.
 }
 
 \examples{

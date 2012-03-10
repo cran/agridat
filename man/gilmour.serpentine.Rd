@@ -69,11 +69,13 @@ m3a <- asreml(yield ~ gen + lin(colf) + colcode, data=dat,
 # Figure 6 shows serpentine row effects
 p3 <- predict(m3a, classify="rowf")$predictions$pvals
 plot(p3$predicted, type='l', xlab="row number", ylab="BLUP")
-text(1:22, p3$predicted, c('L','L','M','R','R','M','L','L','M','R','R','M','L','L','M','R','R','M','L','L','M','R'))
+text(1:22, p3$predicted, c('L','L','M','R','R','M','L','L',
+'M','R','R','M','L','L','M','R','R','M','L','L','M','R'))
 
 # Define row code (due to serpentine planting). 1=middle, 2=left/right
 dat <- transform(dat, rowcode = factor(row))
-levels(dat$rowcode) <- c('2','2','1','2','2','1','2','2','1','2','2','1','2','2','1','2','2','1','2','2','1','2')
+levels(dat$rowcode) <- c('2','2','1','2','2','1','2','2','1',
+'2','2','1','2','2','1','2','2','1','2','2','1','2')
 }
 }
 

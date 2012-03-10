@@ -34,7 +34,9 @@
 }
 \examples{
 dat <- kempton.uniformity
-levelplot(yield~col*row, dat)
+
+require(lattice)
+desplot(yield~col*row, dat)
 asp <- (28*14)/(7*5) # aspect ratio (rows * ft)/(cols * ft)
-levelplot(yield~col*row, dat, aspect=asp, col.regions=RedGrayBlue(17)) # true view
+desplot(yield~col*row, dat, aspect=asp) # true view
 }

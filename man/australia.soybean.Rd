@@ -98,6 +98,6 @@ biplot(princomp(dmat), main="australia.soybean trait x gen biplot", cex=.75)
 # Figure 1 of Kozak 2010, lines 44-58
 dmat2 <- dmat[44:58,]
 require(lattice)
-parallel(dmat2[,c(2:6,1)], horiz=FALSE)
+parallelplot(dmat2[,c(2:6,1)], horiz=FALSE)
 }
 

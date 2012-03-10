@@ -63,7 +63,7 @@ dat <- diggle.cow
 
 # Figure 1 of Verbyla 1999
 require("lattice")
-xyplot(weight~day|iron*infect, dat, type='b',group=animal)
+xyplot(weight ~ day|iron*infect, dat, type='b',group=animal)
 
 # Scaling
 dat <- transform(dat, time = (day-122)/10)
@@ -81,7 +81,7 @@ p1 <- predict(m1, classify="animal:time",
               predictpoints=list(time=seq(0,65.9, length=50)))
 p1 <- p1$pred$pval
 p1 <- merge(dat, p1, all=TRUE) # to get iron/infect merged in
-foo1 <- xyplot(weight~day|iron*infect, dat, group=animal)
+foo1 <- xyplot(weight ~ day|iron*infect, dat, group=animal)
 foo2 <- xyplot(predicted.value ~ day|iron*infect, p1, type='l', group=animal)
 print(foo1+foo2)
 

@@ -1,5 +1,5 @@
 # desplot.r
-# Time-stamp: <11 Oct 2011 13:20:35 c:/x/rpack/agridat/R/desplot.r>
+# Time-stamp: <22 Dec 2011 15:32:11 c:/x/rpack/agridat/R/desplot.r>
 
 # Needs grid, lattice, reshape2
 
@@ -318,7 +318,7 @@ desplot <- function(form=formula(NULL ~ x + y), data,
               , scales=list(relation='free' # Different scales for each panel
                   , draw=ticks # Don't draw panel axes
                   )
-              , panel=function(x, y, z, subscripts, groups, ...,
+              , panel = function(x, y, z, subscripts, groups, ...,
                   out1f, out1g, out2f, out2g){
                 # First fill the cells and outline
                 panel.outlinelevelplot(x, y, z, subscripts, at, ...,
@@ -331,7 +331,8 @@ desplot <- function(form=formula(NULL ~ x + y), data,
                              cex=cex,
                              col=col.text[as.numeric(col.val[subscripts])])
               },
-    strip=strip.custom(par.strip.text=list(cex=strip.cex)))
+              strip=strip.custom(par.strip.text=list(cex=strip.cex)),
+              ...)
 
   # Use 'update' for any other modifications
   #if(!show.key) out <- update(out, legend=list(left=NULL))
@@ -339,89 +340,71 @@ desplot <- function(form=formula(NULL ~ x + y), data,
   return(out)
 }
 
-panel.outlinelevelplot <-
-  function(x, y, z, subscripts, at, ...,
-           alpha.regions = 1,
-           out1f, out1g, out2f, out2g) {
+# Based on panel.levelplot
+panel.outlinelevelplot <- function(x, y, z, subscripts, at, ...,
+           alpha.regions = 1, out1f, out1g, out2f, out2g) {
     dots=list(...)
     col.regions=dots$col.regions
 
-    # Based on panel.levelplot
-    if (length(subscripts) == 0)
-        return()
-    x.is.factor <- is.factor(x)
-    y.is.factor <- is.factor(y)
-    x <- as.numeric(x)
-    y <- as.numeric(y)
+    # parent function forces x,y to be numeric, not factors
+    
+    if (length(subscripts) == 0) return()
+    
     z <- as.numeric(z)
     zcol <- level.colors(z, at, col.regions, colors = TRUE)
     x <- x[subscripts]
     y <- y[subscripts]
 
-    minXwid <- if (length(unique(x)) > 1)
-        min(diff(sort(unique(x))))
-    else 1
-    minYwid <- if (length(unique(x)) > 1)
-        min(diff(sort(unique(y))))
-    else 1
-    fullZrange <- range(as.numeric(z), finite = TRUE)
+    zlim <- range(as.numeric(z), finite = TRUE)
     z <- z[subscripts]
     zcol <- zcol[subscripts]
-    scaleWidth <- function(z, min = 0.8, max = 0.8, zl = range(z,
-        finite = TRUE)) {
-        if (diff(zl) == 0)
-            rep(0.5 * (min + max), length(z))
-        else min + (max - min) * (z - zl[1])/diff(zl)
-    }
-    if (x.is.factor) {
-        ux <- sort(unique(x[!is.na(x)]))
-        lx <- rep(1, length(ux))
-        cx <- ux
-    }
-    else {
-        ux <- sort(unique(x[!is.na(x)]))
-        bx <- if (length(ux) > 1)
-            c(3 * ux[1] - ux[2], ux[-length(ux)] + ux[-1], 3 *
-                ux[length(ux)] - ux[length(ux) - 1])/2
-        else ux + c(-0.5, 0.5) * minXwid
-        lx <- diff(bx)
-        cx <- (bx[-1] + bx[-length(bx)])/2
-    }
-    if (y.is.factor) {
-        uy <- sort(unique(y[!is.na(y)]))
-        ly <- rep(1, length(uy))
-        cy <- uy
-    }
-    else {
-        uy <- sort(unique(y[!is.na(y)]))
-        by <- if (length(uy) > 1)
-            c(3 * uy[1] - uy[2], uy[-length(uy)] + uy[-1], 3 *
-                uy[length(uy)] - uy[length(uy) - 1])/2
-        else uy + c(-0.5, 0.5) * minYwid
-        ly <- diff(by)
-        cy <- (by[-1] + by[-length(by)])/2
-    }
+    
+    ux <- sort(unique(x[!is.na(x)])) 
+    bx <- if (length(ux) > 1) { # breakpoints
+      c(3 * ux[1] - ux[2], ux[-length(ux)] + ux[-1],
+        3 * ux[length(ux)] - ux[length(ux) - 1])/2
+    } else ux + c(-0.5, 0.5)
+    lx <- diff(bx) # lengths? I think this is same as rep(1, length(ux))
+    cx <- (bx[-1] + bx[-length(bx)])/2  # centers
+
+    uy <- sort(unique(y[!is.na(y)]))
+    by <- if (length(uy) > 1) {
+      c(3 * uy[1] - uy[2], uy[-length(uy)] + uy[-1],
+        3 * uy[length(uy)] - uy[length(uy) - 1])/2
+    } else uy + c(-0.5, 0.5)
+    ly <- diff(by)
+    cy <- (by[-1] + by[-length(by)])/2
+
     idx <- match(x, ux)
     idy <- match(y, uy)
 
     # Fill the cells
+    scaleWidth <- function(z, zl = range(z, finite = TRUE)) {
+      if (diff(zl) == 0)
+        rep(1, length(z))
+      else 1
+    }
     grid.rect(x = cx[idx], y = cy[idy],
-              width=lx[idx] * scaleWidth(z, 1, 1, fullZrange),
-              height = ly[idy] * scaleWidth(z, 1, 1, fullZrange),
+              width=lx[idx] * scaleWidth(z, zlim),
+              height = ly[idy] * scaleWidth(z, zlim),
               default.units = "native",
               gp = gpar(fill = zcol, lwd = 1e-05, col="transparent",
                 alpha = alpha.regions))
 
     draw.outline <- function(x, y, lab, gp) {
+      # x,y are coords, lab=grouping for outline, gp=graphics par
       out1 <- data.frame(x=x, y=y, lab=lab, stringsAsFactors = FALSE)
       out1 <- melt(out1, id.var=c('x','y'))
       # reshape melts char vector to char, reshape 2 melts to factor!
       # both packages could be attached, hack to fix this...
       out1$value <- as.character(out1$value)
       out1 <- acast(out1, y~x)
+      # Careful.  The 'out' matrix is upside down from the levelplot
 
+      # Since 'out' could be 1 row or column, surround it with NAs
+      out1 <- cbind(NA, rbind(NA, out1, NA), NA)
+      
       # Horizontal lines above boxes
-      # Careful.  The matrix is upside down from the levelplot
       hor <- out1[2:nrow(out1)-1, ] != out1[2:nrow(out1), ]
       hor <- melt(hor)
       hor <- hor[!(hor$value==FALSE | is.na(hor$value)),]

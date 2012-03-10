@@ -45,7 +45,7 @@ summary(m1)
 # There is a noticeable linear trend along the y coordinate which may be
 # an artifact that blocking will remove, or may need to be modeled.
 # Note the outside values in the high-nitro boxplot.
-require(HH)
+require("HH")
 interaction2wt(yield ~ nitro + gen + planting + y, dat, x.relation="free")
 }
 }

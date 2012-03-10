@@ -40,7 +40,7 @@
 
 \examples{
 
-require(reshape2)
+require("reshape2")
 mat <- melt(yan.winterwheat, id.var=c('gen','env'))
 mat <- acast(mat, gen~env)
 

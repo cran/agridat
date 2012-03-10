@@ -36,6 +36,7 @@ The spdep package includes the grain yields
 \examples{
 dat <- mercer.wheat
 
+require(lattice)
 desplot(grain ~ col*row, dat)
 
 densityplot(~grain, data=dat)

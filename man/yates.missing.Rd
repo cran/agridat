@@ -33,7 +33,7 @@
   2nd Edition, page 212.
 }
 \examples{
-require(reshape2)
+require("reshape2")
 dat <- yates.missing
 mat0 <- acast(dat[, c('trt','block','y')], trt~block,
                id.var=c('trt','block'))
@@ -48,7 +48,7 @@ mat1 <- acast(dat[, c('trt','block','pred')], trt~block,
 
 \dontrun{
 # Another method to estimate missing values via PCA
-require(pcaMethods)
+require("pcaMethods")
 m2 <- pca(mat0, method="nipals", center=FALSE, nPcs=3)
 mat2 <- m2@scores %*% t(m2@loadings)
 

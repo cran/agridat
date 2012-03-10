@@ -61,7 +61,7 @@ yield <- talbot.potato$yield
 char <- scale(char)
 yield <- scale(yield)
 
-m1 <- plsr(yield~char, ncomp=3)
+m1 <- plsr(yield ~ char, ncomp=3)
 summary(m1)
 
 # Loadings factor 1

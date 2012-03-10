@@ -32,14 +32,14 @@ Multi-environment trial with structured missing values
 dat <- denis.missing
 
 # View missingness structure
-require(reshape2)
+require("reshape2")
 m1 <- melt(dat, measure.var='yield')
 acast(m1, env~gen)
 
 # Stability variance (Table 3 in Piepho)
-library(nlme)
-dat.lme <- lme(yield ~ -1 + gen, data=dat, random=~1|env,
-               weights = varIdent(form=~ 1|gen),
+library("nlme")
+dat.lme <- lme(yield ~ -1 + gen, data=dat, random= ~ 1|env,
+               weights = varIdent(form= ~ 1|gen),
                na.action=na.omit)
 dat.lme$sigma^2 * c(1, coef(dat.lme$modelStruct$varStruct, unc = FALSE))^2
 

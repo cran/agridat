@@ -50,21 +50,21 @@ datm <- aggregate(yield ~ county + gen, data=dat, FUN=mean)
 # asreml Using 'rcov' ALWAYS requires sorting the data
 require(asreml)
 datm <- datm[order(datm$gen),]
-m2a <- asreml(yield ~ gen, data=datm,
+m1a <- asreml(yield ~ gen, data=datm,
               random = ~ county,
               rcov = ~ at(gen):units,
               predict=asreml:::predict.asreml(classify="gen"))
-summary(m2a)$varcomp
+summary(m1a)$varcomp
 
 # lme
 require(nlme)
-m2l <- lme(yield ~ -1 + gen, data=datm, random=~1|county,
+m1l <- lme(yield ~ -1 + gen, data=datm, random=~1|county,
                weights = varIdent(form=~ 1|gen))
-m2l$sigma^2 * c(1, coef(m2l$modelStruct$varStruct, unc = F))^2
+m1l$sigma^2 * c(1, coef(m1l$modelStruct$varStruct, unc = F))^2
 
 # We get the same results from asreml & lme
-plot(m2a$gammas[-1],
-     m2l$sigma^2 * c(1, coef(m2l$modelStruct$varStruct, unc = F))^2)
+plot(m1a$gammas[-1],
+     m1l$sigma^2 * c(1, coef(m1l$modelStruct$varStruct, unc = F))^2)
 }
 }
 

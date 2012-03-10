@@ -54,7 +54,7 @@ desplot(yield ~ column*block, dat, out1=block, text=gen, col=wheel)
 m1 <- lm(yield ~ gen + block, data=dat)
 dat$res <- resid(m1)
 
-desplot(res ~ column*block, dat, out1=block, lab=gen, col=wheel)
+desplot(res ~ column*block, dat, out1=block, text=gen, col=wheel)
 
 # Calculate mean of neighboring plots
 dat$comp <- NA

@@ -33,7 +33,7 @@
 \examples{
 dat <- corsten.interaction
 
-require(reshape2)
+require("reshape2")
 m1 <- melt(dat, measure.var='yield')
 dmat <- acast(m1, loc~gen)
 

@@ -67,8 +67,8 @@
   then, in addition, a hard freeze on May 29th ... further set back the
   corn.  The heavy rains and subsequent floods during June caused
   appreciable crop acreage to be abandoned ... followed by a hot dry
-  weather regime that persisted from mid-July through the first decade
-  [sic, probably 'week'] of September."
+  weather regime that persisted from mid-July through the first week
+  of September."
 
   In 1949 soybean yields were average while corn yields were low.
   From the same source above,
@@ -81,7 +81,8 @@
   Thompson, L.M., 1963. \emph{Weather and technology in the production of corn and soybeans}. CAED Report 17. The Center for Agriculture and Economic Development, Iowa State University, Ames, Iowa.
 }
 \references{
-Draper, N. R. and Smith, H. (1981).  \emph{Applied Regression Analysis}, second edn, Wiley, New York.
+  Draper, N. R. and Smith, H. (1981).  \emph{Applied Regression Analysis},
+  second ed., Wiley, New York.
 }
 \examples{
 dat <- thompson.cornsoy

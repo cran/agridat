@@ -31,17 +31,19 @@ A uniformity trial of 1500 plots of wheat conducted in Idaho in 1927.
 
 \references{
   D.A. Preece, 1981, Distributions of final digits in data,
-  The Statistician, 30, 31--60.
+  \emph{The Statistician}, 30, 31--60.
 }
 
 \examples{
-
 dat <- wiebe.wheat
+
+require("lattice")
+desplot(yield~column+row, dat, aspect=3) # aspect is just a guess
 
 # Preece (1981) found the last digits have an interesting distribution.
 dig <- substring(dat$yield, nchar(dat$yield))
 dig <- as.numeric(dig)
-hist(dig, breaks=0:10-.5)
+hist(dig, breaks=0:10-.5, main="Histogram of last digit")
 table(dat$col, dig) # Table 3 of Preece
 
 # Median yields of rows/columns show obvious trends
@@ -49,9 +51,9 @@ plot(tapply(dat$yield, dat$row, median), xlab="Row", ylab="Yield")
 plot(tapply(dat$yield, dat$column, median), xlab="Column", ylab="Yield")
 # Spatial trends are obvious
 xyplot(yield~column, dat, type=c('p','smooth'))
-levelplot(yield~column+row, dat)
 
 # Median polish
+require("reshape2")
 mat <- melt(dat, measure.var='yield')
 mat <- acast(mat, row~column)
 image(mat)

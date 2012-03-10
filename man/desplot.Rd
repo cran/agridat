@@ -17,9 +17,15 @@
 \description{Plot the layout/data of a field experiment}
 
 \details{
-  A tool for plotting the layout of a field experiment and also the
+  Ryder (1981) discusses the need to examine the layout of the
+  experiment design, and not just the data.  This function provides a
+  a tool for plotting the layout of a field experiment and also the
   observed data.
-
+ 
+  Not all parameters are passed down to \code{xyplot}.  One way around
+  this is assign the desplot object to a variable, then use
+  \code{update} to modify the plot, and then print it.
+  
   Use \code{col.regions} to specify fill colors.  This can either be a
   vector of colors or a function that produces a vector of colors.
   If the response variable is a factor and \code{col.regions} is a
@@ -66,6 +72,10 @@
 \item{strip.cex}{Strip cex}
 \item{...}{Other}
 }
+\references{
+  K. Ryder (1981). Field plans: why the biometrician finds them useful,
+  \emph{Experimental Agriculture}, 17, 243--256.
+}
 \examples{
 data("Wheat2", package="nlme")
 # Convert lat/long to integers
@@ -75,11 +85,19 @@ desplot(yield ~ x*y, data=Wheat2, out1=Block, aspect=2)
 
 desplot(Block ~ x*y, data=Wheat2, num=variety, out1=Block)
 
-desplot(yield~x+y, yates.oats, out1=block, out2=gen)
+desplot(yield ~ x+y, yates.oats, out1=block, out2=gen)
 
-desplot(gen~x+y, yates.oats, col=block, num=nitro, cex=1,
+desplot(gen ~ x+y, yates.oats, col=block, num=nitro, cex=1,
 out1=block)
 
-desplot(block~x+y, yates.oats, col=nitro, text=gen, cex=1, out1=block)
+desplot(block ~ x+y, yates.oats, col=nitro, text=gen, cex=1, out1=block)
+
+# Example from Ryder.
+gnut <- ryder.groundnut
+m1 <- lm(dry~block+gen, gnut)
+gnut$res <- resid(m1)
+# Note largest positive/negative residuals are adjacent
+desplot(res ~ column + row, gnut, text=gen, cex=1)
+
 }
 

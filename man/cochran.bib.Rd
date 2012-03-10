@@ -17,7 +17,7 @@
   }
 }
 \details{
-  Incomplete block design.  Each lloc/block has 4 genotypes/lines.
+  Incomplete block design.  Each loc/block has 4 genotypes/lines.
   The blocks are planted at different locations.
   
   Conducted in 1943 in North Carolina.

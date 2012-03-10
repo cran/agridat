@@ -30,11 +30,13 @@ Yield from a barley uniformity trial
   \emph{Australian Journal of Agricultural Research}, 39, 339-350.
 }
 \examples{
-data(williams.barley)
 dat <- williams.barley
 
-# Smoothed contour/persp plot like Williams Fig 1b, 2b
 require("lattice")
+asp = (15*5)/(48*.75) # true aspect
+desplot(yield ~ column*row, dat, aspect=asp)
+
+# Smoothed contour/persp plot like Williams Fig 1b, 2b
 dat$fit <- fitted(loess(yield~column*row, dat, span=.1))
 contourplot(fit~column*row, data=dat)
 wireframe(fit~column*row, data=dat, zlim=c(100, 350))

@@ -58,11 +58,11 @@ dat$densf <- factor(dat$density)
 m0 <- aov( yield ~ gen * densf * date + block, dat )
 summary(m0)
 
-# Boxplots for for date & density suggest different variances
+# Boxplots suggest heteroskedasticity for date, density
 # require("HH")
 # interaction2wt(yield ~ gen + date + densf +block, dat)
 
-library(nlme)
+require(nlme)
 # Random block model
 m1 <- lme(yield ~ gen * date * densf, random= ~1|block, data=dat)
 summary(m1)

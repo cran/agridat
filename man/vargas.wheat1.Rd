@@ -74,9 +74,10 @@
 gvals <- vargas.wheat1$genvals
 evals <- vargas.wheat1$envvals
 
-require(pls)
+require("pls")
 
 # Yield as a function of gen variates
+require("reshape2")
 gv <- melt(gvals, id.var=c('gen','rep','year'))
 Y0 <- subset(gv, variable=="yield")
 Y0 <- acast(Y0, gen~year, mean)

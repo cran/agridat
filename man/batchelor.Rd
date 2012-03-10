@@ -54,7 +54,7 @@ batchelor.walnut
   yet a field observation gives one the impression that the grove as a
   whole is remarkably uniform.
   
-  \bold{Navel 1}
+  \bold{Navel 1 (Arlington)}
   
   These records were of the 1915-16 yields of one thousand 24-year-old
   navel-orange trees near Arlington station, Riverside, California. The
@@ -68,7 +68,7 @@ batchelor.walnut
   variations, which are present in every orchard, bring uncertainty into
   the results offield experiments.
   
-  \bold{Navel 2}
+  \bold{Navel 2 (Antelope)}
 
   The navel-orange grove later referred to as the Antelope Heights
   navels is a plantation of 480 ten-yearold trees planted 22 by 22 feet,
@@ -109,40 +109,36 @@ batchelor.walnut
 }
 \examples{
 
+require("lattice")
+
 # Apple
 dat <- batchelor.apple
-levelplot(yield~col*row, dat, col.regions=RedGrayBlue(17),
-          aspect=30/16,
+desplot(yield~col*row, dat, aspect=30/16,
           main="Jonathon apple tree yields")
 
 # Lemon
 dat <- batchelor.lemon
-levelplot(yield~col*row, dat, col.regions=RedGrayBlue(17),
-          aspect='iso',
+desplot(yield~col*row, dat, aspect=26/14,
           main="Eureka lemon tree yields")
 
 # Navel1 (Arlington)
 dat <- batchelor.navel1
-levelplot(yield~col*row, dat, col.regions=RedGrayBlue(17),
-          aspect='iso',
+desplot(yield~col*row, dat, aspect=50/20,
           main="Navel orange tree yields (Arlington)")
 
 # Navel2 (Antelope)
 dat <- batchelor.navel2
-levelplot(yield~col*row, dat, col.regions=RedGrayBlue(17),
-          aspect='iso',
+desplot(yield~col*row, dat, aspect=33/15,
           main="Navel orange tree yields (Antelope)")
 
 # Valencia
 dat <- batchelor.valencia
-levelplot(yield~col*row, dat, col.regions=RedGrayBlue(17),
-          aspect='iso',
+desplot(yield~col*row, dat, aspect=20/12,
           main="Valencia orange tree yields")
 
 # Walnut
 dat <- batchelor.walnut
-levelplot(yield~col*row, dat, col.regions=RedGrayBlue(17),
-          aspect='iso',
+desplot(yield~col*row, dat, aspect=32/10,
           main="Seedling walnut yields")
 }
 

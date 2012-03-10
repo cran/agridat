@@ -40,7 +40,7 @@ xlab="Percent lodged (by genotype)", ylab="Variety",
         main="allcroft.lodging")
 
 \dontrun{
-require(Zelig)
+require("Zelig")
 # Bayesian tobit model using zelig
 m3 <- zelig(sy ~ -1 + gen + env, below=0, above=100, model="tobit.bayes",
             data=dat)

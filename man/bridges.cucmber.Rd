@@ -40,7 +40,7 @@ desplot(yield~column*row|loc, data=dat, text=gen, cex=1)
 
 \dontrun{
 require("asreml")
-## Random row/col/resid. Matches p. 147
+## Random row/col/resid. Same as Bridges 1989, p. 147
 m1 <- asreml(yield ~ 1 + gen + loc + loc:gen,
              random = ~ rowf:loc + colf:loc, data=dat)
 summary(m1)$varcomp 

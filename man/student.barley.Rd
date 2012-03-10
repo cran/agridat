@@ -70,7 +70,7 @@ dat[dat$farmer=="Mulhall","loc"] <- "3"
 
 dat <- transform(dat, loc=factor(paste(place,loc,sep="")))
 
-require(reshape2)
+require("reshape2")
 datm <- melt(dat, measure.var='yield')
 
 # Kempton Table 9.5

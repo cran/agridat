@@ -62,10 +62,6 @@
   whose variations are apparently unaccounted for and which furnish the
   data from which the following results are taken. 
 
-  In order to make a comparative study of these variations, the results
-  of each year were subjected to the statistical method which is now
-  frequently employed in studies of this nature. 
-
   It is noticeable that the variability as measured by the standard
   deviation becomes less in each succeeding year. This suggests the
   question as to whether continued cropping might not tend to induce
@@ -82,8 +78,8 @@
 
   If we consider the total range of variation in any single year, we
   find differences as follows: Plots lying adjoining have shown the
-  following maximum variations: 1895, 18 bushels; 1896,, 11 bushels;
-  1897, 8 bushels.
+  following maximum variations: 18 bushels in 1895; 11 bushels in 1896;
+  8 bushels in 1897.
 
   The above results give us a conception of the unaccountable plot
   variations which we have to deal with in field tests. The possibility
@@ -110,7 +106,10 @@
 }
 \examples{
 dat <- smith.uniformity3
-levelplot(yield~col*row|factor(year), dat, layout=c(1,3))
+
+require(lattice)
+dat = transform(dat, year=factor(year))
+desplot(yield~col*row|year, dat, layout=c(1,3))
 
 # Outliers are obvious
 xyplot(yield~row|factor(col), dat, groups=year, auto.key=TRUE)

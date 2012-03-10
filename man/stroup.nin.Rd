@@ -70,8 +70,8 @@
   \emph{Spatial Analysis Mixed Models for S language environments}
 }
 \seealso{
-  Identical data (except for the missing values) are available as
-  \code{\link[nlme]{Wheat2}}.
+  Identical data (except for the missing values) are available
+  in the \code{nlme} package as \code{\link[nlme]{Wheat2}}.
 }
 
 \examples{

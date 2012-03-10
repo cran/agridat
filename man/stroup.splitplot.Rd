@@ -8,6 +8,11 @@
   A simulated dataset of a very simple split-plot experiment, used to
   illustrate the details of calculating predictable functions (broad
   space, narrow space, etc.).
+
+  For example, the density of narrow, intermediate and broad-space
+  predictible function for factor level A1 is shown below.
+  \if{html}{\figure{stroupsplitplot.png}{options: width=50\% alt="Figure: stroup.splitplot.png"}}
+  \if{latex}{\figure{stroupsplitplot.pdf}{options: width=7cm}}
 }
 \usage{stroup.splitplot}
 \format{
@@ -37,19 +42,48 @@
 \dontrun{
 dat <- stroup.splitplot
 
-# ASREML version
+# ---- lme4 -----
+# require(lme4)
+# m0 <- lmer(y~ -1 + a + b + a:b + (1|rep) + (1|a:rep), data=dat)
+# No predict function
+
+# ----- nlme -----
+# require(nlme)
+# m0 <- lme(y ~ -1 + a + b + a:b, data=dat, random = ~ 1|rep/a)
+
+# ----- ASREML model -----
 require(asreml)
 m1 <- asreml(y~ -1 + a + b + a:b, random=~ rep + a:rep, data=dat)
 summary(m1)$var  # Variance components match Stroup p. 41
+#      Effect Estimate Std Err Z Ratio Con
+# rep!rep.var   62.4    56.54      1.1 Pos
+# a:rep!a.var   15.38   11.79      1.3 Pos
+#  R!variance    9.361   4.413     2.1 Pos
+
 # Narrow space predictions
 predict(m1, classify="a", average=list(rep=NULL))$predictions$pvals
+#  a Predicted Std Err    Status
+# a1     32.88   1.082 Estimable
+# a2     34.12   1.082 Estimable
+# a3     25.75   1.082 Estimable
+
 # Intermediate space
 predict(m1, classify="a", ignore=list("a:rep"), average=list(rep=NULL))$predictions$pvals
+#  a Predicted Std Err    Status
+# a1     32.88    2.24 Estimable
+# a2     34.12    2.24 Estimable
+# a3     25.75    2.24 Estimable
+
 # Broad space
 predict(m1, classify="a")$predictions$pvals
+#  a Predicted Std Err    Status
+# a1     32.88    4.54 Estimable
+# a2     34.12    4.54 Estimable
+# a3     25.75    4.54 Estimable
 
 
-# MCMCglmm version.  Use the point estimates from REML with a prior dist'n
+# ----- Mcmcglmm model -----
+# Use the point estimates from REML with a prior dist'n
 require(MCMCglmm)
 prior2 = list(
   G = list(G1=list(V=62.40, nu=1),  G2=list(V=15.38, nu=1)),
@@ -100,10 +134,16 @@ est <- rbind("REML est"=c(32.88, 32.88, 32.88, -1.25, -1.25),
              "MCMC mode"=posterior.mode(post2),
              "MCMC stderr"=apply(post2, 2, sd))
 round(est,2)
+#               A1n   A1i   A1b A1-A2n A1-A2ib
+# REML est    32.88 32.88 32.88  -1.25   -1.25
+# REML stderr  1.08  2.24  4.54   1.53    3.17
+# MCMC mode   32.95 32.38 31.96  -1.07   -1.17
+# MCMC stderr  1.23  2.64  5.93   1.72    3.73
 
 post22 <- make.groups(Narrow=post2[,1], Intermediate=post2[,2], 
                       Broad=post2[,3])
-print(densityplot(~data, data=post22, groups=which, auto.key=TRUE,
-              cex=.25, xlab="MCMC model value of predictable function for A1"))
+print(densityplot(~data|which, data=post22, groups=which,
+      cex=.25, lty=1, layout=c(1,3),
+      xlab="MCMC model value of predictable function for A1"))
 }
 }

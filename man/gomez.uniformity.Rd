@@ -31,11 +31,11 @@
 dat <- gomez.uniformity
 
 # Raw data plot
-require(lattice)
-desplot(yield ~ x*y, data=dat)
+require("lattice")
+desplot(yield ~ x*y, data=dat, aspect=38/20)
 
 # 3x3 moving average.  Gomez figure 12.1
-require(reshape2)
+require("reshape2")
 dmat <- melt(dat, id.var=c('x','y'))
 dmat <- acast(dmat, y~x)
 m0 <- dmat
@@ -48,7 +48,7 @@ dat3 <- melt(dmat3)
 desplot(value~Var2*Var1, dat3, at=c(576,637,695,753,811,870,927))
 
 \dontrun{
-require(agricolae)
+require("agricolae")
 
 # Gomez table 12.4
 tab <- index.smith(dmat, col="red")$uniformity

@@ -37,7 +37,7 @@
 theo <- theobald.covariate
 
 # REML estimates (Means) in table 3 of Theobald 2002
-require(lme4)
+require("lme4")
 theo <- transform(theo, year=factor(year))
 m0 <- lmer(yield ~ -1 + gen + (1|year/env) + (1|gen:year), data=theo)
 round(fixef(m0),2)
@@ -46,6 +46,7 @@ round(fixef(m0),2)
 
 # Use JAGS to fit Theobald (2002) model 3.2 with 'Expert' prior
 
+require("reshape2")
 ymat <- acast(theo, year+env~gen, value_var='yield')
 chu <- acast(theo, year+env~., mean, value_var='chu', na.rm=TRUE)
 chu <- as.vector(chu - mean(chu))  # Center the covariate

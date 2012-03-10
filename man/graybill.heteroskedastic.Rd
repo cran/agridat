@@ -39,6 +39,7 @@ boxplot(yield ~ gen, dat)
 # Shukla stability variance of each genotype, same as Grubbs' estimate
 # Matches Piepho 1994 page 143.
 # Do not do this!  Nowadays, use mixed models instead.
+require("reshape2")
 datm <- acast(dat, gen~env)
 w <- datm
 w <- sweep(w, 1, rowMeans(datm))

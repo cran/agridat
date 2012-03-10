@@ -22,10 +22,10 @@
   The \code{covs} matrix contains 19 environmental covariates
   for each year.
   \tabular{ll}{
-    ST \tab \ Sowing date \cr
-    T1-T6 \tab \ Avg temp (deg Celsius) in period 1, ..., 6 \cr
-    R1-R6 \tab \ Avg rainfall (mm/day) in period 1, ..., 6 \cr
-    S1-S6 \tab \ Daily solar radiation (ca/cm^2) in period 1, ..., 6 \cr
+    ST    \tab Sowing date \cr
+    T1-T6 \tab Avg temp (deg Celsius) in period 1, ..., 6 \cr
+    R1-R6 \tab Avg rainfall (mm/day) in period 1, ..., 6 \cr
+    S1-S6 \tab Daily solar radiation (ca/cm^2) in period 1, ..., 6 \cr
   }
 }
 \source{
