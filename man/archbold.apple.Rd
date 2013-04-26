@@ -35,7 +35,11 @@ where stock=0,1,6,7 for Seedling,MM111,MM106,M0007 and gen=1,2 for
 Redspur,Golden, respectively.
 }
 \source{
-  Archbold et al 1987.
+  D Archbold and G. R. Brown and P. L. Cornelius. (1987).
+  Rootstock and In-row spacing effects on growth and yield of spur-type
+  delicious and Golden delicious apple.
+  \emph{Journal of the American Society for Horticultural Science},
+  112, 219--222.
 }
 \references{
   Cornelius, PL and Archbold, DD, 1989.

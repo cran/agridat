@@ -7,7 +7,7 @@
 \description{
   Rapeseed yield multi-environment trial, 3 years
 }
-\usage{shafii.rapeseed}
+\usage{data(shafii.rapeseed)}
 \format{
   A data frame with 648 observations on the following 5 variables.
   \describe{
@@ -21,6 +21,14 @@
 \details{
   SAS codes for the analysis can be found at
   \url{http://www.uiweb.uidaho.edu/ag/statprog/ammi/}
+
+  The data are from the U.S. National Winter Rapeseed trials conducted
+  in 1986, 1987, and 1988.  Trial locations included Georgia (GGA, TGA),
+  Idaho (ID), Kansas (KS), Mississippi (MS), Montana (MT), New York
+  (NY), North Carolina (NC), Oregon (OR), South Carolina (SC), Tennessee
+  (TN), Texas (TX), Virginia (VA), and Washington (WA).
+
+  
 }
 \source{
   Electronic version retrieved from
@@ -55,7 +63,7 @@ dat$locyr <- reorder(dat$locyr, dat$yield, mean)
 
 # This picture tells most of the story
 # Now change symbols
-tpg <- trellis.par.get()
+op <- tpg <- trellis.par.get()
 tpg$superpose.symbol$pch <- c('7','8','9')
 trellis.par.set(tpg)
 dotplot(loc~yield|gen,group=year,data=dat,auto.key=TRUE,
@@ -71,6 +79,6 @@ dm <- melt(datm, measure.var='res', id.var=c('gen', 'locyr'))
 dmat <- acast(dm, gen~locyr)
 # AMMI biplot.  Figure 1 of Shafii (1998)
 biplot(prcomp(dmat))
-
+trellis.par.set(op) # Unset graphics changes
 }
 

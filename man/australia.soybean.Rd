@@ -9,7 +9,7 @@
   locations across two years in Australia.  This is four-way data of
   Year x Loc x Gen x Trait.
 }
-\usage{australia.soybean}
+\usage{data(australia.soybean)}
 \format{
   A data frame with 464 observations on the following 10 variables.
   \describe{
@@ -97,7 +97,8 @@ biplot(princomp(dmat), main="australia.soybean trait x gen biplot", cex=.75)
 
 # Figure 1 of Kozak 2010, lines 44-58
 dmat2 <- dmat[44:58,]
-require(lattice)
+require("lattice")
 parallelplot(dmat2[,c(2:6,1)], horiz=FALSE)
+
 }
 

@@ -8,7 +8,7 @@
   Uniformity trial of corn in three consecutive years, 1895-1897.  The
   same field/plots were used in all three years.
 }
-\usage{smith.uniformity3}
+\usage{data(smith.uniformity3)}
 \format{
   A data frame with 360 observations on the following 5 variables.
   \describe{
@@ -109,13 +109,15 @@ dat <- smith.uniformity3
 
 require(lattice)
 dat = transform(dat, year=factor(year))
-desplot(yield~col*row|year, dat, layout=c(1,3))
+desplot(yield~col*row|year, dat, layout=c(1,3),
+        main="Uniformity trial across years 1895-1987")
 
 # Outliers are obvious
 xyplot(yield~row|factor(col), dat, groups=year, auto.key=TRUE)
 
 \dontrun{
 require(rgl)
+# A few odd pairs of outliers in column 6
 plot3d(dat$col, dat$row, dat$yield, col=dat$year)
 }
 }

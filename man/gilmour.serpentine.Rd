@@ -8,11 +8,11 @@
   An RCB experiment of wheat in South Australia, with strong spatial
   variation and serpentine row/column effects.
 }
-\usage{gilmour.serpentine}
+\usage{data(gilmour.serpentine)}
 \format{
   A data frame with 330 observations on the following 5 variables.
   \describe{
-    \item{\code{column}}{Column, numeric}
+    \item{\code{col}}{Column, numeric}
     \item{\code{row}}{Row, numeric}
     \item{\code{rep}}{Replicate factor, 3 levels}
     \item{\code{gen}}{Wheat variety, 108 levels}
@@ -39,35 +39,40 @@
 \examples{
 dat <- gilmour.serpentine
 
-desplot(yield~ column*row, data=dat, num=gen, out1=rep)
+desplot(yield~ col*row, data=dat, num=gen, out1=rep)
 
 # Extreme field trend.  Blocking insufficient--needs a spline/smoother
-xyplot(yield~column, data=dat)
+xyplot(yield~col, data=dat)
 
 \dontrun{
 require(asreml)
-dat <- transform(dat, rowf=factor(row), colf=factor(10*(column-8)))
+dat <- transform(dat, rowf=factor(row), colf=factor(10*(col-8)))
 
-mcb <- asreml(yield ~ gen, data=dat, random=~rep)
+# RCB
+m0 <- asreml(yield ~ gen, data=dat, random=~rep)
 
+# Add AR1 x AR1
 m1 <- asreml(yield ~ gen, data=dat, rcov = ~ar1(colf):ar1(rowf))
 
-m2a <- asreml(yield ~ gen + column, data=dat,
-             random= ~ spl(column) + colf,
+# Add spline
+m2 <- asreml(yield ~ gen + col, data=dat,
+             random= ~ spl(col) + colf,
              rcov = ~ar1(colf):ar1(rowf))
 
 # Figure 4 shows serpentine spraying
-p2 <- predict(m2a, classify="colf")$predictions$pvals
+p2 <- predict(m2, classify="colf")$predictions$pvals
 plot(p2$predicted, type='b', xlab="column number", ylab="BLUP")
 
 # Define column code (due to serpentine spraying)
-dat <- transform(dat, colcode = factor(1+(dat$column-1) %% 4))
+# Rhelp doesn't like double-percent modulus symbol, so compute by hand
+dat <- transform(dat, colcode = factor(dat$col-floor((dat$col-1)/4)*4 -1))
 
-m3a <- asreml(yield ~ gen + lin(colf) + colcode, data=dat,
+m3 <- asreml(yield ~ gen + lin(colf) + colcode, data=dat,
              random= ~ colf + rowf + spl(colf),
              rcov = ~ar1(colf):ar1(rowf))
+
 # Figure 6 shows serpentine row effects
-p3 <- predict(m3a, classify="rowf")$predictions$pvals
+p3 <- predict(m3, classify="rowf")$predictions$pvals
 plot(p3$predicted, type='l', xlab="row number", ylab="BLUP")
 text(1:22, p3$predicted, c('L','L','M','R','R','M','L','L',
 'M','R','R','M','L','L','M','R','R','M','L','L','M','R'))

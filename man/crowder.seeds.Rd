@@ -1,5 +1,5 @@
-\name{crowder.germination}
-\alias{crowder.germination}
+\name{crowder.seeds}
+\alias{crowder.seeds}
 \docType{data}
 \title{
   Germination of Orobanche seeds from Crowder (1978)
@@ -8,7 +8,7 @@
   Number of Orobanche seeds tested/germinated for two genotypes and
   two treatments.
 }
-\usage{crowder.germination}
+\usage{data(crowder.seeds)}
 \format{
   \describe{
     \item{\code{plate}}{Factor for replication}
@@ -43,7 +43,7 @@
   \emph{J. R. Statist. Soc. B}, 58:619-678.
 }
 \examples{
-dat <- crowder.germination
+dat <- crowder.seeds
 m1.glm <- m1.glmm <- m1.bb <- m1.hglm <- NA
 
 # Graphic
@@ -79,5 +79,58 @@ round(summary(m1.glm)$coef,2)
 round(summary(m1.glmm)$tTable,2)
 round(summary(m1.bb)@Coef,2)
 round(summary(m1.hglm)$FixCoefMat,2)
+
+\dontrun{
+# JAGS/BUGS.  See http://mathstat.helsinki.fi/openbugs/Examples/Seeds.html
+# Germination rate depends on p, which is a logit of a linear predictor
+# based on genotype and extract, plus random deviation to intercept
+require("rjags")
+
+# To match the output on the BUGS web page, use: dat$gen=="O73".
+# We use dat$gen=="O75" to compare with the parameterization above.
+jdat =list(germ = dat$germ, n = dat$n,
+           root = as.numeric(dat$extract=="cucumber"),
+           gen = as.numeric(dat$gen=="O75"),
+           nobs = nrow(dat))
+
+jinit = list(int = 0, genO75 = 0, extcuke = 0, g75ecuke = 0, tau = 10)
+
+# Unlike BUGS, we use names THAT WE CAN ACTUALLY INTERPRET!
+mod.bug = "
+model {
+  for(i in 1:nobs) {
+    germ[i] ~ dbin(p[i], n[i])
+    b[i] ~ dnorm(0.0, tau)
+    logit(p[i]) <- int + genO75 * gen[i] + extcuke * root[i] +
+                   g75ecuke * gen[i] * root[i] + b[i]
+  }
+  int ~ dnorm(0.0, 1.0E-6)
+  genO75 ~ dnorm(0.0, 1.0E-6)
+  extcuke ~ dnorm(0.0, 1.0E-6)
+  g75ecuke ~ dnorm(0.0, 1.0E-6)
+  tau ~ dgamma(0.001, 0.001)
+  sigma <- 1 / sqrt(tau)
+}"
+
+j1 <- jags.model(textConnection(mod.bug), data=jdat, inits=jinit, n.chains=1)
+
+c1 <- coda.samples(j1, c("int","genO75","g75ecuke","extcuke","sigma"),
+                   n.iter=20000)
+summary(c1)
+# Medians are very similar to estimates from hglm
+# round(summary(m1.hglm)$FixCoefMat,2)
+
+# Plot observed data with HPD intervals for germination probability
+c2 <- coda.samples(j1, c("p"), n.iter=20000)
+hpd <- HPDinterval(c2)[[1]]
+med <- summary(c2, quantiles=.5)$quantiles
+fit <- data.frame(med, hpd)
+
+require("latticeExtra")
+obs <- dotplot(1:21 ~ germ/n, dat, ylab="plate",
+               col=as.numeric(dat$gen), pch=substring(dat$extract,1))
+obs + segplot(1:21 ~ lower + upper, data=fit, centers=med)
+
+}
 }
 

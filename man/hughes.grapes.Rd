@@ -8,7 +8,7 @@
   Disease incidence on grape leaves in RCB experiment with 6 different
   treatments.
 }
-\usage{hughes.grapes}
+\usage{data(hughes.grapes)}
 \format{
   A data frame with 270 observations on the following 6 variables.
   \describe{
@@ -73,8 +73,7 @@ bdat <- splitbin(cbind(diseased, total-diseased) ~ block+trt+plot+vine+shoot,
 names(bdat)[2] <- 'y'
 
 # Using lme4
-m2 <- lmer(y ~ trt + block + (1|plot/vine), data=bdat,
-            family=binomial)
+m2 <- lmer(y ~ trt + block + (1|plot/vine), data=bdat, family=binomial)
 m2
 
 # Now using MASS:::glmmPQL

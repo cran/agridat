@@ -7,7 +7,7 @@
 \description{
   Silage yields for maize in 5 years at 7 districts for 10 hybrids.
 }
-\usage{theobald.covariate}
+\usage{data(theobald.covariate)}
 \format{
   A data frame with 256 observations on the following 5 variables.
   \describe{
@@ -56,12 +56,12 @@ theo$loc <- as.numeric(theo$env)
 locidx <- acast(theo, year+env~., mean, value_var='loc', na.rm=TRUE)
 locidx <- as.vector(locidx)
 
-dat <- list(nVar = 10, nYear = 5, nLoc = 7, nYL = 29, yield = ymat,
+jdat <- list(nVar = 10, nYear = 5, nLoc = 7, nYL = 29, yield = ymat,
             chu = chu, year = yridx, loc = locidx) 
 
 require(rjags)
 m1 <- jags.model(file=system.file("/files/theobald.bug", package="agdata"),
-  data=dat, n.chains=2)
+  data=jdat, n.chains=2)
 
 # Table 3, Variety deviations from means (Expert prior)
 c1 <- coda.samples(m1, variable.names=(c('alpha')),

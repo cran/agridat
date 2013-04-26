@@ -10,7 +10,7 @@
   col.regions=RedGrayBlue, col.text=NULL, text.levels=NULL, 
   out1.gpar=gpar(col = "black", lwd = 3),
   out2.gpar=gpar(col = "yellow", lwd = 1, lty = 1),
-  main, at, ticks=FALSE, xlab, ylab,
+  at, ticks=FALSE, flip=FALSE, main, xlab, ylab,
   shorten="abb", show.key=TRUE, key.cex, cex=0.4, strip.cex=0.75, ...)
 }
 
@@ -60,9 +60,10 @@
 \item{text.levels}{Character strings to use instead of default 'levels'}
 \item{out1.gpar}{Graphics parameters for outlining}
 \item{out2.gpar}{Graphics parameters for outlining}
-\item{main}{Main title}
 \item{at}{Breakpoints for the color ribbon}
 \item{ticks}{If TRUE, show tick marks row/column}
+\item{flip}{If TRUE, vertically flip the image}
+\item{main}{Main title}
 \item{xlab}{Label for x axis}
 \item{ylab}{Label for y axis}
 \item{shorten}{Method for shortening text in the key}
@@ -97,7 +98,7 @@ gnut <- ryder.groundnut
 m1 <- lm(dry~block+gen, gnut)
 gnut$res <- resid(m1)
 # Note largest positive/negative residuals are adjacent
-desplot(res ~ column + row, gnut, text=gen, cex=1)
+desplot(res ~ col + row, gnut, text=gen, cex=1)
 
 }
 

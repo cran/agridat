@@ -7,7 +7,7 @@
 \description{
   Multi-environment trial of corn laid out in incomplete-blocks
 }
-\usage{besag.met}
+\usage{data(besag.met)}
 \format{
   A data frame with 1152 observations on the following 7 variables.
   \describe{
@@ -38,10 +38,12 @@
 }
 
 \examples{
-\dontrun{
 dat <- besag.met
 
-# Heteroskedastic variance model
+desplot(yield ~ col*row|county, out1=rep, dat)
+
+\dontrun{
+# Heteroskedastic variance model (separate variance for each variety)
 # asreml takes 1 second, lme 73 seconds, SAS 30 minutes
 
 # Average reps

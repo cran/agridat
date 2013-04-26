@@ -1,5 +1,6 @@
 # desplot.r
-# Time-stamp: <22 Dec 2011 15:32:11 c:/x/rpack/agridat/R/desplot.r>
+# Time-stamp: <03 Apr 2013 10:09:40 c:/x/rpack/agridat/R/desplot.r>
+# Copyright 2011, Kevin Wright
 
 # Needs grid, lattice, reshape2
 
@@ -10,16 +11,16 @@ desplot <- function(form=formula(NULL ~ x + y), data,
                     col.regions=RedGrayBlue, col.text=NULL, text.levels=NULL,
                     out1.gpar=gpar(col="black", lwd=3),
                     out2.gpar=gpar(col="yellow", lwd=1, lty=1),
-                    main=NULL, at,
-                    ticks=FALSE,
-                    xlab, ylab,
+                    at, ticks=FALSE, flip=FALSE,
+                    main=NULL, xlab, ylab,
                     shorten='abb',
                     show.key=TRUE,
                     key.cex, # left legend cex
                     cex=.4, # cell cex
                     strip.cex=.75, ...){
 
-  if(missing(main)) main <- deparse(substitute(data)) # Use data name by default
+  # Use data name for default title
+  if(missing(main)) main <- deparse(substitute(data))
 
   # Force character, in case we forgot to quote the argument
   dn <- names(data)
@@ -59,6 +60,7 @@ desplot <- function(form=formula(NULL ~ x + y), data,
   y.var <- ff$xy[3]
   panel.var <- ff$cond[1]
 
+  # If ticks are requested, add axis labels
   if (missing(xlab))
     xlab <- ifelse(ticks, x.var, "")
   if (missing(ylab))
@@ -307,6 +309,7 @@ desplot <- function(form=formula(NULL ~ x + y), data,
               data=data
               , out1f=out1.val, out1g=out1.gpar
               , out2f=out2.val, out2g=out2.gpar
+              , flip=flip
               , col.regions=col.regions
               , colorkey = if(fill.type=="num") TRUE else FALSE
               , as.table=TRUE
@@ -318,7 +321,8 @@ desplot <- function(form=formula(NULL ~ x + y), data,
               , scales=list(relation='free' # Different scales for each panel
                   , draw=ticks # Don't draw panel axes
                   )
-              , panel = function(x, y, z, subscripts, groups, ...,
+              , prepanel = prepanel.desplot
+              , panel=function(x, y, z, subscripts, groups, ...,
                   out1f, out1g, out2f, out2g){
                 # First fill the cells and outline
                 panel.outlinelevelplot(x, y, z, subscripts, at, ...,
@@ -331,13 +335,53 @@ desplot <- function(form=formula(NULL ~ x + y), data,
                              cex=cex,
                              col=col.text[as.numeric(col.val[subscripts])])
               },
-              strip=strip.custom(par.strip.text=list(cex=strip.cex)),
-              ...)
+              strip=strip.custom(par.strip.text=list(cex=strip.cex)), ...)
 
   # Use 'update' for any other modifications
   #if(!show.key) out <- update(out, legend=list(left=NULL))
 
   return(out)
+}
+
+prepanel.desplot <- function (x, y, subscripts, flip, ...) {
+  # based on lattice:::prepanel.default.levelplot
+  pad <- lattice.getOption("axis.padding")$numeric
+
+  # Note: x and y are NOT factors
+  
+  if (length(subscripts) > 0) {
+    x <- x[subscripts]
+    y <- y[subscripts]
+    
+    ux <- sort(unique(x[is.finite(x)]))
+    if ((ulen <- length(ux)) < 2) 
+      xlim <- ux + c(-1, 1)
+    else {
+      diffs <- diff(as.numeric(ux))[c(1, ulen - 1)]
+      xlim <- c(ux[1] - diffs[1]/2, ux[ulen] + diffs[2]/2)
+    }
+    uy <- sort(unique(y[is.finite(y)]))
+    if ((ulen <- length(uy)) < 2) 
+      ylim <- uy + c(-1, 1)
+    else {
+      diffs <- diff(as.numeric(uy))[c(1, ulen - 1)]
+      ylim <- c(uy[1] - diffs[1]/2, uy[ulen] + diffs[2]/2)
+    }
+
+    # This is returned
+    ret <- list(xlim = lattice:::extend.limits(xlim, prop = -pad/(1 + 2 * pad)),
+                ylim = lattice:::extend.limits(ylim, prop = -pad/(1 + 2 * pad)),
+                dx = length(ux),
+                dy = length(uy))
+    if(flip) ret$ylim <- rev(ret$ylim)
+    
+    ret
+  }
+  else {
+    # This is the value of the prepanel.null() function
+    list(xlim = rep(NA_real_, 2), ylim = rep(NA_real_, 2), dx = NA_real_, 
+        dy = NA_real_)
+  }
 }
 
 # Based on panel.levelplot
@@ -348,19 +392,19 @@ panel.outlinelevelplot <- function(x, y, z, subscripts, at, ...,
 
     # parent function forces x,y to be numeric, not factors
     
-    if (length(subscripts) == 0) return()
+    if (length(subscripts) == 0L) return()
     
     z <- as.numeric(z)
     zcol <- level.colors(z, at, col.regions, colors = TRUE)
     x <- x[subscripts]
     y <- y[subscripts]
 
-    zlim <- range(as.numeric(z), finite = TRUE)
+    zlim <- range(z, finite = TRUE)
     z <- z[subscripts]
     zcol <- zcol[subscripts]
     
     ux <- sort(unique(x[!is.na(x)])) 
-    bx <- if (length(ux) > 1) { # breakpoints
+    bx <- if (length(ux) > 1L) { # breakpoints
       c(3 * ux[1] - ux[2], ux[-length(ux)] + ux[-1],
         3 * ux[length(ux)] - ux[length(ux) - 1])/2
     } else ux + c(-0.5, 0.5)
@@ -379,14 +423,9 @@ panel.outlinelevelplot <- function(x, y, z, subscripts, at, ...,
     idy <- match(y, uy)
 
     # Fill the cells
-    scaleWidth <- function(z, zl = range(z, finite = TRUE)) {
-      if (diff(zl) == 0)
-        rep(1, length(z))
-      else 1
-    }
     grid.rect(x = cx[idx], y = cy[idy],
-              width=lx[idx] * scaleWidth(z, zlim),
-              height = ly[idy] * scaleWidth(z, zlim),
+              width=lx[idx],
+              height = ly[idy],
               default.units = "native",
               gp = gpar(fill = zcol, lwd = 1e-05, col="transparent",
                 alpha = alpha.regions))
@@ -489,7 +528,39 @@ panel.outlinelevelplot <- function(x, y, z, subscripts, at, ...,
 
 # ----------------------------------------------------------------------------
 if(FALSE){
-  data(yates.oats, package="agridat")
+  dd <- data.frame(loc = cs(loc1,loc1,loc1,loc1,loc2,loc2,loc2,loc2,loc2,loc2),
+                   x=c(1,2,1,2, 1,2,3,1,2,3),
+                   y=c(1,1,2,2, 1,1,1,2,2,2),
+                   rep=cs(R1,R1,R2,R2, R1,R2,R3,R1,R2,R3),
+                   yield=c(9.29, 11.20, 9.36, 9.89, 8.47, 9.17, 8.86, 10.48, 10.22, 11.29),
+                   trt1=cs(Treat1,Treat2,Treat2,Treat1, Trt1, Trt2, Trt1, Trt2,Trt1,Trt2),
+                   trt2=cs(Hybrid1,Hybrid1,Hybrid2,Hybrid2,
+                     Hybrid1,Hybrid2,Hybrid3,Hybrid1,Hybrid2,Hybrid3))
+  windows(width=3, height=2)
+  dplot(yield ~ x+y|loc, data=dd)
+  dplot(yield ~ x+y|loc, data=dd, strip.cex=1.5)
+  dplot(yield ~ x+y|loc, data=dd, col.regions=terrain.colors)
+
+  dplot( ~ x+y|loc, data=dd, num=trt1, cex=1)
+  dplot( ~ x+y|loc, data=dd, col=trt1, cex=1)
+  dplot( ~ x+y|loc, data=dd, text=trt1, cex=.8)
+  
+  dplot( ~ x+y|loc, data=dd, text=trt1, cex=.8, shorten='none')
+  dplot( ~ x+y|loc, data=dd, text=trt1, cex=.8, shorten='none', key.cex=.5)
+  dplot( ~ x+y|loc, data=dd, text=trt1, cex=.8, shorten='none', show.key=FALSE)
+  dplot( ~ x+y|loc, data=dd, text=trt2, col=trt1, cex=1,
+        col.text=c('red','black','blue','plum'), text.levels=c('A','B','C'))
+  
+  dplot(rep ~ x+y|loc, data=dd, out1=rep)
+  dplot(rep ~ x+y|loc, data=dd, out1=rep, out2=y)
+  dplot(rep ~ x+y|loc, data=dd, out1=rep, flip=TRUE)
+  dplot(rep ~ x+y|loc, data=dd, tick=TRUE)
+  dplot(rep ~ x+y|loc, data=dd, main="title", xlab="xlab", ylab="ylab")
+  dplot(rep ~ x+y|loc, data=dd, aspect=2)
+  dev.off()
+
+  # CRAN check doesn't like 'data' here
+  # data(yates.oats, package="agridat")
   oats35 <- yates.oats
 
   desplot(yield~x+y, oats35)

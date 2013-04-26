@@ -1,12 +1,32 @@
 News for 'agridat'
 
+Changes in version 1.5 (Apr 2013)
+
+  * New data:
+  adugna.sorghum, ars.earlywhitecorn96, besag.bayesian, bond.diallel, 
+  box.cork, broadbalk.wheat, byers.apple, caribbean.maize,
+  carmer.density, cate.potassium, cleveland.soil,
+  cochran.eelworms, cochran.wireworms, fan.stability, gomez.seedrate,
+  gotway.hessianfly, goulden.barley, henderson.milkfat, hernandez.nitrogen,
+  hessling.argentina, immer.sugarbeet, ivins.herbs, jenkyn.mildew, 
+  johnson.blight, lambert.soiltemp, lavoranti.eucalyptus, lyon.potato, 
+  lyons.wheat, mead.cowpeamaize, mead.germination,
+  minnesota.barley.weather, minnesota.barley.yield, nebraska.farmincome, 
+  nass.barley, nass.corn, nass.cotton, nass.hay, nass.rice, 
+  nass.sorghum, nass.soybean, nass.wheat, ortiz.tomato, pacheco.soybean,
+  senshu.rice, snedecor.asparagus, streibig.competition, zuidhof.broiler
+
+  * Renamed crowder.germination to crowder.seeds.
+  * Change 'column' to 'col' in all data.
+  * Function 'desplot' gains an argument 'flip' for vertical flips.
+  * Removed rgl and rjags from 'Suggests' to facilitate cross-platform checking
+
 Changes in version 1.4 (Mar 2012)
 
   * New data:
-    archbold.apple, blackman.wheat, cochran.crd, cochran.latin, 
-    darwin.maize, denis.ryegrass, digby.jointregression,
-    engelstad.nitro, federer.diagcheck, gilmour.slatehall, 
-    john.alpha, ilra.sheep, kempton.slatehall, 
+    archbold.apple, blackman.wheat, cochran.crd, cochran.latin, darwin.maize,
+    denis.ryegrass, digby.jointregression, engelstad.nitro, federer.diagcheck,
+    gilmour.slatehall, john.alpha, ilra.sheep, kempton.slatehall, 
     ryder.groundnut, steel.soybeanmet, vsn.lupin3
 
   * Removed 'suggests pcaMethods' to make CRAN check happier.
@@ -24,10 +44,6 @@ Changes in version 1.2 (Jun 2011)
     aastveit, gathmann.bt, kempton.competition, wedderburn.barley
 
   * desplot now supports xlab, ylab
-
-Changes in version 1.1
-
-  * The 'desplot' function now passes more tests.  Some arguments changed.
 
 Changes in version 1.0
 
