@@ -11,7 +11,7 @@ Rice split-split plot experiment
   practice as the sub-plot, and rice variety as the sub-sub plot.
 }
 
-\usage{data(gomez.splitsplit)}
+
 
 \format{
   A data frame with 135 observations on the following 7 variables.
@@ -39,7 +39,8 @@ dat <- gomez.splitsplit
 dat$nf <- factor(dat$nitro)
 
 desplot(yield~x*y, dat)
-desplot(nf~x*y, dat, out1=rep, col=management, num=gen, cex=1)
+desplot(nf~x*y, dat, out1=rep, col=management, num=gen, cex=1,
+        main="gomez.splitsplit")
 
 if(require(HH)){
 position(dat$nf) <- c(0,50,80,110,140)

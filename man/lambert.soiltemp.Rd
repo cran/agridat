@@ -8,7 +8,7 @@
   Average monthly soil temperature near Zurich, at seven depths,
   averaged over four years.  
 }
-\usage{data(lambert.soiltemp)}
+
 \format{
   A data frame with 84 observations on the following 3 variables.
   \describe{

@@ -7,7 +7,7 @@
 \description{
     Wet and dry groundnut yields with a possible data error.
 }
-\usage{data(ryder.groundnut)}
+
 \format{
   A data frame with 24 observations on the following 6 variables.
   \describe{
@@ -40,7 +40,7 @@ dat$res1 <- resid(m1)
 round(dat$res1 * 596.6,0)
 
 # Visually.  Note largest positive/negative residuals are adjacent
-desplot(res1 ~ col + row, dat, text=gen)
+desplot(res1 ~ col + row, dat, text=gen, main="ryder.groundnut")
 
 # Swap the dry yields for the plots and re-analyze
 dat[dat$block=="B3" & dat$gen=="A", "dry"] <- 2.8

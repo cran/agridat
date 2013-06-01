@@ -7,7 +7,7 @@
 \description{
   Percent lodging is given for 32 genotypes at 7 environments.
 }
-\usage{data(allcroft.lodging)}
+
 \format{
   A data frame with 224 observations on the following 3 variables.
   \describe{
@@ -28,9 +28,8 @@
 }
 
 \examples{
-dat <- allcroft.lodging
-
 # Transformation
+dat <- allcroft.lodging
 dat$sy <- sqrt(dat$y)
 # Variety 4 has no lodging anywhere, so add a small amount
 dat[dat$env=='E5' & dat$gen=='G04',]$sy <- .01

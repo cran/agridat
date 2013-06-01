@@ -7,7 +7,7 @@
 \description{
   Height of Eucalyptus trees in southern Brazil
 }
-\usage{data(lavoranti.eucalyptus)}
+
 \format{
   A data frame with 490 observations on the following 4 variables.
   \describe{
@@ -49,7 +49,6 @@
   interaction, \emph{Biometrical Letters}, 47, 1--14.
 }
 \examples{
-data(lavoranti.eucalyptus)
 
 # Arciniegas-Alarcon et al use SVD and regression to estimate missing values.
 # Partition the matrix X as a missing value xm, row vector xr1, column

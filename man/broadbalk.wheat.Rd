@@ -7,7 +7,7 @@
 \description{
   Long term wheat yields on Broadbalk fields at Rothamsted.
 }
-\usage{data(broadbalk.wheat)}
+
 \format{
   A data frame with 1258 observations on the following 4 variables.
   \describe{

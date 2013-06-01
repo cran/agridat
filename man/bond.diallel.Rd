@@ -7,7 +7,7 @@
 \description{
   Diallel cross of winter beans
 }
-\usage{data(bond.diallel)}
+
 \format{
   A data frame with 36 observations on the following 3 variables.
   \describe{

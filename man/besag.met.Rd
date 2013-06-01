@@ -7,7 +7,7 @@
 \description{
   Multi-environment trial of corn laid out in incomplete-blocks
 }
-\usage{data(besag.met)}
+
 \format{
   A data frame with 1152 observations on the following 7 variables.
   \describe{
@@ -40,7 +40,7 @@
 \examples{
 dat <- besag.met
 
-desplot(yield ~ col*row|county, out1=rep, dat)
+desplot(yield ~ col*row|county, out1=rep, dat, main="besag.met")
 
 \dontrun{
 # Heteroskedastic variance model (separate variance for each variety)

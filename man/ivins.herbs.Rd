@@ -7,7 +7,7 @@
 \description{
   Percent ground cover of herbage species and nettles.  
 }
-\usage{data(ivins.herbs)}
+
 \format{
   A data frame with 78 observations on the following 4 variables.
   \describe{

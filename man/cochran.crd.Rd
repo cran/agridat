@@ -7,7 +7,7 @@
 \description{
   Potato scab infection with sulfur treatments
 }
-\usage{data(cochran.crd)}
+
 \format{
   A data frame with 32 observations on the following 5 variables.
   \describe{
@@ -43,7 +43,7 @@ uncovered significant differences (Tamura, 1988).
 dat <- cochran.crd
 
 # Field plan
-desplot(inf~col*row, data=dat, text=trt, cex=1)
+desplot(inf~col*row, data=dat, text=trt, cex=1, main="cochran.crd")
 
 # CRD anova.  Table 6 of Tamura 1988
 contrasts(dat$trt) <- cbind(c1=c(1,1,1,-6,1,1,1),   # Control vs Sulf

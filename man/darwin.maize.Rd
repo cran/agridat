@@ -7,7 +7,7 @@
 \description{
   Darwin's maize data of crossed/inbred plant heights.
 }
-\usage{data(darwin.maize)}
+
 \format{
   A data frame with 30 observations on the following 4 variables.
   \describe{

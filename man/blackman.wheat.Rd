@@ -8,7 +8,7 @@
   Yield for conventional and semi-dwarf wheat varieties at 7 locs with
   low/high fertilizer levels.
 }
-\usage{data(blackman.wheat)}
+
 \format{
   A data frame with 168 observations on the following 5 variables.
   \describe{
@@ -54,10 +54,12 @@ dotplot(gen~yield|loc, dat, group=nitro, auto.key=TRUE)
 
 # Height data from table 6 of Blackman.  Height at Trumpington loc.
 # Shorter varieties have higher yields, greater response to nitro.
-heights <- data.frame(gen=c("Cap", "Dur", "Fun", "Hob", "Hun", "Kin", "Ran", "Spo", "T64", "T68","T95", "Tem"),
+heights <- data.frame(gen=c("Cap", "Dur", "Fun", "Hob", "Hun", "Kin",
+                            "Ran", "Spo", "T64", "T68","T95", "Tem"),
                       ht=c(101,76,76,80,98,88,98,81,86,73,78,93))
 dat$height <- heights$ht[match(dat$gen, heights$gen)]
-xyplot(yield~height|loc,dat,group=nitro,type=c('p','r'), subset=loc=="Tru", auto.key=TRUE)
+xyplot(yield~height|loc,dat,group=nitro,type=c('p','r'),
+             subset=loc=="Tru", auto.key=TRUE)
 
 # AMMI-style biplot Fig 6.4 of Gower 2011
 dat$env <- factor(paste(dat$loc,dat$nitro,sep="-"))

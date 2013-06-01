@@ -7,7 +7,7 @@
 \description{
   Counts of eelworms before and after fumigant treatments
 }
-\usage{data(cochran.eelworms)}
+
 \format{
   A data frame with 48 observations on the following 7 variables.
   \describe{
@@ -45,7 +45,7 @@
 dat <- cochran.eelworms
 
 # Some strong spatial trends
-desplot(initial ~ col*row, data=dat, flip=TRUE)
+desplot(initial ~ col*row, data=dat, flip=TRUE, main="cochran.eelworms")
 
 # final counts are strongly related to initial counts
 xyplot(final~initial|dose, data=dat, group=fumigant, auto.key=list(columns=5))

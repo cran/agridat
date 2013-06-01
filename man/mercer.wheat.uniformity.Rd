@@ -1,5 +1,5 @@
-\name{mercer.wheat}
-\alias{mercer.wheat}
+\name{mercer.wheat.uniformity}
+\alias{mercer.wheat.uniformity}
 \docType{data}
 \title{
   Mercer and Hall's uniformity trial of wheat in 1910
@@ -7,7 +7,7 @@
 \description{
   Uniformity trial of wheat in 1910
 }
-\usage{data(mercer.wheat)}
+
 \format{
   A data frame with 500 observations on the following 4 variables.
   \describe{
@@ -34,14 +34,14 @@ The 'spdep' package includes the grain yields
 (only) and spatial positions of plot centres in its example dataset 'wheat'.
 }
 \examples{
-dat <- mercer.wheat
+dat <- mercer.wheat.uniformity
 
 require('lattice')
-desplot(grain ~ col*row, dat)
+desplot(grain ~ col*row, dat, main="mercer.wheat.uniformity")
 
 densityplot(~grain, data=dat)
 
-xyplot(straw ~ grain, data=dat, type=c('p','r'), main="mercer.wheat - regression")
+xyplot(straw ~ grain, data=dat, type=c('p','r'), main="mercer.wheat.uniformity - regression")
 
 # require(hexbin)
 # hexbinplot(straw ~ grain, data=dat)

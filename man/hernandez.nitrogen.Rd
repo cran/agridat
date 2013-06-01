@@ -7,7 +7,7 @@
 \description{
   Corn response to nitrogen fertilizer at 5 sites.
 }
-\usage{data(hernandez.nitrogen)}
+
 \format{
   A data frame with 136 observations on the following 5 variables.
   \describe{
@@ -25,13 +25,12 @@
   Hernandez, J.A. and Mulla, D.J. 2008.
   Estimating uncertainty of economically optimum fertilizer rates,
   \emph{Agronomy Journal}, 100, 1221-1229.
-  \url{https://www.crops.org/publications/aj/abstracts/100/5/1221}.
+  \url{http://www.crops.org/publications/aj/abstracts/100/5/1221}.
 
   Electronic data kindly supplied by Jose Hernandez.
 }
 
 \examples{
-data(hernandez.nitrogen)
 
 dat <- hernandez.nitrogen
 cprice <- 118.1 # $118.1/Mg or $3/bu

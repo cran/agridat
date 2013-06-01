@@ -8,7 +8,7 @@
   An RCB experiment of wheat in South Australia, with strong spatial
   variation and serpentine row/column effects.
 }
-\usage{data(gilmour.serpentine)}
+
 \format{
   A data frame with 330 observations on the following 5 variables.
   \describe{
@@ -39,7 +39,8 @@
 \examples{
 dat <- gilmour.serpentine
 
-desplot(yield~ col*row, data=dat, num=gen, out1=rep)
+desplot(yield~ col*row, data=dat, num=gen, out1=rep,
+        main="gilmour.serpentine")
 
 # Extreme field trend.  Blocking insufficient--needs a spline/smoother
 xyplot(yield~col, data=dat)

@@ -8,7 +8,7 @@
   Competition experiment between barley and sinapis, at different
   planting rates.
 }
-\usage{data(streibig.competition)}
+
 \format{
   A data frame with 135 observations on the following 8 variables.
   \describe{
@@ -41,7 +41,7 @@
 \examples{
 dat <- streibig.competition
 
-# See Schaberger and Pierce, pages 370-
+# See Schaberger and Pierce, pages 370+
 # Consider only the mono-species barley data (no competition from sinapis)
 d1 <- subset(dat, sseeds<1)
 d1 <- transform(d1, x=bseeds, y=bdwt, block=factor(block))

@@ -1,5 +1,5 @@
-\name{wiebe.wheat}
-\alias{wiebe.wheat}
+\name{wiebe.wheat.uniformity}
+\alias{wiebe.wheat.uniformity}
 \docType{data}
 \title{
 Uniformity trial of wheat
@@ -7,7 +7,7 @@ Uniformity trial of wheat
 \description{
 A uniformity trial of 1500 plots of wheat conducted in Idaho in 1927.
 }
-\usage{data(wiebe.wheat)}
+
 \format{
   A data frame with 1500 observations on the following 3 variables.
   \describe{
@@ -34,7 +34,7 @@ A uniformity trial of 1500 plots of wheat conducted in Idaho in 1927.
 \source{
   Wiebe, G.A. 1935. Variation and Correlation in Grain Yield among 1,500 Wheat
   Nursery Plots, \emph{Journal of Agricultural Research}, 50, 331-357.
-  \url{naldc.nal.usda.gov/download/IND43968632/PDF}
+  \url{http://naldc.nal.usda.gov/download/IND43968632/PDF}
 }
 
 \references{
@@ -43,7 +43,7 @@ A uniformity trial of 1500 plots of wheat conducted in Idaho in 1927.
 }
 
 \examples{
-dat <- wiebe.wheat
+dat <- wiebe.wheat.uniformity
 
 require("lattice")
 # 125 rows = 125 feet tall. 12 cols * 15 feet = 180 feet wide.

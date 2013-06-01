@@ -7,7 +7,7 @@
 \description{
   Relation between wheat yield and weather in Argentina
 }
-\usage{data(hessling.argentina)}
+
 \format{
   A data frame with 30 observations on the following 15 variables.
   \describe{

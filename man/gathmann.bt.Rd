@@ -7,7 +7,7 @@
 \description{
   Impact of Bt Corn on non-target species
 }
-\usage{data(gathmann.bt)}
+
 \format{
   A data frame with 16 observations on the following 3 variables.
   \describe{
@@ -26,7 +26,7 @@
 \source{
   L. A. Hothorn, 2005.
   Evaluation of Bt-Maize Field Trials by a Proof of Safety.
-  \url{www.seedtest.org/upload/cms/user/presentation7Hothorn.pdf}
+  \url{http://www.seedtest.org/upload/cms/user/presentation7Hothorn.pdf}
 
   Used with permission of Achim Gathmann.
 }

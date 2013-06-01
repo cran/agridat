@@ -7,7 +7,7 @@
 \description{
   Relative cotton yield for different soil potassium concentrations
 }
-\usage{data(cate.potassium)}
+
 \format{
   A data frame with 24 observations on the following 2 variables.
   \describe{
@@ -30,11 +30,10 @@
   A simple statistical procedure for partitioning soil test correlation
   data into two classes. \emph{Soil Science Society of America Journal},
   35, 658--660.
-  \url{https://www.crops.org/publications/sssaj/abstracts/35/4/SS0350040658}
+  \url{http://www.crops.org/publications/sssaj/abstracts/35/4/SS0350040658}
 }
 
 \examples{
-data(cate.potassium)
 
 dat <- cate.potassium
 names(dat) <- c('y','x')

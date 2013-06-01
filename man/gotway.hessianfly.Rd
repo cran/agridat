@@ -7,7 +7,7 @@
 \description{
   Hessian fly damage to wheat varities
 }
-\usage{data(gotway.hessianfly)}
+
 \format{
   \describe{
     \item{\code{block}}{block factor, 4 levels}
@@ -33,7 +33,8 @@
 \examples{
 dat <- gotway.hessianfly
 dat$prop <- dat$y / dat$n
-desplot(prop~long*lat, dat, out1=block, text=gen, cex=1, shorten='no')
+desplot(prop~long*lat, dat, out1=block, text=gen, cex=1, shorten='no',
+        main="gotway.hessianfly")
 
 # Block random.  See Glimmix manual, output 1.18.
 # Note: (Different parameterization)

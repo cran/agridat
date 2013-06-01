@@ -8,7 +8,7 @@
   Yield of sugar beets for 36 varieties in a 3-rep RCB experiment.
   Competition effects are present.
 }
-\usage{data(kempton.competition)}
+
 \format{
   A data frame with 108 observations on the following 5 variables.
   \describe{
@@ -36,7 +36,7 @@ dat <- kempton.competition
 round(tapply(dat$yield, dat$gen, mean),2)
 
 # Fixed genotype effects, random rep effects,
-# Autocorrelation of neighboring plots within the same rep
+# Autocorrelation of neighboring plots within the same rep, phi = -0.22
 require("nlme")
 m1 <- lme(yield ~ -1+gen, random=~1|rep, data=dat,
           corr=corAR1(form=~col|rep))
@@ -48,6 +48,5 @@ round(fixef(m1),2)
 
 # Variance of yield increases with yield
 plot(m1)
-bwplot(yield~gen, data=dat)
 }
 

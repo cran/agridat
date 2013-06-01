@@ -11,7 +11,7 @@
   were applied to the main plots and the manurial (nitrogen) treatments
   to the sub-plots. 
 }
-\usage{data(yates.oats)}
+
 \format{
   \describe{
     \item{\code{block}}{Factor with 6 levels}
@@ -41,7 +41,8 @@
 \examples{
 
 dat <- yates.oats
-desplot(yield ~ x*y, dat, out1=block, text=gen, col=nitro, cex=1)
+desplot(yield ~ x*y, dat, out1=block, text=gen, col=nitro, cex=1,
+        main="yates.oats")
 
 # Roughly linear gradient across the field.  The right-half of each
 # block has lower yield.  The blocking is inadequate!

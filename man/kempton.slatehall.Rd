@@ -7,7 +7,7 @@
 \description{
   Yields for a trial at Slate Hall Farm in 1976.
 }
-\usage{data(kempton.slatehall)}
+
 \format{
   A data frame with 150 observations on the following 5 variables.
   \describe{
@@ -36,7 +36,8 @@
 }
 \examples{
 dat <- kempton.slatehall
-desplot(yield ~ col * row, dat, num=gen, out1=rep)
+desplot(yield ~ col * row, dat, num=gen, out1=rep,
+        main="kempton.slatehall")
 
 dat <- transform(dat, xf=factor(col), yf=factor(row))
 

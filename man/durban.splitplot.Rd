@@ -7,7 +7,7 @@
 \description{
     Split-plot barley variety trial with fungicide treatments.
 }
-\usage{data(durban.splitplot)}
+
 \format{
   A data frame with 560 observations on the following 6 variables.
   \describe{
@@ -46,7 +46,8 @@ xyplot(resid~row, d2, type=c('p','smooth'))
 xyplot(resid~bed, d2, type=c('p','smooth'))
 
 # Figure 4 doesn't quite match due to different break points
-coplot(resid~bed|row, data=d2, number=8,cex=.5, panel=function(x,y,...) panel.smooth(x,y,span=.4,...))
+coplot(resid~bed|row, data=d2, number=8, cex=.5,
+       panel=function(x,y,...) panel.smooth(x,y,span=.4,...))
 
 \dontrun{
 # Figure 6 - field trend

@@ -8,7 +8,7 @@
   The yield of 8 wheat genotypes was measured in 21 low-humidity
   environments.  Each environment had 13 covariates recorded.
 }
-\usage{data(vargas.wheat2)}
+
 \format{
   A list of two matrices, \code{yield} and \code{covs}.
   See below.
@@ -51,6 +51,7 @@
   Martha E Ramirez and Mike Talbot, 1998.
   Interpreting Genotype x Environment Interaction in Wheat by
   Partial Least Squares Regression, \emph{Crop Science}, 38, 679--689.
+
 
   Data kindly provided by Jose Crossa.
 }

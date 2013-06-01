@@ -7,7 +7,7 @@
 \description{
   Average daily fat yields (kg/day) from milk from a single cow for each of 35 weeks.
 }
-\usage{data(henderson.milkfat)}
+
 \format{
   A data frame with 35 observations on the following 2 variables.
   \describe{
@@ -24,7 +24,6 @@
   None.
 }
 \examples{
-data(henderson.milkfat)
 
 dat <- henderson.milkfat
 

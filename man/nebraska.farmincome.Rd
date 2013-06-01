@@ -7,7 +7,7 @@
 \description{
   Nebraska farm income in 2007 by county
 }
-\usage{data(nebraska.farmincome)}
+
 \format{
   A data frame with 93 observations on the following 4 variables.
   \describe{

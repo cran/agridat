@@ -8,7 +8,7 @@
   Yield of 13 hybrids, grown in 10 locations across 2 years.  Conducted
   in Yunnan, China.
 }
-\usage{data(fan.stability)}
+
 \format{
   A data frame with 260 observations on the following 5 variables.
   \describe{
@@ -35,7 +35,7 @@
 }
 
 \examples{
-data(fan.stability)
+
 dat <- fan.stability
 
 dat$env <- factor(paste(dat$loc, dat$year, sep=""))

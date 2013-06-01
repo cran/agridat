@@ -7,7 +7,7 @@ New York soybean yields, 1977 to 1988
 \description{
   New York soybean yields, 1977 to 1988, for 7 genotypes in 55 environments.
 }
-\usage{data(gauch.soy)}
+
 \format{
   A data frame with 1454 observations on the following 4 variables.
   \describe{
@@ -47,7 +47,7 @@ New York soybean yields, 1977 to 1988
   Zobel, RW and Wright, MJ and Gauch Jr, HG. 1998.
   Statistical analysis of a yield trial, \emph{Agronomy journal},
   80, 388-393,
-  \url{https://www.soils.org/publications/aj/abstracts/80/3/AJ0800030388}.
+  \url{http://www.soils.org/publications/aj/abstracts/80/3/AJ0800030388}.
 }
 \examples{
 

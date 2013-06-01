@@ -8,7 +8,7 @@
   Three wheat varieties planted in 3 blocks, with a line sprinkler
   crossing all whole plots.
 }
-\usage{data(hanks.sprinkler)}
+
 \format{
   A data frame with 108 observations on the following 7 variables.
   \describe{
@@ -35,7 +35,7 @@
   Statistical Analysis of Results from Irrigation Experiments Using the
   Line-Source Sprinkler System.
   \emph{Soil Science Society of America Journal}, 44, 886-888. 
-  \url{https://www.soils.org/publications/sssaj/abstracts/44/4/SS0440040886}
+  \url{http://www.soils.org/publications/sssaj/abstracts/44/4/SS0440040886}
 }
 \references{
   Johnson, D. E., Chaudhuri, U. N., and Kanemasu, E. T. (1983).
@@ -46,7 +46,8 @@
   Stroup, W. W. (1989).
   Use of Mixed Model Procedure to Analyze Spatially Correlated Data: An
   Example Applied to a Line-Source Sprinkler Irrigation Experiment.
-  \emph{Applications of Mixed Models in Agriculture and Related Disciplines, Southern Cooperative Series Bulletin No. 343}, 104-122. 
+  \emph{Applications of Mixed Models in Agriculture and Related
+    Disciplines, Southern Cooperative Series Bulletin No. 343}, 104-122. 
 
   SAS Stat User's Guide.
   \url{http://support.sas.com/documentation/cdl/en/statug/63347/HTML/default/viewer.htm#statug_mixed_sect038.htm}
@@ -56,7 +57,7 @@ dat <- hanks.sprinkler
 
 # The line sprinkler is vertical between subplots 6 & 7
 desplot(yield~subplot*row, dat, out1=block, out2=irr, cex=1,
-        num=gen)
+        num=gen, main="hanks.sprinkler")
 
 xyplot(yield~subplot|block, dat, type=c('b'), group=gen,
        layout=c(1,3), auto.key=TRUE,

@@ -7,7 +7,7 @@
 \description{
   Seed germination with different temperatures/concentrations
 }
-\usage{data(mead.germination)}
+
 \format{
   A data frame with 64 observations on the following 5 variables.
   \describe{
@@ -34,7 +34,6 @@
   CRC.
 }
 \examples{
-data(mead.germination)
 
 dat <- mead.germination
 dat <- transform(dat, concf=factor(conc))

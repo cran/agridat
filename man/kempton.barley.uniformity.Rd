@@ -1,5 +1,5 @@
-\name{kempton.uniformity}
-\alias{kempton.uniformity}
+\name{kempton.barley.uniformity}
+\alias{kempton.barley.uniformity}
 \docType{data}
 \title{
   Uniformity trial of Spring Barley in 1978
@@ -12,7 +12,7 @@
   Each plot is 5 feet wide, 14 feet long. 
   Conducted by the Plant Breeding Institute in Cambridge, England.
 }
-\usage{data(kempton.uniformity)}
+
 \format{
   A data frame with 196 observations on the following 3 variables.
   \describe{
@@ -33,10 +33,10 @@
   Engineering Science. 462, 2119--2143.
 }
 \examples{
-dat <- kempton.uniformity
+dat <- kempton.barley.uniformity
 
 require(lattice)
-desplot(yield~col*row, dat)
+desplot(yield~col*row, dat, main="kempton.barley.uniformity")
 asp <- (28*14)/(7*5) # aspect ratio (rows * ft)/(cols * ft)
 desplot(yield~col*row, dat, aspect=asp) # true view
 }

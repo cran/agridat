@@ -7,7 +7,7 @@
 \description{
   Maize fertilization trial on Antigua and St. Vincent.
 }
-\usage{data(caribbean.maize)}
+
 \format{
   A data frame with 612 observations on the following 7 variables.
   \describe{

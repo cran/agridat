@@ -1,5 +1,5 @@
-\name{williams.barley}
-\alias{williams.barley}
+\name{williams.barley.uniformity}
+\alias{williams.barley.uniformity}
 \docType{data}
 \title{
 Yield from a barley uniformity trial
@@ -7,7 +7,7 @@ Yield from a barley uniformity trial
 \description{
   Yield from a barley uniformity trial
 }
-\usage{data(williams.barley)}
+
 \format{
   A data frame with 720 observations on the following 3 variables.
   \describe{
@@ -30,11 +30,12 @@ Yield from a barley uniformity trial
   \emph{Australian Journal of Agricultural Research}, 39, 339-350.
 }
 \examples{
-dat <- williams.barley
+dat <- williams.barley.uniformity
 
 require("lattice")
 asp = (15*5)/(48*.75) # true aspect
-desplot(yield ~ col*row, dat, aspect=asp)
+desplot(yield ~ col*row, dat, aspect=asp,
+        main="williams.barley.uniformity")
 
 # Smoothed contour/persp plot like Williams Fig 1b, 2b
 dat$fit <- fitted(loess(yield~col*row, dat, span=.1))

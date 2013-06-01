@@ -9,7 +9,7 @@
   Data from Fisher's 1929 paper \emph{Studies in Crop Variation 6}.
   A different design was used each year.
 }
-\usage{data(eden.potato)}
+
 \format{
   A data frame with 225 observations on the following 9 variables.
   \describe{

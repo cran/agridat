@@ -7,7 +7,7 @@
 \description{
   Soybean yields in a multi-environment trial in North Carolina.
 }
-\usage{data(steel.soybeanmet)}
+
 \format{
   A data frame with 108 observations on the following 4 variables.
   \describe{
@@ -30,7 +30,16 @@
   An Experimental Design Context.
 }
 \examples{
-data(steel.soybeanmet)
-## maybe str(steel.soybeanmet) ; plot(steel.soybeanmet) ...
+
+# REML analysis as in O'Neill, p. 130.
+dat <- steel.soybeanmet
+require(lme4)
+m1 <- lmer(yield ~ loc + (1|gen) + (1|gen:loc) + (1|loc:block), data=dat)
+# Are gen:loc effects significant?  No.
+m2 <- lmer(yield ~ loc + (1|gen) + (1|loc:block), data=dat)
+anova(m1,m2)
+# h^2 deviations
+ranef(m2)$gen
+
 }
 \keyword{datasets}

@@ -1,14 +1,14 @@
-\name{smith.uniformity3}
-\alias{smith.uniformity3}
+\name{smith.corn.uniformity}
+\alias{smith.corn.uniformity}
 \docType{data}
 \title{
-  Uniformity trial in three consecutive years
+  Uniformity trial of corn in three consecutive years
 }
 \description{
   Uniformity trial of corn in three consecutive years, 1895-1897.  The
   same field/plots were used in all three years.
 }
-\usage{data(smith.uniformity3)}
+
 \format{
   A data frame with 360 observations on the following 5 variables.
   \describe{
@@ -105,7 +105,7 @@
   \url{http://books.google.com/books?id=jyEXAAAAYAAJ&pg=PA279}
 }
 \examples{
-dat <- smith.uniformity3
+dat <- smith.corn.uniformity
 
 require(lattice)
 dat = transform(dat, year=factor(year))

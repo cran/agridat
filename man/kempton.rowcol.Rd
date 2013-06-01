@@ -8,7 +8,7 @@
   Wheat yields of 35 genotypes, 2 reps, planted in a row-column
   design. Two plots are missing.
 }
-\usage{data(kempton.rowcol)}
+
 \format{
   A data frame with 68 observations on the following 5 variables.
   \describe{
@@ -31,7 +31,8 @@
 
 dat <- kempton.rowcol
 
-desplot(yield~col*row|rep, dat, num=gen, out1=rep)
+desplot(yield~col*row|rep, dat, num=gen, out1=rep,
+        main="kempton.rowcol")
 
 dat <- transform(dat, row=factor(row), col=factor(col))
 # Model with rep, row, col as random.  Kempton, page 62.

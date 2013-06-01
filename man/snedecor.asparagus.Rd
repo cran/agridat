@@ -7,7 +7,7 @@
 \description{
   Asparagus yields for different cutting treatments, in 4 years.
 }
-\usage{data(snedecor.asparagus)}
+
 \format{
   A data frame with 64 observations on the following 4 variables.
   \describe{
@@ -31,7 +31,6 @@
   STatistical Advisory & Training Service Pty Ltd.
 }
 \examples{
-data(snedecor.asparagus)
 
 dat <- snedecor.asparagus
 

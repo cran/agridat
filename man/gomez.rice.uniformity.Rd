@@ -1,5 +1,5 @@
-\name{gomez.uniformity}
-\alias{gomez.uniformity}
+\name{gomez.rice.uniformity}
+\alias{gomez.rice.uniformity}
 \docType{data}
 \title{
   Rice uniformity yield test
@@ -9,7 +9,7 @@
   harvest, a 1-meter border was removed around the field and discarded.
   Each square meter (1 meter by 1 meter) was harvested and weighed.
 }
-\usage{data(gomez.uniformity)}
+
 \format{
   A data frame with 648 observations on the following 3 variables.
   \describe{
@@ -28,11 +28,11 @@
 }
 
 \examples{
-dat <- gomez.uniformity
+dat <- gomez.rice.uniformity
 
 # Raw data plot
 require("lattice")
-desplot(yield ~ x*y, data=dat, aspect=38/20)
+desplot(yield ~ x*y, data=dat, aspect=38/20, main="gomez.rice.uniformity")
 
 # 3x3 moving average.  Gomez figure 12.1
 require("reshape2")

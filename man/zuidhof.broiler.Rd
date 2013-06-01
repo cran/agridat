@@ -7,7 +7,7 @@
 \description{
   Daily weight, feed, egg measurements for a broiler
 }
-\usage{data(zuidhof.broiler)}
+
 \format{
   A data frame with 59 observations on the following 6 variables.
   \describe{

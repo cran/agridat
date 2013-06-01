@@ -15,23 +15,29 @@ pls = partial least squares, row-col = row-column design, ts = time series.
 \bold{Uniformity trials with a single genotype}
   
 \tabular{llll}{
-name                             \tab dimensions \tab other \tab model \cr
-\link{batchelor.apple}           \tab 8 x 28 \tab xy \tab \cr
-\link{batchelor.lemon}           \tab 14 x 16 \tab xy \tab \cr
-\link{batchelor.navel1}          \tab 20 x 50 \tab xy \tab \cr
-\link{batchelor.navel2}          \tab 15 x 33 \tab xy \tab \cr
-\link{batchelor.valencia}        \tab 12 x 20 \tab xy \tab \cr
-\link{batchelor.walnut}          \tab 10 x 28 \tab xy \tab \cr
-\link{gomez.uniformity}          \tab 18 x 36 \tab xy \tab aov \cr
-\link{goulden.barley}            \tab 20 x 20 \tab xy \tab \cr
-\link{immer.sugarbeet}           \tab 10 x 60 \tab xy, 3 traits \tab \cr
-\link{kempton.uniformity}        \tab 7 x 28 \tab xy \tab \cr
-\link{lyon.potato}               \tab 34 x 6 \tab xy \tab \cr
-\link{mercer.wheat}              \tab 25 x 20 \tab xy, 2 traits \tab spplot \cr
-\link{smith.uniformity3}         \tab 6 x 20 \tab xy, 3 years \tab rgl \cr
-\link{wiebe.wheat}               \tab 12 x 125 \tab xy \tab medianpolish, loess \cr
-\link{williams.barley}           \tab 48 x 15 \tab xy \tab loess \cr
-\link{williams.cotton}           \tab 24 x 12 \tab xy \tab loess \cr
+name                                  \tab dimensions \tab other \tab model \cr
+\link{batchelor.apple.uniformity}     \tab 8 x 28 \tab xy \tab \cr
+\link{batchelor.lemon.uniformity}     \tab 14 x 16 \tab xy \tab \cr
+\link{batchelor.navel1.uniformity}    \tab 20 x 50 \tab xy \tab \cr
+\link{batchelor.navel2.uniformity}    \tab 15 x 33 \tab xy \tab \cr
+\link{batchelor.valencia.uniformity}  \tab 12 x 20 \tab xy \tab \cr
+\link{batchelor.walnut.uniformity}    \tab 10 x 28 \tab xy \tab \cr
+\link{garber.multi.uniformity}        \tab 45 x 6 \tab xy, 2 years/crops \tab \cr
+\link{gomez.rice.uniformity}          \tab 18 x 36 \tab xy \tab aov \cr
+\link{goulden.barley.uniformity}      \tab 20 x 20 \tab xy \tab \cr
+\link{harris.multi.uniformity}        \tab 2 x 23 \tab xy, 23 crops \tab corrgram\cr
+\link{immer.sugarbeet.uniformity}     \tab 10 x 60 \tab xy, 3 traits \tab \cr
+\link{kempton.barley.uniformity}      \tab 7 x 28 \tab xy \tab \cr
+\link{li.millet.uniformity}           \tab 6 x 100 \tab xy \tab \cr
+\link{lyon.potato.uniformity}         \tab 34 x 6 \tab xy \tab \cr
+\link{mercer.wheat.uniformity}        \tab 25 x 20 \tab xy, 2 traits \tab spplot \cr
+\link{odland.soybean.uniformity}      \tab 25 x 42 \tab xy \tab \cr
+\link{odland.soyhay.uniformity}       \tab 28 x 55 \tab xy \tab \cr
+\link{smith.corn.uniformity}          \tab 6 x 20 \tab xy, 3 years \tab rgl \cr
+\link{stephens.sorghum.uniformity}    \tab 100 x 20 \tab xy \tab \cr
+\link{wiebe.wheat.uniformity}         \tab 12 x 125 \tab xy \tab medianpolish, loess \cr
+\link{williams.barley.uniformity}     \tab 48 x 15 \tab xy \tab loess \cr
+\link{williams.cotton.uniformity}     \tab 24 x 12 \tab xy \tab loess \cr
 }
 
 % ------------------------------------------------------------------------------
@@ -83,6 +89,7 @@ name                             \tab gen \tab loc\tab reps\tab years \tab trt \
 \link{cochran.wireworms}         \tab     \tab    \tab 5   \tab    \tab 5   \tab xy, latin\tab glm \cr
 \link{cochran.eelworms}          \tab     \tab    \tab 4   \tab    \tab 5   \tab xy \tab aov \cr
 \link{corsten.interaction}       \tab 20  \tab 7  \tab     \tab    \tab     \tab \tab \cr
+\link{crossa.wheat}              \tab 18  \tab 25 \tab     \tab    \tab     \tab \tab AMMI \cr
 \link{crowder.seeds}             \tab 2   \tab    \tab 21  \tab    \tab 2   \tab \tab glm,jags \cr
 \link{cox.stripsplit}            \tab     \tab    \tab  4  \tab    \tab 3,4,2 \tab \tab aov \cr
 \link{darwin.maize}              \tab     \tab    \tab 12  \tab    \tab 2   \tab \tab t.test \cr
@@ -104,6 +111,7 @@ name                             \tab gen \tab loc\tab reps\tab years \tab trt \
 \link{gomez.fractionalfactorial} \tab     \tab    \tab 2   \tab    \tab 6   \tab xy \tab lm \cr
 \link{gomez.groupsplit}          \tab 45  \tab    \tab 3   \tab    \tab 2   \tab xy, 3 gen groups \tab aov \cr
 \link{gomez.multilocsplitplot}   \tab 2   \tab 3  \tab 3   \tab    \tab     \tab nitro \tab aov, lmer \cr
+\link{gomez.nitrogen}            \tab     \tab    \tab 4   \tab    \tab 8   \tab \tab aov, contrasts \cr
 \link{gomez.seedrate}            \tab     \tab    \tab 4   \tab    \tab 6   \tab rate \tab lm\cr
 \link{gomez.splitsplit}          \tab 3   \tab    \tab 3   \tab    \tab     \tab xy, nitro, mgmt \tab aov, lmer \cr
 \link{gomez.stripplot}           \tab 6   \tab    \tab 3   \tab    \tab     \tab xy, nitro \tab aov \cr
@@ -111,15 +119,15 @@ name                             \tab gen \tab loc\tab reps\tab years \tab trt \
 \link{gotway.hessianfly}         \tab 16  \tab    \tab 4   \tab    \tab     \tab xy \tab lmer \cr
 \link{graybill.heteroskedastic}  \tab 4   \tab 13 \tab     \tab    \tab     \tab hetero \tab \cr
 \link{hanks.sprinkler}           \tab 3   \tab    \tab 3   \tab    \tab     \tab xy \tab asreml\cr
-\link{hernandez.nitrogen}        \tab     \tab 5  \tab 4   \tab    \tab     \tab  \tab lm,nls\cr
+\link{hernandez.nitrogen}        \tab     \tab 5  \tab 4   \tab    \tab     \tab  \tab lm, nls\cr
 \link{hildebrand.systems}        \tab     \tab 14 \tab     \tab    \tab 4   \tab \tab asreml\cr
 \link{hughes.grapes}             \tab     \tab    \tab 3   \tab    \tab 6   \tab binomial \tab lmer, aod, glmm\cr
-\link{ivins.herbs}               \tab 13  \tab    \tab 6   \tab    \tab     \tab 2 traits \tab lm,friedman\cr
+\link{ivins.herbs}               \tab 13  \tab    \tab 6   \tab    \tab     \tab 2 traits \tab lm, friedman\cr
 \link{jenkyn.mildew}             \tab     \tab    \tab 9   \tab    \tab 4   \tab \tab lm\cr
-\link{john.alpha}                \tab 24  \tab    \tab 3   \tab    \tab     \tab alpha \tab lm,lmer \cr
+\link{john.alpha}                \tab 24  \tab    \tab 3   \tab    \tab     \tab alpha \tab lm, lmer \cr
 \link{kempton.competition}       \tab 36  \tab    \tab 3   \tab    \tab     \tab xy, competition \tab lme AR1 \cr
 \link{kempton.rowcol}            \tab 35  \tab    \tab 2   \tab    \tab     \tab xy, row-col \tab lmer \cr
-\link{kempton.slatehall}         \tab 25  \tab    \tab 6   \tab    \tab     \tab xy \tab asreml,lmer\cr
+\link{kempton.slatehall}         \tab 25  \tab    \tab 6   \tab    \tab     \tab xy \tab asreml, lmer\cr
 \link{lyons.wheat}               \tab     \tab 12 \tab     \tab 4  \tab     \tab  \tab \cr
 \link{mcconway.turnip}           \tab 2   \tab    \tab 4   \tab    \tab 2,4 \tab hetero\tab aov, lme\cr
 \link{mead.cowpeamaize}          \tab 3,2 \tab    \tab 3   \tab    \tab 4   \tab intercrop \tab \cr
@@ -133,7 +141,7 @@ name                             \tab gen \tab loc\tab reps\tab years \tab trt \
 \link{ryder.groundnut}           \tab 5   \tab    \tab 4   \tab    \tab     \tab xy, rcb \tab lm \cr
 \link{senshu.rice}               \tab     \tab 40 \tab     \tab    \tab     \tab \tab lm,Fieller \cr
 \link{shafii.rapeseed}           \tab 6   \tab 14 \tab 3   \tab 3  \tab     \tab \tab biplot \cr
-\link{snedecor.asparagus}        \tab     \tab    \tab 4   \tab 4  \tab 4   \tab \tab split-plot,antedependence \cr
+\link{snedecor.asparagus}        \tab     \tab    \tab 4   \tab 4  \tab 4   \tab \tab split-plot, antedependence \cr
 \link{steel.soybeanmet}          \tab 12  \tab 3  \tab 3   \tab    \tab     \tab \tab \cr
 \link{streibig.competition}      \tab 2   \tab    \tab 3   \tab    \tab     \tab \tab glm \cr
 \link{stroup.nin}                \tab 56  \tab    \tab 4   \tab    \tab     \tab xy \tab asreml \cr
@@ -182,8 +190,9 @@ name                       \tab model \cr
 }
 
 The original sources for these data use several different words to refer to
-genetics including \emph{breed}, \emph{line}, \emph{cultivar}, \emph{hybrid},
-\emph{variety}, \emph{type}, \emph{stock}, and \emph{genotype}.
+genetics including
+\emph{breed}, \emph{cultivar}, \emph{genotype}, \emph{hybrid},
+\emph{line}, \emph{progeny}, \emph{stock}, \emph{type}, and \emph{variety}.
 For simplicity and consistency, these datasets all use \code{gen} (genotype).
 Also for consistency \code{row} and \code{col} are often used for the
 coordinates.
@@ -194,9 +203,9 @@ massaging dead data sets after their purpose in life has long since been
 forgotten and there was no possibility of doing anything useful as a
 result of this treatment."
 
-Clearly, massaging these 'dead' data sets will not lead to any of the
-genetics being released for commercial use.  The value of these data is,
-however, multifold:
+Massaging these dead data sets will not lead to any of the
+genetics being released for commercial use.
+The value of these data is:
 1. Validating published analyses (reproducible research).
 2. Providing data for testing new analysis methods.
 3. Illustrating the use of R.
@@ -218,9 +227,8 @@ Commercial use requires a license:
   Kevin Wright, kw.stat@gmail.com
 
   The author is grateful to the many people who granted permission to
-  include their data in this package.
-  If you use these data, please consider citing this package
-  and the original source of the data.
+  include their data in this package.  If you use these data, please
+  cite this package and the original source of the data.
 }
 
 \references{

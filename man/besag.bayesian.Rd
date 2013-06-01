@@ -7,7 +7,7 @@
 \description{
   An experiment with 75 varieties of barley, planted in 3 reps.
 }
-\usage{data(besag.bayesian)}
+
 \format{
   A data frame with 225 observations on the following 4 variables.
   \describe{

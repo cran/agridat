@@ -1,25 +1,18 @@
-\name{batchelor}
-\alias{batchelor.apple}
-\alias{batchelor.lemon}
-\alias{batchelor.navel1}
-\alias{batchelor.navel2}
-\alias{batchelor.valencia}
-\alias{batchelor.walnut}
+\name{batchelor.uniformity}
+\alias{batchelor.apple.uniformity}
+\alias{batchelor.lemon.uniformity}
+\alias{batchelor.navel1.uniformity}
+\alias{batchelor.navel2.uniformity}
+\alias{batchelor.valencia.uniformity}
+\alias{batchelor.walnut.uniformity}
 \docType{data}
 \title{
-  Fruit tree yields from Batchelor (1918)
+  Uniformity trials of fruit tree yields.
 }
 \description{
-  Yields of apples, lemons, oranges, and walnuts from uniformity trials.
+  Uniformity trials of apples, lemons, oranges, and walnuts.
 }
-\usage{
-data(batchelor.apple)
-data(batchelor.lemon)
-data(batchelor.navel1)
-data(batchelor.navel2)
-data(batchelor.valencia)
-data(batchelor.walnut)
-}
+
 \format{
   Each dataset has the following format
   \describe{
@@ -112,32 +105,32 @@ data(batchelor.walnut)
 require("lattice")
 
 # Apple
-dat <- batchelor.apple
+dat <- batchelor.apple.uniformity
 desplot(yield~col*row, dat, aspect=30/16,
           main="Jonathon apple tree yields")
 
 # Lemon
-dat <- batchelor.lemon
+dat <- batchelor.lemon.uniformity
 desplot(yield~col*row, dat, aspect=26/14,
           main="Eureka lemon tree yields")
 
 # Navel1 (Arlington)
-dat <- batchelor.navel1
+dat <- batchelor.navel1.uniformity
 desplot(yield~col*row, dat, aspect=50/20,
           main="Navel orange tree yields (Arlington)")
 
 # Navel2 (Antelope)
-dat <- batchelor.navel2
+dat <- batchelor.navel2.uniformity
 desplot(yield~col*row, dat, aspect=33/15,
           main="Navel orange tree yields (Antelope)")
 
 # Valencia
-dat <- batchelor.valencia
+dat <- batchelor.valencia.uniformity
 desplot(yield~col*row, dat, aspect=20/12,
           main="Valencia orange tree yields")
 
 # Walnut
-dat <- batchelor.walnut
+dat <- batchelor.walnut.uniformity
 desplot(yield~col*row, dat, aspect=32/10,
           main="Seedling walnut yields")
 }

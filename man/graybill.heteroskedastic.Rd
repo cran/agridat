@@ -7,7 +7,7 @@
 \description{
   Wheat varieties with heteroskedastic yields
 }
-\usage{data(graybill.heteroskedastic)}
+
 \format{
   A data frame with 52 observations on the following 3 variables.
   \describe{

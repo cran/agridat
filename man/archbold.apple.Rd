@@ -8,7 +8,7 @@
   Split-split plot experiment on apple trees with different spacing,
   root stock, and cultivars.
 }
-\usage{data(archbold.apple)}
+
 \format{
   A data frame with 120 observations on the following 10 variables.
   \describe{
@@ -23,16 +23,15 @@
   }
 }
 \details{
-In rep 1, the 10-foot-spacing main plot was split into two
-non-contiguous pieces.  This also happened in rep 4.  In the analysis of
-Cornelius and Archbold, they consider each
-row x within-row-spacing to be a distinct
-main plot.  (Also true for the 14-foot row-spacing, even though
-the 14-foot spacing plots were contiguous.)
-
-The treatment code is defined as 100 * spacing + 10 * stock + gen, 
-where stock=0,1,6,7 for Seedling,MM111,MM106,M0007 and gen=1,2 for
-Redspur,Golden, respectively.
+  In rep 1, the 10-foot-spacing main plot was split into two
+  non-contiguous pieces.  This also happened in rep 4.  In the analysis
+  of Cornelius and Archbold, they consider each row x within-row-spacing
+  to be a distinct main plot.  (Also true for the 14-foot row-spacing,
+  even though the 14-foot spacing plots were contiguous.)
+  
+  The treatment code is defined as 100 * spacing + 10 * stock + gen,
+  where stock=0,1,6,7 for Seedling,MM111,MM106,M0007 and gen=1,2 for
+  Redspur,Golden, respectively.
 }
 \source{
   D Archbold and G. R. Brown and P. L. Cornelius. (1987).
@@ -49,7 +48,6 @@ Redspur,Golden, respectively.
     Disciplines}.  Pages 55-79.
 }
 \examples{
-
 dat <- archbold.apple
 
 # Define main plot and subplot
@@ -60,7 +58,8 @@ dat <- transform(dat, rep=factor(rep), spacing=factor(spacing), trt=factor(trt),
 # Due to 'spacing', the plots are different sizes, but the following layout
 # shows the relative position of the plots and treatments. Note that the
 # 'spacing' treatments are not contiguous in some reps.
-desplot(spacing~row*pos, dat, col=stock, cex=1, num=gen)
+desplot(spacing~row*pos, dat, col=stock, cex=1, num=gen,
+        main="archbold.apple")
 
 library("lme4")
 m1 <- lmer(yield ~ -1 + trt + (1|rep/mp/sp), dat)

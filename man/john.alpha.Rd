@@ -7,7 +7,7 @@
 \description{
   Alpha lattice design of spring oats
 }
-\usage{data(john.alpha)}
+
 \format{
   A data frame with 72 observations on the following 5 variables.
   \describe{

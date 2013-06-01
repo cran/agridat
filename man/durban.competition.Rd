@@ -7,7 +7,7 @@
 \description{
   Sugar beet yields with competition effects
 }
-\usage{data(durban.competition)}
+
 \format{
   A data frame with 114 observations on the following 5 variables.
   \describe{
@@ -48,7 +48,8 @@ dat <- durban.competition
 # Check that genotypes were balanced across wheel tracks.
 with(dat, table(gen,wheel))
 
-desplot(yield ~ col*block, dat, out1=block, text=gen, col=wheel)
+desplot(yield ~ col*block, dat, out1=block, text=gen, col=wheel,
+        main="durban.competition")
 
 # Calculate residual after removing block/genotype effects
 m1 <- lm(yield ~ gen + block, data=dat)

@@ -7,7 +7,7 @@
 \description{
   Yield of winter wheat at 12 sites in 4 years.
 }
-\usage{data(lyons.wheat)}
+
 \format{
   A data frame with 48 observations on the following 3 variables.
   \describe{

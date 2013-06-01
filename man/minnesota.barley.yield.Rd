@@ -8,7 +8,7 @@
   This is an expanded version of the barley data that is often
   used to illustrate dot plots.
 }
-\usage{data(minnesota.barley.yield)}
+
 \format{
   A data frame with 647 observations on the following 4 variables.
   \describe{
@@ -35,6 +35,7 @@
   and names are given: 
   
   \tabular{ll}{
+    C.I. number \tab Variety name \cr
     Minn 184 \tab  Manchuria \cr
     Minn 445 \tab  Glabron \cr
     Minn 440 \tab  Svansota \cr
@@ -64,18 +65,21 @@
   The 1932 data generally match the average values from Immer (1934)
   with the following notes.
   
-  The 'Svanhals x Lion' cultivar is the same as 'Minnesota 474'.
-  
   The data for Glabron at St Paul in 1932 are missing, but given as 36.8
-  in Immer (1934).  This value is treated as missing this R dataset.
+  in Immer (1934).  This value is treated as missing in this R dataset.
+
+  The data for Svansota at Morris in 1932 are missing, but given as 35.0
+  in Immer (1934).  This value is treated as missing in this R dataset.
   
   The yield for 'Wisconsin 38' at St Paul in 1932 is shown as 3.80, but
   38 in Immer (1934).  The latter value is used in this R dataset.
 
+  The yields for No475 in 1932 are not reported in Wiebe (1940), but are
+  reported in Immer (1934).
+  
   No yields are reported at Morris in 1933 and 1934, because of a crop
   failure owing to drought.
   
-
   Notes about Hayes (1942).
   
   This sources gives the block-level yield data for 5 cultivars at 4
@@ -101,6 +105,10 @@
 
   Hayes, H.K. and Immer, F.R. (1942).
   \emph{Methods of plant breeding}. McGraw Hill.
+
+  Kevin Wright. (2013).  Revisiting Immer's Barley Data.
+  \emph{The American Statistitician}.
+  \url{http://dx.doi.org/10.1080/00031305.2013.801783}.
 }
 \examples{
 dat <- minnesota.barley.yield
@@ -109,13 +117,6 @@ dat$yr <- factor(dat$year)
 # Drop Dryland, Jeans, CompCross, MechMixture because they have less than 5
 # year-loc values
 dat <- droplevels(subset(dat, !is.element(gen, c("CompCross","Dryland","Jeans","MechMixture"))))
-
-# View all data with columns for each location
-require("latticeExtra")
-useOuterStrips(dotplot(gen~yield|site*yr, dat,
-       scales=list(y=list(cex=.5))),
-       strip = strip.custom(par.strip.text = list(cex = 0.75)), 
-       strip.left = strip.custom(par.strip.text = list(cex = 0.75)))
 
 # 1934 has huge swings from one loc to the next
 dotplot(gen~yield|site, dat, groups=yr,

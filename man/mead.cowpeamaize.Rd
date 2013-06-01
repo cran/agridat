@@ -7,7 +7,7 @@
 \description{
   Maize/Cowpea Intercropping experiment with multiple nitrogen treatments.
 }
-\usage{data(mead.cowpeamaize)}
+
 \format{
   A data frame with 72 observations on the following 6 variables.
   \describe{

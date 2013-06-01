@@ -1,5 +1,5 @@
-\name{goulden.barley}
-\alias{goulden.barley}
+\name{goulden.barley.uniformity}
+\alias{goulden.barley.uniformity}
 \docType{data}
 \title{
   Barley uniformity trial
@@ -7,7 +7,7 @@
 \description{
   Barley uniformity trial  
 }
-\usage{data(goulden.barley)}
+
 \format{
   A data frame with 400 observations on the following 3 variables.
   \describe{
@@ -29,9 +29,9 @@
 }
 \examples{
 
-dat <- goulden.barley
+dat <- goulden.barley.uniformity
 
-desplot(yield ~ col*row, data=dat)
+desplot(yield ~ col*row, data=dat, main="goulden.barley.uniformity")
 
 # See LeClerg, Leonard, Clark
 hist(dat$yield, breaks=c(21,40,59,78,97,116,135,154,173,192,211,230,249)+.5)

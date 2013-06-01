@@ -7,7 +7,7 @@
 \description{
   Measurements of the diameters of apples
 }
-\usage{data(byers.apple)}
+
 \format{
   A data frame with 480 observations on the following 6 variables.
   \describe{

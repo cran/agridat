@@ -7,7 +7,7 @@
 \description{
   Row column design of a spring barley trial with many varieties
 }
-\usage{data(durban.rowcol)}
+
 \format{
   A data frame with 544 observations on the following 5 variables.
   \describe{
@@ -38,7 +38,7 @@
 }
 \examples{
 d1 <- durban.rowcol
-desplot(yield~bed*row, d1, out1=rep)
+desplot(yield~bed*row, d1, out1=rep, main="durban.rowcol")
 
 # Durban 2003 Figure 1
 m10 <- lm(yield~gen, data=d1)

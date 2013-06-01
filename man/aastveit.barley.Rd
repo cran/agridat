@@ -8,13 +8,13 @@
   Average height for 15 genotypes of barley in each of 9 years.  A
   second matrix contains 19 covariates in each of 9 years.
 }
-\usage{data(aastveit.barley)}
+
 \format{
   A list of two matrices, \code{height} and \code{covs}.
   See details below.
 }
 \details{
-  Experiments were conducted at As, Norway.  Four blocks per year.
+  Experiments were conducted at As, Norway.
 
   The \code{height} matrix contains average plant height (cm) of 15 varieties
   of barley in each of 9 years.
@@ -41,8 +41,6 @@
   \emph{J. App. Stat.} 18, 331--353.
 }
 \examples{
-data(aastveit.barley)
-
 # First, PCA of each matrix separately
 
 Z <- aastveit.barley$height

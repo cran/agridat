@@ -7,7 +7,7 @@
 \description{
     Yields from treatment for mildew control
 }
-\usage{data(jenkyn.mildew)}
+
 \format{
   A data frame with 38 observations on the following 4 variables.
   \describe{
@@ -37,7 +37,6 @@
   Blocks, Trend and Interference in Field Trials.
 }
 \examples{
-data(jenkyn.mildew)
 
 dat <- jenkyn.mildew
 

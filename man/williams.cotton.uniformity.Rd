@@ -1,5 +1,5 @@
-\name{williams.cotton}
-\alias{williams.cotton}
+\name{williams.cotton.uniformity}
+\alias{williams.cotton.uniformity}
 \docType{data}
 \title{
 Lint yield from a cotton uniformity trial
@@ -7,7 +7,7 @@ Lint yield from a cotton uniformity trial
 \description{
   Lint yield from a cotton uniformity trial
 }
-\usage{data(williams.cotton)}
+
 \format{
   A data frame with 288 observations on the following 3 variables.
   \describe{
@@ -27,11 +27,11 @@ Lint yield from a cotton uniformity trial
   \emph{Australian Journal of Agricultural Research}, 39, 339-350.
 }
 \examples{
-dat <- williams.cotton
+dat <- williams.cotton.uniformity
 
 require("lattice")
 asp = (12*12)/(24*1) # true aspect
-desplot(yield ~ col*row, dat, aspect=asp)
+desplot(yield ~ col*row, dat, aspect=asp, main="williams.cotton.uniformity")
 
 # Smoothed contour/persp plot like Williams 1988 Fig 1a, 2a
 dat$fit <- fitted(loess(yield~col*row, dat, span=.5))

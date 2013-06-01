@@ -10,7 +10,7 @@
   Pre-season precipitation and average temperature and precipitation
   during each month of the growing season is included.
 }
-\usage{data(thompson.cornsoy)}
+
 \format{
   \describe{
     \item{\code{state}}{State}
@@ -54,7 +54,7 @@
 
   Some relevant maps of yield, heat, and precipitation can be found in
   \emph{Atlas of crop yield and summer weather patterns, 1931-1975},
-  \url{www.isws.illinois.edu/pubdoc/C/ISWSC-150.pdf}.
+  \url{http://www.isws.illinois.edu/pubdoc/C/ISWSC-150.pdf}.
 
   The following notes pertain to the Iowa data.
 
@@ -78,7 +78,9 @@
   1955 yields were reduced due to dry weather in late July and August.
 }
 \source{
-  Thompson, L.M., 1963. \emph{Weather and technology in the production of corn and soybeans}. CAED Report 17. The Center for Agriculture and Economic Development, Iowa State University, Ames, Iowa.
+  Thompson, L.M., 1963. \emph{Weather and technology in the production
+    of corn and soybeans}. CAED Report 17. The Center for Agriculture
+  and Economic Development, Iowa State University, Ames, Iowa.
 }
 \references{
   Draper, N. R. and Smith, H. (1981).  \emph{Applied Regression Analysis},

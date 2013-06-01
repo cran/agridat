@@ -1,5 +1,5 @@
-\name{immer.sugarbeet}
-\alias{immer.sugarbeet}
+\name{immer.sugarbeet.uniformity}
+\alias{immer.sugarbeet.uniformity}
 \docType{data}
 \title{
   Uniformity study of sugarbeets with measurements of yield, sugar, purity
@@ -7,7 +7,7 @@
 \description{
   A uniformity study of sugarbeets.
 }
-\usage{data(immer.sugarbeet)}
+
 \format{
   A data frame with 600 observations on the following 5 variables.
   \describe{
@@ -37,10 +37,11 @@
   \emph{Jour. Agr. Research}, 44, 649--668.
 }
 \examples{
-dat <- immer.sugarbeet
+dat <- immer.sugarbeet.uniformity
 
 # Immer numbers rows from the top
-desplot(yield~col*row, data=dat, tick=TRUE, flip=TRUE)
+desplot(yield~col*row, data=dat, tick=TRUE, flip=TRUE,
+        main="immer.sugarbeet.uniformity")
 desplot(sugar~col*row, data=dat, tick=TRUE, flip=TRUE)
 desplot(yield~col*row, data=dat, tick=TRUE, flip=TRUE)
 pairs(dat[,c('yield','sugar','purity')])

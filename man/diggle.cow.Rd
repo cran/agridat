@@ -7,13 +7,13 @@ Bodyweight of cows in a 2-by-2 factorial experiment
 \description{
   Bodyweight of cows in a 2-by-2 factorial experiment.
 }
-\usage{data(diggle.cow)}
+
 \format{
   A data frame with 598 observations on the following 5 variables.
   \describe{
     \item{\code{animal}}{Animal factor, 26 levels}
-    \item{\code{iron}}{Factor with levels \code{Iron} \code{NoIron}}
-    \item{\code{infect}}{Factor with levels \code{Infected} \code{NonInfected}}
+    \item{\code{iron}}{Factor with levels \code{Iron}, \code{NoIron}}
+    \item{\code{infect}}{Factor levels \code{Infected}, \code{NonInfected}}
     \item{\code{weight}}{Weight in (rounded to nearest 5) kilograms}
     \item{\code{day}}{Days after birth}
   }
@@ -57,7 +57,6 @@ Bodyweight of cows in a 2-by-2 factorial experiment
   
 }
 \examples{
-data(diggle.cow)
 
 dat <- diggle.cow
 
@@ -70,8 +69,7 @@ dat <- transform(dat, time = (day-122)/10)
 
 \dontrun{
   
-# Smooth for each animal.  No treatment effects. Similar to Output 38.6.9 here:
-# http://support.sas.com/documentation/cdl/en/statug/63033/HTML/default/viewer.htm#statug_glimmix_sect018.htm
+# Smooth for each animal.  No treatment effects. Similar to SAS Output 38.6.9
 require("asreml")
 require("latticeExtra")
 

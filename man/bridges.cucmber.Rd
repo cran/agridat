@@ -7,7 +7,7 @@
 \description{
   Cucumber yields in Latin Square design at two locs.
 }
-\usage{data(bridges.cucumber)}
+
 \format{
   A data frame with 32 observations on the following 5 variables.
   \describe{
@@ -36,7 +36,8 @@
 dat <- bridges.cucumber
 dat <- transform(dat, rowf=factor(row), colf=factor(col))
 
-desplot(yield~col*row|loc, data=dat, text=gen, cex=1)
+desplot(yield~col*row|loc, data=dat, text=gen, cex=1,
+        main="bridges.cucumber")
 
 \dontrun{
 require("asreml")

@@ -7,7 +7,7 @@
 \description{
   Rice yield at six different densities
 }
-\usage{data(gomez.seedrate)}
+
 \format{
   A data frame with 24 observations on the following 3 variables.
   \describe{
@@ -28,7 +28,6 @@
 }
 
 \examples{
-data(gomez.seedrate)
 
 dat <- gomez.seedrate
 

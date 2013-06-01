@@ -6,7 +6,7 @@
 The cork datagives the weights of cork borings of the trunk for 28 trees
 on the north (N), east (E), south (S) and west (W) directions.
 }
-\usage{data(box.cork)}
+
 \format{
 Data frame with 28 observations on the following 5 variables.
 \describe{

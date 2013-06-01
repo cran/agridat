@@ -7,7 +7,7 @@
 \description{
   Wireworms controlled by fumigants in a latin square
 }
-\usage{data(cochran.wireworms)}
+
 \format{
   A data frame with 25 observations on the following 4 variables.
   \describe{

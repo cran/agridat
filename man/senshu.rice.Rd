@@ -7,7 +7,7 @@
 \description{
   Response of rice to solar radiation and temperature
 }
-\usage{data(senshu.rice)}
+
 \format{
   A data frame with 40 observations on the following 7 variables.
   \describe{

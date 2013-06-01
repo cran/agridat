@@ -16,7 +16,7 @@
   crops, from approximately 1900 to 2011.  Crops include: barley, corn,
   cotton, hay, rice, sorghum, soybeans, wheat.
 }
-\usage{data(nass.corn)}
+
 \format{
   \describe{
     \item{\code{year}}{Year, numeric}

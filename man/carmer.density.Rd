@@ -7,7 +7,7 @@
 \description{
   Maize yield-density model.
 }
-\usage{data(carmer.density)}
+
 \format{
   A data frame with 32 observations on the following 3 variables.
   \describe{
@@ -32,7 +32,6 @@
 }
 
 \examples{
-data(carmer.density)
 
 dat <- carmer.density
 dat$gen <- factor(dat$gen, levels=c('Hy2x0h7','WF9xC103','R61x187-2',
