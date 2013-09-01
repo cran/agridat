@@ -14,10 +14,10 @@ height and true height of the plot.
 \format{
   A data frame with 36 observations on the following 4 variables.
   \describe{
-    \item{\code{row}}{Row}
-    \item{\code{col}}{Column}
-    \item{\code{operator}}{Operator factor}
-    \item{\code{diff}}{Difference between measured height and true height}
+    \item{\code{row}}{row}
+    \item{\code{col}}{column}
+    \item{\code{operator}}{operator factor}
+    \item{\code{diff}}{difference between measured height and true height}
   }
 }
 \source{

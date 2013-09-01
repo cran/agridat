@@ -39,7 +39,8 @@
 dat <- besag.elbatan
 
 # Besag figure 1
-xyplot(yield~row, dat, groups=block, type=c('l'))
+xyplot(yield~row, dat, groups=block, type=c('l'),
+       main="besag.elbatan")
 
 desplot(yield~block*row, dat, main="besag.elbatan")
 

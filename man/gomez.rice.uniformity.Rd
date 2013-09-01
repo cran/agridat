@@ -23,7 +23,7 @@
   Gomez, K.A. and Gomez, A.A.. 1984,
   \emph{Statistical Procedures for Agricultural Research}.
   Wiley-Interscience. Page 481.
-  
+
   Used with permission of Kwanchai Gomez.
 }
 
@@ -31,11 +31,11 @@
 dat <- gomez.rice.uniformity
 
 # Raw data plot
-require("lattice")
+require(lattice)
 desplot(yield ~ x*y, data=dat, aspect=38/20, main="gomez.rice.uniformity")
 
 # 3x3 moving average.  Gomez figure 12.1
-require("reshape2")
+require(reshape2)
 dmat <- melt(dat, id.var=c('x','y'))
 dmat <- acast(dmat, y~x)
 m0 <- dmat
@@ -45,7 +45,8 @@ dmat3 <- (m0[rx+1,cx+1]+m0[rx+1,cx]+m0[rx+1,cx-1]+
           m0[rx,cx+1]+m0[rx,cx]+m0[rx,cx-1]+
           m0[rx-1,cx+1]+m0[rx-1,cx]+m0[rx-1,cx-1])/9
 dat3 <- melt(dmat3)
-desplot(value~Var2*Var1, dat3, at=c(576,637,695,753,811,870,927))
+desplot(value~Var2*Var1, dat3, at=c(576,637,695,753,811,870,927),
+        main="gomez.rice.uniformity smoothed")
 
 \dontrun{
 require("agricolae")

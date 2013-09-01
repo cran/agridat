@@ -46,6 +46,7 @@ xyplot(straw ~ grain, data=dat, type=c('p','r'), main="mercer.wheat.uniformity -
 # require(hexbin)
 # hexbinplot(straw ~ grain, data=dat)
 
+require(sp)
 require(gstat)
 plot.wid <- 2.5
 plot.len <- 3.2

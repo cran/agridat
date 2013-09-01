@@ -83,7 +83,7 @@ desplot(yield ~ col*row, d7, out1=block, text=trt, cex=1, col=ptype)
 
 # Table 8.  Anova, mean yield tons / acre
 anova(m7 <- aov(yield~trt+block+ptype + ptype:potash, d7))
-require("reshape2")
+require(reshape2)
 me7 <- melt(d7, measure.vars='yield')
 acast(me7, potash~nitro, fun=mean) * 40/2240 # English ton = 2240 lbs
 acast(me7, potash~ptype, fun=mean) * 40/2240

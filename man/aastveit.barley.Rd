@@ -49,7 +49,8 @@ Z <- sweep(Z, 2, colMeans(Z)) # Double-centered
 sum(Z^2)*4 # Total SS
 sv <- svd(Z)$d
 round(100 * sv^2/sum(sv^2),1) # Prop of variance each axis
-biplot(prcomp(Z)) # Aastveit Figure 1.  PCA of height
+# Aastveit Figure 1.  PCA of height
+biplot(prcomp(Z), main="aastveit.barley - height")
 
 U <- aastveit.barley$covs
 U <- scale(U) # Standardized covariates
@@ -66,5 +67,6 @@ biplot(m1, which="y", var.axes=TRUE)
 # Fig 2b, 2c (not rotated)
 biplot(m1, which="x", var.axes=TRUE)
 }
+
 }
 

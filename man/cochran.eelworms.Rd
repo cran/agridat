@@ -35,7 +35,8 @@
   final count of cysts recorded.
 }
 \source{
-  Cochran and Cox, 1950.  \emph{Experimental Designs}.  Table 3.1.
+  Cochran and Cox, 1950.
+  \emph{Experimental Designs}. Table 3.1.
 }
 \references{
   R. A. Bailey, 2008. \emph{Design of Comparative Experiments}. Cambridge.
@@ -44,7 +45,7 @@
 
 dat <- cochran.eelworms
 
-# Some strong spatial trends
+# Very strong spatial trends
 desplot(initial ~ col*row, data=dat, flip=TRUE, main="cochran.eelworms")
 
 # final counts are strongly related to initial counts

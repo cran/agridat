@@ -67,7 +67,7 @@ Myallie \tab 1995\cr
 dat <- verbyla.lupin
 
 # The same RCB randomization was used at all sites in each year
-desplot(gen~col+row|site, data=dat)
+desplot(gen~col+row|site, data=dat, main="verbyla.lupin")
 
 # Figure 3 of Verbyla
 require("latticeExtra")

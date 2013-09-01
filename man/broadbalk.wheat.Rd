@@ -62,9 +62,11 @@
 \examples{
 dat <- broadbalk.wheat
 
-require("lattice")
-xyplot(grain~straw|plot, dat, type=c('p','smooth'), as.table=TRUE)
-xyplot(grain~year|plot, dat, type=c('p','smooth'), as.table=TRUE)
+require(lattice)
+xyplot(grain~straw|plot, dat, type=c('p','smooth'), as.table=TRUE,
+       main="broadbalk.wheat")
+xyplot(grain~year|plot, dat, type=c('p','smooth'), as.table=TRUE,
+       main="broadbalk.wheat")
 
 # See the treatment descriptions to understand the patterns
 levelplot(grain~year*plot, dat, main="Grain")

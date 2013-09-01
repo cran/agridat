@@ -21,7 +21,7 @@
 }
 \details{
   Data are the mean of 3 reps.
-  
+
   These data were used to conduct a stability analysis of yield.
 }
 \source{
@@ -39,9 +39,9 @@
 dat <- fan.stability
 
 dat$env <- factor(paste(dat$loc, dat$year, sep=""))
-require('reshape2')
+require(reshape2)
 dm <- acast(dat, gen~env, value.var="yield")
-require('agricolae')
+require(agricolae)
 # Use 0.464 as pooled error from ANOVA.  Calculate yield mean/stability.
 stability.par(dm, rep=3, MSerror=0.464) # Table 5 of Fan et al.
 }

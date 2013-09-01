@@ -9,7 +9,7 @@
 }
 \details{
   A uniformity trial of spring barley planted in 1978.
-  Each plot is 5 feet wide, 14 feet long. 
+  Each plot is 5 feet wide, 14 feet long.
   Conducted by the Plant Breeding Institute in Cambridge, England.
 }
 
@@ -38,5 +38,31 @@ dat <- kempton.barley.uniformity
 require(lattice)
 desplot(yield~col*row, dat, main="kempton.barley.uniformity")
 asp <- (28*14)/(7*5) # aspect ratio (rows * ft)/(cols * ft)
-desplot(yield~col*row, dat, aspect=asp) # true view
+desplot(yield~col*row, dat, aspect=asp,
+        main="kempton.barley.uniformity (true aspect)") # true view
+
+dat <- transform(dat, xf = factor(col), yf=factor(row))
+
+\dontrun{
+# Kempton estimated auto-regression coefficients b1=0.10, b2=0.91
+require(asreml)
+m1 <- asreml(yield ~ 1, data=dat, rcov=~ar1(xf):ar1(yf))
+summary(m1)$varcomp
+# asreml estimates auto-regression correlations of 0.25, 0.82
+# Kempton estimated auto-regression coefficients b1=0.10, b2=0.91
+}
+
+# Kempton defines 4 blocks, randomly assigns variety codes 1-49 in each block, fits
+# RCB model, computes mean squares for variety and residual.  Repeat 40 times.
+# Kempton's estimate: variety = 1032, residual = 1013
+# Our estimate: variety = 825, residual = 1080
+fitfun <- function(dat){
+  dat <- transform(dat, block=factor(ceiling(row/7)),
+                   gen=factor(c(sample(1:49),sample(1:49),sample(1:49),sample(1:49))))
+  m2 <- lm(yield*100 ~ block + gen, dat)
+  anova(m2)[2:3,'Mean Sq']
+}
+set.seed(251)
+out <- replicate(50, fitfun(dat))
+rowMeans(out)
 }

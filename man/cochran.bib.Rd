@@ -19,7 +19,7 @@
 \details{
   Incomplete block design.  Each loc/block has 4 genotypes/lines.
   The blocks are planted at different locations.
-  
+
   Conducted in 1943 in North Carolina.
 }
 \source{
@@ -32,6 +32,11 @@
 }
 \examples{
 dat <- cochran.bib
+
+# Show the incomplete-block structure
+with(dat, table(gen,loc))
+rowSums(as.matrix(with(dat, table(gen,loc))))
+colSums(as.matrix(with(dat, table(gen,loc))))
 
 m1 = aov(yield ~ gen + Error(loc), data=dat)
 summary(m1)

@@ -44,7 +44,12 @@ dat <- transform(dat, xf=factor(col), yf=factor(row))
 # Incomplete block model of Gilmour et al 1995
 require(lme4)
 m1 <- lmer(yield ~ gen + (1|rep) + (1|rep:yf) + (1|rep:xf), data=dat)
-summary(m1)@REmat
+print(summary(m1)@REmat, quote=FALSE)
+## Groups   Name        Variance Std.Dev.
+## rep:xf   (Intercept) 14811.5  121.702 
+## rep:yf   (Intercept) 15596.0  124.884 
+## rep      (Intercept)  4261.9   65.283 
+## Residual              8061.7   89.787 
 
 \dontrun{
 # Incomplete block model of Gilmour et al 1995

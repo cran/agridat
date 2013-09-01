@@ -47,7 +47,7 @@ dat[dat$block=="B3" & dat$gen=="A", "dry"] <- 2.8
 dat[dat$block=="B3" & dat$gen=="B", "dry"] <- 1.4
 m2 <- lm(dry~block+gen, dat)
 dat$res2 <- resid(m2)
-desplot(res2 ~ col+row, dat, text=gen)
+desplot(res2 ~ col+row, dat, text=gen, main="ryder.groundnut")
 
 }
 \keyword{datasets}

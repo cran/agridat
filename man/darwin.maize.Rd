@@ -39,14 +39,14 @@
  experiments of this kind require so much time--mine having been
  continued during eleven years--that they are not likely soon to be
  repeated."
-  
+
   Darwin asked his cousin Francis Galton for help in understanding the
   data.  Galton did not have modern statistical methods to approach
   the problem and said, "I doubt, after making many tests, whether it is
   possible to derive useful conclusions from these few observations.  We
   ought to have at least 50 plants in each case, in order to be in a
   position to deduce fair results".
-  
+
   Later, R. A. Fisher used Darwin's data in a book about design of
   experiments and showed that a t-test exhibits a significant difference
   between the two groups.
@@ -64,10 +64,10 @@
 dat <- darwin.maize
 
 # Compare self-pollination with cross-pollination
-require("lattice")
+require(lattice)
 bwplot(height~type, dat)
 
-require("reshape2")
+require(reshape2)
 dm <- melt(dat)
 d2 <- dcast(dm, pot+pair~type)
 d2$diff <- d2$cross-d2$self

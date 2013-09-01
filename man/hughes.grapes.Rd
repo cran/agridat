@@ -50,7 +50,7 @@ dat <- hughes.grapes
 dat <- transform(dat, rate = diseased/total, plot=trt:block)
 
 # Trt 1 has higher rate, more variable, Trt 3 lower rate, less variable
-foo <- bwplot(rate ~ vine|block*trt, dat)
+foo <- bwplot(rate ~ vine|block*trt, dat, main="hughes.grapes")
 if (require(latticeExtra)) useOuterStrips(foo) else print(foo) 
 
 # Table 1 of Piepho 1999
@@ -62,7 +62,7 @@ tapply(dat$rate, dat$trt, max)
 
 # Use the binomial count data with lme4
 library(lme4)
-m1 <- lmer(cbind(diseased, total-diseased) ~ trt + block + (1|plot/vine),
+m1 <- glmer(cbind(diseased, total-diseased) ~ trt + block + (1|plot/vine),
            data=dat, family=binomial)
 m1
 

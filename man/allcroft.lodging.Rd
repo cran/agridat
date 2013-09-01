@@ -41,6 +41,9 @@ xlab="Percent lodged (by genotype)", ylab="Variety",
 \dontrun{
 require("Zelig")
 # Bayesian tobit model using zelig
+
+## NOTE: This is not working!!!!
+
 m3 <- zelig(sy ~ -1 + gen + env, below=0, above=100, model="tobit.bayes",
             data=dat)
 s3 <- summary(m3)

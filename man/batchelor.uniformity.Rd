@@ -16,15 +16,15 @@
 \format{
   Each dataset has the following format
   \describe{
-    \item{\code{row}}{Row}
-    \item{\code{col}}{Column}
-    \item{\code{yield}}{Yield per tree (pounds)}
+    \item{\code{row}}{row}
+    \item{\code{col}}{column}
+    \item{\code{yield}}{yield per tree (pounds)}
   }
 }
 \details{
-  
+
   The following details are from Batchelor (1918).
-  
+
   \bold{Jonathan Apples}
 
   The apple (Malus sylvestris) records were obtained from a 10-year old
@@ -33,7 +33,7 @@
   extreme eastern edge, where the percentage of gravel increases
   slightly. The trees are planted 16 feet apart, east and west, and 30
   feet apart north and south.
-  
+
   \bold{Eureka Lemon}
 
   The lemon (Citrus limonia) tree yields were obtained from a grove of
@@ -46,9 +46,9 @@
   texture. The records show a grouping of several low-yielding trees;
   yet a field observation gives one the impression that the grove as a
   whole is remarkably uniform.
-  
+
   \bold{Navel 1 (Arlington)}
-  
+
   These records were of the 1915-16 yields of one thousand 24-year-old
   navel-orange trees near Arlington station, Riverside, California. The
   grove consists of 20 rows of trees from north to south, with 50 trees
@@ -60,7 +60,7 @@
   tree to tree also occur, the cause of which is not evident. These
   variations, which are present in every orchard, bring uncertainty into
   the results offield experiments.
-  
+
   \bold{Navel 2 (Antelope)}
 
   The navel-orange grove later referred to as the Antelope Heights
@@ -69,7 +69,7 @@
   appearance of the trees gives a visual impression of uniformity
   greater than a comparison of the individual tree production
   substantiates.
-  
+
   \bold{Valencia Orange}
 
   The Valencia orange grove is composed of 240 15-year-old trees,
@@ -102,7 +102,7 @@
 }
 \examples{
 
-require("lattice")
+require(lattice)
 
 # Apple
 dat <- batchelor.apple.uniformity

@@ -33,7 +33,7 @@
   The phrase "analysis of variance" first appears in the abstract (only)
   of a 1918 paper by Fisher.  The 1923 paper by Student contained the
   first analysis of variance table (but not for this data).
-  
+
   One stone is 14 pounds.
   To convert lb/ac to tonnes/ha, multiply by 0.00112085116
 
@@ -43,11 +43,11 @@
   maximum income for Goldthorpe is 220 shillings (11 pounds, 0
   shillings) in 1901 at Thurles.  Also, the results of Kempton could not
   be reproduced exactly, perhaps due to rounding or the conversion
-  factor that was used. 
+  factor that was used.
 }
 \source{
   Student. 1923. On Testing Varieties of Cereals. \emph{Biometrika}, 15,
-  271--293. 
+  271--293.
 }
 \references{
   R A Kempton and P N Fox, 1997, \emph{Statistical Methods for Plant
@@ -59,7 +59,7 @@ dat$year <- factor(dat$year)
 dat$income <- NULL
 
 # convert to tons/ha
-dat <- transform(dat, yield=yield*14 * 0.00112085116) 
+dat <- transform(dat, yield=yield*14 * 0.00112085116)
 
 # Define 'loc' the way that Kempton does
 dat$loc <- rep("",nrow(dat))

@@ -32,7 +32,7 @@ Multi-environment trial with structured missing values
 dat <- denis.missing
 
 # View missingness structure
-require("reshape2")
+require(reshape2)
 m1 <- melt(dat, measure.var='yield')
 acast(m1, env~gen)
 

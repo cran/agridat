@@ -41,9 +41,11 @@ dat <- immer.sugarbeet.uniformity
 
 # Immer numbers rows from the top
 desplot(yield~col*row, data=dat, tick=TRUE, flip=TRUE,
-        main="immer.sugarbeet.uniformity")
-desplot(sugar~col*row, data=dat, tick=TRUE, flip=TRUE)
-desplot(yield~col*row, data=dat, tick=TRUE, flip=TRUE)
+        main="immer.sugarbeet.uniformity - yield")
+desplot(sugar~col*row, data=dat, tick=TRUE, flip=TRUE,
+        main="immer.sugarbeet.uniformity - sugar")
+desplot(purity~col*row, data=dat, tick=TRUE, flip=TRUE,
+        main="immer.sugarbeet.uniformity - purity")
 pairs(dat[,c('yield','sugar','purity')])
 }
 \keyword{datasets}

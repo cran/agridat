@@ -74,7 +74,7 @@ dat <- subset(dat, !is.na(weanage))
 
 # EDA
 require("lattice")
-bwplot(weanwt ~ year, dat) # Year effect
+bwplot(weanwt ~ year, dat, main="ilri.sheep") # Year effect
 bwplot(weanwt ~ factor(dl), dat) # Dam age effect
 bwplot(weanwt ~ gen, dat) # Genotype differences
 xyplot(weanwt ~ weanage, dat, type=c('p','smooth')) # Age covariate

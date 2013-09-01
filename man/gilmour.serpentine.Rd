@@ -43,7 +43,7 @@ desplot(yield~ col*row, data=dat, num=gen, out1=rep,
         main="gilmour.serpentine")
 
 # Extreme field trend.  Blocking insufficient--needs a spline/smoother
-xyplot(yield~col, data=dat)
+xyplot(yield~col, data=dat, main="gilmour.serpentine")
 
 \dontrun{
 require(asreml)

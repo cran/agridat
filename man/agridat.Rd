@@ -4,8 +4,8 @@
 \title{Datasets from agricultural experiments}
 \description{
   This package contains datasets from published papers and books
-  relating to agriculture including field crops, tree crops, and animal
-  studies.
+  relating to agriculture including field crops, tree crops, animal
+  studies, and a few others.
 }
 \details{
 
@@ -13,9 +13,10 @@ Abbreviations in the 'other' column include: xy = coordinates,
 pls = partial least squares, row-col = row-column design, ts = time series.
 
 \bold{Uniformity trials with a single genotype}
-  
+
 \tabular{llll}{
 name                                  \tab dimensions \tab other \tab model \cr
+\link{baker.barley.uniformity}        \tab 3 x 19 \tab xy \tab 10 years\cr
 \link{batchelor.apple.uniformity}     \tab 8 x 28 \tab xy \tab \cr
 \link{batchelor.lemon.uniformity}     \tab 14 x 16 \tab xy \tab \cr
 \link{batchelor.navel1.uniformity}    \tab 20 x 50 \tab xy \tab \cr
@@ -60,7 +61,9 @@ name                             \tab gen \tab loc\tab years \tab trt \tab other
 name                             \tab gen \tab loc\tab reps\tab years \tab trt \tab other \tab model \cr
 \link{archbold.apple}            \tab 2   \tab    \tab 5   \tab    \tab 24  \tab split-split \tab lmer \cr
 \link{box.cork}                  \tab     \tab    \tab     \tab    \tab     \tab repeated \tab radial, asreml \cr
+\link{harris.wateruse}           \tab 2   \tab    \tab     \tab    \tab 2   \tab repeated \tab asreml \cr
 \link{lavoranti.eucalyptus}      \tab 70  \tab 7  \tab     \tab    \tab     \tab  \tab svd \cr
+\link{pearce.apple}              \tab     \tab    \tab 4   \tab    \tab 6   \tab cov \tab lm,lmer \cr
 \link{williams.trees}            \tab 37  \tab 6  \tab     \tab    \tab 2   \tab \tab \cr
 }
 
@@ -79,7 +82,7 @@ name                             \tab gen \tab loc\tab reps\tab years \tab trt \
 \link{besag.elbatan}             \tab 50  \tab    \tab 3   \tab    \tab     \tab xy  \tab lm, gam \cr
 \link{besag.met}                 \tab 64  \tab 6  \tab 3   \tab    \tab     \tab xy, incblock\tab asreml, lme \cr
 \link{blackman.wheat}            \tab 12  \tab 7  \tab     \tab    \tab 2   \tab \tab biplot \cr
-\link{bond.diallel}              \tab 6*6 \tab    \tab     \tab    \tab     \tab \tab diallel \cr
+\link{bond.diallel}              \tab 6*6 \tab    \tab     \tab    \tab 9   \tab \tab diallel \cr
 \link{bridges.cucumber}          \tab 4   \tab 2  \tab 4   \tab    \tab     \tab xy, latin, hetero\tab asreml \cr
 \link{caribbean.maize}           \tab     \tab 17 \tab 4   \tab    \tab 3   \tab \tab \cr
 \link{carmer.density}            \tab 8   \tab    \tab     \tab    \tab 4   \tab \tab nls\cr
@@ -119,8 +122,10 @@ name                             \tab gen \tab loc\tab reps\tab years \tab trt \
 \link{gotway.hessianfly}         \tab 16  \tab    \tab 4   \tab    \tab     \tab xy \tab lmer \cr
 \link{graybill.heteroskedastic}  \tab 4   \tab 13 \tab     \tab    \tab     \tab hetero \tab \cr
 \link{hanks.sprinkler}           \tab 3   \tab    \tab 3   \tab    \tab     \tab xy \tab asreml\cr
+\link{hayman.tobacco}            \tab 8   \tab    \tab 2   \tab    \tab     \tab \tab diallel\cr
 \link{hernandez.nitrogen}        \tab     \tab 5  \tab 4   \tab    \tab     \tab  \tab lm, nls\cr
 \link{hildebrand.systems}        \tab     \tab 14 \tab     \tab    \tab 4   \tab \tab asreml\cr
+\link{holshouser.splitstrip}     \tab 4   \tab    \tab 4   \tab    \tab 2*4 \tab \tab lmer\cr
 \link{hughes.grapes}             \tab     \tab    \tab 3   \tab    \tab 6   \tab binomial \tab lmer, aod, glmm\cr
 \link{ivins.herbs}               \tab 13  \tab    \tab 6   \tab    \tab     \tab 2 traits \tab lm, friedman\cr
 \link{jenkyn.mildew}             \tab     \tab    \tab 9   \tab    \tab 4   \tab \tab lm\cr
@@ -182,18 +187,20 @@ name                             \tab years \tab trt \tab other \tab model \cr
 
 \tabular{ll}{
 name                       \tab model \cr
+\link{beall.borers}        \tab glm \cr
 \link{cate.potassium}      \tab cate-nelson \cr
 \link{cleveland.soil}      \tab loess 2D \cr
 \link{johnson.blight}      \tab logistic regression\cr
 \link{nebraska.farmincome} \tab choropleth\cr
 \link{pearl.kernels}       \tab chisq \cr
+\link{waynick.soil}        \tab \cr
 }
 
 The original sources for these data use several different words to refer to
-genetics including
+genotypes including
 \emph{breed}, \emph{cultivar}, \emph{genotype}, \emph{hybrid},
 \emph{line}, \emph{progeny}, \emph{stock}, \emph{type}, and \emph{variety}.
-For simplicity and consistency, these datasets all use \code{gen} (genotype).
+For simplicity and consistency, these datasets mostly use \code{gen} (genotype).
 Also for consistency \code{row} and \code{col} are often used for the
 coordinates.
 

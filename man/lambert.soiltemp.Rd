@@ -6,7 +6,7 @@
 }
 \description{
   Average monthly soil temperature near Zurich, at seven depths,
-  averaged over four years.  
+  averaged over four years.
 }
 
 \format{
@@ -14,7 +14,7 @@
   \describe{
     \item{\code{month}}{Month as a number}
     \item{\code{depth}}{Depth in soil (feet)}
-    \item{\code{temp}}{Temperature (du Crest)}
+    \item{\code{temp}}{Temperature (the units are "du Crest")}
   }
 }
 \details{
@@ -28,7 +28,7 @@
   scale.  If you can read German, use the Google books link to see if
   you can figure out why.)  Even the scale on Lambert's own graph
   doesn't match the data.
-  
+
   Greater depths show less variation and a greater lag in temperature
   responsiveness to the air temperature.
 

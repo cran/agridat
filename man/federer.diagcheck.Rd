@@ -25,16 +25,16 @@
   Federer used this data in multiple papers to illustrate the use of
   orthogonal polynomials to model field trends that are not related to
   the genetic effects.
-  
+
   Note: Federer and Wolfinger (2003) provide a SAS program for analysis
-  of this data.  However, when the program is used to analyze this data,
+  of this data.  However, when the SAS program is used to analyze this data,
   the results do not match the results given in Federer (1998) nor
   Federer and Wolfinger (2003).  The differences are slight, which
   suggests a typographical error in the presentation of the data.
 
   The R code below provides results that are consistent with the SAS
   code of Federer & Wolfinger (2003) when both are applied to this
-  version of the data.   
+  version of the data.
 }
 \source{
   Federer, Walter T. 1998. Recovery of interblock, intergradient, and
@@ -58,7 +58,7 @@ desplot(yield ~ col*row, dat, text=gen, show.key=FALSE,
 
 # Only to match SAS results
 dat$row <- 16 - dat$row
-dat=dat[order(dat$col, dat$row), ] 
+dat=dat[order(dat$col, dat$row), ]
 
 # Add row / column polynomials to the data.
 # The scaling factors sqrt() are arbitrary, but used to match SAS
@@ -86,15 +86,19 @@ Anova(m1, type=3) # Matches PROC GLM output
 # lmer
 dat$one <- factor(rep(1, nrow(dat)))
 library(lme4)
-m2 <- lmer(yield ~ trtn + (0+r1|one) + (0+r2|one) + (0+r4|one) + (0+r8|one) + (0+r10|one)
-           + (0+c1|one) + (0+c2|one) + (0+c3|one) + (0+c4|one) + (0+c6|one) + (0+c8|one)
-           + (0+r1:c1|one) + (0+r1:c2|one) + (0+r1:c3|one) +(1|new:gen)
-           , data = dat)
-m2        # Matches variance comps from PROC MIXED
-ranef(m2) # Matches random effects from PROC MIXED
+# m2 <- lmer(yield ~ trtn + (0+r1|one) + (0+r2|one) + (0+r4|one) + (0+r8|one) + (0+r10|one)
+#            + (0+c1|one) + (0+c2|one) + (0+c3|one) + (0+c4|one) + (0+c6|one) + (0+c8|one)
+#            + (0+r1:c1|one) + (0+r1:c2|one) + (0+r1:c3|one) +(1|new:gen)
+#            , data = dat,
+#            control=lmerControl(optimizer="bobyqa", check.numlev.gtr.1="ignore"))
+#            #control=lmerControl(optimizer="Nelder_Mead",check.numlev.gtr.1="ignore"))
+# Nelder_Mead gives very different results from bobyqa, ASREML, MIXED
+#m2        # Matches variance comps from PROC MIXED
+#ranef(m2) # Matches random effects from PROC MIXED
 
 \dontrun{
 # asreml
+library(asreml)
 m3 <- asreml(yield ~ -1 + trtn, data=dat,
              random = ~ r1 + r2 + r4 + r8 + r10 +
              c1 + c2 + c3 + c4 + c6 + c8 + r1:c1 + r1:c2 + r1:c3 + new:gen)

@@ -119,6 +119,6 @@ desplot(yield ~ xord*plot|harv, data=d2, aspect=.84, flip=TRUE,
 # Crude fertility map by averaging across years shows probable
 # sub-surface water effects
 agg <- aggregate(yield ~ xord + plot, data=d2, mean)
-desplot(yield ~ xord + plot, agg)
+desplot(yield ~ xord + plot, agg, main="harris.multi.uniformity fertility")
 }
 \keyword{datasets}

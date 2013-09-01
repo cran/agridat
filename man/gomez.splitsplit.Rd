@@ -38,9 +38,9 @@ Rice split-split plot experiment
 dat <- gomez.splitsplit
 dat$nf <- factor(dat$nitro)
 
-desplot(yield~x*y, dat)
+desplot(yield~x*y, dat, main="gomez.splitsplit")
 desplot(nf~x*y, dat, out1=rep, col=management, num=gen, cex=1,
-        main="gomez.splitsplit")
+        wmain="gomez.splitsplit")
 
 if(require(HH)){
 position(dat$nf) <- c(0,50,80,110,140)

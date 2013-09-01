@@ -49,7 +49,7 @@ anova(m2)
 
 # GLM with random blocking.
 require(lme4)
-m3 <- lmer(worms ~ -1 + trt + (1|rowf) + (1|colf),
+m3 <- glmer(worms ~ -1 + trt + (1|rowf) + (1|colf),
            data=dat, family="poisson")
 summary(m3)
 }

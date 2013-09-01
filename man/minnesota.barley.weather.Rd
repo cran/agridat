@@ -62,6 +62,7 @@ datw <- minnesota.barley.weather
 # Weather trends over time
 require(latticeExtra)
 useOuterStrips(xyplot(cdd~mo|year*site, datw, groups=year,
+main="minnesota.barley",
 subset=(mo > 3 & mo < 10), scales=list(alternating=FALSE),
 type='l', auto.key=list(columns=5)))
 
@@ -89,7 +90,7 @@ oldpar <- tpg <- trellis.par.get()
 tpg$superpose.symbol$pch <- substring(levels(mecy$yr),4) # Last digit of year
 trellis.par.set(tpg)
 foo <- xyplot(y~x|covar*site, data=mecy, groups=yr, cex=1, ylim=c(5,65),
-              xlab="", ylab="yield",
+              xlab="", ylab="yield", main="minnesota.barley",
               panel=function(x,y,...) {
                 panel.lmline(x,y,..., col="gray")
                 panel.superpose(x,y,...)

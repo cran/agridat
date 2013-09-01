@@ -4,12 +4,14 @@ allcroft.lodging
 archbold.apple
 ars.earlywhitecorn96
 australia.soybean
+baker.barley.uniformity
 batchelor.apple.uniformity
 batchelor.lemon.uniformity
 batchelor.navel1.uniformity
 batchelor.navel2.uniformity
 batchelor.valencia.uniformity
 batchelor.walnut.uniformity
+beall.borers
 besag.bayesian
 besag.elbatan
 besag.met
@@ -64,10 +66,13 @@ goulden.barley.uniformity
 graybill.heteroskedastic
 hanks.sprinkler
 harris.multi.uniformity
+harris.wateruse
+hayman.tobacco
 henderson.milkfat
 hernandez.nitrogen
 hessling.argentina
 hildebrand.systems
+holshouser.splitstrip
 hughes.grapes
 ilri.sheep
 immer.sugarbeet.uniformity
@@ -104,6 +109,7 @@ odland.soybean.uniformity
 odland.soyhay.uniformity
 ortiz.tomato
 pacheco.soybean
+pearce.apple
 pearl.kernels
 ratkowsky.onions
 rothamsted.brussels
@@ -125,6 +131,7 @@ vargas.wheat1
 vargas.wheat2
 verbyla.lupin
 vsn.lupin3
+waynick.soil
 wedderburn.barley
 wiebe.wheat.uniformity
 williams.barley.uniformity

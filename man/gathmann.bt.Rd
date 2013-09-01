@@ -21,7 +21,7 @@
   control variety.  Species abundances were measured for
   \emph{Thysanoptera} (thrips) and \emph{Araneida} (spiders)
   in 8 different plots.
-  Each response is probably a mean across repeated measurements. 
+  Each response is probably a mean across repeated measurements.
 }
 \source{
   L. A. Hothorn, 2005.
@@ -43,7 +43,7 @@ bwplot(aranei~gen, dat, panel=bwdot)
 
 \dontrun{
 # ----- Parametric CI.  Thysan significant, aranei not significant.
-require("equivalence")
+require(equivalence)
 tt <- with(dat, tost(thysan[1:8], thysan[9:16], epsilon=1))
 lapply(tt[c("mean.diff","ci.diff")], round, 2)
 
@@ -51,7 +51,7 @@ ta <- with(dat, tost(aranei[1:8], aranei[9:16], alpha=.05, epsilon=.4))
 lapply(ta[c("mean.diff","ci.diff")], round, 2)
 
 # ----- Non-parametric exact CI.  Same result.
-require("exactRankTests")
+require(exactRankTests)
 nont <- with(dat, wilcox.exact(thysan ~ gen, data=dat,
                                exact=TRUE, conf.int=TRUE, conf.level=0.9))
 lapply(nont[c("estimate","conf.int")], function(x) round(x,1))
@@ -62,13 +62,13 @@ lapply(nona[c("estimate","conf.int")], function(x) round(x,2))
 
 
 # ----- Log-transformed exact CI. Same result.
-logt <- with(dat, wilcox.exact(log(thysan) ~ gen, data=dat, 
+logt <- with(dat, wilcox.exact(log(thysan) ~ gen, data=dat,
                              alternative=c("two.sided"), exact=TRUE,
                              conf.int=TRUE, conf.level=0.9))
 lapply(logt[c("estimate","conf.int")], function(x) round(exp(x),1))
 
 # ----- Log-transform doesn't work on aranei, but asinh(x/2) does
-loga <- with(dat, wilcox.exact(asinh(aranei/2) ~ gen, data=dat, 
+loga <- with(dat, wilcox.exact(asinh(aranei/2) ~ gen, data=dat,
                              alternative=c("two.sided"), exact=TRUE,
                              conf.int=TRUE, conf.level=0.9))
 lapply(loga[c("estimate","conf.int")], function(x) round(sinh(x)*2,1))

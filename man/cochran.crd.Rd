@@ -36,7 +36,7 @@ uncovered significant differences (Tamura, 1988).
 \references{
   Tamura, R.N. and Nelson, L.A. and Naderman, G.C., (1988).
   An investigation of the validity and usefulness of trend analysis for field plot data.
-  \emph{Agronomy Journal}, 80, 712-718.  year={1988}
+  \emph{Agronomy Journal}, 80, 712-718.
 }
 \examples{
 

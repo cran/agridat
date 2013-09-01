@@ -15,7 +15,7 @@
     \item{\code{yield}}{yield in kg/acre}
   }
 }
-\details{ 
+\details{
   The data is used by Corsten & Denis (1990) to illustrate two-way
   clustering by minimizing the interaction sum of squares.
 
@@ -33,7 +33,7 @@
 \examples{
 dat <- corsten.interaction
 
-require("reshape2")
+require(reshape2)
 m1 <- melt(dat, measure.var='yield')
 dmat <- acast(m1, loc~gen)
 

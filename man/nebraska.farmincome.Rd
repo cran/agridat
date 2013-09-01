@@ -14,15 +14,15 @@
     \item{\code{county}}{County factor}
     \item{\code{crop}}{Crop income, thousand dollars}
     \item{\code{animal}}{Livestock and poultry income, thousand dollars}
-    \item{\code{area}}{Area, square miles}
+    \item{\code{area}}{Area of each county, square miles}
   }
 }
 \details{
   The variables for each county are:
-  
+
   Value of farm products sold - crops (NAICS) 2007 (adjusted)
 
-  Value of farm products sold - livestock, 2007, adjusted.
+  Value of farm products sold - livestock, 2007 (adjusted).
 
   Area in square miles.
 
@@ -62,8 +62,8 @@ mapplot(county ~ crop.rate + animal.rate,
         map = map('county', 'nebraska', plot = FALSE, fill = TRUE,
                   projection = "mercator"),
         colramp=RedGrayBlue,
-        #breaks=c(0,50,100,150,200,300,400,1400)
-        breaks=quantile(c(dat$crop.rate, dat$animal.rate), c(0,.1,.2,.4,.6,.8,.9,1), na.rm=TRUE)
+        breaks=quantile(c(dat$crop.rate, dat$animal.rate),
+                        c(0,.1,.2,.4,.6,.8,.9,1), na.rm=TRUE)
         )
 
 }

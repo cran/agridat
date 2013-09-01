@@ -56,7 +56,8 @@ m1 <- lm(height ~ blockf + dosef, data=dat)
 anova(m1)
 
 # RCB residuals show strong spatial trends
-levelplot(resid(m1) ~ row * block, data=dat, col.regions=RedGrayBlue(21))
+levelplot(resid(m1) ~ row * block, data=dat,
+col.regions=RedGrayBlue(21), main="federer.tobacco")
 
 # Row-column analysis.  Treatment now significant
 m2 <- lm(height ~ rowf + blockf + dosef, data=dat)

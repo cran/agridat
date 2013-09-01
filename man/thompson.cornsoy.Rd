@@ -2,7 +2,7 @@
 \alias{thompson.cornsoy}
 \docType{data}
 \title{
-  Corn & Soybean Yields, 1930-1962, with temperature and preciptiation
+  Corn & Soybean Yields, 1930-1962, with temperature and precipitation
 }
 \description{
   Average yield of corn and soybeans in five U.S. states
@@ -91,15 +91,17 @@ dat <- thompson.cornsoy
 
 # The droughts of 1934/36 were severe in IA/MO. Less so in OH.
 require(lattice)
-xyplot(corn+soy~year|state, dat, type=c('p','l','r'), auto.key=TRUE,
-layout=c(5,1),ylab='yield')
+xyplot(corn+soy~year|state, dat, type=c('p','l','r'),
+auto.key=list(columns=2),
+main="thompson.cornsoy", layout=c(5,1),ylab='yield')
 
-# In 1954, Missouri suffered very hot, dry weather
-xyplot(corn~year, dat, groups=state, type=c('p','l'), auto.key=TRUE,
-ylab='yield')
+# In 1954, only Missouri suffered very hot, dry weather
+xyplot(corn~year, dat, groups=state, type=c('p','l'),
+main="thompson.cornsoy", auto.key=list(columns=5), ylab='corn yield')
 
 # Rain and temperature have negative correlation in each month.
-# July temperatures strongly correlated to yield
+# July is a critical month: temp and yield are negatively correlated,
+# while rain and yield are positively correlated.
 splom(~dat[-1,-1], col=dat$state, cex=.5)
 
 \dontrun{

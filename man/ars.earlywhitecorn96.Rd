@@ -29,9 +29,9 @@ Early White Food Corn Performance Tests
   adjusted to 15.5 percent moisture.
 
   Stand is expressed as a percentage of the optimum plant stand.
-  
+
   Lodging is expressed as a percentage of the total plants for each hybrid.
-  
+
   Ear height was measured from soil level to the top ear leaf collar.
   Heights are expressed in inches.
 
@@ -46,10 +46,13 @@ Early White Food Corn Performance Tests
   Agricultural Research Service Special Report 502.
 }
 \examples{
-require("lattice")
+require(lattice)
 dat <- ars.earlywhitecorn96
-dotplot(gen~yield, dat, group=loc, auto.key=list(columns=3))
-dotplot(gen~stalklodge, dat, group=loc, auto.key=list(columns=3))
+# These views emphasize differences between locations
+dotplot(gen~yield, dat, group=loc, auto.key=list(columns=3),
+        main="ars.earlywhitecorn96")
+dotplot(gen~stalklodge, dat, group=loc, auto.key=list(columns=3),
+        main="ars.earlywhitecorn96")
 splom(~dat[,3:9], group=dat$loc, auto.key=list(columns=3))
 }
 \keyword{datasets}
