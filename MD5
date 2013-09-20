@@ -1,5 +1,5 @@
-525834189fc57a454c9f60f0ad7ae790 *DESCRIPTION
-68f40437b86e6ffe6e43c3926d90bb4d *NAMESPACE
+3112b038137aa2d7d5512243cb68beb6 *DESCRIPTION
+8c7b8dc80b880f8a6a6b30cc5eca6dfd *NAMESPACE
 9cf31bf893263b96f25673b1cdf83ca8 *NEWS
 8031bff0574e5644d9677d9e8e029cd9 *R/desplot.r
 d41d8cd98f00b204e9800998ecf8427e *README
@@ -183,7 +183,7 @@ d47cd518e9dc73a96ff9895b8849df6f *man/cochran.bib.Rd
 48b4b2a8795ab3adf308a4aa1fcfe500 *man/cochran.wireworms.Rd
 2848a8ce1f62b1567f9a92496d40b5e0 *man/corsten.interaction.Rd
 ae89fe46311ea6572f112cd5c42e7216 *man/cox.stripsplit.Rd
-97cf82edc8c6ed185c6245bbf16197f6 *man/crossa.wheat.Rd
+3c28225db3a84c74faaf346cba04a667 *man/crossa.wheat.Rd
 ff2d0ce7dc5d2a640c00eb71e06799ec *man/crowder.seeds.Rd
 ebf1ee8015d259ee9b850c30b2bdb617 *man/darwin.maize.Rd
 2d51c766528cf1484373172b92020bd5 *man/denis.missing.Rd
@@ -204,7 +204,7 @@ d990f099102027f4ed072a00cdfe1275 *man/figures/baker.barley.uniformity.png
 bc4c86943aee4994b13b9dd10a5ecb4b *man/figures/stroupsplitplot.png
 30fdf7e8acda015ec0f1c40c2ca4760d *man/garber.mulit.uniformity.Rd
 3ca1b2b777259764be7f1a5eca05cc2e *man/gathmann.bt.Rd
-f0873e09751ed5dd08e000534f929b3d *man/gauch.soy.Rd
+41b59466f4cf3dfd2e3658a5afdf6401 *man/gauch.soy.Rd
 7c92020eab3a560454f24f981161b7d7 *man/gilmour.serpentine.Rd
 75f1c04226730a49d6deffe71bdfb93e *man/gilmour.slatehall.Rd
 5b7cd96122c9e04f504fd61386d3d92a *man/gomez.fractionalfactorial.Rd

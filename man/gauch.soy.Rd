@@ -50,7 +50,7 @@ New York soybean yields, 1977 to 1988
   \url{http://www.soils.org/publications/aj/abstracts/80/3/AJ0800030388}.
 }
 \examples{
-
+\dontrun{## This does not work with agricolae 1.1-9
 dat <- gauch.soy
 
 if(require(agricolae)){
@@ -67,5 +67,5 @@ with(bip, text(yield, PC1, rownames(bip),
                col=ifelse(bip$type=="GEN", "darkgreen", "blue"),
                cex=ifelse(bip$type=="GEN", 1.5, .75)))
 }
-}
+}}
 
