@@ -35,6 +35,8 @@
 
 dat <- cochran.wireworms
 
+# desplot(worms ~ col*row, data=dat, text=trt, cex=1)
+
 # Trt K is effective, but not the others.  Really, this says it all.
 bwplot(worms ~ trt, dat)
 

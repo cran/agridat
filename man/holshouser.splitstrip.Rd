@@ -65,14 +65,15 @@ require(lme4)
 m1 <- lmer(yield ~ cultivar * spacing * pop +
            (1|block) + (1|block:cultivar) + (1|block:cultivar:spacing) +
            (1|block:cultivar:pop), data=dat)
+
 ## Variances match Schabenberger, page 498.
-print(summary(m1)@REmat, quote=FALSE)
+print(VarCorr(m1), comp=c("Variance","Std.Dev."))
 ## Groups                 Name        Variance Std.Dev.
-## block:cultivar:pop     (Intercept) 2.42143  1.55609
-## block:cultivar:spacing (Intercept) 1.24437  1.11551
-## block:cultivar         (Intercept) 0.45232  0.67255
-## block                  (Intercept) 3.03666  1.74260
-## Residual                           3.92755  1.98180
+## block:cultivar:pop     (Intercept) 2.42148  1.55611
+## block:cultivar:spacing (Intercept) 1.24440  1.11553
+## block:cultivar         (Intercept) 0.45225  0.67249
+## block                  (Intercept) 3.03675  1.74263
+## Residual                           3.92751  1.98180
 
 }
 \keyword{datasets}

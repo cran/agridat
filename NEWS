@@ -1,12 +1,18 @@
 News for 'agridat'
 
+Version 1.8 (unreleased)
+
+  * New data:
+  brandle.rape, salmon.bunt
+
+  Fix multiple issues in examples due to lme4 changes.
+  Switch from exactRankTests to coin in gathmann.bt
+
 Version 1.7 (Sep 2013)
 
   * New data:
   baker.barley.uniformity, beall.borers, bond.diallel, harris.wateruse,
   hayman.diallel, holshouser.splitstrip, pearce.apple, waynick.soil
-
-  * Fix CRAN warnings.  Prepare for new lme4 package.
 
 Version 1.6 (June 2013)
 

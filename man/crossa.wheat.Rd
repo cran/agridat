@@ -60,7 +60,7 @@
   Used with permission of Jose' Crossa.
 }
 \references{
-  Jean-Louis Laffont, Kevin Wright and Mohamed Hanafi. 2013.
+  Jean-Louis Laffont, Kevin Wright and Mohamed Hanafi (2013).
   Genotype + Genotype x Block of Environments (GGB) Biplots.
   \emph{Crop Science}. In press.
 }

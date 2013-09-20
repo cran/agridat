@@ -14,12 +14,12 @@
 
 \format{
   \describe{
-    \item{\code{block}}{Factor with 6 levels}
-    \item{\code{nitro}}{Nitrogen treatment in hundredweight per acre}
-    \item{\code{gen}}{Genotype factor, 3 levels}
-    \item{\code{yield}}{Yield in 1/4 lbs per sub-plot, each 1/80 acre.}
-    \item{\code{x}}{Layout in field}
-    \item{\code{y}}{Layout in field}
+    \item{\code{block}}{block factor with 6 levels}
+    \item{\code{nitro}}{nitrogen treatment in hundredweight per acre}
+    \item{\code{gen}}{genotype factor, 3 levels}
+    \item{\code{yield}}{yield in 1/4 lbs per sub-plot, each 1/80 acre.}
+    \item{\code{x}}{x ordinate}
+    \item{\code{y}}{y ordinate}
   }
 }
 

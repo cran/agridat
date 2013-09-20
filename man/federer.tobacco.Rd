@@ -42,7 +42,7 @@
   \emph{Handbook of Formulas and Software for Plant Geneticists and
     Breeders}, Haworth Press.
 
-  Paul N Hinz, 1987.
+  Paul N Hinz, (1987).
   Nearest-Neighbor Analysis in Practice,
   \emph{Iowa State Journal of Research}, 62, 199--217.
 }

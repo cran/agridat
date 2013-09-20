@@ -11,10 +11,10 @@
 \format{
   A data frame with 1258 observations on the following 4 variables.
   \describe{
-    \item{\code{year}}{Year}
-    \item{\code{plot}}{Plot factor}
-    \item{\code{grain}}{Grain yield, tonnes}
-    \item{\code{straw}}{Straw yield, tonnes}
+    \item{\code{year}}{year}
+    \item{\code{plot}}{plot factor}
+    \item{\code{grain}}{grain yield, tonnes}
+    \item{\code{straw}}{straw yield, tonnes}
   }
 }
 \details{
@@ -66,7 +66,7 @@ require(lattice)
 xyplot(grain~straw|plot, dat, type=c('p','smooth'), as.table=TRUE,
        main="broadbalk.wheat")
 xyplot(grain~year|plot, dat, type=c('p','smooth'), as.table=TRUE,
-       main="broadbalk.wheat")
+       main="broadbalk.wheat") # yields are decreasing
 
 # See the treatment descriptions to understand the patterns
 levelplot(grain~year*plot, dat, main="Grain")

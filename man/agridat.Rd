@@ -84,6 +84,7 @@ name                             \tab gen \tab loc\tab reps\tab years \tab trt \
 \link{blackman.wheat}            \tab 12  \tab 7  \tab     \tab    \tab 2   \tab \tab biplot \cr
 \link{bond.diallel}              \tab 6*6 \tab    \tab     \tab    \tab 9   \tab \tab diallel \cr
 \link{bridges.cucumber}          \tab 4   \tab 2  \tab 4   \tab    \tab     \tab xy, latin, hetero\tab asreml \cr
+\link{brandle.rape}              \tab 5   \tab 9  \tab 4   \tab 3  \tab     \tab \tab lmer \cr
 \link{caribbean.maize}           \tab     \tab 17 \tab 4   \tab    \tab 3   \tab \tab \cr
 \link{carmer.density}            \tab 8   \tab    \tab     \tab    \tab 4   \tab \tab nls\cr
 \link{cochran.bib}               \tab 13  \tab 13 \tab     \tab    \tab     \tab BIB\tab aov, lme \cr
@@ -144,6 +145,7 @@ name                             \tab gen \tab loc\tab reps\tab years \tab trt \
 \link{pacheco.soybean}           \tab 18  \tab 11 \tab     \tab    \tab     \tab \tab AMMI\cr
 \link{rothamsted.brussels}       \tab     \tab    \tab 4   \tab    \tab 6   \tab \tab \cr
 \link{ryder.groundnut}           \tab 5   \tab    \tab 4   \tab    \tab     \tab xy, rcb \tab lm \cr
+\link{salmon.bunt}               \tab 10  \tab    \tab 2   \tab    \tab 20  \tab \tab betareg \cr
 \link{senshu.rice}               \tab     \tab 40 \tab     \tab    \tab     \tab \tab lm,Fieller \cr
 \link{shafii.rapeseed}           \tab 6   \tab 14 \tab 3   \tab 3  \tab     \tab \tab biplot \cr
 \link{snedecor.asparagus}        \tab     \tab    \tab 4   \tab 4  \tab 4   \tab \tab split-plot, antedependence \cr

@@ -45,15 +45,19 @@ m1 <- aov(yield~ fert*calcium*soil +
 summary(m1)
 
 # With balanced data, the following are all basically identical
-\dontrun{
+
 require(lme4)
 m2 <- lmer(yield ~ fert*soil*calcium + (1|rep) + (1|rep:fert) +
-(1|rep:soil) + (1|rep:fert:calcium) + (1|rep:soil:fert), data=dat)
+           (1|rep:soil) + (1|rep:fert:calcium) + (1|rep:soil:fert), data=dat,
+           control=lmerControl(check.nobs.vs.rankZ="ignore"))
+
+\dontrun{
 
 # afex uses Kenword-Rogers approach for denominator d.f.
 require(afex)
 mixed(yield ~ fert*soil*calcium + (1|rep) + (1|rep:fert) +
-(1|rep:soil) + (1|rep:fert:calcium) + (1|rep:soil:fert), data=dat)
+(1|rep:soil) + (1|rep:fert:calcium) + (1|rep:soil:fert), data=dat,
+control=lmerControl(check.nobs.vs.rankZ="ignore"))
 ##              Effect      stat ndf     ddf F.scaling p.value
 ## 1       (Intercept) 1350.8113   1  3.0009         1  0.0000
 ## 2              fert    3.5619   3  9.0000         1  0.0604

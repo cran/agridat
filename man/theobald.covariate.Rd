@@ -25,7 +25,7 @@
   The covariate CHU (Corn Heat Units) is the accumulated average daily
   temperatures (thousands of degrees Celsius) during the growing season
   at each location.
-  
+
   Thanks to Chris Theobald for permission to use the data and for BUGS code.
 }
 \source{
@@ -47,20 +47,20 @@ round(fixef(m0),2)
 # Use JAGS to fit Theobald (2002) model 3.2 with 'Expert' prior
 
 require("reshape2")
-ymat <- acast(theo, year+env~gen, value_var='yield')
-chu <- acast(theo, year+env~., mean, value_var='chu', na.rm=TRUE)
+ymat <- acast(theo, year+env~gen, value.var='yield')
+chu <- acast(theo, year+env~., mean, value.var='chu', na.rm=TRUE)
 chu <- as.vector(chu - mean(chu))  # Center the covariate
 theo$yr <- as.numeric(theo$year)
-yridx <- as.vector(acast(theo, year+env~., mean, value_var='yr', na.rm=TRUE))
+yridx <- as.vector(acast(theo, year+env~., mean, value.var='yr', na.rm=TRUE))
 theo$loc <- as.numeric(theo$env)
-locidx <- acast(theo, year+env~., mean, value_var='loc', na.rm=TRUE)
+locidx <- acast(theo, year+env~., mean, value.var='loc', na.rm=TRUE)
 locidx <- as.vector(locidx)
 
 jdat <- list(nVar = 10, nYear = 5, nLoc = 7, nYL = 29, yield = ymat,
-            chu = chu, year = yridx, loc = locidx) 
+            chu = chu, year = yridx, loc = locidx)
 
 require(rjags)
-m1 <- jags.model(file=system.file("/files/theobald.bug", package="agdata"),
+m1 <- jags.model(file=system.file("/files/theobald.bug", package="agridat"),
   data=jdat, n.chains=2)
 
 # Table 3, Variety deviations from means (Expert prior)
@@ -68,7 +68,7 @@ c1 <- coda.samples(m1, variable.names=(c('alpha')),
                    n.iter=10000, thin=10)
 s1 <- summary(c1)
 effs <- s1$statistics[,'Mean']
-rev(sort(round(effs - mean(effs), 2))) # Perfect match
+rev(sort(round(effs - mean(effs), 2))) # Perfect match (different order?)
 }
 
 }

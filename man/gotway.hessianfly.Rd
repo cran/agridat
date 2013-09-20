@@ -36,15 +36,13 @@ dat$prop <- dat$y / dat$n
 desplot(prop~long*lat, dat, out1=block, text=gen, cex=1, shorten='no',
         main="gotway.hessianfly")
 
+
 # Block random.  See Glimmix manual, output 1.18.
 # Note: (Different parameterization)
-#require('lme4') # Currently broken...
-# See: https://github.com/lme4/lme4/issues/67
-
-#l2 <- glmer(cbind(y, n-y) ~ gen + (1|block), data=dat, family=binomial,
-#   control=lmerControl(optimizer="bobyqa",
-#   check.numlev.gtreq.5="ignore", check.numlev.gtr.1="ignore"))
-#coef(l2)
+require(lme4)
+l2 <- glmer(cbind(y, n-y) ~ gen + (1|block), data=dat, family=binomial,
+   control=glmerControl(check.nlev.gtr.1="ignore"))
+coef(l2)
 
 \dontrun{
 require('asreml')

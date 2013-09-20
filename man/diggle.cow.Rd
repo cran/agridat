@@ -62,8 +62,9 @@ dat <- diggle.cow
 
 # Figure 1 of Verbyla 1999
 require(lattice)
-xyplot(weight ~ day|iron*infect, dat, type='b',group=animal,
-       main="diggle.cow")
+require(latticeExtra)
+useOuterStrips(xyplot(weight ~ day|iron*infect, dat, type='b',group=animal,
+       main="diggle.cow"))
 
 # Scaling
 dat <- transform(dat, time = (day-122)/10)
@@ -72,7 +73,6 @@ dat <- transform(dat, time = (day-122)/10)
 
 # Smooth for each animal.  No treatment effects. Similar to SAS Output 38.6.9
 require(asreml)
-require(latticeExtra)
 
 m1 <- asreml(weight ~ 1 + lin(time) + animal + animal:lin(time), data=dat,
              random = ~ animal:spl(time))

@@ -34,6 +34,7 @@
 \examples{
 
 dat <- gilmour.slatehall
+
 desplot(yield ~ col * row, dat, num=gen, out1=rep, main="gilmour.slatehall")
 
 \dontrun{

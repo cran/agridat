@@ -82,6 +82,13 @@ text(1:22, p3$predicted, c('L','L','M','R','R','M','L','L',
 dat <- transform(dat, rowcode = factor(row))
 levels(dat$rowcode) <- c('2','2','1','2','2','1','2','2','1',
 '2','2','1','2','2','1','2','2','1','2','2','1','2')
+
+m6 <- asreml(yield ~ gen + lin(colf) + colcode +rowcode, data=dat,
+             random= ~ colf + rowf + spl(col),
+             rcov = ~ar1(colf):ar1(rowf))
+plot(variogram(m6), xlim=c(0:17), ylim=c(0,11), zlim=c(0,4000),
+     main="gilmour.serpentine")
+
 }
 }
 

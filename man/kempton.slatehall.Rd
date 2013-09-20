@@ -24,7 +24,7 @@
   Each row within a rep is an (incomplete) block.
 }
 \source{
-  R A Kempton and P N Fox. (1997). 
+  R A Kempton and P N Fox. (1997).
   \emph{Statistical Methods for Plant Variety Evaluation},
   Chapman and Hall.   Page 84.
 }
@@ -32,7 +32,7 @@
   Gilmour, Arthur R and Robin Thompson and Brian R Cullis. (1994).
   Average Information REML: An Efficient Algorithm for Variance
   Parameter Estimation in Linear Mixed Models, \emph{Biometrics},
-  51, 1440-1450.  
+  51, 1440-1450.
 }
 \examples{
 dat <- kempton.slatehall
@@ -44,12 +44,12 @@ dat <- transform(dat, xf=factor(col), yf=factor(row))
 # Incomplete block model of Gilmour et al 1995
 require(lme4)
 m1 <- lmer(yield ~ gen + (1|rep) + (1|rep:yf) + (1|rep:xf), data=dat)
-print(summary(m1)@REmat, quote=FALSE)
+print(VarCorr(m1), comp=c("Variance","Std.Dev."))
 ## Groups   Name        Variance Std.Dev.
-## rep:xf   (Intercept) 14811.5  121.702 
-## rep:yf   (Intercept) 15596.0  124.884 
-## rep      (Intercept)  4261.9   65.283 
-## Residual              8061.7   89.787 
+## rep:xf   (Intercept) 14811.6  121.703
+## rep:yf   (Intercept) 15595.0  124.880
+## rep      (Intercept)  4262.4   65.287
+## Residual              8061.8   89.788
 
 \dontrun{
 # Incomplete block model of Gilmour et al 1995

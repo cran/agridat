@@ -86,15 +86,27 @@ Anova(m1, type=3) # Matches PROC GLM output
 # lmer
 dat$one <- factor(rep(1, nrow(dat)))
 library(lme4)
-# m2 <- lmer(yield ~ trtn + (0+r1|one) + (0+r2|one) + (0+r4|one) + (0+r8|one) + (0+r10|one)
-#            + (0+c1|one) + (0+c2|one) + (0+c3|one) + (0+c4|one) + (0+c6|one) + (0+c8|one)
-#            + (0+r1:c1|one) + (0+r1:c2|one) + (0+r1:c3|one) +(1|new:gen)
-#            , data = dat,
-#            control=lmerControl(optimizer="bobyqa", check.numlev.gtr.1="ignore"))
-#            #control=lmerControl(optimizer="Nelder_Mead",check.numlev.gtr.1="ignore"))
-# Nelder_Mead gives very different results from bobyqa, ASREML, MIXED
-#m2        # Matches variance comps from PROC MIXED
-#ranef(m2) # Matches random effects from PROC MIXED
+
+# Using bobyqa
+m2b <- lmer(yield ~ trtn + (0+r1|one) + (0+r2|one) + (0+r4|one) + (0+r8|one) + (0+r10|one)
+           + (0+c1|one) + (0+c2|one) + (0+c3|one) + (0+c4|one) + (0+c6|one) + (0+c8|one)
+           + (0+r1:c1|one) + (0+r1:c2|one) + (0+r1:c3|one) +(1|new:gen)
+           , data = dat,
+           control=lmerControl(optimizer="bobyqa", check.nlev.gtr.1="ignore"))
+
+# Using nelder mead
+m2n <- lmer(yield ~ trtn + (0+r1|one) + (0+r2|one) + (0+r4|one) + (0+r8|one) + (0+r10|one)
+           + (0+c1|one) + (0+c2|one) + (0+c3|one) + (0+c4|one) + (0+c6|one) + (0+c8|one)
+           + (0+r1:c1|one) + (0+r1:c2|one) + (0+r1:c3|one) +(1|new:gen)
+           , data = dat,
+           control=lmerControl(optimizer="Nelder_Mead",check.nlev.gtr.1="ignore"))
+
+# FIXME: Nelder_Mead gives very different results from bobyqa, ASREML, MIXED
+logLik(m2b)
+logLik(m2n)
+print(VarCorr(m2b), comp=c("Variance","Std.Dev."))
+print(VarCorr(m2n), comp=c("Variance","Std.Dev."))
+
 
 \dontrun{
 # asreml
@@ -103,6 +115,15 @@ m3 <- asreml(yield ~ -1 + trtn, data=dat,
              random = ~ r1 + r2 + r4 + r8 + r10 +
              c1 + c2 + c3 + c4 + c6 + c8 + r1:c1 + r1:c2 + r1:c3 + new:gen)
 coef(m3)
+# REML cultivar means.  Very similar to Federer table 2.
+rev(sort(round(coef(m3)$fixed[3] + coef(m3)$random[137:256,],0)))
+## gen_G060 gen_G021 gen_G011 gen_G099 gen_G002
+##      974      949      945      944      942
+## gen_G118 gen_G058 gen_G035 gen_G111 gen_G120
+##      938      937      937      933      932
+## gen_G046 gen_G061 gen_G082 gen_G038 gen_G090
+##      932      931      927      927      926
+
 summary(m3)$varcomp
 }
 

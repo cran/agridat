@@ -48,7 +48,11 @@ anova(m1)
 require(lme4)
 m2 <- lmer(yield ~ 0 + gen + rep + (1|rep:block), dat)
 anova(m2)
-# summary(m2)@REmat
+print(VarCorr(m2), comp=c("Variance","Std.Dev."))
+## Groups    Name        Variance Std.Dev.
+## rep:block (Intercept) 0.061945 0.24889
+## Residual              0.085225 0.29193
+
 
 # Variety means.  John and Williams table 7.5.  Slight, constant
 # difference for each method as compared to John and Williams.
@@ -67,7 +71,7 @@ vblue <- predict(m3, classify="gen")$pred$avsed ^ 2
 # H^2 = .803
 sg2 / (sg2 + vblue/2)
 # H^2c = .809
-1-(vblup / 2 / sg2) 
+1-(vblup / 2 / sg2)
 }
 }
 \keyword{datasets}

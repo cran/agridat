@@ -40,7 +40,8 @@ dat <- harris.wateruse
 
 # Compare to Schabenberger & Pierce, fig 7.23
 require(latticeExtra)
-useOuterStrips(xyplot(water ~ day|species*age,dat, as.table=TRUE, type=c('p','smooth'),
+useOuterStrips(xyplot(water ~ day|species*age,dat, as.table=TRUE,
+       group=tree, type=c('p','smooth'),
        main="Water use by 2 species, 2 ages (10 trees each)"))
 # Note that measurements on day 268 are all below the trend line and
 # thus considered outliers.  Delete them.
@@ -75,8 +76,7 @@ require(nlme)
 ## We use pdDiag() to get uncorrelated random effects
 m1n <- lme(water ~ 1 + ti + ti2, data=d22, na.action=na.omit,
            random = list(tree=pdDiag(~1+ti+ti2)))
-nlme::VarCorr(m1n)
-## tree = pdDiag(1 + ti + ti2)
+VarCorr(m1n)
 ##             Variance     StdDev
 ## (Intercept) 2.691398e-01 5.187869e-01
 ## ti          2.068800e-10 1.438333e-05
@@ -86,7 +86,8 @@ nlme::VarCorr(m1n)
 require(lme4)
 m1l <- lmer(water ~ 1 + ti + ti2 + (1|tree) +
             (0+ti|tree) + (0+ti2|tree), data=d22)
-print(summary(m1l)@REmat, quote=FALSE) # Matches Output 7.26.
+print(VarCorr(m1l), comp=c("Variance","Std.Dev.")) # Output 7.26.
+
 ## Groups   Name        Variance Std.Dev.
 ## tree     (Intercept) 0.26914  0.51879
 ## tree     ti          0.00000  0.00000
@@ -126,7 +127,11 @@ m2l <- lme(water ~ 1 + ti + ti2, data=d22,
           cor = corExp(form=~ day|tree),
           na.action=na.omit)
 m2l # Match output 7.27.  Same fixef, ranef, variances, exp corr
-## c(.5154, .3926)^2 = c(.2656, .1541) to match SAS variances
+print(VarCorr(m2l), comp=c("Variance","Std.Dev."))
+## tree = pdLogChol(1)
+##             Variance  StdDev
+## (Intercept) 0.2656415 0.5154042
+## Residual    0.1541173 0.3925777
 
 
 ## Now use asreml.  When I tried rcov=~tree:exp(ti)),
@@ -166,7 +171,12 @@ m3l <- lme(water ~ 0 + age:species + age:species:ti + age:species:ti2,
            cor = corExp(form=~ day|tree),
            )
 m3l # Match output 7.27.  Same fixef, ranef, variances, exp corr
-# c(0.3935651, 0.1668897, 0.4000106)^2 = 0.15489349 0.02785217 0.16000848
+print(VarCorr(m3l), comp=c("Variance","Std.Dev."))
+## tree = pdDiag(1 + ti)
+##             Variance   StdDev
+## (Intercept) 0.15489986 0.3935732
+## ti          0.02785168 0.1668882
+## Residual    0.16000850 0.4000106
 
 
 ## dat <- dat[order(dat$tree,dat$day),]

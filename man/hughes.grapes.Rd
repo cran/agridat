@@ -51,7 +51,7 @@ dat <- transform(dat, rate = diseased/total, plot=trt:block)
 
 # Trt 1 has higher rate, more variable, Trt 3 lower rate, less variable
 foo <- bwplot(rate ~ vine|block*trt, dat, main="hughes.grapes")
-if (require(latticeExtra)) useOuterStrips(foo) else print(foo) 
+if (require(latticeExtra)) useOuterStrips(foo) else print(foo)
 
 # Table 1 of Piepho 1999
 tapply(dat$rate, dat$trt, mean) # trt 1 does not match Piepho
@@ -73,7 +73,7 @@ bdat <- splitbin(cbind(diseased, total-diseased) ~ block+trt+plot+vine+shoot,
 names(bdat)[2] <- 'y'
 
 # Using lme4
-m2 <- lmer(y ~ trt + block + (1|plot/vine), data=bdat, family=binomial)
+m2 <- glmer(y ~ trt + block + (1|plot/vine), data=bdat, family=binomial)
 m2
 
 # Now using MASS:::glmmPQL

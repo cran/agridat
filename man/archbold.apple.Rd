@@ -63,7 +63,7 @@ desplot(spacing~row*pos, dat, col=stock, cex=1, num=gen,
 
 library(lme4)
 m1 <- lmer(yield ~ -1 + trt + (1|rep/mp/sp), dat)
-summary(m1) # Variances and means on page 59
+print(VarCorr(m1), comp=c("Variance","Std.Dev.")) # Variances/means on page 59
 ## Random effects:
 ##  Groups      Name        Variance Std.Dev.
 ##  sp:(mp:rep) (Intercept)  193.31  13.903

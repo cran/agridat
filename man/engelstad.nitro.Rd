@@ -31,8 +31,8 @@
 }
 \source{
   Engelstad, OP and Parks, WL.  1971.
-  Variability in Optimum N Rates for Corn. \emph{Agronomy Journal},
-  63, 21--23.
+  Variability in Optimum N Rates for Corn.
+  \emph{Agronomy Journal}, 63, 21--23.
 }
 \references{
   Schabenberger, O. and Pierce, F.J., 2002.

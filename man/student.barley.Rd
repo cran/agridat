@@ -85,10 +85,11 @@ sqrt(var(d2$Archer-d2$Goldthorpe)/51)
 cor(d2$Archer,d2$Goldthorpe)
 
 # Kempton Table 9.6b
-if(require(lme4)){
+require(lme4)
 m2 <- lmer(yield~1 + (1|loc) + (1|year) +
-             (1|loc:year) + (1|gen:loc) + (1|gen:year), data=dat)
-(m2)
-}
+            (1|loc:year) + (1|gen:loc) + (1|gen:year), data=dat,
+          control=lmerControl(check.nobs.vs.rankZ="ignore"))
+m2
+
 }
 

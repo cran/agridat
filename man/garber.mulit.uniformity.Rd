@@ -44,6 +44,7 @@
 \examples{
 
 dat <- garber.multi.uniformity
+
 desplot(oats ~ col*row, data=dat, flip=TRUE, tick=TRUE,
         main="garber.multi.uniformity oats")
 desplot(wheat ~ col*row, data=dat, flip=TRUE, tick=TRUE,
