@@ -29,11 +29,13 @@ alpha design.  The plots were laid out in a single line.
   \emph{Cyclic and computer generated designs},
   Chapman and Hall, London.  Page 146.
 }
+
 \references{
   Piepho, H.P. and M{\"o}hring, J. (2007),
   Computing heritability and selection response from unbalanced
   plant breeding trials, \emph{Genetics}, 177, 1881--1888.
 }
+
 \examples{
 dat <- john.alpha
 
@@ -45,13 +47,19 @@ m1 <- lm(yield ~ 0 + gen + rep + rep:block, dat)
 anova(m1)
 
 # Block random (combined inter-intra block analysis)
-require(lme4)
+if(require(lme4)){
 m2 <- lmer(yield ~ 0 + gen + rep + (1|rep:block), dat)
+
 anova(m2)
-print(VarCorr(m2), comp=c("Variance","Std.Dev."))
-## Groups    Name        Variance Std.Dev.
-## rep:block (Intercept) 0.061945 0.24889
-## Residual              0.085225 0.29193
+## Analysis of Variance Table
+##     Df Sum Sq Mean Sq  F value
+## gen 24 380.43 15.8513 185.9942
+## rep  2   1.57  0.7851   9.2123
+
+vc(m2)
+##        grp        var1 var2    vcov  sdcor
+##  rep:block (Intercept) <NA> 0.06194 0.2489
+##   Residual        <NA> <NA> 0.08523 0.2919
 
 
 # Variety means.  John and Williams table 7.5.  Slight, constant
@@ -59,6 +67,17 @@ print(VarCorr(m2), comp=c("Variance","Std.Dev."))
 means <- data.frame(rcb=coef(m0)[1:24],
                     ib=coef(m1)[1:24],
                     intra=fixef(m2)[1:24])
+## head(means)
+##             rcb       ib    intra
+## genG01 5.201233 5.268742 5.146433
+## genG02 4.552933 4.665389 4.517265
+## genG03 3.381800 3.803790 3.537934
+## genG04 4.439400 4.728175 4.528828
+## genG05 5.103100 5.225708 5.075944
+## genG06 4.749067 4.618234 4.575394
+splom(means, data=means, main="john.alpha - means for RCB, IB, Intra-block")
+
+}
 
 \dontrun{
 # Heritability calculation of Piepho & Mohring, Example 1

@@ -23,7 +23,7 @@
 \source{
   Besag, J. E., Green, P. J., Higdon, D. and Mengersen, K. (1995).
   Bayesian computation and stochastic systems.
-  \emph{Statistical Science}, 10, 3-66. 
+  \emph{Statistical Science}, 10, 3-66.
 }
 \references{
   Davison, A. C. (2003). \emph{Statistical Models}.
@@ -37,8 +37,9 @@ var(dat$yield, na.rm=TRUE)
 
 # Besag Fig 2. Reverse row numbers to match Besag, Davison
 dat$rrow <- 76 - dat$row
-library("lattice")
-xyplot(yield ~ rrow|col, dat, layout=c(1,3), type='s')
+require("lattice")
+xyplot(yield ~ rrow|col, dat, layout=c(1,3), type='s',
+       main="besag.bayesian")
 
 \dontrun{
 # Use asreml to fit a model with AR1 gradient in rows

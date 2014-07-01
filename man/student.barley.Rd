@@ -46,15 +46,18 @@
   factor that was used.
 }
 \source{
-  Student. 1923. On Testing Varieties of Cereals. \emph{Biometrika}, 15,
-  271--293.
+  Student. 1923. On Testing Varieties of Cereals.
+  \emph{Biometrika}, 15, 271--293.
 }
 \references{
-  R A Kempton and P N Fox, 1997, \emph{Statistical Methods for Plant
-  Variety Evaluation}.
+  R A Kempton and P N Fox, 1997.
+  \emph{Statistical Methods for Plant Variety Evaluation}.
 }
+
 \examples{
 dat <- student.barley
+bwplot(yield ~ gen|district, dat, main="student.barley - yield")
+
 dat$year <- factor(dat$year)
 dat$income <- NULL
 
@@ -85,11 +88,11 @@ sqrt(var(d2$Archer-d2$Goldthorpe)/51)
 cor(d2$Archer,d2$Goldthorpe)
 
 # Kempton Table 9.6b
-require(lme4)
+if(require(lme4)){
 m2 <- lmer(yield~1 + (1|loc) + (1|year) +
             (1|loc:year) + (1|gen:loc) + (1|gen:year), data=dat,
           control=lmerControl(check.nobs.vs.rankZ="ignore"))
-m2
+}
 
 }
 

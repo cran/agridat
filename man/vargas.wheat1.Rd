@@ -35,7 +35,7 @@
     \item{\code{VGR}}{Vegetative growth rate, kg/ha/day, STW/ANT}
     \item{\code{KGR}}{Kernel growth rate, mg/kernel/day}
   }
-  
+
   The \code{envals} data frame has 17 variables for each of 6 years:
   \describe{
     \item{\code{year}}{Year, 1990-1995}
@@ -70,14 +70,15 @@
   Data kindly provided by Jose Crossa.
 }
 \examples{
+
 \dontrun{
 gvals <- vargas.wheat1$genvals
 evals <- vargas.wheat1$envvals
 
-require("pls")
+require(pls)
 
 # Yield as a function of gen variates
-require("reshape2")
+require(reshape2)
 gv <- melt(gvals, id.var=c('gen','rep','year'))
 Y0 <- subset(gv, variable=="yield")
 Y0 <- acast(Y0, gen~year, mean)
@@ -89,6 +90,9 @@ X1 <- acast(X1, gen~variable, mean)
 X1 <- scale(X1) # scaled columns
 m1 <- plsr(Y1~X1)
 loadings(m1)[,1,drop=FALSE] # X loadings in Table 1 of Vargas
+
+biplot(m1, cex=.5, which="x", var.axes=TRUE,
+       main="vargas.wheat1 - gen ~ trait") # Vargas figure 2a
 
 # Yield as a function of env variates
 Y2 <- t(Y0)

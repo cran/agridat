@@ -9,7 +9,7 @@
   and four levels of manurial treatment. The experiment was laid out in
   6 blocks of 3 main plots, each split into 4 sub-plots. The varieties
   were applied to the main plots and the manurial (nitrogen) treatments
-  to the sub-plots. 
+  to the sub-plots.
 }
 
 \format{
@@ -33,14 +33,10 @@
   \emph{Modern Applied Statistics with S}. Fourth edition. Springer.
 }
 
-\seealso{
-  This is the same as the \code{\link{oats}} data in the \code{MASS}
-  package, but includes the coordinates of the field layout.
-}
-
 \examples{
 
 dat <- yates.oats
+
 desplot(yield ~ x*y, dat, out1=block, text=gen, col=nitro, cex=1,
         main="yates.oats")
 
@@ -48,19 +44,24 @@ desplot(yield ~ x*y, dat, out1=block, text=gen, col=nitro, cex=1,
 # block has lower yield.  The blocking is inadequate!
 require(lattice)
 xyplot(yield ~ x|factor(nitro), dat, type = c('p', 'smooth'),
-       xlab='x', span=1, as.table = TRUE)
+       xlab='x', span=1, as.table = TRUE, main="yates.oats")
 
 # Typical split-plot analysis
-library(lme4)
+if(require(lme4)){
 m3 <- lmer(yield ~ nitro * gen + (1|block/gen), data=dat)
 # Residuals still show structure
-xyplot(resid(m3) ~ dat$x, xlab='x', type=c('p','smooth'))
+xyplot(resid(m3) ~ dat$x, xlab='x', type=c('p','smooth'),
+       main="yates.oats")
 
 # Add a linear trend for x
 m4 <- lmer(yield ~ x + nitro * gen + (1|block/gen), data=dat)
-xyplot(resid(m4) ~ dat$x, type=c('p','smooth'), xlab='x')
+# xyplot(resid(m4) ~ dat$x, type=c('p','smooth'), xlab='x')
 
-# Compare fits
-AIC(m3,m4)
+## Compare fits
+## AIC(m3,m4)
+##    df      AIC
+## m3  9 581.2372
+## m4 10 557.9424
+}
 
 }

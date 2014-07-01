@@ -50,7 +50,8 @@ desplot(yield ~ col*row, data=dat, out1=block,
 
 # Overall main effects and interactions
 require(HH)
-interaction2wt(yield~cultivar*spacing*pop, dat)
+interaction2wt(yield~cultivar*spacing*pop, dat,
+               main="holshouser.splitstrip")
 
 ## Schabenberger's SAS model, page 497
 ## proc mixed data=splitstripplot;
@@ -61,19 +62,21 @@ interaction2wt(yield~cultivar*spacing*pop, dat)
 ## run;
 
 ## Now lme4. This design has five error terms--four are explicitly given.
-require(lme4)
+if(require(lme4)){
 m1 <- lmer(yield ~ cultivar * spacing * pop +
            (1|block) + (1|block:cultivar) + (1|block:cultivar:spacing) +
            (1|block:cultivar:pop), data=dat)
 
 ## Variances match Schabenberger, page 498.
-print(VarCorr(m1), comp=c("Variance","Std.Dev."))
-## Groups                 Name        Variance Std.Dev.
-## block:cultivar:pop     (Intercept) 2.42148  1.55611
-## block:cultivar:spacing (Intercept) 1.24440  1.11553
-## block:cultivar         (Intercept) 0.45225  0.67249
-## block                  (Intercept) 3.03675  1.74263
-## Residual                           3.92751  1.98180
+vc(m1)
+##                    grp        var1 var2   vcov  sdcor
+##     block:cultivar:pop (Intercept) <NA> 2.421  1.556
+## block:cultivar:spacing (Intercept) <NA> 1.244  1.116
+##         block:cultivar (Intercept) <NA> 0.4523 0.6725
+##                  block (Intercept) <NA> 3.037  1.743
+##               Residual        <NA> <NA> 3.928  1.982
+
+}
 
 }
 \keyword{datasets}

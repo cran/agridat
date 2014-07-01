@@ -54,12 +54,12 @@ Myallie \tab 1995\cr
 \source{
   Arunas P. Verbyla and Brian R. Cullis and Michael G. Kenward
   and Sue J. Welham, (1999), The analysis of designed experiments and
-  longitudinal data by using smoothing splines. \emph{Appl. Statist.},
-  48, 269--311.
+  longitudinal data by using smoothing splines.
+  \emph{Appl. Statist.}, 48, 269--311.
 
   Retrieved Oct 2010 from
   \url{http://www.blackwellpublishing.com/rss/Readmefiles/verbyla.htm}.
-  
+
   Used with permission of Blackwell Publishing.
 }
 
@@ -70,10 +70,10 @@ dat <- verbyla.lupin
 desplot(gen~col+row|site, data=dat, main="verbyla.lupin")
 
 # Figure 3 of Verbyla
-require("latticeExtra")
+require(latticeExtra)
 foo <- xyplot(yield ~ rate|loc*gen, data=dat, subset=year==92,
               type=c('p','smooth'), cex=.5,
-              main="1992", xlab="Seed rate (plants/m^2)",
+              main="verbyla.lupin: 1992", xlab="Seed rate (plants/m^2)",
               ylab="Yield (tons/ha)",
               strip=strip.custom(par.strip.text=list(cex=.7)),
 )

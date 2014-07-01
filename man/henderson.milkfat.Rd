@@ -27,7 +27,8 @@
 
 dat <- henderson.milkfat
 
-plot(yield~week, data=dat, cex = 0.8, ylim=c(0,.9), xlab = "Week",
+plot(yield~week, data=dat, cex = 0.8, ylim=c(0,.9),
+     main="henderson.milkfat", xlab = "Week",
      ylab = "Fat yield (kg/day)")
 
 # Yield ~ a * t^b * exp(g*t) # where t is time

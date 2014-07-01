@@ -44,14 +44,16 @@
 \examples{
 
 dat <- blackman.wheat
+
 require(lattice)
 require(reshape2)
 
 # Semi-dwarf generally higher yielding than conventional
-bwplot(yield~type|loc,dat, main="blackman.wheat")
+# bwplot(yield~type|loc,dat, main="blackman.wheat")
+
 # Peculiar interaction--Ear/Edn locs have reverse nitro response
 dotplot(gen~yield|loc, dat, group=nitro, auto.key=TRUE,
-        main="blackman.wheat")
+        main="blackman.wheat: yield for low/high nitrogen")
 
 # Height data from table 6 of Blackman.  Height at Trumpington loc.
 # Shorter varieties have higher yields, greater response to nitro.
@@ -68,7 +70,7 @@ dat$env <- factor(paste(dat$loc,dat$nitro,sep="-"))
 datm <- acast(dat, gen~env, value.var="yield")
 datm <- sweep(datm, 1, rowMeans(datm))
 datm <- sweep(datm, 2, colMeans(datm))
-biplot(prcomp(datm), main="blackman.wheat")
+biplot(prcomp(datm), main="blackman.wheat AMMI-style biplot")
 
 }
 \keyword{datasets}

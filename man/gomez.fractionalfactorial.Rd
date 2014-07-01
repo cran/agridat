@@ -29,15 +29,17 @@
   Gomez, K.A. and Gomez, A.A.. 1984,
   \emph{Statistical Procedures for Agricultural Research}.
   Wiley-Interscience. Page 171-172.
-  
+
   Used with permission of Kwanchai Gomez.
 }
 \examples{
 dat <- gomez.fractionalfactorial
 
+# trt abcdef has the highest yield
 # Gomez, Figure 4.8
-with(dat, plot(y~x, type='n'))
-with(dat, text(x,y,trt, col=as.numeric(block)))
+desplot(yield~x*y, dat, main="gomez.fractionalfactorial - treatment & yield",
+        text=trt, shorten="none", show.key=FALSE, cex=1)
+
 
 # Split treatment into individual factors
 dat <- transform(dat,
@@ -50,22 +52,18 @@ dat <- transform(dat,
 
 # Gomez table 4.24, trt SS totalled together.
 # Why didn't Gomez nest block within rep?
-m0 <- lm(yield~rep*block+trt, dat)
+m0 <- lm(yield ~ rep * block + trt, dat)
 anova(m0)
 
 # Gomez table 4.24, trt SS split apart
 m1 <- lm(yield ~ rep * block + (a+b+c+d+e+f)^3, dat)
 anova(m1)
 
-# trt abcdef has the highest yield
-desplot(yield~x*y, dat, main="gomez.fractionalfactorial")
-
-\dontrun{
-# Not sure FrF2 works with multi-rep data.
 require(FrF2)
 aliases(m1)
-MEPlot(m1)
-}
+MEPlot(m1, select=3:8,
+       main="gomez.fractionalfactorial - main effects plot")
+#IAPlot(m1, select=3:8)
 
 }
 

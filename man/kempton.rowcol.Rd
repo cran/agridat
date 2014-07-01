@@ -30,15 +30,15 @@
 \examples{
 
 dat <- kempton.rowcol
+dat <- transform(dat, rowf=factor(row), colf=factor(col))
 
 desplot(yield~col*row|rep, dat, num=gen, out1=rep,
         main="kempton.rowcol")
 
-dat <- transform(dat, row=factor(row), col=factor(col))
 # Model with rep, row, col as random.  Kempton, page 62.
 # Use "-1" so that the vcov matrix doesn't include intercept
 if(require(lme4)){
-m1 <- lmer(yield ~ -1 + gen + rep + (1|rep:row) + (1|rep:col), data=dat)
+m1 <- lmer(yield ~ -1 + gen + rep + (1|rep:rowf) + (1|rep:colf), data=dat)
 
 # Variance components match Kempton.
 print(m1, corr=FALSE)

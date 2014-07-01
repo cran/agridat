@@ -19,7 +19,7 @@
 \details{
   In 1909, potatoes were harvested from uniform land.  There were 34
   rows, 34 inches apart.  Each row was harvested in 6 sections, each
-  being 72 feet, 7 inches long.  
+  being 72 feet, 7 inches long.
 }
 
 \source{
@@ -35,7 +35,9 @@
 \examples{
 
 dat <- lyon.potato.uniformity
+
 desplot(yield ~ row*section, dat, tick=TRUE,
         main="lyon.potato.uniformity")
+
 }
 \keyword{datasets}

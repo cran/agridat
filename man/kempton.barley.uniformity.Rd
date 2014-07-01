@@ -33,6 +33,7 @@
   Engineering Science. 462, 2119--2143.
 }
 \examples{
+
 dat <- kempton.barley.uniformity
 
 require(lattice)
@@ -44,12 +45,20 @@ desplot(yield~col*row, dat, aspect=asp,
 dat <- transform(dat, xf = factor(col), yf=factor(row))
 
 \dontrun{
+
 # Kempton estimated auto-regression coefficients b1=0.10, b2=0.91
 require(asreml)
 m1 <- asreml(yield ~ 1, data=dat, rcov=~ar1(xf):ar1(yf))
-summary(m1)$varcomp
+
+vc(m1)
+##      effect component std.error z.ratio constr
+##  R!variance    0.1044   0.022       4.7    pos
+##    R!xf.cor    0.2458   0.07484     3.3  uncon
+##    R!yf.cor    0.8186   0.03822    21    uncon
+
 # asreml estimates auto-regression correlations of 0.25, 0.82
 # Kempton estimated auto-regression coefficients b1=0.10, b2=0.91
+
 }
 
 # Kempton defines 4 blocks, randomly assigns variety codes 1-49 in each block, fits
@@ -65,4 +74,5 @@ fitfun <- function(dat){
 set.seed(251)
 out <- replicate(50, fitfun(dat))
 rowMeans(out)
+
 }

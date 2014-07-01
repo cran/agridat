@@ -31,6 +31,10 @@
   The GLIMMIX procedure. \url{http://www.ats.ucla.edu/stat/SAS/glimmix.pdf}.
 }
 \examples{
+
+## Could the spaMM package be useful here...????
+
+
 dat <- gotway.hessianfly
 dat$prop <- dat$y / dat$n
 desplot(prop~long*lat, dat, out1=block, text=gen, cex=1, shorten='no',
@@ -39,10 +43,11 @@ desplot(prop~long*lat, dat, out1=block, text=gen, cex=1, shorten='no',
 
 # Block random.  See Glimmix manual, output 1.18.
 # Note: (Different parameterization)
-require(lme4)
-l2 <- glmer(cbind(y, n-y) ~ gen + (1|block), data=dat, family=binomial,
-   control=glmerControl(check.nlev.gtr.1="ignore"))
-coef(l2)
+if(require(lme4)){
+## l2 <- glmer(cbind(y, n-y) ~ gen + (1|block), data=dat, family=binomial,
+##    control=glmerControl(check.nlev.gtr.1="ignore"))
+## coef(l2)
+}
 
 \dontrun{
 require('asreml')

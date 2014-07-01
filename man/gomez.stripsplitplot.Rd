@@ -21,20 +21,23 @@ Rice strip-split-plot experiment
     \item{\code{y}}{Ordinate in the field}
   }
 }
+\details{
+  Note, this is a superset of the the 'gomez.stripplot' data.
+}
 \source{
   Gomez, K.A. and Gomez, A.A.. 1984,
   \emph{Statistical Procedures for Agricultural Research}.
   Wiley-Interscience. Page 155.
-  
+
   Used with permission of Kwanchai Gomez.
 }
 \examples{
-\dontrun{
+
 dat <- gomez.stripsplitplot
 
 # Layout
-desplot(gen~x+y, dat, out1=rep, out2=gen, col=nitro, text=planting,
-cex=1)
+desplot(gen~x+y, dat, out1=rep, col=nitro, text=planting, cex=1,
+        main="gomez.stripsplitplot")
 
 # Gomez table 4.19, ANOVA of strip-split-plot design
 dat <- transform(dat, nf=factor(nitro))
@@ -42,6 +45,7 @@ m1 <- aov(yield ~ nf * gen * planting +
           Error(rep + rep:nf + rep:gen + rep:nf:gen), data=dat)
 summary(m1)
 
+\dontrun{
 # There is a noticeable linear trend along the y coordinate which may be
 # an artifact that blocking will remove, or may need to be modeled.
 # Note the outside values in the high-nitro boxplot.

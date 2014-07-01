@@ -72,7 +72,7 @@
   III."
 }
 \source{
-  Harris, J Arthur and Scofield, CS. (1920). 
+  Harris, J Arthur and Scofield, CS. (1920).
   Permanence of differences in the plats of an experimental field.
   \emph{Jour. Agr. Res}, 20, 335-356.
   \url{http://naldc.nal.usda.gov/catalog/IND43966236}
@@ -96,9 +96,10 @@ aggregate(yield~harv, dat, mean)
 # Corrgram
 require(reshape2)
 mat <- acast(dat, series+plot~harv, value.var='yield')
-if(require(corrgram)) corrgram(mat)
+if(require(corrgram)) corrgram(mat, main="harris.multi.uniformity")
 # Compare to Harris 1928, table 4.  More positive than negative correlations.
-densityplot(as.vector(cor(mat)))
+# densityplot(as.vector(cor(mat)), xlab="correlations",
+#             main="harris.multi.uniformity")
 
 # Standardize yields for each year
 mats <- scale(mat)
@@ -120,5 +121,6 @@ desplot(yield ~ xord*plot|harv, data=d2, aspect=.84, flip=TRUE,
 # sub-surface water effects
 agg <- aggregate(yield ~ xord + plot, data=d2, mean)
 desplot(yield ~ xord + plot, agg, main="harris.multi.uniformity fertility")
+
 }
 \keyword{datasets}

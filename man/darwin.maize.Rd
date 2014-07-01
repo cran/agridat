@@ -65,7 +65,7 @@ dat <- darwin.maize
 
 # Compare self-pollination with cross-pollination
 require(lattice)
-bwplot(height~type, dat)
+bwplot(height~type, dat, main="darwin.maize")
 
 require(reshape2)
 dm <- melt(dat)

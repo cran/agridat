@@ -28,7 +28,7 @@
   (NY), North Carolina (NC), Oregon (OR), South Carolina (SC), Tennessee
   (TN), Texas (TX), Virginia (VA), and Washington (WA).
 
-  
+
 }
 \source{
   Electronic version retrieved from
@@ -43,6 +43,7 @@
   and Stability Estimates, \emph{JABES}, 3, 335--345.
 }
 \examples{
+
 dat <- shafii.rapeseed
 
 dat$gen <- with(dat, reorder(gen, yield, mean))
@@ -66,9 +67,11 @@ dat$locyr <- reorder(dat$locyr, dat$yield, mean)
 op <- tpg <- trellis.par.get()
 tpg$superpose.symbol$pch <- c('7','8','9')
 trellis.par.set(tpg)
-dotplot(loc~yield|gen,group=year,data=dat,auto.key=TRUE,
-        ylab="Location")
-dotplot(loc~yield|gen,group=year,data=datm,auto.key=TRUE)
+dotplot(loc~yield|gen,group=year,data=dat,
+        auto.key=list(columns=3),
+        main="shafii.rapeseed",ylab="Location")
+#dotplot(loc~yield|gen,group=year,data=datm,auto.key=TRUE,
+#        main="shafii.rapeseed")
 
 # AMMI biplot.  Remove gen and locyr effects.
 m1.lm <- lm(yield ~ gen + locyr, data=datm)
@@ -78,7 +81,8 @@ require("reshape2")
 dm <- melt(datm, measure.var='res', id.var=c('gen', 'locyr'))
 dmat <- acast(dm, gen~locyr)
 # AMMI biplot.  Figure 1 of Shafii (1998)
-biplot(prcomp(dmat))
+biplot(prcomp(dmat), main="shafii.rapeseed - AMMI biplot")
 trellis.par.set(op) # Unset graphics changes
+
 }
 

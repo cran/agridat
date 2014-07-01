@@ -37,7 +37,7 @@ dat <- subset(dat, row>2 & row<99) # omit outer two rows
 # mean(dat$yield) # 180.27
 # range(dat$yield) # 75,302 matches Stephens
 
-densityplot(~dat$yield) # Stephens figure 3
+# densityplot(~dat$yield) # Stephens figure 3
 
 # Aggregate 4 side-by-side rows.
 # Similar to Stephens Figure 7.  North at top.  East at right.

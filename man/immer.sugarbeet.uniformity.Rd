@@ -46,6 +46,6 @@ desplot(sugar~col*row, data=dat, tick=TRUE, flip=TRUE,
         main="immer.sugarbeet.uniformity - sugar")
 desplot(purity~col*row, data=dat, tick=TRUE, flip=TRUE,
         main="immer.sugarbeet.uniformity - purity")
-pairs(dat[,c('yield','sugar','purity')])
+pairs(dat[,c('yield','sugar','purity')], main="immer.sugarbeet.uniformity")
 }
 \keyword{datasets}

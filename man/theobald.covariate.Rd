@@ -26,34 +26,40 @@
   temperatures (thousands of degrees Celsius) during the growing season
   at each location.
 
-  Thanks to Chris Theobald for permission to use the data and for BUGS code.
+  Used with permission of Chris Theobald.
 }
 \source{
   Chris M. Theobald and Mike Talbot and Fabian Nabugoomu, 2002.
   A Bayesian Approach to Regional and Local-Area Prediction From Crop
   Variety Trials, \emph{Journ Agric Biol Env Sciences}, 7, 403--419.
 }
+
 \examples{
-theo <- theobald.covariate
+
+dat <- theobald.covariate
+xyplot(yield ~ chu|gen, dat, type=c('p','smooth'),
+       xlab =  "chu = corn heat units",
+       main="theobald.covariate - yield vs heat")
 
 # REML estimates (Means) in table 3 of Theobald 2002
-require("lme4")
-theo <- transform(theo, year=factor(year))
-m0 <- lmer(yield ~ -1 + gen + (1|year/env) + (1|gen:year), data=theo)
+if(require(lme4)){
+dat <- transform(dat, year=factor(year))
+m0 <- lmer(yield ~ -1 + gen + (1|year/env) + (1|gen:year), data=dat)
 round(fixef(m0),2)
+}
 
 \dontrun{
 
 # Use JAGS to fit Theobald (2002) model 3.2 with 'Expert' prior
 
-require("reshape2")
-ymat <- acast(theo, year+env~gen, value.var='yield')
-chu <- acast(theo, year+env~., mean, value.var='chu', na.rm=TRUE)
+require(reshape2)
+ymat <- acast(dat, year+env~gen, value.var='yield')
+chu <- acast(dat, year+env~., mean, value.var='chu', na.rm=TRUE)
 chu <- as.vector(chu - mean(chu))  # Center the covariate
-theo$yr <- as.numeric(theo$year)
-yridx <- as.vector(acast(theo, year+env~., mean, value.var='yr', na.rm=TRUE))
-theo$loc <- as.numeric(theo$env)
-locidx <- acast(theo, year+env~., mean, value.var='loc', na.rm=TRUE)
+dat$yr <- as.numeric(dat$year)
+yridx <- as.vector(acast(dat, year+env~., mean, value.var='yr', na.rm=TRUE))
+dat$loc <- as.numeric(dat$env)
+locidx <- acast(dat, year+env~., mean, value.var='loc', na.rm=TRUE)
 locidx <- as.vector(locidx)
 
 jdat <- list(nVar = 10, nYear = 5, nLoc = 7, nYL = 29, yield = ymat,

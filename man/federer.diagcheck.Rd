@@ -58,7 +58,7 @@ desplot(yield ~ col*row, dat, text=gen, show.key=FALSE,
 
 # Only to match SAS results
 dat$row <- 16 - dat$row
-dat=dat[order(dat$col, dat$row), ]
+dat <- dat[order(dat$col, dat$row), ]
 
 # Add row / column polynomials to the data.
 # The scaling factors sqrt() are arbitrary, but used to match SAS
@@ -84,33 +84,61 @@ Anova(m1, type=3) # Matches PROC GLM output
 }
 
 # lmer
-dat$one <- factor(rep(1, nrow(dat)))
-library(lme4)
+if(require(lme4)){
 
-# Using bobyqa
+dat$one <- factor(rep(1, nrow(dat)))
+
+# lme4 1.1-5 uses bobyqa as default
 m2b <- lmer(yield ~ trtn + (0+r1|one) + (0+r2|one) + (0+r4|one) + (0+r8|one) + (0+r10|one)
            + (0+c1|one) + (0+c2|one) + (0+c3|one) + (0+c4|one) + (0+c6|one) + (0+c8|one)
            + (0+r1:c1|one) + (0+r1:c2|one) + (0+r1:c3|one) +(1|new:gen)
-           , data = dat,
-           control=lmerControl(optimizer="bobyqa", check.nlev.gtr.1="ignore"))
+           , data = dat, control=lmerControl(check.nlev.gtr.1="ignore"))
 
-# Using nelder mead
-m2n <- lmer(yield ~ trtn + (0+r1|one) + (0+r2|one) + (0+r4|one) + (0+r8|one) + (0+r10|one)
-           + (0+c1|one) + (0+c2|one) + (0+c3|one) + (0+c4|one) + (0+c6|one) + (0+c8|one)
-           + (0+r1:c1|one) + (0+r1:c2|one) + (0+r1:c3|one) +(1|new:gen)
-           , data = dat,
-           control=lmerControl(optimizer="Nelder_Mead",check.nlev.gtr.1="ignore"))
+vc(m2b)
+##      grp        var1 var2     vcov  sdcor
+##  new.gen (Intercept) <NA>   2869    53.57
+##      one       r1:c3 <NA>   5532    74.37
+##    one.1       r1:c2 <NA>  58230   241.3
+##    one.2       r1:c1 <NA> 128000   357.8
+##    one.3          c8 <NA>   6456    80.35
+##    one.4          c6 <NA>   1400    37.41
+##    one.5          c4 <NA>   1792    42.33
+##    one.6          c3 <NA>   2549    50.49
+##    one.7          c2 <NA>   5942    77.08
+##    one.8          c1 <NA>      0     0
+##    one.9         r10 <NA>   1133    33.66
+##   one.10          r8 <NA>   1355    36.81
+##   one.11          r4 <NA>   2269    47.63
+##   one.12          r2 <NA>    241.8  15.55
+##   one.13          r1 <NA>   9200    95.92
+## Residual        <NA> <NA>   4412    66.42
 
-# FIXME: Nelder_Mead gives very different results from bobyqa, ASREML, MIXED
-logLik(m2b)
-logLik(m2n)
-print(VarCorr(m2b), comp=c("Variance","Std.Dev."))
-print(VarCorr(m2n), comp=c("Variance","Std.Dev."))
+## Nelder_Mead results from using
+## control=lmerControl(optimizer="Nelder_Mead",check.nlev.gtr.1="ignore")
+##    groups        name variance   stddev
+##  new.gen  (Intercept)   3228    56.82
+##  one      r1:c3         7688    87.68
+##  one.1    r1:c2        69750   264.1
+##  one.2    r1:c1       107400   327.8
+##  one.3    c8            6787    82.38
+##  one.4    c6            1636    40.45
+##  one.5    c4           12270   110.8
+##  one.6    c3            2686    51.83
+##  one.7    c2            7645    87.43
+##  one.8    c1               0     0.0351
+##  one.9    r10           1976    44.45
+##  one.10   r8            1241    35.23
+##  one.11   r4            2811    53.02
+##  one.12   r2             928.2  30.47
+##  one.13   r1           10360   101.8
+##  Residual               4127    64.24
+
+}
 
 
 \dontrun{
 # asreml
-library(asreml)
+require(asreml)
 m3 <- asreml(yield ~ -1 + trtn, data=dat,
              random = ~ r1 + r2 + r4 + r8 + r10 +
              c1 + c2 + c3 + c4 + c6 + c8 + r1:c1 + r1:c2 + r1:c3 + new:gen)

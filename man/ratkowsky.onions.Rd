@@ -27,19 +27,21 @@
   \url{http://stat.tamu.edu/~carroll/semiregbook/}
 }
 \examples{
+
 dat <- ratkowsky.onions
 
 # Model inverse yield as a quadratic.  Could be better...
-library(lattice)
+require(lattice)
 dat <- transform(dat, iyield = 1/yield)
-xyplot(iyield ~ density, data=dat, group=loc, auto.key=TRUE)
 m1 <- lm(iyield ~ I(density^2)*loc, dat)
 dat$pred <- predict(m1)
 
 require(latticeExtra)
-xyplot(iyield ~ density, data=dat, group=loc, auto.key=TRUE) +
+xyplot(iyield ~ density, data=dat, group=loc, auto.key=TRUE,
+       main="ratkowski.onions",ylab="Inverse yield") +
 xyplot(pred ~ density, data=dat, group=loc, type='l')
 
 # To do: semiparametric / gam model
+
 }
 \keyword{datasets}

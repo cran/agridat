@@ -13,10 +13,19 @@
 }
 \description{
   Yields and acres harvested in each state for the major agricultural
-  crops, from approximately 1900 to 2011.  Crops include: barley, corn,
-  cotton, hay, rice, sorghum, soybeans, wheat.
+  crops in the United States, from approximately 1900 to 2011.
+  Crops include: barley, corn, cotton, hay, rice, sorghum, soybeans, wheat.
 }
-
+\usage{
+  nass.barley
+  nass.corn
+  nass.cotton
+  nass.hay
+  nass.sorghum
+  nass.wheat
+  nass.rice
+  nass.soybean
+}
 \format{
   \describe{
     \item{\code{year}}{Year, numeric}
@@ -30,6 +39,9 @@
 
   Yields are in bushels/acre, except: cotton pounds/acre, hay tons/acre,
   rice pounds/acre.
+
+  Each crop is in a separate dataset: nass.barley, nass.corn, nass.cotton,
+  nass.hay, nass.sorghum, nass.wheat, nass.rice, nass.soybean.
 }
 \source{
   United States Department of Agriculture,
@@ -44,19 +56,15 @@ keep <- droplevels(subset(dat, year == 2011 & acres > 100000))$state
 dat <- droplevels(subset(dat, is.element(state, keep)))
 
 # Acres of corn grown each year
+require(lattice)
 xyplot(acres ~ year|state, dat, type='l', as.table=TRUE,
-title="State trends in corn acreage")
+       main="nass.corn: state trends in corn acreage")
 
-# Plain levelplot, using only states
-datm <- acast(dat, year~state, value.var='yield')
-levelplot(datm, aspect=.7, col.regions=RedGrayBlue,
-          main="nass.corn",
-          scales=list(x=list(rot=90, cex=.7)))
-
-\dontrun{
-library("mvtsplot")
-mvtsplot(datm, levels=11, margin=FALSE, norm='global')
-}
+## Plain levelplot, using only states
+## datm <- acast(dat, year~state, value.var='yield')
+## levelplot(datm, aspect=.7, col.regions=RedGrayBlue,
+##           main="nass.corn",
+##           scales=list(x=list(rot=90, cex=.7)))
 
 # Model the rate of genetic gain in Illinois as a piecewise regression
 # Breakpoints define periods of open-pollinated varieties, double-cross,
@@ -66,7 +74,7 @@ dil <- subset(nass.corn, state=="Illinois" & year >= 1900)
 m1 <- lm(yield ~ pmin(year,1932) + pmax(1932, pmin(year, 1959)) +
          pmax(1959, pmin(year, 1995)) + pmax(1995, year), dil)
 signif(coef(m1)[-1],3) # Rate of gain for each segment
-plot(yield ~ year, dil, main="Piecewise linear model of Illinois corn yields")
+plot(yield ~ year, dil, main="nass.corn: piecewise linear model of Illinois corn yields")
 lines(dil$year, fitted(m1))
 abline(v=c(1932,1959,1995), col="wheat")
 

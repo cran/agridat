@@ -31,9 +31,15 @@
   \emph{Experimental Designs}, 2nd ed., Wiley and Sons, New York, p. 448.
 }
 \examples{
+
 dat <- cochran.bib
 
 # Show the incomplete-block structure
+require(lattice)
+levelplot(yield~loc*gen, dat,
+          col.regions=RedGrayBlue,
+          xlab="loc (block)", main="cochran.bib - incomplete blocks")
+
 with(dat, table(gen,loc))
 rowSums(as.matrix(with(dat, table(gen,loc))))
 colSums(as.matrix(with(dat, table(gen,loc))))
@@ -48,5 +54,6 @@ m2 = lme(yield ~ -1 + gen, data=dat, random=~1|loc)
 require(agricolae)
 BIB.test(dat$loc, dat$gen, y=dat$yield)
 }
+
 }
 

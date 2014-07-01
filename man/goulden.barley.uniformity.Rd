@@ -5,7 +5,7 @@
   Barley uniformity trial
 }
 \description{
-  Barley uniformity trial  
+  Barley uniformity trial
 }
 
 \format{
@@ -34,6 +34,8 @@ dat <- goulden.barley.uniformity
 desplot(yield ~ col*row, data=dat, main="goulden.barley.uniformity")
 
 # See LeClerg, Leonard, Clark
-hist(dat$yield, breaks=c(21,40,59,78,97,116,135,154,173,192,211,230,249)+.5)
+hist(dat$yield, main="goulden.barley.uniformity",
+     breaks=c(21,40,59,78,97,116,135,154,173,192,211,230,249)+.5)
+
 }
 \keyword{datasets}

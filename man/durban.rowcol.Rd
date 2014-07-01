@@ -22,7 +22,7 @@
   Spring barley variety trial of 272 entries (260 new varieties, 12
   control). Grown at the Scottish Crop Research Institute in 1998.
   Row-column design with 2 reps, 16 rows (north/south) by 34 beds
-  (east/west). 
+  (east/west).
   The land sloped downward from row 16 to row 1.  Plot yields were
   converted to tonnes per hectare.
 }
@@ -45,12 +45,13 @@ desplot(yield~bed*row, dat, out1=rep, main="durban.rowcol")
 m10 <- lm(yield~gen, data=dat)
 dat$resid <- m10$resid
 require(lattice)
-xyplot(resid~row, dat, type=c('p','smooth'))
-xyplot(resid~bed, dat, type=c('p','smooth'))
+# xyplot(resid~row, dat, type=c('p','smooth'), main="durban.rowcol")
+# xyplot(resid~bed, dat, type=c('p','smooth'), main="durban.rowcol")
 
 # Figure 3
 coplot(resid~bed|factor(row), data=dat, cex=.5,
 panel=function(x,y,...) panel.smooth(x,y,span=.75,...))
+title("durban.rowcol")
 
 \dontrun{
 # Figure 5 - field trend

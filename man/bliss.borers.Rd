@@ -1,5 +1,5 @@
-\name{beall.borers}
-\alias{beall.borers}
+\name{bliss.borers}
+\alias{bliss.borers}
 \docType{data}
 \title{
   Corn borer infestation under four treatments
@@ -27,21 +27,18 @@
   between the blocks.
 }
 \source{
+  C. Bliss and R. A. Fisher. (1953).
+  Fitting the Negative Binomial Distribution to Biological Data.
+  \emph{Biometrics}, 9, 176--200.  Table 3.
+
   Geoffrey Beall. 1940. The Fit and Significance of Contagious
   Distributions when Applied to Observations on Larval Insects.
   \emph{Ecology}, 21, 460-474.  Page 463.
   \url{http://www.jstor.org/stable/1930285}.
-
-  Points to a paper by Stirrett, Beall, Timonin as the source.
-}
-\references{
-  Beall, Chester Ittner and Fisher, Ronald A. 1953.
-  Fitting the negative binomial distribution to biological data.
-  \emph{Biometrics}, 9, 176-200.
 }
 
 \examples{
-dat <- beall.borers
+dat <- bliss.borers
 
 # Add 0 frequencies
 dat0 <- expand.grid(borers=0:26, treat=c('T1','T2','T3','T4'))
@@ -52,12 +49,12 @@ dat0$freq[is.na(dat0$freq)] <- 0
 dd <- data.frame(borers = rep(dat0$borers, times=dat0$freq),
                  treat = rep(dat0$treat, times=dat0$freq))
 
-library(lattice)
+require(lattice)
 histogram(~borers|treat, dd, type='count', breaks=0:27-.5,
-          layout=c(1,4), main="beall.borers", xlab="Borers per hill")
+          layout=c(1,4), main="bliss.borers", xlab="Borers per hill")
 
 
-library(MASS)
+require(MASS)
 m1 <- glm.nb(borers~0+treat, data=dd)
 # Bliss, table 3, presents treatment means, which are matched by:
 exp(coef(m1)) # 4.033333 3.166667 1.483333 1.508333
@@ -69,20 +66,21 @@ m1$theta # 1.47
 # Plot observed and expected distributions for treatment 2
 xx <- 0:26
 yy <- dnbinom(0:26, mu=3.17, size=1.47)*120 # estimates are from glm.nb
-library(latticeExtra)
+require(latticeExtra)
 histogram(~borers, dd, type='count', subset=treat=='T2',
-          main="Treatment 2 observed and expected",
+          main="bliss.borers trt T2 observed and expected",
           breaks=0:27-.5) +
 xyplot(yy~xx, col='navy', type='b')
 
 
 # "Poissonness"-type plot
-library(vcd)
+require(vcd)
 dat2 <- droplevels(subset(dat, treat=='T2'))
-distplot(dat2$borers, type = "nbinomial")
+distplot(dat2$borers, type = "nbinomial",
+main="bliss.borers neg binomialness plot")
 # Better way is a rootogram
 g1 <- goodfit(dat2$borers, "nbinomial")
-plot(g1, main="Treatment 2")
+plot(g1, main="bliss.borers - Treatment 2")
 
 }
 \keyword{datasets}

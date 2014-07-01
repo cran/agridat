@@ -11,13 +11,13 @@
 \format{
   A data frame with 500 observations on the following 4 variables.
   \describe{
-    \item{\code{row}}{Row}
-    \item{\code{col}}{Column}
-    \item{\code{grain}}{Grain yield, pounds}
-    \item{\code{straw}}{Straw yield, pounds}
+    \item{\code{row}}{row}
+    \item{\code{col}}{column}
+    \item{\code{grain}}{grain yield, pounds}
+    \item{\code{straw}}{straw yield, pounds}
   }
 }
-\details{  
+\details{
 The wheat crop was grown in 1910 at Rothamsted Experiment Station
 (Harpenden, Herts, England).  In one field, a seemingly uniform area of
 1 acre was harvested in separate plots, each 1/500th acre in size.  The
@@ -37,9 +37,7 @@ The 'spdep' package includes the grain yields
 dat <- mercer.wheat.uniformity
 
 require('lattice')
-desplot(grain ~ col*row, dat, main="mercer.wheat.uniformity")
-
-densityplot(~grain, data=dat)
+desplot(grain ~ col*row, dat, main="mercer.wheat.uniformity - grain yield")
 
 xyplot(straw ~ grain, data=dat, type=c('p','r'), main="mercer.wheat.uniformity - regression")
 
@@ -58,6 +56,7 @@ y = seq(plot.len/2, by=plot.len, length=nr))
 dat.sp <- dat
 coordinates(dat.sp) <- xy
 
+\dontrun{
 # heatmap
 spplot(dat.sp, zcol = "grain", cuts=8,
        cex = 1.6,
@@ -66,6 +65,8 @@ spplot(dat.sp, zcol = "grain", cuts=8,
 
 # variogram
 vg <- variogram(grain ~ 1, dat.sp, cutoff = plot.wid * 10, width = plot.wid)
-plot(vg, plot.numbers = TRUE)
+plot(vg, plot.numbers = TRUE,
+     main="mercer.wheat.uniformity - variogram")
+}
 }
 

@@ -33,9 +33,10 @@
   Engineering Science}, 462, 2119--2143.
 }
 \examples{
+
 dat <- rothamsted.brussels
 
-bwplot(yield~trt, dat)
+bwplot(yield~trt, dat, main="rothamsted.brussels")
 desplot(yield~col*row, data=dat, num=trt, out1=block, cex=1,
         main="rothamsted.brussels")
 

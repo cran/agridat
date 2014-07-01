@@ -23,9 +23,9 @@ A uniformity trial of 1500 plots of wheat conducted in Idaho in 1927.
   on April 18 with a drill that sowed eight rows at a time.
   Individual rows were harvested in August and threshed with a small
   nursery thresher.
-  
+
   Rows were 15 feet long, 1 foot apart.
-  
+
   Some authors recommend analyzing the square root of the yields.
 
   Produced by the U.S. Dept of Agriculture.
@@ -48,22 +48,27 @@ dat <- wiebe.wheat.uniformity
 require("lattice")
 # 125 rows = 125 feet tall. 12 cols * 15 feet = 180 feet wide.
 desplot(yield~col+row, dat, aspect=125/180, flip=TRUE,
-  main="Plot yields of wheat uniformity trial") # row 1 is at south
+  main="wiebe.wheat.uniformity: yield") # row 1 is at south
 
 # Preece (1981) found the last digits have an interesting distribution.
 dig <- substring(dat$yield, nchar(dat$yield))
 dig <- as.numeric(dig)
-hist(dig, breaks=0:10-.5, main="Histogram of last digit")
+hist(dig, breaks=0:10-.5, xlab="Last digit",
+     main="wiebe.wheat.uniformity - histogram of last digit")
 table(dat$col, dig) # Table 3 of Preece
 
 # Median yields of rows/cols show obvious trends
-plot(tapply(dat$yield, dat$row, median), xlab="Row", ylab="Yield")
-plot(tapply(dat$yield, dat$col, median), xlab="Column", ylab="Yield")
+plot(tapply(dat$yield, dat$row, median), xlab="Row", ylab="Yield",
+      main="wiebe.wheat.uniformity")
+# plot(tapply(dat$yield, dat$col, median), xlab="Column", ylab="Yield",
+#       main="wiebe.wheat.uniformity")
 # Spatial trends are obvious
-xyplot(yield~col, dat, type=c('p','smooth'))
+# xyplot(yield~col, dat, type=c('p','smooth'), main="wiebe.wheat.uniformity")
 
 # Loess
 m3 <- loess(yield~row+col, dat)
-plot(fitted(m3), resid(m3), ylim=c(-300,300))
+# plot(fitted(m3), resid(m3), ylim=c(-300,300),
+#      main="wiebe.wheat.uniformity")
+
 }
 \keyword{datasets}

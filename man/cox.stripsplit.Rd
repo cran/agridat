@@ -28,6 +28,8 @@ entire experiment is then replicated three times.
   Comes from the notes of Gertrude Cox and A. Rotti.
 }
 \references{
+  SAS/STAT(R) 9.2 User's Guide, Second Edition.
+  Example 23.5 Strip-Split Plot.
   \url{http://support.sas.com/documentation/cdl/en/statug/63033/HTML/default/viewer.htm#statug_anova_sect030.htm}
 }
 \examples{
@@ -38,6 +40,10 @@ aggregate(yield ~ calcium, data=dat, mean)
 aggregate(yield ~ soil, data=dat, mean)
 aggregate(yield ~ calcium, data=dat, mean)
 
+require(HH)
+interaction2wt(yield ~ rep + soil + fert + calcium, dat,
+               main="cox.stripsplit")
+
 # AOV
 m1 <- aov(yield~ fert*calcium*soil +
           Error(rep/(fert+soil+calcium:fert+soil:fert)),
@@ -46,10 +52,11 @@ summary(m1)
 
 # With balanced data, the following are all basically identical
 
-require(lme4)
+if(require(lme4)){
+# The 'rep:soil:fert' term causes problems...so we drop it.
 m2 <- lmer(yield ~ fert*soil*calcium + (1|rep) + (1|rep:fert) +
-           (1|rep:soil) + (1|rep:fert:calcium) + (1|rep:soil:fert), data=dat,
-           control=lmerControl(check.nobs.vs.rankZ="ignore"))
+           (1|rep:soil) + (1|rep:fert:calcium), data=dat)
+}
 
 \dontrun{
 
