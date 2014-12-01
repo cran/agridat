@@ -95,6 +95,7 @@
 dat <- lasrosas.corn
 
 # yield map
+require(lattice)
 require(latticeExtra)
 levelplot(yield ~ long*lat|factor(year), data=dat,
           main="lasrosas.corn grain yield", xlab="Longitude", ylab="Latitude",

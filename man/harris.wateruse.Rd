@@ -78,6 +78,7 @@ require(nlme)
 m1n <- lme(water ~ 1 + ti + ti2, data=d22, na.action=na.omit,
            random = list(tree=pdDiag(~1+ti+ti2)))
 
+require(lucid)
 vc(m1n)
 ##       effect variance    stddev
 ##  (Intercept)   0.2691 0.5188

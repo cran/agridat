@@ -54,6 +54,7 @@ levelplot(yield ~ p1*p2, dat, col.regions=RedGrayBlue,
           main="lonnquist.maize - yield of diallel cross")
 
 # Calculate the F1 means in Lonnquist, table 1
+require(reshape2)
 mat <- acast(dat, p1~p2)
 mat[upper.tri(mat)] <- t(mat)[upper.tri(mat)] # make symmetric
 diag(mat) <- NA
@@ -69,6 +70,7 @@ d2 <- subset(dat, p1 %in% c("M","H","G","B","K","K2") &
              p2 %in% c("M","H","G","B","K","K2"))
 d2 <- droplevels(d2)
 m2 <- asreml(yield~ 1, data=d2, random = ~ p1 + and(p2))
+require(lucid)
 vc(m2)
 ##     effect component std.error z.ratio      con
 ##  p1!p1.var     3.865     3.774     1   Positive

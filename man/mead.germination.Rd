@@ -37,6 +37,7 @@
 
 dat <- mead.germination
 dat <- transform(dat, concf=factor(conc))
+require(lattice)
 xyplot(germ~log(conc+.01)|temp, dat, layout=c(4,1),
        main="mead.germination", ylab="number of seeds germinating")
 

@@ -88,6 +88,8 @@ been corrected.
 }
 \examples{
 dat <- australia.soybean
+
+require(reshape2)
 dm <- melt(dat, id.var=c('env', 'year','loc','gen'))
 
 # Joint plot of genotypes & traits. Similar to Figure 1 of Kroonenberg 1989

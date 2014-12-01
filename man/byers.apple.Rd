@@ -51,6 +51,7 @@ m1 <- lme(diameter ~ 1 + time, data=dat,
           cor = corAR1(0, form=~ time|appleid),
           na.action=na.omit)
 
+require(lucid)
 vc(m1)
 ##       effect   variance   stddev corr
 ##  (Intercept) 0.007354   0.08575    NA

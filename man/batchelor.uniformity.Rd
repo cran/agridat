@@ -23,6 +23,9 @@
 }
 \details{
 
+  A few of the trees affected by disease were eliminated and the yield
+  was replaced by the average of the eight surrounding trees.
+
   The following details are from Batchelor (1918).
 
   \bold{Jonathan Apples}

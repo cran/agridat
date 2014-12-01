@@ -61,10 +61,11 @@ dat <- transform(dat, rep=factor(rep), spacing=factor(spacing), trt=factor(trt),
 desplot(spacing~row*pos, dat, col=stock, cex=1, num=gen,
         main="archbold.apple")
 
-if(require(lme4)){
+if(require("lme4")){
 
 m1 <- lmer(yield ~ -1 + trt + (1|rep/mp/sp), dat)
 
+require(lucid)
 vc(m1)  # Variances/means on page 59
 ##         grp        var1 var2   vcov sdcor
 ## sp:(mp:rep) (Intercept) <NA>  193.3 13.9

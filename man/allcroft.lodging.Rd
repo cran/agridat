@@ -35,6 +35,7 @@ dat$sy <- sqrt(dat$y)
 # Variety 4 has no lodging anywhere, so add a small amount
 dat[dat$env=='E5' & dat$gen=='G04',]$sy <- .01
 
+require(lattice)
 dotplot(env~y|gen, dat, as.table=TRUE,
         xlab="Percent lodged (by genotype)", ylab="Variety",
         main="allcroft.lodging")

@@ -37,6 +37,7 @@
 
 dat <- stirret.borers
 
+require(lattice)
 xyplot(count2~count1|trt,dat, main="stirret.borers - by treatment",
        xlab="Early count of borers", ylab="Late count")
 

@@ -62,6 +62,7 @@ datm$gen <- factor(datm$gen,
                          "Dwarf","Glacier","Jet"))
 dat$locyr <- reorder(dat$locyr, dat$yield, mean)
 
+require(lattice)
 # This picture tells most of the story
 # Now change symbols
 op <- tpg <- trellis.par.get()

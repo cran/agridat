@@ -67,6 +67,7 @@ m2a2 <- asreml(yield ~ gen*fung, random=~block/fung+units, data=dat,
                rcov=~ar1v(rowf):ar1(bedf))
 m2a2 <- update(m2a2)
 
+require(lucid)
 vc(m2a2)
 ##                effect component std.error z.ratio constr
 ##       block!block.var 0.0000001        NA      NA  bound

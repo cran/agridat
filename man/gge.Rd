@@ -45,7 +45,9 @@ gge(x, ...)
   \item{col.env}{color for envts}
   \item{lab.env}{label envts}
   \item{comps}{comps}
-  \item{flip}{If "auto"}
+  \item{flip}{If "auto" then each axis is flipped so that the genotype
+    ordinate is positively correlated with genotype means.  Can also be
+    a vector like c(TRUE,FALSE) for manual control.}
   \item{method}{method used to find principal component directions}
 }
 \details{
@@ -54,9 +56,9 @@ gge(x, ...)
 
   The singular value decomposition of \code{x} is used to
   calculate the principal components for the biplot.  Missing
-  values are NOT allowed. The NIPALS algorithm can be used
-  when there are missing data.
+  values are NOT allowed.
 
+  The NIPALS algorithm can be used when there are missing data.
 
 }
 \value{
@@ -91,7 +93,7 @@ gge(x, ...)
   \url{http://three-mode.leidenuniv.nl/document/biplot.pdf}
 
   Yan, W. and Kang, M.S. (2003) \emph{GGE Biplot Analysis}.
-  CRC Press \url{http://www.ggebiplot.com}.
+  CRC Press.
 
 }
 \author{

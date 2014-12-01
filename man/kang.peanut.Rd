@@ -40,7 +40,7 @@ dat <- kang.peanut
 
 # Table 5.1 of Kang et al. (Chapter 5 of Saxton)
 require(reshape2)
-round(acast(dat, env~gen, value.var="yield", fun=mean),2)
+round(acast(dat, env~gen, value.var='yield', fun=mean),2)
 
 # GGE biplot of Kang, p. 82.
 m1 <- gge(yield~gen*env, data=dat, scale=FALSE)

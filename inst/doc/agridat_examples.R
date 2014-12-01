@@ -1,23 +1,18 @@
 ## ----setup, echo=FALSE, results="hide"--------------------------------------------------
-require("knitr")
-opts_chunk$set(fig.path="figs/ag2-", fig.align="center",
-  fig.width=7, fig.height=7, comment="")
-knit_hooks$set(output = function(x, options) {
-  paste('\\begin{Soutput}\n', x, '\\end{Soutput}\n', sep = '')
-})
+library("knitr")
+opts_chunk$set(fig.align="center", fig.width=7, fig.height=7)
 options(width=90)
-if(!file.exists("figs")) dir.create("figs")
 
 ## ----packs, message=FALSE---------------------------------------------------------------
-require("agridat")
-require("HH")
-require("lattice")
-require("latticeExtra")
-require("mapproj")
-require("maps")
-require("reshape2")
+library("agridat")
+library("HH")
+library("lattice")
+library("latticeExtra")
+library("mapproj")
+library("maps")
+library("reshape2")
 
-## ----lee1, echo=FALSE, fig.height=7-----------------------------------------------------
+## ----lee1, echo=FALSE, fig.height=7.5---------------------------------------------------
 dat <- lee.potatoblight
 # Note the progression to lower scores as time passes in each year
 skp <- c(rep(0,10),
@@ -161,7 +156,7 @@ if(require(HH)){
                  par.strip.text.input=list(cex=.8))
 }
 
-## ----keen, echo=FALSE, fig.width=7, fid.height=8----------------------------------------
+## ----keen, echo=FALSE, fig.width=7, fig.height=7.5--------------------------------------
 dat <- keen.potatodamage
 
 # Energy E1, Rod R4, Weight W1 have higher proportions of severe damage
@@ -177,7 +172,7 @@ dat <- minnesota.barley.yield
 datw <- minnesota.barley.weather
 
 # Weather trends over time
-require(latticeExtra)
+library(latticeExtra)
 #useOuterStrips(xyplot(cdd~mo|year*site, datw, groups=year,
 #main="minnesota.barley", xlab="month", ylab="Cooling degree days",
 #subset=(mo > 3 & mo < 10), scales=list(alternating=FALSE),
@@ -194,7 +189,7 @@ minn <- merge(ww, yy)
 
 
 # Higher yields generally associated with cooler temps, more precip
-require(reshape2)
+library(reshape2)
 me <- melt(minn, id.var=c('site','year'))
 mey <- subset(me, variable=="yield")
 mey <- mey[,c('site','year','value')]
@@ -225,12 +220,13 @@ dat2$eg <- ifelse(is.element(dat2$loc,
 c("KN","NB","PA","BJ","IL","TC", "JM","PI","AS","ID","SC","SS",
 "SJ","MS","MG","MM")), "Grp1", "Grp2")
 m4 <- gge(yield~gen*loc, dat2, env.group=eg, scale=FALSE)
+# plot(m4)
 biplot(m4, lab.env=TRUE, title="crossa.wheat")
 
 ## ----nebr1, echo=FALSE------------------------------------------------------------------
-require("maps")
-require("mapproj")
-require("latticeExtra")
+library("maps")
+library("mapproj")
+library("latticeExtra")
 
 dat <- nebraska.farmincome
 dat$stco <- paste0('nebraska,', dat$county)
@@ -268,10 +264,10 @@ mapplot(stco ~ crop.rate + animal.rate, data = dat,
         breaks=c(0,.049, .108, .178, .230, .519, .958, 1.31)
         )
 
-## ----lasrosas,echo=FALSE----------------------------------------------------------------
+## ----lasrosas,echo=FALSE, fig.height=7.5------------------------------------------------
 
 dat <- lasrosas.corn
-require(latticeExtra)
+library(latticeExtra)
 
 # yield map
 foo1 <- levelplot(yield ~ long*lat|factor(year), data=dat,
@@ -352,6 +348,5 @@ xyplot(acres ~ year|state, dat, type='l', as.table=TRUE,
 
 
 ## ----finish, echo=FALSE, results="asis"-------------------------------------------------
-knit_hooks$set(output = function(x, options) { x })
 toLatex(sessionInfo(), locale=FALSE)
 

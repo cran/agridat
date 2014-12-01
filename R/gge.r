@@ -243,7 +243,7 @@ gge.matrix <- function(x,
   #maxPCs <- min(nrow(x), ncol(x)-1)
 
   # SVD / PCA of x
-  if(!require(pcaMethods)){ # use base::svd
+  if(!exists("pcaMethods")){ # use base::svd
     if(method!="svd")
       stop("Only method='svd' available.  Install 'pcaMethods' package for more options.")
     if(!is.logical(center) | !is.logical(scale))
@@ -264,11 +264,11 @@ gge.matrix <- function(x,
     if(!is.element(method, c("svd","nipals","bpca", "ppca", "svdImpute")))
       stop("Unsupported method.  Try 'svd' or 'svdImpute'")
     if(is.logical(scale) && scale) {
-      cat("Changing scale from TRUE to 'uv' for pcaMethods.\n")
+      # cat("Changing scale from TRUE to 'uv' for pcaMethods.\n")
       scale <- "uv"
     }
     if(is.logical(scale) && !scale) {
-      cat("Changing scale from FALSE to 'none' for pcaMethods.\n")
+      # cat("Changing scale from FALSE to 'none' for pcaMethods.\n")
       scale <- "none"
     }
 
@@ -496,7 +496,8 @@ biplot.gge <- function(x, title=substitute(x), subtitle="",
   # Axis labels
   labs <- paste("PC ", c(xcomp, ycomp),
                   " (", round(100*R2[c(xcomp,ycomp)],0), "% TSS)", sep="")
-  xlab <- labs[1] ; ylab <- labs[2]
+  xlab <- labs[1]
+  ylab <- labs[2]
 
   # Determine the range (for genotypes).
   rg1 <- expand.range(range(genCoord[, xcomp]))
@@ -511,7 +512,8 @@ biplot.gge <- function(x, title=substitute(x), subtitle="",
   re1 <- expand.range(range(c(locCoord[, xcomp])))
   re2 <- expand.range(range(c(locCoord[, ycomp])))
   ratio <- max(c(re1, re2)/c(xlimg, ylimg)) * 1.1
-  xlime <- xlimg*ratio ; ylime <- ylimg*ratio
+  xlime <- xlimg*ratio
+  ylime <- ylimg*ratio
 
   # Set up plot for environment vectors
   plot(NULL, type = "n", xaxt="n", yaxt="n", xlab="", ylab="", xlim=xlime, ylim=ylime)

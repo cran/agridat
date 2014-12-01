@@ -35,6 +35,7 @@ dat <- gathmann.bt
 
 
 # EDA suggests Bt vs ISO is significant for thysan, not for aranei
+require(lattice)
 require(reshape2)
 d2 <- melt(dat)
 bwdot=function(x,y,...){

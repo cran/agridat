@@ -30,6 +30,7 @@
 \examples{
 
 dat <- lyons.wheat
+require(lattice)
 xyplot(yield~factor(year), dat, group=loc,
   main="lyons.wheat",
   auto.key=list(columns=4), type=c('p','l'))

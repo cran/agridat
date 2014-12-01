@@ -11,15 +11,15 @@
 \format{
   A data frame with 500 observations on the following 4 variables.
   \describe{
-    \item{\code{row}}{row}
-    \item{\code{col}}{column}
+    \item{\code{row}}{row, 1-20}
+    \item{\code{col}}{column, 1-25}
     \item{\code{grain}}{grain yield, pounds}
     \item{\code{straw}}{straw yield, pounds}
   }
 }
 \details{
-The wheat crop was grown in 1910 at Rothamsted Experiment Station
-(Harpenden, Herts, England).  In one field, a seemingly uniform area of
+The wheat crop was grown in the summer of 1910 at Rothamsted Experiment Station
+(Harpenden, Herts, England).  In the Great Knott, a seemingly uniform area of
 1 acre was harvested in separate plots, each 1/500th acre in size.  The
 grain and straw from each plot was weighed separately.  Row 1 is the
 south edge, row 20 is the north.  Column 1 is the west edge.  The

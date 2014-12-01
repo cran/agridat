@@ -47,6 +47,7 @@ require(asreml)
 m1 <- asreml(yield ~ 1 + gen + loc + loc:gen,
              random = ~ rowf:loc + colf:loc, data=dat)
 
+require(lucid)
 vc(m1)
 ##             effect component std.error z.ratio constr
 ##  rowf:loc!rowf.var     31.62     23.02     1.4    pos

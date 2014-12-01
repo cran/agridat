@@ -43,6 +43,7 @@
 dat <- hildebrand.systems
 
 # Piepho 1998 Fig 1
+require(lattice)
 dotplot(yield ~ system, dat, groups=village, auto.key=TRUE,
         main="hildebrand.systems", xlab="cropping system by village")
 
@@ -62,6 +63,7 @@ p1 <- predict(m1, classify="system")$predictions$pvals
 ##     LMF      2.7      0.2561 Estimable
 
 # Variances, table 5
+require(lucid)
 vc(m1)[c(2,4,7,11),]
 ##              effect component std.error z.ratio constr
 ##    R!system.CCA:CCA    1.11      0.4354     2.5    pos

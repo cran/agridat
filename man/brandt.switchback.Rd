@@ -54,6 +54,7 @@ dat <- brandt.switchback
 
 # Yield at period 2 (trt T2) is above the trend in group A,
 # below the trend (trt T1) in group B
+require(lattice)
 xyplot(yield~period|group, data=dat, group=cow, type=c('l','r'),
     auto.key=list(columns=5), main="brandt.switchback",
     xlab="Period.  Group A: T1,T2,T1.  Group B: T2,T1,T2",

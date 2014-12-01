@@ -46,6 +46,7 @@ percentchg <- function(x){ # percent change from previous to current
 dat <- transform(dat, chga = percentchg(acres), chgp = percentchg(adjcombined))
 
 with(dat, cor(chga, chgp, use='pair')) # .501 correlation
+require(lattice)
 xyplot(chga~chgp, dat, type=c('p','r'),
        main="walsh.cottonprice",
        xlab="Percent change in previous price", ylab="Percent change in acres")

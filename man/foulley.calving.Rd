@@ -48,6 +48,7 @@ dat <- foulley.calving
 d2 <- transform(dat, age=ordered(age, levels=c("0.0-2.0","2.0-2.5","2.5-3.0","3.0-3.5","3.5-4.0",
                                          "4.0-4.5","4.5-5.0","5.0-8.0","8.0+")),
                  score=ordered(score, levels=c('S1','S2','S3')))
+require(reshape2)
 d2 <- acast(dat, sex+age~score, value.var='count')
 d2 <- prop.table(d2, margin=1)
 require(lattice)

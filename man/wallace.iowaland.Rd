@@ -41,6 +41,7 @@
 dat <- wallace.iowaland
 
 # Interesting trends involving latitude
+require(lattice)
 splom(~dat[,-c(1:2)], type=c('p','smooth'), lwd=2, main="wallace.iowaland")
 
 # Means. Similar to Wallace table 1

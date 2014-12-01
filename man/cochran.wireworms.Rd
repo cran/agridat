@@ -42,6 +42,7 @@ dat <- cochran.wireworms
 # desplot(worms ~ col*row, data=dat, text=trt, cex=1)
 
 # Trt K is effective, but not the others.  Really, this says it all.
+require(lattice)
 bwplot(worms ~ trt, dat, main="cochran.wireworms", xlab="Treatment")
 
 # Snedecor and Cochran do ANOVA on sqrt(x+1).

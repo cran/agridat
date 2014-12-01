@@ -32,7 +32,6 @@
 dat <- gomez.seedrate
 
 require(lattice)
-
 xyplot(yield ~ rate, data=dat, group=rep, type='b',
        main="gomez.seedrate", auto.key=list(columns=4))
 

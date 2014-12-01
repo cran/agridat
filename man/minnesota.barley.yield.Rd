@@ -119,6 +119,7 @@ dat$yr <- factor(dat$year)
 dat <- droplevels(subset(dat, !is.element(gen, c("CompCross","Dryland","Jeans","MechMixture"))))
 
 # 1934 has huge swings from one loc to the next
+require(lattice)
 dotplot(gen~yield|site, dat, groups=yr,
         main="minnesota.barley.yield",
         auto.key=list(columns=5), scales=list(y=list(cex=.5)))

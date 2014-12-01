@@ -56,8 +56,10 @@
 
 dat <- butron.maize
 
+# require(lattice)
 # densityplot(~yield|env, dat, layout=c(1,5))
 
+require(reshape2)
 mat <- acast(dat, gen~env, value.var='yield')
 mat <- sweep(mat, 2, colMeans(mat))
 mat.svd <- svd(mat)

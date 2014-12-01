@@ -39,6 +39,7 @@ nprice <- 0.6615 # $0.66/kg N or $0.30/lb N
 # Hernandez optimized yield with a constraint on the ratio of the prices.
 # Simpler to just calculate the income and optimize that.
 dat <- transform(dat, inc = yield * cprice - nitro * nprice)
+require(lattice)
 xyplot(inc ~ nitro|site, dat, groups=rep, auto.key=list(columns=4),
        main="hernandez.nitrogen")
 

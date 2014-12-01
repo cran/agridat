@@ -68,6 +68,7 @@ m1 <- lmer(yield ~ cultivar * spacing * pop +
            (1|block:cultivar:pop), data=dat)
 
 ## Variances match Schabenberger, page 498.
+require(lucid)
 vc(m1)
 ##                    grp        var1 var2   vcov  sdcor
 ##     block:cultivar:pop (Intercept) <NA> 2.421  1.556

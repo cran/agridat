@@ -65,6 +65,7 @@ m1a <- asreml(yield ~ gen, data=datm,
               rcov = ~ at(gen):units,
               predict=asreml:::predict.asreml(classify="gen"))
 
+require(lucid)
 vc(m1a)[1:7,]
 ##             effect component std.error z.ratio constr
 ##  county!county.var   1324       838.2      1.6    pos

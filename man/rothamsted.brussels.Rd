@@ -36,6 +36,7 @@
 
 dat <- rothamsted.brussels
 
+require(lattice)
 bwplot(yield~trt, dat, main="rothamsted.brussels")
 desplot(yield~col*row, data=dat, num=trt, out1=block, cex=1,
         main="rothamsted.brussels")

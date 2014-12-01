@@ -56,6 +56,8 @@
 
 \examples{
 dat <- student.barley
+
+require(lattice)
 bwplot(yield ~ gen|district, dat, main="student.barley - yield")
 
 dat$year <- factor(dat$year)

@@ -42,6 +42,7 @@ dat <- hunter.corn
 
 dat <- transform(dat, env=factor(paste(loc,year)))
 
+require(lattice)
 xyplot(yield~nitro|env, dat, type='b',
 main="hunter.corn - nitrogen response curves")
 

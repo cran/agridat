@@ -46,6 +46,7 @@ desplot(yield ~ col * row, dat, num=gen, out1=rep,
 if(require(lme4)){
 m1 <- lmer(yield ~ gen + (1|rep) + (1|rep:yf) + (1|rep:xf), data=dat)
 
+require(lucid)
 vc(m1)
 ##    groups        name variance stddev
 ##  rep:xf   (Intercept)    14810 121.7

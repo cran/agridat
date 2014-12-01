@@ -54,6 +54,7 @@ dat$year <- factor(dat$year)
 m1 <- lmer(yield ~ year + loc + year:loc + (1|gen) +
            (1|gen:loc) + (1|gen:year), data=dat)
 
+require(lucid)
 vc(m1)
 ##      grp        var1 var2  vcov  sdcor
 ##  gen:loc (Intercept) <NA>  9363  96.76

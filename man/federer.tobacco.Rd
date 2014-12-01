@@ -28,7 +28,7 @@
   (centimeters) of 20 plants.
 }
 \source{
-  Walter T Federer and C S Schlottfeldt, 1954. 
+  Walter T Federer and C S Schlottfeldt, 1954.
   The use of covariance to control gradients in experiments.
   \emph{Biometrics}, 10, 282--290.
 }
@@ -56,6 +56,7 @@ m1 <- lm(height ~ blockf + dosef, data=dat)
 anova(m1)
 
 # RCB residuals show strong spatial trends
+require(lattice)
 levelplot(resid(m1) ~ row * block, data=dat,
 col.regions=RedGrayBlue(21), main="federer.tobacco")
 

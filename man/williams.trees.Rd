@@ -41,6 +41,8 @@
 }
 \examples{
 dat <- williams.trees
+
+require(lattice)
 xyplot(survival~height|env,dat, main="williams.trees", xlab="Height",
 ylab="Percent surviving")
 }

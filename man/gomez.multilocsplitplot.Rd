@@ -33,6 +33,7 @@ dat <- gomez.multilocsplitplot
 dat$nf <- factor(dat$nitro)
 
 # Gomez figure 8.3
+require(lattice)
 xyplot(yield~nitro, dat, group=loc, type=c('p','smooth'), auto.key=TRUE,
        main="gomez.multilocsplitplot")
 

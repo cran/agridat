@@ -25,7 +25,7 @@
 \source{
   David L. Turner and Michael H. Ralphs and John O. Evans (1992).
   Logistic Analysis for Monitoring and Assessing Herbicide Efficacy.
-  emph{Weed Technology}, 6, 424-430.
+  \emph{Weed Technology}, 6, 424-430.
   \url{http://www.jstor.org/stable/3987312}.
 }
 \examples{

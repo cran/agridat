@@ -56,6 +56,7 @@ anova(m2)
 ## gen 24 380.43 15.8513 185.9942
 ## rep  2   1.57  0.7851   9.2123
 
+require(lucid)
 vc(m2)
 ##        grp        var1 var2    vcov  sdcor
 ##  rep:block (Intercept) <NA> 0.06194 0.2489
@@ -75,6 +76,7 @@ means <- data.frame(rcb=coef(m0)[1:24],
 ## genG04 4.439400 4.728175 4.528828
 ## genG05 5.103100 5.225708 5.075944
 ## genG06 4.749067 4.618234 4.575394
+require(lattice)
 splom(means, data=means, main="john.alpha - means for RCB, IB, Intra-block")
 
 }

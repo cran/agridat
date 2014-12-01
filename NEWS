@@ -1,5 +1,21 @@
 News for 'agridat'
 
+Version 1.10 (Nov 2014)
+
+* New data:
+  beaven.barley, perry.springwheat, ridout.appleshoots
+
+* Other:
+  Move packages from Depends to Imports.
+  JAGS example added to welch.bermudagrass.
+  Moved 'vc' function to the 'lucid' package.
+
+* Wish list:
+  JAGS code for lee.potatoblight
+  JAGS code for theobald.barley
+  JAGS code for besag.elbatan.
+  Example for bond.diallel.
+
 Version 1.9 (Jul 2014)
 
   * New data:
@@ -27,21 +43,12 @@ Version 1.9 (Jul 2014)
     hayman.diallel is now hayman.tobacco
     besag.met now includes missing values (to form complete rectangles).
     All data (almost) now have an example graphic.
-
-  * Wish list:
-    JAGS code for lee.potatoblight
-    JAGS code for theobald.barley
-    JAGS code for besag.elbatan.
-    Example for bond.diallel.
+    Added a package vignette.
 
 Version 1.8 (Sep 2013)
 
   * New data:
     brandle.rape, salmon.bunt
-
-  * Other:
-    Fix issues in examples due to lme4 changes.
-    Switch from exactRankTests to coin in gathmann.bt
 
 Version 1.7 (Sep 2013)
 
@@ -75,8 +82,6 @@ Version 1.5 (Apr 2013)
     nass.sorghum, nass.soybean, nass.wheat, ortiz.tomato, pacheco.soybean,
     senshu.rice, snedecor.asparagus, streibig.competition, zuidhof.broiler
 
-  * Renamed crowder.germination to crowder.seeds.
-  * Change 'column' to 'col' in all data.
   * Function 'desplot' gains an argument 'flip' for vertical flips.
   * Removed rgl and rjags from 'Suggests' to facilitate cross-platform checking
 

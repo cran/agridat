@@ -59,6 +59,7 @@
 \examples{
 
   dat <- yang.barley
+  require(reshape2)
   dat <- acast(dat, gen~site, value.var='yield')
 
 \dontrun{

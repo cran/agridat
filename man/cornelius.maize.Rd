@@ -40,6 +40,7 @@ mat <- acast(dat, gen~env)
 mat <- scale(mat, scale=FALSE)
 dat2 <- melt(mat)
 names(dat2) <- c('gen','env','yield')
+require(lattice)
 bwplot(yield ~ gen, dat2,
        main="cornelius.maize - environment centered yields")
 

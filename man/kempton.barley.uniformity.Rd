@@ -8,9 +8,10 @@
   Uniformity trial of Spring Barley in 1978
 }
 \details{
-  A uniformity trial of spring barley planted in 1978.
+  A uniformity trial of spring barley planted in 1978.  Conducted by the
+  Plant Breeding Institute in Cambridge, England.
+
   Each plot is 5 feet wide, 14 feet long.
-  Conducted by the Plant Breeding Institute in Cambridge, England.
 }
 
 \format{
@@ -50,6 +51,7 @@ dat <- transform(dat, xf = factor(col), yf=factor(row))
 require(asreml)
 m1 <- asreml(yield ~ 1, data=dat, rcov=~ar1(xf):ar1(yf))
 
+require(lucid)
 vc(m1)
 ##      effect component std.error z.ratio constr
 ##  R!variance    0.1044   0.022       4.7    pos

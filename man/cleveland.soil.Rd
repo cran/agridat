@@ -47,6 +47,7 @@ sg1 <- expand.grid(easting = seq(.15, 1.410, by = .015),
 fit1 <- with(dat,
                 predict(loess(resistivity~easting*northing, span = 0.25,
                         degree = 2), sg1))
+require(lattice)
 levelplot(fit1 ~ sg1$easting * sg1$northing,
           col.regions=RedGrayBlue,
           cuts = 9,

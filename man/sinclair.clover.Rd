@@ -36,6 +36,7 @@
 
 dat <- sinclair.clover
 
+require(lattice)
 xyplot(yield~P|factor(S), dat, layout=c(5,1), main="sinclair.clover")
 
 # Dodds fits a two-dimensional Mitscherlich-like model:

@@ -13,8 +13,8 @@
   \describe{
     \item{\code{roots}}{root yields, pounds}
     \item{\code{leaves}}{leaf yields, pounds}
-    \item{\code{col}}{column}
-    \item{\code{row}}{row}
+    \item{\code{col}}{column, 1-10}
+    \item{\code{row}}{row, 1-20}
   }
 }
 \details{

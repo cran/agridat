@@ -78,6 +78,7 @@ while(!done){
 
 }
 
+require(lattice)
 xyplot(yield ~ theta|gen, data=dat, xlab="theta (environment effect)",
        main="digby.jointregression - stability plot")
 

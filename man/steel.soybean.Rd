@@ -32,6 +32,7 @@
 \examples{
 
 dat <- steel.soybean
+require(lattice)
 dotplot(gen~yield|loc, dat, main="steele.soybean - yield by location")
 
 if(require(lme4)){

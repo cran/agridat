@@ -46,6 +46,7 @@ coef(m1)
 ## (Intercept)     degdays    year1957
 ##  3.49492453  0.08512651  0.21688760
 dat$pred <- predict(m1, type="response")
+require(lattice)
 require(latticeExtra)
 xyplot(leaves~degdays, data=dat, groups=year, type=c('p'),
        auto.key=TRUE, main="mead.cauliflower",

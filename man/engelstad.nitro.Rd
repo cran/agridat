@@ -28,6 +28,7 @@
   and 1966 data for the Knoxville location was not used as it appeared
   that the response due to nitrogen was minimal in 1965 and nonexistant
   in 1966.  The economic optimum can be found by setting the tangent
+  equal to the ratio of (fertilizer price)/(grain price).
 }
 \source{
   Engelstad, OP and Parks, WL.  1971.

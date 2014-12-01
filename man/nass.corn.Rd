@@ -61,6 +61,7 @@ xyplot(acres ~ year|state, dat, type='l', as.table=TRUE,
        main="nass.corn: state trends in corn acreage")
 
 ## Plain levelplot, using only states
+## require(reshape2)
 ## datm <- acast(dat, year~state, value.var='yield')
 ## levelplot(datm, aspect=.7, col.regions=RedGrayBlue,
 ##           main="nass.corn",

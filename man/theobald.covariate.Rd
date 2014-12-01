@@ -37,6 +37,7 @@
 \examples{
 
 dat <- theobald.covariate
+require(lattice)
 xyplot(yield ~ chu|gen, dat, type=c('p','smooth'),
        xlab =  "chu = corn heat units",
        main="theobald.covariate - yield vs heat")

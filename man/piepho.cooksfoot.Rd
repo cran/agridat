@@ -32,6 +32,7 @@
 dat <- piepho.cooksfoot
 dat$env <- factor(dat$year)
 
+require(lattice)
 densityplot(~date|env, data=dat, main="piepho.cooksfoot - heading date") # Gaussian, not gamma distn
 
 if(require(lme4)){

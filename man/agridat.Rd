@@ -16,7 +16,7 @@ pls = partial least squares, row-col = row-column design, ts = time series.
 
 \tabular{llll}{
 name                                  \tab dimensions \tab other \tab model \cr
-\link{baker.barley.uniformity}        \tab 3 x 19 \tab xy \tab 10 years\cr
+\link{baker.barley.uniformity}        \tab 3 x 19 \tab xy, 10 years \tab \cr
 \link{batchelor.apple.uniformity}     \tab 8 x 28 \tab xy \tab \cr
 \link{batchelor.lemon.uniformity}     \tab 14 x 16 \tab xy \tab \cr
 \link{batchelor.navel1.uniformity}    \tab 20 x 50 \tab xy \tab \cr
@@ -90,6 +90,7 @@ name                             \tab gen \tab loc\tab reps\tab years \tab trt \
 \link{ars.earlywhitecorn96}      \tab 60  \tab 9  \tab     \tab    \tab     \tab 6 traits \tab dotplot \cr
 \link{australia.soybean}         \tab 58  \tab 4  \tab     \tab 2  \tab     \tab 4-way, 6 traits \tab biplot \cr
 \link{beall.webworms}            \tab     \tab    \tab 15  \tab    \tab 2,2 \tab xy  \tab glm poisson\cr
+\link{beaven.barley}             \tab  8  \tab    \tab 20  \tab    \tab  \tab xy  \tab \cr
 \link{besag.bayesian}            \tab 75  \tab    \tab 3   \tab    \tab     \tab xy  \tab asreml \cr
 \link{besag.elbatan}             \tab 50  \tab    \tab 3   \tab    \tab     \tab xy  \tab lm, gam \cr
 \link{besag.endive}              \tab     \tab    \tab     \tab    \tab     \tab xy,binary \tab autologistic \cr
@@ -182,7 +183,9 @@ name                             \tab gen \tab loc\tab reps\tab years \tab trt \
 \link{minnesota.barley.yield}    \tab 22  \tab 6  \tab     \tab 10 \tab     \tab \tab dotplot\cr
 \link{ortiz.tomato}              \tab 15  \tab 18 \tab     \tab   \tab 16   \tab env*gen~env*cov \tab pls \cr
 \link{pacheco.soybean}           \tab 18  \tab 11 \tab     \tab    \tab     \tab \tab AMMI\cr
+\link{perry.springwheat}         \tab 28  \tab 5  \tab     \tab 4  \tab     \tab gain \tab lm,lmer,asreml\cr
 \link{piepho.cooksfoot}          \tab 25  \tab    \tab     \tab 7  \tab     \tab \tab lmer\cr
+\link{ridout.appleshoots}        \tab     \tab    \tab 30  \tab    \tab 2,4 \tab ZIP \tab zeroinfl\cr
 \link{rothamsted.brussels}       \tab     \tab    \tab 4   \tab    \tab 6   \tab \tab \cr
 \link{ryder.groundnut}           \tab 5   \tab    \tab 4   \tab    \tab     \tab xy, rcb \tab lm \cr
 \link{salmon.bunt}               \tab 10  \tab    \tab 2   \tab    \tab 20  \tab \tab betareg \cr
@@ -209,7 +212,7 @@ name                             \tab gen \tab loc\tab reps\tab years \tab trt \
 \link{wedderburn.barley}         \tab 10  \tab 9  \tab     \tab    \tab     \tab percent \tab glm/gnm \cr
 \link{weiss.incblock}            \tab 31  \tab    \tab 6   \tab    \tab     \tab xy,incblock \tab asreml \cr
 \link{weiss.lattice}             \tab 49  \tab    \tab 4   \tab    \tab     \tab xy,lattice \tab lm,asreml \cr
-\link{welch.bermudagrass}        \tab     \tab    \tab     \tab    \tab 4,4,4 \tab rsm3, factorial \tab lm \cr
+\link{welch.bermudagrass}        \tab     \tab    \tab     \tab    \tab 4,4,4 \tab rsm3, factorial \tab lm, jags \cr
 \link{yan.winterwheat}           \tab 18  \tab 9  \tab     \tab    \tab     \tab \tab GGE,biplot \cr
 \link{yang.barley}               \tab 6   \tab 18 \tab     \tab    \tab     \tab \tab biplot \cr
 \link{yates.missing}             \tab     \tab    \tab 10  \tab    \tab 3^2 \tab factorial \tab lm, pca \cr
@@ -253,7 +256,7 @@ name                       \tab model \cr
 The original sources for these data use several different words to refer to
 genotypes including \emph{breed}, \emph{cultivar}, \emph{genotype}, \emph{hybrid},
 \emph{line}, \emph{progeny}, \emph{stock}, \emph{type}, and \emph{variety}.
-For simplicity and consistency, these datasets mostly use \code{gen} (genotype).
+For consistency, these datasets mostly use \code{gen} (genotype).
 Also for consistency \code{row} and \code{col} are often used for the
 coordinates.
 
@@ -268,7 +271,6 @@ tribal habit practiced by statisticians of continually exhuming and
 massaging dead data sets after their purpose in life has long since been
 forgotten and there was no possibility of doing anything useful as a
 result of this treatment."
-
 Massaging these dead data sets will not lead to any of the
 genetics being released for commercial use.
 The value of these data is:
@@ -279,17 +281,22 @@ The value of these data is:
 Some of the examples use the \code{asreml} package since it is the only
 option for fitting mixed models with complex variance structures to
 large datasets, and also the only option (even for small datasets) for
-modelling AR1xAR1 residual variance structures.  The Discovery version
-of ASREML is free for people in academia (excluding commercial use) and
-for people in developing nations.  This applies to both the stand-alone
-ASREML and the R package ASREML-R. Learn more at
-\url{http://www.vsni.co.uk/software/asreml-discovery/}.
+modelling AR1xAR1 residual variance structures.
+A free trial version is available. 
 Commercial use requires a license:
 \url{http://www.vsni.co.uk/downloads/asreml/}.
 
 Note: In the U.S., raw data are generally not subject to copyright.  See
 \url{http://www.lib.umich.edu/copyright-office-mpublishing/copyrightability-charts-tables-and-graphs}
 and \url{http://sciencecommons.org/about/towards} for some discussion.
+
+Nonetheless, substantial effort has been made to contact people to
+secure permission to include data (published within the past few
+decades) in this package.
+
+Data produced from work of the United States government is not subject to
+copyright. \url{http://en.wikipedia.org/wiki/Copyright_status_of_work_by_the_U.S._government}
+
 
 }
 

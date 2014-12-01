@@ -39,7 +39,7 @@
 
 dat <- gomez.nitrogen
 
-# Note the depletion of nitrogren over time (stage)
+# Note the depletion of nitrogen over time (stage)
 require(HH)
 interaction2wt(nitro ~ rep/trt + trt*stage, data=dat,
                main="gomez.nitrogen")

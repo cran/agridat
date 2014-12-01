@@ -61,6 +61,7 @@
 
 dat <- pearl.kernels
 
+require(lattice)
 xyplot(ys+yt+ws+wt~obs|ear, dat, type='l', as.table=TRUE,
        auto.key=list(columns=4),
        main="pearl.kernels", xlab="observer",ylab="kernels",
