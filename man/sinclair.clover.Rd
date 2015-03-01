@@ -32,8 +32,10 @@
   A bivariate response surface for growth data.
   \emph{Fertilizer research}, 45, 117-122.
 }
+
 \examples{
 
+data(sinclair.clover)
 dat <- sinclair.clover
 
 require(lattice)

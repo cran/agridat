@@ -27,8 +27,8 @@
   the genetic effects.
 
   Note: Federer and Wolfinger (2003) provide a SAS program for analysis
-  of this data.  However, when the SAS program is used to analyze this data,
-  the results do not match the results given in Federer (1998) nor
+  of this data.  However, when the SAS program is used to analyze this
+  data, the results do not match the results given in Federer (1998) nor
   Federer and Wolfinger (2003).  The differences are slight, which
   suggests a typographical error in the presentation of the data.
 
@@ -47,8 +47,10 @@
   \emph{Handbook of Formulas and Software for Plant Geneticists
     and Breeders}, Haworth Press.
 }
+
 \examples{
 
+data(federer.diagcheck)
 dat <- federer.diagcheck
 
 # Show the layout as in Federer 1998.
@@ -56,6 +58,8 @@ dat$check <- ifelse(dat$gen == "G121" | dat$gen=="G122", "C","N")
 desplot(yield ~ col*row, dat, text=gen, show.key=FALSE,
       main="federer.diagcheck",
       shorten='no', col=check, cex=.8, col.text=c("yellow","gray"))
+
+# Now reproduce the analysis of Federer 2003.
 
 # Only to match SAS results
 dat$row <- 16 - dat$row
@@ -85,7 +89,7 @@ Anova(m1, type=3) # Matches PROC GLM output
 }
 
 # lmer
-if(require(lme4)){
+if(require(lme4) & require(lucid)){
 
 dat$one <- factor(rep(1, nrow(dat)))
 
@@ -94,8 +98,6 @@ m2b <- lmer(yield ~ trtn + (0 + r1 + r2 + r4 + r8 + r10 +
             c1 + c2 + c3 + c4 + c6 + c8 + r1:c1 + r1:c2 + r1:c3 || one) +
             (1|new:gen)
             , data = dat, control=lmerControl(check.nlev.gtr.1="ignore"))
-
-require(lucid)
 vc(m2b)
 ##      grp        var1 var2     vcov  sdcor
 ##  new.gen (Intercept) <NA>   2869    53.57
@@ -115,11 +117,11 @@ vc(m2b)
 ##   one.13          r1 <NA>   9200    95.92
 ## Residual        <NA> <NA>   4412    66.42
 
-## lmer with Nelder_Mead
+## lmer with Nelder_Mead gives 'wrong' results
 ## m2n <- lmer(yield ~ trtn + (0 + r1 + r2 + r4 + r8 + r10 +
 ##             c1 + c2 + c3 + c4 + c6 + c8 + r1:c1 + r1:c2 + r1:c3 || one) +
 ##             (1|new:gen)
-##             , data = dat, 
+##             , data = dat,
 ##             control=lmerControl(optimizer="Nelder_Mead",check.nlev.gtr.1="ignore"))
 ## vc(m2n)
 ##    groups        name variance   stddev
@@ -144,8 +146,10 @@ vc(m2b)
 
 
 \dontrun{
+
 # asreml
 require(asreml)
+require(lucid)
 m3 <- asreml(yield ~ -1 + trtn, data=dat,
              random = ~ r1 + r2 + r4 + r8 + r10 +
              c1 + c2 + c3 + c4 + c6 + c8 + r1:c1 + r1:c2 + r1:c3 + new:gen)

@@ -36,8 +36,10 @@
   Tech Bull 1141. United States Dept of Agriculture.
   \url{books.google.com/books?id=gAdZtsEziCcC&pg=PP1}
 }
+
 \examples{
 
+data(hunter.corn)
 dat <- hunter.corn
 
 dat <- transform(dat, env=factor(paste(loc,year)))

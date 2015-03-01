@@ -23,8 +23,9 @@ gge(x, ...)
 \method{plot}{gge}(x, title = substitute(x), ...)
 
 \method{biplot}{gge}(x, title = substitute(x), subtitle = "",
-  cex.gen = 0.7, cex.env = 0.6, col.gen = "#005000", col.env="darkorange4",
-  lab.env = TRUE, comps = 1:2, flip = "auto", ...)
+  cex.gen = 0.6, cex.env = 0.5,
+  col.gen = "darkgreen", col.env="orange3",
+  pch.gen=1, lab.env = TRUE, comps = 1:2, flip = "auto", res.vec=TRUE, ...)
 
 }
 
@@ -34,8 +35,8 @@ gge(x, ...)
   \item{data}{Data frame}
   \item{\dots}{Other arguments}
   \item{title}{title}
-  \item{center}{center?}
-  \item{scale}{scale?}
+  \item{center}{If TRUE, center values for each environment}
+  \item{scale}{If TRUE, scale values for each environment}
   \item{subtitle}{subtitle}
   \item{gen.group}{genotype group}
   \item{env.group}{env group}
@@ -43,11 +44,14 @@ gge(x, ...)
   \item{cex.env}{character expansion for environments}
   \item{col.gen}{color for genotypes}
   \item{col.env}{color for envts}
+  \item{pch.gen}{plot character for genotypes}
   \item{lab.env}{label envts}
   \item{comps}{comps}
   \item{flip}{If "auto" then each axis is flipped so that the genotype
     ordinate is positively correlated with genotype means.  Can also be
     a vector like c(TRUE,FALSE) for manual control.}
+  \item{res.vec}{If TRUE, for each group, draw residual vectors from the
+    mean of the locs to the individual locs}
   \item{method}{method used to find principal component directions}
 }
 \details{
@@ -59,6 +63,9 @@ gge(x, ...)
   values are NOT allowed.
 
   The NIPALS algorithm can be used when there are missing data.
+
+  The argument 'method' can be either 'svd' for complete-data, or
+  'nipals' for missing-data.
 
 }
 \value{
@@ -123,13 +130,13 @@ biplot(m1, title="Example biplot")
 # crossa.wheat biplot
 
 # Specify env.group as column in data frame
+data(crossa.wheat)
 dat2 <- crossa.wheat
 dat2$eg <- ifelse(is.element(dat2$loc,
 c("KN","NB","PA","BJ","IL","TC", "JM","PI","AS","ID","SC","SS",
 "SJ","MS","MG","MM")), "Grp1", "Grp2")
 m4 <- gge(yield~gen*loc, dat2, env.group=eg, scale=FALSE)
 biplot(m4, lab.env=TRUE, title="crossa.wheat")
-
 
 }
 

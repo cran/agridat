@@ -37,6 +37,8 @@
   Peter John, \emph{Statistical Design and Analysis of Experiments}, p. 85.
 }
 \examples{
+
+data(bond.diallel)
 dat <- bond.diallel
 
 require(lattice)

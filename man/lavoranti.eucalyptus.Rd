@@ -49,6 +49,7 @@
   imputing missing data in trials with genotype-by-environment
   interaction, \emph{Biometrical Letters}, 47, 1--14.
 }
+
 \examples{
 
 # Arciniegas-Alarcon et al use SVD and regression to estimate missing values.
@@ -58,6 +59,7 @@
 #     [ xc1 X11 ] and let X11 = UDV'.
 # Estimate the missing value xm = xr1 V D^{-1} U' xc1
 
+data(lavoranti.eucalyptus)
 dat <- lavoranti.eucalyptus
 
 require(lattice)

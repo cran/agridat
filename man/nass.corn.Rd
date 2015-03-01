@@ -48,7 +48,10 @@
   National Agricultural Statistics Service.
   \url{http://quickstats.nass.usda.gov/}
 }
+
 \examples{
+
+data(nass.corn)
 dat <- nass.corn
 
 # Use only states that grew at least 100K acres of corn in 2011

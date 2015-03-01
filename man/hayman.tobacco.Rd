@@ -70,6 +70,7 @@
 
 # 1951 data.  Fit the first REML model of Mohring 2011 Supplement.
 
+data(hayman.tobacco)
 dat1 <- subset(hayman.tobacco, year==1951)
 
 # Make a factor 'comb' in which G1xG2 is the same cross as G2xG1

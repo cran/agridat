@@ -39,6 +39,7 @@
 }
 \examples{
 
+data(besag.endive)
 dat <- besag.endive
 
 # Incidence map.  Figure 2 of Friel and Pettitt

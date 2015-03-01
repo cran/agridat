@@ -52,8 +52,10 @@
 \references{
   \url{http://www.vsni.co.uk/software/asreml/htmlhelp/asreml/xwheat.htm}.
 }
+
 \examples{
 
+data(cullis.earlygen)
 dat <- cullis.earlygen
 
 # Show field layout of checks.  Cullis Table 1.

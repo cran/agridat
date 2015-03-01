@@ -30,8 +30,10 @@
   Parametric bootstrap methods for testing multiplicative terms in GGE
   and AMMI models. \emph{Biometrics}.
 }
+
 \examples{
 
+data(cornelius.maize)
 dat <- cornelius.maize
 # dotplot(gen~yield|env,dat) # We cannot compare genotype yields easily
 # Subtract environment mean from each observation

@@ -40,6 +40,9 @@
 }
 
 \examples{
+
+data(adugna.sorghum)
+
 # Genotype means match Adugna
 dat <- adugna.sorghum
 

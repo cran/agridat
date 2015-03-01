@@ -36,6 +36,7 @@
 
 \examples{
 
+data(theobald.covariate)
 dat <- theobald.covariate
 require(lattice)
 xyplot(yield ~ chu|gen, dat, type=c('p','smooth'),

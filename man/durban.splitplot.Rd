@@ -35,7 +35,10 @@
 
   Used with permission of Maria Durban.
 }
+
 \examples{
+
+data(durban.splitplot)
 dat <- durban.splitplot
 
 # Durban 2003, Figure 2

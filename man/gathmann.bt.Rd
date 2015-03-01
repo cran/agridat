@@ -30,7 +30,10 @@
 
   Used with permission of Achim Gathmann.
 }
+
 \examples{
+
+data(gathmann.bt)
 dat <- gathmann.bt
 
 

@@ -38,8 +38,10 @@
   Methods for Comparing the Yield Stability of Cropping Systems.
   \emph{Journal of Agronomy and Crop Science}, 180, 193--213.
 }
+
 \examples{
 
+data(hildebrand.systems)
 dat <- hildebrand.systems
 
 # Piepho 1998 Fig 1

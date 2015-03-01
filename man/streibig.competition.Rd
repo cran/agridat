@@ -38,8 +38,10 @@
   \emph{Contemporary Statistical Models for the Plant and Soil Sciences},
   CRC Press.  Page 370-375.
 }
+
 \examples{
 
+data(streibig.competition)
 dat <- streibig.competition
 
 # See Schaberger and Pierce, pages 370+

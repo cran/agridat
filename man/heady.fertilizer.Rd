@@ -54,6 +54,7 @@
 
 \examples{
 
+data(heady.fertilizer)
 dat <- heady.fertilizer
 
 require(lattice)

@@ -35,8 +35,10 @@
   G W Snedecor and W G Cochran, 1980. \emph{Statistical Methods},
   Iowa State University Press.  Page 288.
 }
+
 \examples{
 
+data(cochran.wireworms)
 dat <- cochran.wireworms
 
 # desplot(worms ~ col*row, data=dat, text=trt, cex=1)

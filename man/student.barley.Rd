@@ -55,6 +55,8 @@
 }
 
 \examples{
+
+data(student.barley)
 dat <- student.barley
 
 require(lattice)

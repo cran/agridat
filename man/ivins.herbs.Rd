@@ -71,6 +71,7 @@
 
 \examples{
 
+data(ivins.herbs)
 dat <- ivins.herbs
 
 # Nettle is primarily established in legumes.

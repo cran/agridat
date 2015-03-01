@@ -87,6 +87,8 @@ been corrected.
   principal component analysis. \emph{Euphytica}, 44, 109--123.
 }
 \examples{
+
+data(australia.soybean)
 dat <- australia.soybean
 
 require(reshape2)

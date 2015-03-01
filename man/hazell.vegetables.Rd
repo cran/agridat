@@ -33,8 +33,10 @@
   Carlos Romero, Tahir Rehman. (2003).
   \emph{Multiple Criteria Analysis for Agricultural Decisions}. Elsevier.
 }
+
 \examples{
 
+data(hazell.vegetables)
 dat <- hazell.vegetables
 
 \dontrun{

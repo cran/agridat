@@ -33,6 +33,7 @@
 }
 \examples{
 
+data(gilmour.slatehall)
 dat <- gilmour.slatehall
 
 desplot(yield ~ col * row, dat, num=gen,

@@ -43,6 +43,7 @@
 }
 \examples{
 
+data(blackman.wheat)
 dat <- blackman.wheat
 
 require(lattice)

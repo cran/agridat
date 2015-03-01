@@ -49,9 +49,10 @@
   \url{support.sas.com/rnd/app/examples/stat/GENMODZIP/roots.pdf}
 
 }
+
 \examples{
 
-
+data(ridout.appleshoots)
 dat <- ridout.appleshoots
 
 # Change photo and bap to factors
@@ -70,8 +71,7 @@ foo.obs <- histogram(~roots|photo*bap, dat, breaks=0:18-0.5, type="density",
                      xlab="Number of roots for photoperiod 8, 16",
                      ylab="Density for BAP levels",
                      main="ridout.appleshoots")
-library(latticeExtra)
-useOuterStrips(foo.obs)
+if(require(latticeExtra)) useOuterStrips(foo.obs)
 
 # Ordinary (non-ZIP) Poisson GLM
 m1 <- glm(roots ~ bap + photo + bap:photo, data=dat,

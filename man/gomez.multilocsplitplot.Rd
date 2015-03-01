@@ -28,7 +28,10 @@ Rice multilocation Split-Plot
 
   Used with permission of Kwanchai Gomez.
 }
+
 \examples{
+
+data(gomez.multilocsplitplot)
 dat <- gomez.multilocsplitplot
 dat$nf <- factor(dat$nitro)
 

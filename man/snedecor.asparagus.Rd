@@ -30,8 +30,10 @@
     Experimental Design Context}.
   Statistical Advisory & Training Service Pty Ltd.
 }
+
 \examples{
 
+data(snedecor.asparagus)
 dat <- snedecor.asparagus
 
 dat <- transform(dat, year=factor(year))
@@ -49,7 +51,8 @@ m1 <- lmer(yield ~ trt + year + trt:year + (1|block) + (1|block:trt), data=dat)
 
 \dontrun{
 # Split-plot with asreml
-m2 <- asreml(yield ~ trt + year + trt:year, data=dat,
+require(asreml)
+  m2 <- asreml(yield ~ trt + year + trt:year, data=dat,
              random = ~ block + block:trt)
 
 require(lucid)

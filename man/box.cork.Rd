@@ -34,6 +34,7 @@ Data frame with 28 observations on the following 5 variables.
 
 \examples{
 
+data(box.cork)
 dat <- box.cork
 
 require(lattice)

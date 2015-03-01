@@ -33,8 +33,10 @@
   \emph{Contemporary statistical models for the plant and soil sciences},
   CRC.
 }
+
 \examples{
 
+data(mead.germination)
 dat <- mead.germination
 dat <- transform(dat, concf=factor(conc))
 require(lattice)

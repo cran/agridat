@@ -33,8 +33,10 @@
   \emph{Proceedings of the Royal Society A: Mathematical, Physical and
   Engineering Science}, 462, 2119--2143.
 }
+
 \examples{
 
+data(mercer.mangold.uniformity)
 dat <- mercer.mangold.uniformity
 
 # Show field in true aspect ratio

@@ -32,8 +32,10 @@
   \emph{Proceedings of the Royal Society A: Mathematical, Physical and
   Engineering Science}, 462, 2119--2143.
 }
+
 \examples{
 
+data(rothamsted.brussels)
 dat <- rothamsted.brussels
 
 require(lattice)

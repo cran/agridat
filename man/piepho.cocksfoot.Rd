@@ -1,13 +1,13 @@
-\name{piepho.cooksfoot}
-\alias{piepho.cooksfoot}
+\name{piepho.cocksfoot}
+\alias{piepho.cocksfoot}
 \docType{data}
 \title{
-  Heading dates for cook's foot on 25 varieties in 7 years
+  Heading dates for cock's foot on 25 varieties in 7 years
 }
 \description{
-  Heading dates for cook's foot on 25 varieties in 7 years
+  Heading dates for cock's foot on 25 varieties in 7 years
 }
-\usage{data(piepho.cooksfoot)}
+\usage{data(piepho.cocksfoot)}
 \format{
   A data frame with 111 observations on the following 3 variables.
   \describe{
@@ -17,7 +17,7 @@
   }
 }
 \details{
-   These data are heading dates (days from April 1 to heading) of  25 cook's foot
+   These data are heading dates (days from April 1 to heading) of  25 cock's foot
   \emph{Dactylis glomerata} varieties in trials at Hannover, Germany,
   repeated over seven years.  Values are means over replications.
 }
@@ -27,13 +27,15 @@
   Dates in Grasses by Methods for Nonlinear Mixed Models.
   \emph{Biometrics}, 55, 1120-1128.
 }
+
 \examples{
 
-dat <- piepho.cooksfoot
+data(piepho.cocksfoot)
+dat <- piepho.cocksfoot
 dat$env <- factor(dat$year)
 
 require(lattice)
-densityplot(~date|env, data=dat, main="piepho.cooksfoot - heading date") # Gaussian, not gamma distn
+densityplot(~date|env, data=dat, main="piepho.cocksfoot - heading date") # Gaussian, not gamma distn
 
 if(require(lme4)){
   # A simple mixed model gives results similar to Piepho, Table 2.

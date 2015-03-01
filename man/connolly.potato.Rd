@@ -50,6 +50,7 @@
 
 \examples{
 
+data(connolly.potato)
 dat <- connolly.potato
 
 # Field plan

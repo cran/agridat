@@ -42,6 +42,7 @@
 
 \examples{
 
+data(foulley.calving)
 dat <- foulley.calving
 
 ## Plot
@@ -91,8 +92,7 @@ barchart(d2, par.settings=thm, main="foulley.calving",
 ## Residual Deviance: 216176.90
 ## AIC: 216214.90
 
-\dontrun{
-  require(ordinal)
+if(require(ordinal)){
   m2 <- clm(score ~ sex*age, data=dat, weights=count, link='probit')
   summary(m2) # same as polr model
   predict(m2) # probability of each category

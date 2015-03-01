@@ -45,6 +45,8 @@
 }
 
 \examples{
+
+data(besag.met)
 dat <- besag.met
 
 desplot(yield ~ col*row|county, out1=rep, out2=block, dat,

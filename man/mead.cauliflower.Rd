@@ -35,8 +35,10 @@
   Mick O'Neill. Regression & Generalized Linear (Mixed) Models.
   STatistical Advisory & Training Service Pty Ltd.
 }
+
 \examples{
 
+data(mead.cauliflower)
 dat <- mead.cauliflower
 
 dat <- transform(dat, year=factor(year))
@@ -47,11 +49,12 @@ coef(m1)
 ##  3.49492453  0.08512651  0.21688760
 dat$pred <- predict(m1, type="response")
 require(lattice)
-require(latticeExtra)
+if(require(latticeExtra)){
 xyplot(leaves~degdays, data=dat, groups=year, type=c('p'),
        auto.key=TRUE, main="mead.cauliflower",
        xlab="degree days", ylab="number of leaves (by year)", ) +
   xyplot(pred~degdays, data=dat, groups=year, type=c('l'), col="black")
+}
 
 }
 \keyword{datasets}

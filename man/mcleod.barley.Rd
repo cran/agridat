@@ -38,8 +38,10 @@
 \references{
   Maindonald (1992).
 }
+
 \examples{
 
+data(mcleod.barley)
 dat <- mcleod.barley
 
 # Table 3 of McLeod.  Across-environment means by planting rate

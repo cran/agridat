@@ -42,8 +42,10 @@
   Additive Main Effects and Multiplicative Interaction Model
   and Stability Estimates, \emph{JABES}, 3, 335--345.
 }
+
 \examples{
 
+data(shafii.rapeseed)
 dat <- shafii.rapeseed
 
 dat$gen <- with(dat, reorder(gen, yield, mean))

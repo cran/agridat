@@ -29,8 +29,10 @@
   Mick O'Neill, 2010.  Anova and REML: A Guide to Linear Mixed Models In
   An Experimental Design Context.
 }
+
 \examples{
 
+data(steel.soybean)
 dat <- steel.soybean
 require(lattice)
 dotplot(gen~yield|loc, dat, main="steele.soybean - yield by location")

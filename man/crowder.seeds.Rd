@@ -42,8 +42,10 @@
   Hierarchical generalized linear models with discussion.
   \emph{J. R. Statist. Soc. B}, 58:619-678.
 }
+
 \examples{
 
+data(crowder.seeds)
 dat <- crowder.seeds
 m1.glm <- m1.glmm <- m1.bb <- m1.hglm <- NA
 
@@ -112,7 +114,7 @@ round(summary(m1.hglm)$FixCoefMat,2)
 \dontrun{
 
   # --- rjags version ---
-  
+
 # JAGS/BUGS.  See http://mathstat.helsinki.fi/openbugs/Examples/Seeds.html
 # Germination rate depends on p, which is a logit of a linear predictor
 # based on genotype and extract, plus random deviation to intercept
@@ -163,10 +165,11 @@ hpd <- HPDinterval(c2)[[1]]
 med <- summary(c2, quantiles=.5)$quantiles
 fit <- data.frame(med, hpd)
 
-require(latticeExtra)
-obs <- dotplot(1:21 ~ germ/n, dat, ylab="plate",
-               col=as.numeric(dat$gen), pch=substring(dat$extract,1))
-obs + segplot(1:21 ~ lower + upper, data=fit, centers=med)
+if(require(latticeExtra)){
+  obs <- dotplot(1:21 ~ germ/n, dat, ylab="plate",
+                 col=as.numeric(dat$gen), pch=substring(dat$extract,1))
+  obs + segplot(1:21 ~ lower + upper, data=fit, centers=med)
+}
 
 # ----------------------------------------------------------------------------
 ## --- R2jags version ---

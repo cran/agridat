@@ -27,8 +27,10 @@
   Krzanowski, W.J. (1988)
   \emph{Principles of multivariate analysis}. Oxford University Press.
 }
+
 \examples{
 
+data(lyons.wheat)
 dat <- lyons.wheat
 require(lattice)
 xyplot(yield~factor(year), dat, group=loc,

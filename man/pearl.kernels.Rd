@@ -59,6 +59,7 @@
 
 \examples{
 
+data(pearl.kernels)
 dat <- pearl.kernels
 
 require(lattice)

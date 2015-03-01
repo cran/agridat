@@ -89,17 +89,22 @@ name                             \tab gen \tab loc\tab reps\tab years \tab trt \
 \link{allcroft.lodging}          \tab 32  \tab 7  \tab     \tab    \tab     \tab percent \tab tobit \cr
 \link{ars.earlywhitecorn96}      \tab 60  \tab 9  \tab     \tab    \tab     \tab 6 traits \tab dotplot \cr
 \link{australia.soybean}         \tab 58  \tab 4  \tab     \tab 2  \tab     \tab 4-way, 6 traits \tab biplot \cr
-\link{beall.webworms}            \tab     \tab    \tab 15  \tab    \tab 2,2 \tab xy  \tab glm poisson\cr
-\link{beaven.barley}             \tab  8  \tab    \tab 20  \tab    \tab  \tab xy  \tab \cr
-\link{besag.bayesian}            \tab 75  \tab    \tab 3   \tab    \tab     \tab xy  \tab asreml \cr
-\link{besag.elbatan}             \tab 50  \tab    \tab 3   \tab    \tab     \tab xy  \tab lm, gam \cr
+\link{beall.webworms}            \tab     \tab    \tab 15  \tab    \tab 2,2 \tab xy \tab glm poisson\cr
+\link{beaven.barley}             \tab  8  \tab    \tab 20  \tab    \tab     \tab xy \tab \cr
+\link{besag.bayesian}            \tab 75  \tab    \tab 3   \tab    \tab     \tab xy \tab asreml \cr
+\link{besag.beans}               \tab 6   \tab    \tab 4*6 \tab    \tab     \tab xy \tab lm,competition \cr
+\link{besag.elbatan}             \tab 50  \tab    \tab 3   \tab    \tab     \tab xy \tab lm, gam \cr
 \link{besag.endive}              \tab     \tab    \tab     \tab    \tab     \tab xy,binary \tab autologistic \cr
 \link{besag.met}                 \tab 64  \tab 6  \tab 3   \tab    \tab     \tab xy, incblock\tab asreml, lme \cr
+\link{besag.triticale}           \tab 3   \tab    \tab     \tab    \tab 2,2,3 \tab xy \tab lm, asreml \cr
 \link{bliss.borers}              \tab     \tab    \tab     \tab    \tab 4   \tab \tab glm \cr
 \link{blackman.wheat}            \tab 12  \tab 7  \tab     \tab    \tab 2   \tab \tab biplot \cr
 \link{bond.diallel}              \tab 6*6 \tab    \tab     \tab    \tab 9   \tab diallel \tab \cr
 \link{bridges.cucumber}          \tab 4   \tab 2  \tab 4   \tab    \tab     \tab xy, latin, hetero\tab asreml \cr
 \link{brandle.rape}              \tab 5   \tab 9  \tab 4   \tab 3  \tab     \tab \tab lmer \cr
+\link{burgueno.alpha}            \tab 15  \tab    \tab 3   \tab    \tab     \tab xy, alpha \tab asreml,lmer \cr
+\link{burgueno.rowcol}           \tab 64  \tab    \tab 2   \tab    \tab     \tab xy, row-col \tab asreml,lmer \cr
+\link{burgueno.unreplicated}     \tab 280 \tab    \tab     \tab    \tab     \tab xy \tab asreml \cr
 \link{butron.maize}              \tab 49  \tab 3  \tab     \tab 2  \tab     \tab diallel,pedigree \tab biplot,asreml \cr
 \link{caribbean.maize}           \tab     \tab 17 \tab 4   \tab    \tab 3   \tab \tab \cr
 \link{carmer.density}            \tab 8   \tab    \tab     \tab    \tab 4   \tab \tab nls,nlme \cr
@@ -184,7 +189,7 @@ name                             \tab gen \tab loc\tab reps\tab years \tab trt \
 \link{ortiz.tomato}              \tab 15  \tab 18 \tab     \tab   \tab 16   \tab env*gen~env*cov \tab pls \cr
 \link{pacheco.soybean}           \tab 18  \tab 11 \tab     \tab    \tab     \tab \tab AMMI\cr
 \link{perry.springwheat}         \tab 28  \tab 5  \tab     \tab 4  \tab     \tab gain \tab lm,lmer,asreml\cr
-\link{piepho.cooksfoot}          \tab 25  \tab    \tab     \tab 7  \tab     \tab \tab lmer\cr
+\link{piepho.cocksfoot}          \tab 25  \tab    \tab     \tab 7  \tab     \tab \tab lmer\cr
 \link{ridout.appleshoots}        \tab     \tab    \tab 30  \tab    \tab 2,4 \tab ZIP \tab zeroinfl\cr
 \link{rothamsted.brussels}       \tab     \tab    \tab 4   \tab    \tab 6   \tab \tab \cr
 \link{ryder.groundnut}           \tab 5   \tab    \tab 4   \tab    \tab     \tab xy, rcb \tab lm \cr
@@ -195,6 +200,8 @@ name                             \tab gen \tab loc\tab reps\tab years \tab trt \
 \link{snedecor.asparagus}        \tab     \tab    \tab 4   \tab 4  \tab 4   \tab \tab split-plot, antedependence \cr
 \link{snijders.fusarium}         \tab 17  \tab    \tab     \tab 3  \tab 4   \tab percent \tab glm/gnm,AMMI \cr
 \link{steel.soybean}             \tab 12  \tab 3  \tab 3   \tab    \tab     \tab \tab \cr
+\link{steptoe.morex.pheno}       \tab 152 \tab 16 \tab     \tab    \tab     \tab 10 traits \tab \cr
+\link{steptoe.morex.geno}        \tab 150 \tab    \tab     \tab    \tab     \tab 223 markers, qtl \tab \cr
 \link{streibig.competition}      \tab 2   \tab    \tab 3   \tab    \tab     \tab \tab glm \cr
 \link{stroup.nin}                \tab 56  \tab    \tab 4   \tab    \tab     \tab xy \tab asreml \cr
 \link{stroup.splitplot}          \tab     \tab    \tab 4   \tab    \tab     \tab \tab asreml, MCMCglmm \cr
@@ -253,19 +260,6 @@ name                       \tab model \cr
 \link{waynick.soil}        \tab spatial, nitro/carbon \cr
 }
 
-The original sources for these data use several different words to refer to
-genotypes including \emph{breed}, \emph{cultivar}, \emph{genotype}, \emph{hybrid},
-\emph{line}, \emph{progeny}, \emph{stock}, \emph{type}, and \emph{variety}.
-For consistency, these datasets mostly use \code{gen} (genotype).
-Also for consistency \code{row} and \code{col} are often used for the
-coordinates.
-
-In almost all cases, the data are presented as data frames.  In a few
-cases, the data are lists of matrices.
-
-White and van Evert (2008) present some guidelines for publication of
-data.
-
 Box (1957) said, "I had hoped that we had seen the end of the obscene
 tribal habit practiced by statisticians of continually exhuming and
 massaging dead data sets after their purpose in life has long since been
@@ -278,13 +272,34 @@ The value of these data is:
 2. Providing data for testing new analysis methods.
 3. Illustrating (and validating) the use of R.
 
-Some of the examples use the \code{asreml} package since it is the only
-option for fitting mixed models with complex variance structures to
+White and van Evert (2008) present some guidelines for publication of data.
+
+Some of the examples use the \code{asreml} package since it is the _only_
+R tool for fitting mixed models with complex variance structures to
 large datasets, and also the only option (even for small datasets) for
 modelling AR1xAR1 residual variance structures.
-A free trial version is available. 
-Commercial use requires a license:
+A free trial version is available. Commercial use requires a license:
 \url{http://www.vsni.co.uk/downloads/asreml/}.
+
+\bold{Comments on the package structure}
+
+The original sources for these data use several different words to refer to
+genotypes including \emph{breed}, \emph{cultivar}, \emph{genotype}, \emph{hybrid},
+\emph{line}, \emph{progeny}, \emph{stock}, \emph{type}, and \emph{variety}.
+For consistency, these datasets mostly use \code{gen} (genotype).
+Also for consistency \code{row} and \code{col} are often used for the
+coordinates.
+
+In dataframes, 'block', 'rep', and similar terms are almost always coded
+like B1, B2, B3 instead of 1, 2, 3.  This causes R to treat the data as
+a factor instead of a numeric covariate.
+
+In almost all cases, the data are presented as data frames.  In a few
+cases, the data are lists of matrices.
+
+Although using \code{data()} is not necessary to access the data files,
+the example sections do include the use of \code{data()} because
+\code{devtools::run_examples()} needs it.
 
 Note: In the U.S., raw data are generally not subject to copyright.  See
 \url{http://www.lib.umich.edu/copyright-office-mpublishing/copyrightability-charts-tables-and-graphs}
@@ -296,7 +311,6 @@ decades) in this package.
 
 Data produced from work of the United States government is not subject to
 copyright. \url{http://en.wikipedia.org/wiki/Copyright_status_of_work_by_the_U.S._government}
-
 
 }
 

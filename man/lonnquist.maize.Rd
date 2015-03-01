@@ -40,9 +40,10 @@
   \url{http://www.jstor.org/stable/2528181}
 
 }
+
 \examples{
 
-
+data(lonnquist.maize)
 dat <- lonnquist.maize
 dat <- transform(dat,
                  p1=factor(p1,
@@ -69,6 +70,7 @@ round(rowMeans(mat, na.rm=TRUE),1)
 d2 <- subset(dat, p1 %in% c("M","H","G","B","K","K2") &
              p2 %in% c("M","H","G","B","K","K2"))
 d2 <- droplevels(d2)
+require(asreml)
 m2 <- asreml(yield~ 1, data=d2, random = ~ p1 + and(p2))
 require(lucid)
 vc(m2)

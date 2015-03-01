@@ -29,8 +29,10 @@
   Cleaned version from Luke Tierney
   \url{http://homepage.stat.uiowa.edu/~luke/classes/248/examples/soil}
 }
+
 \examples{
 
+data(cleveland.soil)
 dat <- cleveland.soil
 
 # Similar to Cleveland fig 4.64

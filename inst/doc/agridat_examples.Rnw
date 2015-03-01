@@ -1,8 +1,8 @@
 % agridat_examples.Rnw
-% Time-stamp: <26 Nov 2014 10:54:33 c:/x/rpack/agridat/vignettes/agridat_examples.Rnw>
+% Time-stamp: <01 Dec 2014 13:44:32 c:/x/rpack/agridat/vignettes/agridat_examples.Rnw>
 
 % \VignetteEngine{knitr::knitr}
-% \VignetteIndexEntry{Graphical gems in 'agridat'}
+% \VignetteIndexEntry{Graphical Gems in the 'agridat' Package}
 
 \documentclass[12pt]{article}
 % Note, 11 pt fails with a missing font unless we have \usepackage{ae}
@@ -48,7 +48,7 @@
 
 \begin{document}
 
-\title{Graphical gems in the \textbf{agridat} package}
+\title{Graphical Gems in the \textbf{agridat} Package}
 \author{Kevin Wright}
 \maketitle
 \thispagestyle{fancy}

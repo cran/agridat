@@ -104,8 +104,10 @@
   19, 279--314.
   \url{http://books.google.com/books?id=jyEXAAAAYAAJ&pg=PA279}
 }
+
 \examples{
 
+data(smith.corn.uniformity)
 dat <- smith.corn.uniformity
 
 dat = transform(dat, year=factor(year))

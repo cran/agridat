@@ -40,6 +40,7 @@
 }
 \examples{
 
+data(beaven.barley)
 dat <- beaven.barley
 
 # Match the means shown in Richey table IV

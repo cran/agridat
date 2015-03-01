@@ -45,6 +45,7 @@
 
 \examples{
 
+data(wedderburn.barley)
 dat <- wedderburn.barley
 dat$y <- dat$y/100
 

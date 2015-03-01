@@ -33,7 +33,10 @@ dimensions of each plot were approximately 3.2 meters by 2.5 meters.
 The 'spdep' package includes the grain yields
 (only) and spatial positions of plot centres in its example dataset 'wheat'.
 }
+
 \examples{
+
+data(mercer.wheat.uniformity)
 dat <- mercer.wheat.uniformity
 
 require('lattice')

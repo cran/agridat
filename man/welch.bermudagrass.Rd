@@ -35,7 +35,7 @@
   Jim Albert. \emph{Bayesian Computation with R}. Page 256.
 
   Peter Congdon. \emph{Bayesian Statistical Modeling}. Page 124-125.
-  
+
   P. McCullagh, John A. Nelder. \emph{Generalized Linear Models}, Second
   Edition. Page 382.
 
@@ -43,15 +43,17 @@
 
 \examples{
 
+data(welch.bermudagrass)
 dat <- welch.bermudagrass
 # Welch uses 100-pound units of n,p,k.
 dat <- transform(dat, n=n/100, p=p/100, k=k/100)
 
-require(latticeExtra)
-useOuterStrips(xyplot(yield~n|factor(p)*factor(k), data=dat, type='b',
-                      main="welch.bermudagrass: yield for each P*K",
-                      xlab="Nitro for each Phosphorous level",
-                      ylab="Yield for each Potassim level"))
+if(require(latticeExtra)){
+  useOuterStrips(xyplot(yield~n|factor(p)*factor(k), data=dat, type='b',
+                        main="welch.bermudagrass: yield for each P*K",
+                        xlab="Nitro for each Phosphorous level",
+                        ylab="Yield for each Potassim level"))
+}
 
 # Fit a quadratic model
 m1 <- lm(yield ~ n + p + k + I(n^2) + I(p^2) + I(k^2) + n:p + n:k + p:k + n:p:k, data=dat)
@@ -95,7 +97,7 @@ d4[which.max(d4$income),] # Optimum at 300 lb N, 71 lb P, 148 lb K
   # 1/eps = b0 + b1/(N+a1) + b2/(P+a2) + b3/(K+a3)
   # N,P,K are added fertilizer amounts, a1,a2,a3 are background
   # nutrient levels and b1,b2,b3 are growth parameters.
-  
+
   require(rjags)
 
   mod.bug = "

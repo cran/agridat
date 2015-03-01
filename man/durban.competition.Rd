@@ -43,6 +43,7 @@
 
 \examples{
 
+data(durban.competition)
 dat <- durban.competition
 
 # Check that genotypes were balanced across wheel tracks.

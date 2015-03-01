@@ -35,6 +35,7 @@
 
 \examples{
 
+data(bridges.cucumber)
 dat <- bridges.cucumber
 dat <- transform(dat, rowf=factor(row), colf=factor(col))
 

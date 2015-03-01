@@ -46,7 +46,10 @@
   Nearest-Neighbor Analysis in Practice,
   \emph{Iowa State Journal of Research}, 62, 199--217.
 }
+
 \examples{
+
+data(federer.tobacco)
 dat <- federer.tobacco
 
 # RCB analysis.  Treatment factor not signficant.

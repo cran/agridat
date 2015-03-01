@@ -41,8 +41,10 @@
 \references{
   R. A. Bailey, 2008. \emph{Design of Comparative Experiments}. Cambridge.
 }
+
 \examples{
 
+data(cochran.eelworms)
 dat <- cochran.eelworms
 
 # Very strong spatial trends

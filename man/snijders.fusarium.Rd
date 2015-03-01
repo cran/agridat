@@ -51,8 +51,10 @@
   \url{http://www.jstor.org/stable/2533001}
 
 }
+
 \examples{
 
+data(snijders.fusarium)
 dat <- snijders.fusarium
 aggregate(y ~ strain + year, dat, FUN=mean) # Match means in Snijders table 1
 

@@ -30,8 +30,10 @@
 \references{
   Vinayanand Kandala, Logistic Regression.
 }
+
 \examples{
 
+data(johnson.blight)
 dat <- johnson.blight
 
 # Define indicator for blight in previous year

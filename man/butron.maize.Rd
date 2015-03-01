@@ -54,6 +54,7 @@
 
 \examples{
 
+data(butron.maize)
 dat <- butron.maize
 
 # require(lattice)

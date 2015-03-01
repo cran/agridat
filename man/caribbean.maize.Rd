@@ -46,7 +46,9 @@
 \references{
   Also in the DAAG package as data sets antigua, stVincent.
 }
+
 \examples{
+data(caribbean.maize)
 dat <- caribbean.maize
 
 # Yield and ears are correlated

@@ -2,12 +2,8 @@
 ## Recommended packages
 ## importFrom("nlme", fixef,ranef,VarCorr)
 
-## Bioconductor
-importFrom("pcaMethods", pca, prep)
-
 import(grid)
 import(lattice)
-#import(lucid) # for lucid/vc functions
 import(reshape2)
 
 ## Exports

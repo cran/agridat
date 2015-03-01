@@ -14,9 +14,11 @@ batchelor.walnut.uniformity
 beall.webworms
 beaven.barley
 besag.bayesian
+besag.beans
 besag.elbatan
 besag.endive
 besag.met
+besag.triticale
 blackman.wheat
 bliss.borers
 bond.diallel
@@ -25,6 +27,9 @@ brandle.rape
 brandt.switchback
 bridges.cucumber
 broadbalk.wheat
+burgueno.alpha
+burgueno.rowcol
+burgueno.unreplicated
 butron.maize
 byers.apple
 caribbean.maize
@@ -148,7 +153,7 @@ patterson.switchback
 pearce.apple
 pearl.kernels
 perry.springwheat
-piepho.cooksfoot
+piepho.cocksfoot
 ratkowsky.onions
 ridout.appleshoots
 rothamsted.brussels
@@ -162,6 +167,8 @@ snedecor.asparagus
 snijders.fusarium
 steel.soybean
 stephens.sorghum.uniformity
+steptoe.morex.geno
+steptoe.morex.pheno
 stirret.borers
 streibig.competition
 stroup.nin

@@ -46,6 +46,8 @@ Iowa State College, Agricultural Research Bulletins. Bulletin 234. Book 22.
 \url{http://lib.dr.iastate.edu/ag_researchbulletins/22/}
 }
 \examples{
+
+data(brandt.switchback)
 dat <- brandt.switchback
 
 # In each period, treatment 2 is slightly higher

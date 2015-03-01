@@ -39,7 +39,10 @@
   \emph{Experimental Design and Analysis for Tree Improvement},
   CSIRO Publishing, 2002.
 }
+
 \examples{
+
+data(williams.trees)
 dat <- williams.trees
 
 require(lattice)

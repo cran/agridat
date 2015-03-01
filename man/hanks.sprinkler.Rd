@@ -52,7 +52,10 @@
   SAS Stat User's Guide.
   \url{http://support.sas.com/documentation/cdl/en/statug/63347/HTML/default/viewer.htm#statug_mixed_sect038.htm}
 }
+
 \examples{
+
+data(hanks.sprinkler)
 dat <- hanks.sprinkler
 
 # The line sprinkler is vertical between subplots 6 & 7
