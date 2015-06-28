@@ -1,6 +1,6 @@
 Package: agridat
-Version: 1.11
-Date: 2015-03-01
+Version: 1.12
+Date: 2015-06-28
 Title: Agricultural Datasets
 Type: Package
 Author: Kevin Wright
@@ -8,7 +8,7 @@ Maintainer: Kevin Wright <kw.stat@gmail.com>
 Description: Datasets from books, papers, and websites related to agriculture.
     Example analyses are included.  Includes functions for plotting field
     designs and GGE biplots.
-Imports: grid, lattice, reshape2
+Imports: graphics, grDevices, grid, lattice, reshape2, stats
 Suggests: AER, agricolae (>= 1.2), betareg, car, coin, corrgram,
         effects, equivalence, FrF2, gam, gstat, HH, knitr,
         latticeExtra, lme4 (>= 1.1-5), lucid, mapproj, maps, MASS,
@@ -19,7 +19,7 @@ LazyData: yes
 URL: https://github.com/kwstat/agridat
 BugReports: https://github.com/kwstat/agridat/issues
 VignetteBuilder: knitr
-Packaged: 2015-03-03 19:55:08 UTC; wrightkevi
+Packaged: 2015-06-29 12:59:14 UTC; wrightkevi
 NeedsCompilation: no
 Repository: CRAN
-Date/Publication: 2015-03-03 22:37:36
+Date/Publication: 2015-06-29 19:25:08

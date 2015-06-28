@@ -37,11 +37,13 @@ carlson.germination
 carmer.density
 cate.potassium
 cleveland.soil
+cochran.beets
 cochran.bib
 cochran.crd
 cochran.eelworms
 cochran.factorial
 cochran.latin
+cochran.lattice
 cochran.wireworms
 connolly.potato
 cornelius.maize
@@ -104,6 +106,8 @@ hunter.corn
 ilri.sheep
 immer.sugarbeet.uniformity
 ivins.herbs
+jansen.apple
+jansen.carrot
 jansen.strawberry
 jenkyn.mildew
 john.alpha
