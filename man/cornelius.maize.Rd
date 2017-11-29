@@ -2,12 +2,12 @@
 \alias{cornelius.maize}
 \docType{data}
 \title{
-  Maize yields for 9 cultivars at 20 locations.
+  Multi-environment trial of maize for 9 cultivars at 20 locations.
 }
 \description{
   Maize yields for 9 cultivars at 20 locations.
 }
-\usage{data(cornelius.maize)}
+\usage{data("cornelius.maize")}
 \format{
   A data frame with 180 observations on the following 3 variables.
   \describe{
@@ -28,7 +28,8 @@
 \references{
   Forkman, Johannes and Piepho, Hans-Peter. (2014).
   Parametric bootstrap methods for testing multiplicative terms in GGE
-  and AMMI models. \emph{Biometrics}.
+  and AMMI models. \emph{Biometrics}, 70(3), 639-647.
+  http://doi.org/10.1111/biom.12162
 }
 
 \examples{
@@ -37,7 +38,7 @@ data(cornelius.maize)
 dat <- cornelius.maize
 # dotplot(gen~yield|env,dat) # We cannot compare genotype yields easily
 # Subtract environment mean from each observation
-require(reshape2)
+if(require(reshape2)){
 mat <- acast(dat, gen~env)
 mat <- scale(mat, scale=FALSE)
 dat2 <- melt(mat)
@@ -45,6 +46,7 @@ names(dat2) <- c('gen','env','yield')
 require(lattice)
 bwplot(yield ~ gen, dat2,
        main="cornelius.maize - environment centered yields")
+}
 
 \dontrun{
 # This reproduces the analysis of Forkman and Piepho.

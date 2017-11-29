@@ -11,10 +11,10 @@
 \format{
   A data frame with 96 observations on the following 4 variables.
   \describe{
-    \item{\code{trt}}{Nitrogen treatment factor}
-    \item{\code{nitro}}{Soil nitrogen content, percent}
-    \item{\code{rep}}{Rep}
-    \item{\code{stage}}{Growth stage, three periods}
+    \item{\code{trt}}{nitrogen treatment factor}
+    \item{\code{nitro}}{soil nitrogen content, percent}
+    \item{\code{rep}}{replicate}
+    \item{\code{stage}}{growth stage, three periods}
   }
 }
 \details{
@@ -42,13 +42,16 @@ data(gomez.nitrogen)
 dat <- gomez.nitrogen
 
 # Note the depletion of nitrogen over time (stage)
-require(HH)
-interaction2wt(nitro ~ rep/trt + trt*stage, data=dat,
-               main="gomez.nitrogen")
-# Just the fertilizer profiles
-with(dat, interaction.plot(stage, trt, nitro,
-     col=1:4, lty=1:3, main="gomez.nitrogen",
-     xlab="Soil nitrogen at three times for each treatment"))
+if(require(HH)){
+  interaction2wt(nitro ~ rep/trt + trt*stage, data=dat,
+                 x.between=0, y.between=0,
+                 main="gomez.nitrogen")
+  
+  # Just the fertilizer profiles
+  with(dat, interaction.plot(stage, trt, nitro,
+                             col=1:4, lty=1:3, main="gomez.nitrogen",
+                             xlab="Soil nitrogen at three times for each treatment"))
+}
 
 # Gomez table 6.16
 m1 <- aov(nitro ~ Error(rep/trt) + trt*stage, data=dat)

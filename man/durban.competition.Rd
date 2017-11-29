@@ -29,6 +29,10 @@
   5 and 6, for each set of six plots.  Each genotype was randomly
   allocated once to each pair of plots (1,6), (2,5), (3,4) across the
   three reps.  Wheel effect were not significant in _this_ trial.
+
+  Field length: 3 blocks * 12m + 2*0.5m spacing = 37m
+
+  Field width: 18m + 1m guard rows = 19m
 }
 \source{
   Durban, M., Currie, I. and R. Kempton, 2001.
@@ -36,7 +40,7 @@
   \emph{J. of Agricultural Science}, 136, 129--140.
 
   Retrieved from
-  \url{http://www.ma.hw.ac.uk/~iain/research/JAgSciData/data/Trial1.dat}
+  http://www.ma.hw.ac.uk/~iain/research/JAgSciData/data/Trial1.dat
 
   Used with permission of Iain Currie.
 }
@@ -49,8 +53,12 @@ dat <- durban.competition
 # Check that genotypes were balanced across wheel tracks.
 with(dat, table(gen,wheel))
 
-desplot(yield ~ col*block, dat, out1=block, text=gen, col=wheel,
-        main="durban.competition")
+if(require(desplot)){
+  desplot(yield ~ col*block, dat,
+          out1=block, text=gen, col=wheel, aspect=37/19, # true aspect
+          main="durban.competition")
+}
+
 
 # Calculate residual after removing block/genotype effects
 m1 <- lm(yield ~ gen + block, data=dat)
@@ -70,4 +78,5 @@ dat$comp[79:112] <- ( dat$yield[78:111] + dat$yield[80:113] ) / 2
 require(lattice)
 xyplot(res~comp, dat, type=c('p','r'), main="durban.competition",
        xlab="Average yield of neighboring plots", ylab="Residual")
+
 }

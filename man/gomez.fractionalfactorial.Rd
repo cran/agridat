@@ -2,28 +2,35 @@
 \alias{gomez.fractionalfactorial}
 \docType{data}
 \title{
-  Rice fractional factorial experiment
+  Rice fractional factorial experiment 1/2 2^6.
 }
 \description{
-  A 1/2 fractional factorial experiment with 6 treatments.  Two reps
-  with 2 blocks in each rep.
+  Rice fractional factorial experiment 1/2 2^6.
+  Two reps with 2 blocks in each rep.
 }
 
 \format{
   A data frame with 64 observations on the following 6 variables.
   \describe{
-    \item{\code{yield}}{Grain yield in tons/ha}
-    \item{\code{rep}}{Replicate factor, 2 levels}
-    \item{\code{block}}{Block factor within rep, 2 levels}
-    \item{\code{trt}}{Treatment factor, levels (1) to abcdef}
-    \item{\code{x}}{Column position in the field}
-    \item{\code{y}}{Row position in the field}
+    \item{\code{yield}}{grain yield in tons/ha}
+    \item{\code{rep}}{replicate, 2 levels}
+    \item{\code{block}}{block within rep, 2 levels}
+    \item{\code{trt}}{treatment, levels (1) to abcdef}
+    \item{\code{col}}{column position in the field}
+    \item{\code{row}}{row position in the field}
   }
 }
 \details{
-  Note: In Gomez, page 171 has (for example) treatment (1) in Rep 1,
-  Block 2 and Rep 2, Block 1.  Page 172 has treatment (1) in Block 1 of
-  both reps.  This data uses the layout shown on page 171.
+  Grain yield from a 2^6 fractional factorial experiment in blocks of 16
+  plots each, with two replications.
+  
+  Gomez has some inconsistencies. One example:
+
+  Page 171: treatment (1) in rep 1, block 2 and rep 2, block 1.
+
+  Page 172: treatment (1) in Rep 1, block 1 and rep 2, block 1.
+
+  This data uses the layout shown on page 171.
 }
 \source{
   Gomez, K.A. and Gomez, A.A.. 1984,
@@ -40,9 +47,12 @@ dat <- gomez.fractionalfactorial
 
 # trt abcdef has the highest yield
 # Gomez, Figure 4.8
-desplot(yield~x*y, dat, main="gomez.fractionalfactorial - treatment & yield",
-        text=trt, shorten="none", show.key=FALSE, cex=1)
-
+if(require(desplot)){
+  desplot(yield~col*row, dat,
+          # aspect unknown
+          text=trt, shorten="none", show.key=FALSE, cex=1,
+          main="gomez.fractionalfactorial - treatment & yield")
+}
 
 # Split treatment into individual factors
 dat <- transform(dat,
@@ -62,11 +72,11 @@ anova(m0)
 m1 <- lm(yield ~ rep * block + (a+b+c+d+e+f)^3, dat)
 anova(m1)
 
-if(require(FrF2)){
+\dontrun{
+  require(FrF2)
   aliases(m1)
   MEPlot(m1, select=3:8,
          main="gomez.fractionalfactorial - main effects plot")
-  #IAPlot(m1, select=3:8)
 }
 
 }

@@ -2,12 +2,12 @@
 \alias{yang.barley}
 \docType{data}
 \title{
-  Yield of 6 barley varieties at 18 locations in Alberta.
+  Multi-environment trial of barley in Alberta, 6 varieties at 18 locations in Alberta.
 }
 \description{
   Yield of 6 barley varieties at 18 locations in Alberta.
 }
-\usage{data(yang.barley)}
+\usage{data("yang.barley")}
 \format{
   A data frame with 108 observations on the following 3 variables.
   \describe{
@@ -43,42 +43,50 @@
   }
 
 }
+
 \source{
   Rong-Cai Yang (2007).
   Mixed-Model Analysis of Crossover Genotype-Environment Interactions.
   \emph{Crop Science}, 47, 1051-1062.
+  http://doi.org/10.2135/cropsci2006.09.0611
 
   Used with permission of Rong-Cai Yang.
 }
+
 \references{
   Zhiqiu Hu and Rong-Cai Yang, (2013).
-  Improved Statistical Inference for  Graphical Description and
+  Improved Statistical Inference for Graphical Description and
   Interpretation of Genotype x Environment Interaction.
   \emph{Crop Science}, 53, 2400-2410.
+  http://doi.org/10.2135/cropsci2013.04.0218 
 }
 
 \examples{
 
 data(yang.barley)
 dat <- yang.barley
-  require(reshape2)
+
+if(require(reshape2)){
   dat <- acast(dat, gen~site, value.var='yield')
+}
 
 \dontrun{
 
-  ## For bootstrapping of a biplot, see the 'bbplot' and
-  ## distfree.cr packages here:
+  ## For bootstrapping of a biplot, see the non-cran packages:
+  ## 'bbplot' and 'distfree.cr'
   ## http://statgen.ualberta.ca/index.html?open=software.html
+  ## install.packages("http://statgen.ualberta.ca/download/software/bbplot_1.0.zip")
+  ## install.packages("http://statgen.ualberta.ca/download/software/distfree.cr_1.5.zip")
 
-  require(SDMTools)
-  require(distfree.cr)
-  require(bbplot)
+  ## require(SDMTools)
+  ## require(distfree.cr)
+  ## require(bbplot)
 
-  d1 <- bbplot.boot(dat, nsample=2000) # bootstrap the data
-  plot(d1) # plot distributions of principal components
-  b1 <- bbplot(d1) # create data structures for the biplot
-  plot(b1) # create the confidence regions on the biplot
-  # this may not be working...
+  ## d1 <- bbplot.boot(dat, nsample=2000) # bootstrap the data
+  ## plot(d1) # plot distributions of principal components
+  ## b1 <- bbplot(d1) # create data structures for the biplot
+  ## plot(b1) # create the confidence regions on the biplot
+
 }
 
 }

@@ -7,10 +7,11 @@
 \alias{batchelor.walnut.uniformity}
 \docType{data}
 \title{
-  Uniformity trials of fruit tree yields.
+  Uniformity trials of apples, lemons, oranges, and walnuts
 }
 \description{
-  Uniformity trials of apples, lemons, oranges, and walnuts.
+  Uniformity trials of apples, lemons, oranges, and walnuts, in
+  California & Utah, 1915-1918.
 }
 
 \format{
@@ -30,13 +31,22 @@
 
   \bold{Jonathan Apples}
 
-  The apple (Malus sylvestris) records were obtained from a 10-year old
+  "The apple records were obtained from a 10-year old
   Jonathan apple orchard located at Providence, Utah. The surface soil
   of this orchard is very uniform to all appearances except on the
   extreme eastern edge, where the percentage of gravel increases
-  slightly. The trees are planted 16 feet apart, east and west, and 30
-  feet apart north and south.
+  slightly.  The trees are planted 16 feet apart, east and west, and 30
+  feet apart north and south."
 
+  Note: The orientation of the field is not given in the paper, but all other
+  fields in the paper have north at the top, so that is assumed to be
+  true for this field as well.
+
+  Field length: 28 rows * 30 feet = 840 feet
+
+  Field width: 8 trees * 16 feet = 128 feet
+
+  
   \bold{Eureka Lemon}
 
   The lemon (Citrus limonia) tree yields were obtained from a grove of
@@ -50,6 +60,10 @@
   yet a field observation gives one the impression that the grove as a
   whole is remarkably uniform.
 
+  Field width: 14 trees * 24 feet = 336 feet
+
+  Field length: 26 trees * 24 feet = 624 feet
+  
   \bold{Navel 1 (Arlington)}
 
   These records were of the 1915-16 yields of one thousand 24-year-old
@@ -64,6 +78,10 @@
   variations, which are present in every orchard, bring uncertainty into
   the results offield experiments.
 
+  Field length: 50 trees * 22 feet = 1100 feet
+
+  Field width: 20 trees * 22 feet = 440 feet
+  
   \bold{Navel 2 (Antelope)}
 
   The navel-orange grove later referred to as the Antelope Heights
@@ -73,12 +91,20 @@
   greater than a comparison of the individual tree production
   substantiates.
 
+  Field width: 15 trees * 22 feet = 330 feet
+
+  Field length: 33 trees * 22 feet = 726 feet
+  
   \bold{Valencia Orange}
 
   The Valencia orange grove is composed of 240 15-year-old trees,
   planted 21 feet 6 inches by 22 feet 6 inches, located at Villa Park,
   California. The yields were obtained in 1916.
 
+  Field length: 20 rows * 22 feet = 440 feet
+
+  Field width: 12 rows * 22 feet = 264 feet
+  
   \bold{Walnut}
 
   The walnut (Juglans regia) yields were obtained during the seasons of
@@ -90,63 +116,73 @@
   side which is adjacent to an orange grove. The trees are planted on
   the square system, 50 feet apart.
 
+  Field width: 10 trees * 50 feet = 500 feet
+
+  Field length: 32 trees * 50 feet = 1600 feet
+  
 }
 \source{
   Batchelor, LD and Reed, HS. 1918.
   Relation of the variability of yields of fruit trees to the accuracy
   of field trials. \emph{J. Agric. Res}, 12, 245--283.
-  \url{http://books.google.com/books?id=Lil6AAAAMAAJ&lr&pg=PA245}.
+  http://books.google.com/books?id=Lil6AAAAMAAJ&lr&pg=PA245
 }
 \references{
   McCullagh, P. and Clifford, D., (2006).
   Evidence for conformal invariance of crop yields,
   \emph{Proceedings of the Royal Society A: Mathematical, Physical and
-  Engineering Science}, 462, 2119--2143.
+    Engineering Science}, 462, 2119--2143.
+  http://doi.org/10.1098/rspa.2006.1667
 }
 \examples{
 
-require(lattice)
+if(require(desplot)){
+  # Apple
+  data(batchelor.apple.uniformity)
+  desplot(yield~col*row, data=batchelor.apple.uniformity,
+          aspect=840/128, tick=TRUE, # true aspect
+          main="batchelor.apple.uniformity")
+}
 
-# Apple
-data(batchelor.apple.uniformity)
-desplot(yield~col*row, data=batchelor.apple.uniformity,
-        aspect=30/16,
-        main="batchelor.apple.uniformity",
-        ylab="Jonathon apple tree yields")
+if(require(desplot)){
+  # Lemon
+  data(batchelor.lemon.uniformity)
+  desplot(yield~col*row, data=batchelor.lemon.uniformity,
+          aspect=624/336, # true aspect
+          main="batchelor.lemon.uniformity")
+}
 
-# Lemon
-data(batchelor.lemon.uniformity)
-desplot(yield~col*row, data=batchelor.lemon.uniformity,
-        aspect=26/14,
-        main="batchelor.lemon.uniformity",
-        ylab="Eureka lemon tree yields")
+if(require(desplot)){
+  # Navel1 (Arlington)
+  data(batchelor.navel1.uniformity)
+  desplot(yield~col*row, batchelor.navel1.uniformity,
+          aspect=1100/440, # true aspect
+          main="batchelor.navel1.uniformity - Arlington")
+}
 
-# Navel1 (Arlington)
-data(batchelor.navel1.uniformity)
-dat <- batchelor.navel1.uniformity
-desplot(yield~col*row, dat, aspect=50/20,
-        main="batchelor.navel1.uniformity",
-        ylab="Navel orange tree yields (Arlington)")
+if(require(desplot)){
+  # Navel2 (Antelope)
+  data(batchelor.navel2.uniformity)
+  desplot(yield~col*row, data=batchelor.navel2.uniformity,
+          aspect=726/330, # true aspect
+          main="batchelor.navel2.uniformity - Antelope")
+}
 
-# Navel2 (Antelope)
-data(batchelor.navel2.uniformity)
-desplot(yield~col*row, data=batchelor.navel2.uniformity,
-        aspect=33/15,
-        main="batchelor.navel2.uniformity",
-        ylab="Navel orange tree yields (Antelope)")
+if(require(desplot)){
+  # Valencia
+  data(batchelor.valencia.uniformity)
+  desplot(yield~col*row, data=batchelor.valencia.uniformity,
+          aspect=440/264, # true aspect
+          main="batchelor.valencia.uniformity")
+}
 
-# Valencia
-data(batchelor.valencia.uniformity)
-desplot(yield~col*row, data=batchelor.valencia.uniformity,
-        aspect=20/12,
-        main="batchelor.valencia.uniformity",
-        ylab="Valencia orange tree yields")
+if(require(desplot)){
+  # Walnut
+  data(batchelor.walnut.uniformity)
+  desplot(yield~col*row, data=batchelor.walnut.uniformity,
+          aspect=1600/500, # true aspect
+          main="batchelor.walnut.uniformity")
+}
 
-# Walnut
-data(batchelor.walnut.uniformity)
-desplot(yield~col*row, data=batchelor.walnut.uniformity,
-        aspect=32/10,
-        main="batchelor.walnut.uniformity",
-        ylab="Seedling walnut yields")
 }
 

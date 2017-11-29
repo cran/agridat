@@ -7,7 +7,7 @@
 \description{
   Herbicide control of larkspur
 }
-\usage{data(turner.herbicide)}
+\usage{data("turner.herbicide")}
 \format{
   A data frame with 12 observations on the following 4 variables.
   \describe{
@@ -22,6 +22,7 @@
   (0, 1.1, 2.2, 4.5) in 3 reps.  Experiment was done in 1986 at Manti,
   Utah.
 }
+
 \source{
   David L. Turner and Michael H. Ralphs and John O. Evans (1992).
   Logistic Analysis for Monitoring and Assessing Herbicide Efficacy.
@@ -30,7 +31,6 @@
 }
 
 \references{
-
   Christopher Bilder, Thomas Loughin.
   \emph{Analysis of Categorical Data with R}.
   

@@ -28,9 +28,9 @@
 \source{
   Cate, R.B. and Nelson, L.A. (1971).
   A simple statistical procedure for partitioning soil test correlation
-  data into two classes. \emph{Soil Science Society of America Journal},
-  35, 658--660.
-  \url{http://www.crops.org/publications/sssaj/abstracts/35/4/SS0350040658}
+  data into two classes.
+  \emph{Soil Science Society of America Journal}, 35, 658--660.
+  http://doi.org/10.2136/sssaj1971.03615995003500040048x
 }
 
 \examples{
@@ -68,7 +68,15 @@ cn <- CateNelson(dat)
 ix <- which.max(cn$r2)
 with(dat, plot(y~x, ylim=c(0,110), xlab="Potassium", ylab="Yield"))
 title("cate.potassium - Cate-Nelson analysis")
-abline(v=dat$x[ix], col='wheat')
+abline(v=dat$x[ix], col="skyblue")
+abline(h=(dat$y[ix] + dat$y[ix+1])/2, col="skyblue")
+
+\dontrun{
+  # another approach with similar results
+  # https://joe.org/joe/2013october/tt1.php
+  require("rcompanion")
+  cateNelson(dat$x, dat$y)
+}
 
 }
 \keyword{datasets}

@@ -11,14 +11,14 @@
 \format{
   A data frame with 25 observations on the following 4 variables.
   \describe{
-    \item{\code{row}}{Row}
-    \item{\code{col}}{Column}
-    \item{\code{trt}}{Fumigant treatment, 5 levels}
-    \item{\code{worms}}{Count of wireworms per plot}
+    \item{\code{row}}{row}
+    \item{\code{col}}{column}
+    \item{\code{trt}}{fumigant treatment, 5 levels}
+    \item{\code{worms}}{count of wireworms per plot}
   }
 }
 \details{
-  Plots were approximately 22cm by 13cm.  Layout of the experiment was a
+  Plots were approximately 22 cm by 13 cm.  Layout of the experiment was a
   latin square.  The number of wireworms in each plot was counted,
   following soil fumigation the previous year.
 }
@@ -41,7 +41,11 @@
 data(cochran.wireworms)
 dat <- cochran.wireworms
 
-# desplot(worms ~ col*row, data=dat, text=trt, cex=1)
+if(require(desplot)){
+  desplot(worms ~ col*row, data=dat,
+          text=trt, cex=1, # aspect unknown
+          main="cochran.wireworms")
+}
 
 # Trt K is effective, but not the others.  Really, this says it all.
 require(lattice)

@@ -2,12 +2,12 @@
 \alias{kang.peanut}
 \docType{data}
 \title{
-  Peanut yields for 10 genotypes in 15 environments
+  Multi-environment trial of peanuts for 10 genotypes in 15 environments
 }
 \description{
   Peanut yields for 10 genotypes in 15 environments
 }
-\usage{data(kang.peanut)}
+\usage{data("kang.peanut")}
 \format{
   A data frame with 590 observations on the following 4 variables.
   \describe{
@@ -42,13 +42,16 @@ data(kang.peanut)
 dat <- kang.peanut
 
 # Table 5.1 of Kang et al. (Chapter 5 of Saxton)
-require(reshape2)
+if(require(reshape2)){
 round(acast(dat, env~gen, value.var='yield', fun=mean),2)
+}
+
 
 # GGE biplot of Kang, p. 82.
-m1 <- gge(yield~gen*env, data=dat, scale=FALSE)
-biplot(m1, flip=c(1,1), title="kang.peanut - GGE biplot")
-
+if(require(gge)){
+  m1 <- gge(yield~gen*env, data=dat, scale=FALSE)
+  biplot(m1, flip=c(1,1), main="kang.peanut - GGE biplot")
+}
 
 }
 \keyword{datasets}

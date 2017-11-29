@@ -11,10 +11,10 @@
 \format{
   A data frame with 93 observations on the following 4 variables.
   \describe{
-    \item{\code{county}}{County factor}
-    \item{\code{crop}}{Crop income, thousand dollars}
-    \item{\code{animal}}{Livestock and poultry income, thousand dollars}
-    \item{\code{area}}{Area of each county, square miles}
+    \item{\code{county}}{county}
+    \item{\code{crop}}{crop income, thousand dollars}
+    \item{\code{animal}}{livestock and poultry income, thousand dollars}
+    \item{\code{area}}{area of each county, square miles}
   }
 }
 \details{
@@ -34,7 +34,7 @@
 }
 \source{
   U.S. Department of Agriculture-National Agriculture Statistics
-  Service. \url{http://censtats.census.gov/usa/usa.shtml}
+  Service. http://censtats.census.gov/usa/usa.shtml
 }
 \examples{
 
@@ -45,11 +45,15 @@ if(require("maps") & require("mapproj") & require("latticeExtra")) {
   # latticeExtra for mapplot
 
   dat$stco <- paste0('nebraska,', dat$county)
-
+  # Scale to million dollars per county
+  dat <- transform(dat, crop=crop/1000, animal=animal/1000)
+  
   # Raw, county-wide incomes.  Note the outlier Cuming county
-  mapplot(stco ~ crop + animal, data = dat,
-          scales = list(draw = FALSE), colramp=RedGrayBlue,
-          main="nebraska.farmincome: income per county",
+  redblue <- colorRampPalette(c("firebrick", "lightgray", "#375997"))
+  mapplot(stco ~ crop + animal, data = dat, colramp=redblue,
+          main="nebraska.farmincome",
+          xlab="Farm income from animals and crops (million $ per county)",
+          scales = list(draw = FALSE), 
           map = map('county', 'nebraska', plot = FALSE, fill = TRUE,
             projection = "mercator") )
 
@@ -59,9 +63,10 @@ if(require("maps") & require("mapproj") & require("latticeExtra")) {
     animal.rate <- animal/area
   })
   # And use manual breakpoints.
-  mapplot(stco ~ crop.rate + animal.rate, data = dat,
-          scales = list(draw = FALSE), colramp=RedGrayBlue,
+  mapplot(stco ~ crop.rate + animal.rate, data = dat, colramp=redblue,
           main="nebraska.farmincome: income per square mile (percentile breaks)",
+          xlab="Farm income (million $ / mi^2) from animals and crops",
+          scales = list(draw = FALSE), 
           map = map('county', 'nebraska', plot = FALSE, fill = TRUE,
             projection = "mercator"),
           # Percentile break points

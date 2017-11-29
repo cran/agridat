@@ -7,7 +7,7 @@
 \description{
   Yield monitor data for a corn field in Argentina with variable nitrogen.
 }
-\usage{data(lasrosas.corn)}
+\usage{data("lasrosas.corn")}
 \format{
   A data frame with 3443 observations on the following 8 variables.
   \describe{
@@ -32,8 +32,8 @@
   Data collected using yield monitor, for harvests in 1999 and 2001.
 
   The points within each long strip have been averaged so that the
-  distance between points within a strip is the same as the distance
-  between strips (9.8 meters).
+  distance between points _within_ a strip is the same as the distance
+  _between_ strips (9.8 meters).
 
   The topographic factor a factor with levels W = West slope, HT =
   Hilltop, E = East slope, LO = Low East.
@@ -54,23 +54,23 @@
   cost of $0.4348/kg.
   
   The corners of the field in 1999 are:
-  \url{https://www.google.com/maps/place/-33.0501258,-63.8488636}
-  \url{https://www.google.com/maps/place/-33.05229635,-63.84181819}
+  https://www.google.com/maps/place/-33.0501258,-63.8488636
+  https://www.google.com/maps/place/-33.05229635,-63.84181819
 
   Anselin et al. found a significant response to nitrogen for slope.
   However, Bongiovanni and Lowenberg-DeBoer (2002) found that slope
   position was NOT significant in 2001.
 
 }
-\source{
 
+\source{
   The Las Rosas data files were obtained from
-  \url{https://geodacenter.asu.edu/sdata}
+  https://geodacenter.asu.edu/sdata
   and converted from ESRI shape files to a flat data.frame.
 
   Used with permission of the ASU GeoDa Center.
-
 }
+
 \references{
 
   Bongiovanni and Lowenberg-DeBoer (2000).
@@ -80,7 +80,7 @@
 
   Anselin, L., R. Bongiovanni, J. Lowenberg-DeBoer (2004).
   A spatial econometric approach to the economics of site-specific
-  Nitrogen management in corn production.
+  nitrogen management in corn production.
   \emph{American Journal of Agricultural Economics}, 86, 675--687.
 
   Lambert, Lowenberg-Deboer, Bongiovanni (2004).
@@ -98,12 +98,13 @@ dat <- lasrosas.corn
 # yield map
 require(lattice)
 if(require(latticeExtra)){  # for panel.levelplot.points
-  levelplot(yield ~ long*lat|factor(year), data=dat,
+  redblue <- colorRampPalette(c("firebrick", "lightgray", "#375997"))
+  levelplot(yield ~ long*lat|factor(year), data=dat, 
             main="lasrosas.corn grain yield", xlab="Longitude", ylab="Latitude",
             scales=list(alternating=FALSE),
             prepanel = prepanel.default.xyplot,
             panel = panel.levelplot.points,
-            type = c("p", "g"), aspect = "iso", col.regions=RedGrayBlue)
+            type = c("p", "g"), aspect = "iso", col.regions=redblue)
 }
 
 d1 <- subset(dat, year==1999)

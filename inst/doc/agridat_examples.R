@@ -1,10 +1,13 @@
-## ----setup, echo=FALSE, results="hide"--------------------------------------------------
-library("knitr")
-opts_chunk$set(fig.align="center", fig.width=7, fig.height=7)
+## ----setup, results="hide", echo=FALSE--------------------------------------------------
+knitr::opts_chunk$set(echo=FALSE)
+#knitr::opts_chunk$set(fig.align="center", fig.width=6, fig.height=6, dpi=36)
+# chunk option dpi=72 is the default resolution
 options(width=90)
 
-## ----packs, message=FALSE---------------------------------------------------------------
+## ----packs, eval=TRUE, message=FALSE, echo=TRUE-----------------------------------------
 library("agridat")
+library("desplot")
+library("gge")
 library("HH")
 library("lattice")
 library("latticeExtra")
@@ -12,7 +15,8 @@ library("mapproj")
 library("maps")
 library("reshape2")
 
-## ----lee1, echo=FALSE, fig.height=7.5---------------------------------------------------
+## ----lee1, eval=TRUE, fig.height=7.5----------------------------------------------------
+data(lee.potatoblight)
 dat <- lee.potatoblight
 # Note the progression to lower scores as time passes in each year
 skp <- c(rep(0,10),
@@ -25,12 +29,13 @@ skp <- c(rep(0,10),
          rep(0,5),1,1,1,1,1,
          rep(0,5),1,1,1,1,1,
          rep(0,5),1,1,1,1,1)
+require(desplot)
 desplot(y ~ col*row|date, dat,
-        main="lee.potatoblight",
-        between=list(y=.3), strip.cex =.7,
+        main="lee.potatoblight", #col.regions=RedGrayBlue,
+        between=list(y=.3), strip.cex =.6,
         layout=c(10,11), skip=as.logical(skp))
 
-## ----lee2, echo=FALSE-------------------------------------------------------------------
+## ----lee2, eval=TRUE--------------------------------------------------------------------
 # 1983 only.  I.Hardy succumbs quickly
 dat <- lee.potatoblight
 dat$dd <- as.Date(dat$date)
@@ -44,7 +49,8 @@ foo <- xyplot(y ~ dd|gen, d83, group=rep,
        scales=list(alternating=FALSE, x=list(rot=90, cex=.7)))
 foo + xyplot(y ~ dd|gen, d83, subset=year==1983, type='smooth', col='gray80')
 
-## ----harrison, echo=FALSE, fig.height=6-------------------------------------------------
+## ----harrison, eval=TRUE, fig.height=6--------------------------------------------------
+data(harrison.priors)
 d1 <- subset(harrison.priors, substance=="daidzein")
 d1 <- d1[ , c("source","number","min","max")]
 out <- data.frame(source=vector("character"),
@@ -58,7 +64,8 @@ for(ii in 1:nrow(d1)){
   out <- rbind(out, data.frame(source=d1[ii,'source'], vals=vals))
 }
 out <- droplevels(out) # Extra levels exist in d1
-foo0 <- dotplot(source ~ vals, out, main="harrison.priors", xlab="Daidzein level",
+foo0 <- dotplot(source ~ vals, out, 
+                main="harrison.priors", xlab="Daidzein level",
                 panel=function(x,y,...){
                   panel.dotplot(x,y,...)
                   #browser()
@@ -76,7 +83,7 @@ foo0 <- dotplot(source ~ vals, out, main="harrison.priors", xlab="Daidzein level
 mu0 <- mean(log(out$vals))
 sd0 <- sd(log(out$vals))
 xvals <- seq(0,2000, length=100)
-library(latticeExtra)
+library("latticeExtra")
 foo0 + xyplot((19+4000*dlnorm(xvals, mu0, sd0))~xvals, type='l',
               panel=function(x,y,...){
                 panel.xyplot(x,y,...)
@@ -84,7 +91,8 @@ foo0 + xyplot((19+4000*dlnorm(xvals, mu0, sd0))~xvals, type='l',
               })
 
 
-## ----mead, echo=FALSE-------------------------------------------------------------------
+## ----mead, eval=TRUE--------------------------------------------------------------------
+data(mead.germination)
 dat <- mead.germination
 # dat <- transform(dat, concf=factor(conc))
 
@@ -137,42 +145,52 @@ food <- xyplot(germ~logconc|temp, dat, layout=c(4,1),
 foob + fool + food
 
 
-## ----gomez, echo=FALSE------------------------------------------------------------------
+## ----gomez, eval=TRUE-------------------------------------------------------------------
+data(gomez.stripsplitplot)
 dat <- gomez.stripsplitplot
 
 # Layout
-desplot(gen~x+y, dat, out1=rep, col=nitro, text=planting, cex=1,
+require(desplot)
+desplot(gen~col*row, dat,
+        out1=rep, col=nitro, text=planting, cex=1,
         main="gomez.stripsplitplot")
 
-## ----gomez2, echo=FALSE-----------------------------------------------------------------
+## ----gomez2, eval=TRUE------------------------------------------------------------------
+data(gomez.splitsplit)
 dat <- gomez.splitsplit
 dat$nitrogen <- factor(dat$nitro)
-if(require(HH)){
-  position(dat$nitrogen) <- c(0,50,80,110,140)
-  interaction2wt(yield~rep+nitrogen+management+gen, data=dat,
-                 main="gomez.splitsplit",
-                 relation=list(x="free", y="same"),
-                 rot=c(90,0), xlab="",
-                 par.strip.text.input=list(cex=.8))
-}
+require(HH)
+#position(dat$rep) <- position(dat$management) <-
+#  position(dat$gen) <- c(10,70,130)
+#position(dat$nitrogen) <- c(0,50,80,110,140)
+interaction2wt(yield~rep+nitrogen+management+gen, data=dat,
+               main="gomez.splitsplit",
+               x.between=0, y.between=0,
+               relation=list(x="free", y="same"),
+               rot=c(90,0), xlab="",
+               par.strip.text.input=list(cex=.8))
 
-## ----keen, echo=FALSE, fig.width=7, fig.height=7.5--------------------------------------
+## ----keen, eval=TRUE, fig.width=7, fig.height=7.5---------------------------------------
+data(keen.potatodamage)
 dat <- keen.potatodamage
 
 # Energy E1, Rod R4, Weight W1 have higher proportions of severe damage
 # Rod 8 has the least damage
 d2 <- xtabs(count~energy+rod+gen+weight+damage, data=dat)
 mosaicplot(d2, color=c("lemonchiffon1","moccasin","lightsalmon1","indianred"),
-           xlab="Energy / Genotype", ylab="Rod / Weight", main="keen.potatodamage",
+           xlab="Energy / Genotype", ylab="Rod / Weight",
+           main="keen.potatodamage",
            off=c(3,10,10,8,0),border="gray50")
 
 
-## ----wright, echo=FALSE-----------------------------------------------------------------
+## ----wright, eval=TRUE------------------------------------------------------------------
+data(minnesota.barley.yield)
+data(minnesota.barley.weather)
 dat <- minnesota.barley.yield
 datw <- minnesota.barley.weather
 
 # Weather trends over time
-library(latticeExtra)
+library("latticeExtra")
 #useOuterStrips(xyplot(cdd~mo|year*site, datw, groups=year,
 #main="minnesota.barley", xlab="month", ylab="Cooling degree days",
 #subset=(mo > 3 & mo < 10), scales=list(alternating=FALSE),
@@ -189,7 +207,7 @@ minn <- merge(ww, yy)
 
 
 # Higher yields generally associated with cooler temps, more precip
-library(reshape2)
+library("reshape2")
 me <- melt(minn, id.var=c('site','year'))
 mey <- subset(me, variable=="yield")
 mey <- mey[,c('site','year','value')]
@@ -212,43 +230,44 @@ foo <- xyplot(y~x|covar*site, data=mecy, groups=yr, cex=1, ylim=c(5,65),
 foo <- useOuterStrips(foo, strip.left = strip.custom(par.strip.text=list(cex=.7)))
 combineLimits(foo, margin.x=2L)
 
-## ----crossa, echo=FALSE, message=FALSE--------------------------------------------------
+## ----crossa, eval=TRUE, message=FALSE---------------------------------------------------
 
 # Specify env.group as column in data frame
+data(crossa.wheat)
 dat2 <- crossa.wheat
 dat2$eg <- ifelse(is.element(dat2$loc,
 c("KN","NB","PA","BJ","IL","TC", "JM","PI","AS","ID","SC","SS",
 "SJ","MS","MG","MM")), "Grp1", "Grp2")
+require(gge)
 m4 <- gge(yield~gen*loc, dat2, env.group=eg, scale=FALSE)
 # plot(m4)
-biplot(m4, lab.env=TRUE, title="crossa.wheat")
+biplot(m4, lab.env=TRUE, main="crossa.wheat")
 
-## ----nebr1, echo=FALSE------------------------------------------------------------------
+## ----nebr1, eval=TRUE-------------------------------------------------------------------
 library("maps")
 library("mapproj")
 library("latticeExtra")
 
+data(nebraska.farmincome)
 dat <- nebraska.farmincome
 dat$stco <- paste0('nebraska,', dat$county)
 dat <- transform(dat, crop=crop/1000, animal=animal/1000)
 
 # Raw, county-wide incomes.  Note the outlier Cuming county
+redblue <- colorRampPalette(c("firebrick", "lightgray", "#375997"))
 mapplot(stco ~ crop + animal, data = dat,
         scales = list(draw = FALSE),
         main="nebraska.farmincome",
         xlab="", ylab="Income ($1000) per county",
-        colramp=RedGrayBlue,
+        colramp=redblue,
         map = map('county', 'nebraska', plot = FALSE, fill = TRUE,
                   projection = "mercator"))
 
 
-## ----nebr2, echo=FALSE------------------------------------------------------------------
+## ----nebr2, eval=TRUE-------------------------------------------------------------------
 
 # Now scale to income/mile^2
-dat <- within(dat, {
-  crop.rate <- crop/area
-  animal.rate <- animal/area
-})
+dat <- transform(dat, crop.rate=crop/area, animal.rate=animal/area)
 # And use manual breakpoints.
 mapplot(stco ~ crop.rate + animal.rate, data = dat,
         scales = list(draw = FALSE),
@@ -256,7 +275,7 @@ mapplot(stco ~ crop.rate + animal.rate, data = dat,
         xlab="", ylab="Income ($1000) per square mile (percentile breaks)",
         map = map('county', 'nebraska', plot = FALSE, fill = TRUE,
                   projection = "mercator"),
-        colramp=RedGrayBlue,
+        colramp=redblue,
         #breaks=quantile(c(dat$crop.rate, dat$animal.rate),
         #                c(0,.1,.2,.4,.6,.8,.9,1), na.rm=TRUE)
         # To eliminate dependency on classInt package, hardcode the breakpoints
@@ -264,19 +283,21 @@ mapplot(stco ~ crop.rate + animal.rate, data = dat,
         breaks=c(0,.049, .108, .178, .230, .519, .958, 1.31)
         )
 
-## ----lasrosas,echo=FALSE, fig.height=7.5------------------------------------------------
+## ----lasrosas, eval=TRUE, fig.height=7.5------------------------------------------------
 
+data(lasrosas.corn)
 dat <- lasrosas.corn
-library(latticeExtra)
+library("latticeExtra")
 
 # yield map
+redblue <- colorRampPalette(c("firebrick", "lightgray", "#375997"))
 foo1 <- levelplot(yield ~ long*lat|factor(year), data=dat,
-          aspect=1,
+          aspect=1, layout=c(2,1),
           main="lasrosas.corn grain yield (qu/ha)", xlab="Longitude", ylab="Latitude",
           scales=list(alternating=FALSE),
           prepanel = prepanel.default.xyplot,
           panel = panel.levelplot.points,
-          type = c("p", "g"), col.regions=RedGrayBlue)
+          type = c("p", "g"), col.regions=redblue)
 
 # Experiment design...shows problems in 2001
 dat <- lasrosas.corn
@@ -317,19 +338,21 @@ mypanel <- function(x,y,...,subscripts,col,pch) {
 }
 
 foo2 <- xyplot(lat~long|factor(year), data=dat,
-       aspect=1, xlim=xl, ylim=yl, cex=0.9,
-       main="lasrosas.corn experiment design", xlab="", ylab="",
-       scales=list(alternating=FALSE),
-       col=sseq[dat$repnf],
-       #pch=levels(dat$topo)[dat$topo],
-       pch=c('-','+','/','\\')[dat$topo],
-       panel=mypanel)
+               aspect=1, layout=c(2,1),
+               xlim=xl, ylim=yl, cex=0.9,
+               main="lasrosas.corn experiment design", xlab="", ylab="",
+               scales=list(alternating=FALSE),
+               col=sseq[dat$repnf],
+               #pch=levels(dat$topo)[dat$topo],
+               pch=c('-','+','/','\\')[dat$topo],
+               panel=mypanel)
 
 plot(foo1, split = c(1, 1, 1, 2))
 plot(foo2, split = c(1, 2, 1, 2), newpage = FALSE)
 
 
-## ----nass, echo=FALSE, fig.height=8-----------------------------------------------------
+## ----nass, eval=TRUE, fig.height=8------------------------------------------------------
+data(nass.corn)
 dat <- nass.corn
 dat$acres <- dat$acres/1000000
 
@@ -346,7 +369,4 @@ xyplot(acres ~ year|state, dat, type='l', as.table=TRUE,
        strip=strip.custom(par.strip.text=list(cex=.5)),
        main="nass.corn", xlab="Year", ylab="Million acres of corn")
 
-
-## ----finish, echo=FALSE, results="asis"-------------------------------------------------
-toLatex(sessionInfo(), locale=FALSE)
 

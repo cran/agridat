@@ -36,18 +36,21 @@
   counted at or near harvest.  The number counted was seldom less than 200
   and sometimes more than 400 per row.
 }
+
 \source{
-  Salmon, SC, 1938.
+  S.C. Salmon, 1938.
   Generalized standard errors for evaluating bunt experiments with wheat.
   \emph{Agronomy Journal}, 30, 647--663.  Table 1.
+  http://doi.org/10.2134/agronj1938.00021962003000080003x
 }
+
 \references{
   Salmon says the data came from:
 
   H. A. Rodenhiser and C. S. Holton (1937).
   Physiologic races of Tilletia tritici and T. levis.
   \emph{Journal of Agricultural Research}, 55, 483-496.
-  \url{naldc.nal.usda.gov/download/IND43969050/PDF}.
+  naldc.nal.usda.gov/download/IND43969050/PDF
 }
 
 \examples{
@@ -62,7 +65,8 @@ d2$bunt <- reorder(d2$bunt, d2$pct)
 # are susceptible to all bunts.  Note the groups of bunt races that are similar,
 # such as the first 4 rows of this plot.  Also note the strong wheat*bunt interaction.
 require(lattice)
-levelplot(pct~gen+bunt,d2, col.regions=RedGrayBlue,
+redblue <- colorRampPalette(c("firebrick", "lightgray", "#375997"))
+levelplot(pct~gen+bunt,d2, col.regions=redblue,
           main="salmon.bunt percent of heads infected",
           xlab="Wheat variety", ylab="bunt line")
 

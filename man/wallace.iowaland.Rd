@@ -2,12 +2,12 @@
 \alias{wallace.iowaland}
 \docType{data}
 \title{
-  1925 Iowa farmland values by county
+  Iowa farmland values by county in 1925
 }
 \description{
-  1925 Iowa farmland values by county
+  Iowa farmland values by county in 1925
 }
-\usage{data(wallace.iowaland)}
+\usage{data("wallace.iowaland")}
 \format{
   A data frame with 99 observations on the following 10 variables.
   \describe{
@@ -26,15 +26,17 @@
 \details{
   None.
 }
+
 \source{
   H.A. Wallace (1926). Comparative Farm-Land Values in Iowa.
   \emph{The Journal of Land & Public Utility Economics}, 2, 385-392.
   Page 387-388.
-  http://www.jstor.org/stable/3138610
+  http://doi.org/10.2307/3138610
 }
+
 \references{
   Larry Winner. Spatial Data Analysis.
-  \url{http://www.stat.ufl.edu/~winner/data/iowaland.txt}
+  http://www.stat.ufl.edu/~winner/data/iowaland.txt
 }
 
 \examples{
@@ -58,10 +60,11 @@ summary(m1) # estimates similar to Wallace, top of p. 389
 # Choropleth map
 require(maps)
 data(county.fips)
-dat <- transform(dat, polnm = paste0('iowa,',county))
+dat <- transform(dat, polnm = paste0('iowa,',county)) # polnm example: iowa,adair
 
 if(require("latticeExtra")){ # for mapplot
-  mapplot(polnm~fedval , data=dat, colramp=RedGrayBlue,
+  redblue <- colorRampPalette(c("firebrick", "lightgray", "#375997"))
+  mapplot(polnm~fedval , data=dat, colramp=redblue,
           main="wallace.iowaland - Federal land values",
           xlab="Land value, dollars per acre",
           scales=list(draw=FALSE),

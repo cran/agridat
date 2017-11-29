@@ -11,8 +11,8 @@
 \format{
   A data frame with 480 observations on the following 6 variables.
   \describe{
-    \item{\code{tree}}{tree factor, 10 levels}
-    \item{\code{apple}}{apple factor, 24 levels}
+    \item{\code{tree}}{tree, 10 levels}
+    \item{\code{apple}}{apple, 24 levels}
     \item{\code{size}}{size of apple}
     \item{\code{appleid}}{unique id number for each apple}
     \item{\code{time}}{time period, 1-6 = (week/2)}
@@ -45,9 +45,11 @@ xyplot(diameter ~ time | factor(appleid), data=dat, type=c('p','l'),
        strip=strip.custom(par.strip.text=list(cex=.7)),
        main="byers.apple")
 
-# Overall fixed linear trend, plus random intercept/slope deviations
-# for each apple.  Observations within each apple are correlated.
-if(require(nlme) & require(lucid)){
+\dontrun{
+  # Overall fixed linear trend, plus random intercept/slope deviations
+  # for each apple.  Observations within each apple are correlated.
+  require(nlme)
+  require(lucid)
   m1 <- lme(diameter ~ 1 + time, data=dat,
             random = ~ time|appleid, method='ML',
             cor = corAR1(0, form=~ time|appleid),

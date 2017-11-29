@@ -2,17 +2,17 @@
 \alias{ars.earlywhitecorn96}
 \docType{data}
 \title{
-Early White Food Corn Performance Tests
+    Multi-environment trial of early white food corn
 }
 \description{
-  Early White Food Corn Performance Tests of 60 white hybrids.
+  Multi-environment trial of early white food corn for 60 white hybrids.
 }
 
 \format{
   A data frame with 540 observations on the following 9 variables.
   \describe{
-    \item{\code{loc}}{loc factor, 9 levels}
-    \item{\code{gen}}{gen factor, 60 levels}
+    \item{\code{loc}}{location, 9 levels}
+    \item{\code{gen}}{gen, 60 levels}
     \item{\code{yield}}{yield, bu/ac}
     \item{\code{stand}}{stand, percent}
     \item{\code{rootlodge}}{root lodging, percent}
@@ -54,9 +54,10 @@ require(lattice)
 # These views emphasize differences between locations
 dotplot(gen~yield, dat, group=loc, auto.key=list(columns=3),
         main="ars.earlywhitecorn96")
-dotplot(gen~stalklodge, dat, group=loc, auto.key=list(columns=3),
-        main="ars.earlywhitecorn96")
-splom(~dat[,3:9], group=dat$loc, auto.key=list(columns=3))
+## dotplot(gen~stalklodge, dat, group=loc, auto.key=list(columns=3),
+##         main="ars.earlywhitecorn96")
+splom(~dat[,3:9], group=dat$loc, auto.key=list(columns=3),
+      main="ars.earlywhitecorn96")
 
 # MANOVA
 m1 <- manova(cbind(yield,earht,moisture) ~ gen + loc, dat)

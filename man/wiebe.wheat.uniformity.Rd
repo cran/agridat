@@ -2,18 +2,18 @@
 \alias{wiebe.wheat.uniformity}
 \docType{data}
 \title{
-Uniformity trial of wheat
+  Uniformity trial of wheat
 }
 \description{
-A uniformity trial of 1500 plots of wheat conducted in Idaho in 1927.
+  Uniformity trial of wheat at Aberdeen, Idaho, 1927.
 }
 
 \format{
   A data frame with 1500 observations on the following 3 variables.
   \describe{
-    \item{\code{row}}{Row}
-    \item{\code{col}}{Column (series)}
-    \item{\code{yield}}{Yield in grams per plot}
+    \item{\code{row}}{row}
+    \item{\code{col}}{column (series)}
+    \item{\code{yield}}{yield in grams per plot}
   }
 }
 
@@ -23,25 +23,31 @@ A uniformity trial of 1500 plots of wheat conducted in Idaho in 1927.
   on April 18 with a drill that sowed eight rows at a time.
   Individual rows were harvested in August and threshed with a small
   nursery thresher.
+  Some authors recommend analyzing the square root of the yields.
 
   Rows were 15 feet long, 1 foot apart.
 
-  Some authors recommend analyzing the square root of the yields.
+  Field width: 12 cols * 15 feet = 180 feet wide.
 
+  Field length: 125 rows * 12 in = 125 feet
+  
 }
 
 \source{
   Wiebe, G.A. 1935. Variation and Correlation in Grain Yield among 1,500 Wheat
   Nursery Plots, \emph{Journal of Agricultural Research}, 50, 331-357.
-  \url{http://naldc.nal.usda.gov/download/IND43968632/PDF}
+  http://naldc.nal.usda.gov/download/IND43968632/PDF
 }
 
 \references{
-  D.A. Preece, 1981, Distributions of final digits in data,
+  D.A. Preece, 1981,
+  Distributions of final digits in data,
   \emph{The Statistician}, 30, 31--60.
+  http://doi.org/10.2307/2987702
 
-  Wilkinson et al. (1983). Nearest Neighbour (NN) Analysis of Field
-  Experiments. \emph{J. R. Statist. Soc. B}, 45, 151-211.
+  Wilkinson et al. (1983).
+  Nearest Neighbour (NN) Analysis of Field Experiments.
+  \emph{J. R. Statist. Soc. B}, 45, 151-211.
 }
 
 \examples{
@@ -49,10 +55,12 @@ A uniformity trial of 1500 plots of wheat conducted in Idaho in 1927.
 data(wiebe.wheat.uniformity)
 dat <- wiebe.wheat.uniformity
 
-require("lattice")
-# 125 rows = 125 feet tall. 12 cols * 15 feet = 180 feet wide.
-desplot(yield~col+row, dat, aspect=125/180, flip=TRUE,
-  main="wiebe.wheat.uniformity: yield") # row 1 is at south
+if(require(desplot)){
+  desplot(yield~col+row, dat,
+          aspect=125/180, flip=TRUE, # true aspect
+          main="wiebe.wheat.uniformity: yield") # row 1 is at south
+}
+
 
 # Preece (1981) found the last digits have an interesting distribution
 # with 0 and 5 much more common than other digits.
@@ -73,6 +81,7 @@ table(dat$col, dig) # Table 3 of Preece
 rowm <- tapply(dat$yield, dat$row, mean)
 acf(rowm, main="wiebe.wheat.uniformity row means")
 # Plot the row mean against the planter row unit 1-8
+require("lattice")
 xyplot(rowm~rep(1:8, length=125),
        main="wiebe.wheat.uniformity",
        xlab="Planter row unit", ylab="Row mean yield")

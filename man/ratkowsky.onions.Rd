@@ -1,7 +1,9 @@
 \name{ratkowsky.onions}
 
 \alias{ratkowsky.onions}
-\title{Onion yields for different densities at two locations}
+\title{
+  Onion yields for different densities at two locations
+}
 
 \description{
   Onion yields for different densities at two locations
@@ -11,7 +13,7 @@
   \describe{
     \item{density}{planting density (plants per square meter)}
     \item{yield}{yield (g / plant)}
-    \item{loc}{loc factor, Purnong Landing, or Virginia}
+    \item{loc}{location, Purnong Landing or Virginia}
   }
 }
 \details{
@@ -25,7 +27,7 @@
 \references{
   Ruppert, D., Wand, M.P. and Carroll, R.J. (2003).
   \emph{Semiparametric Regression}. Cambridge University Press.
-  \url{http://stat.tamu.edu/~carroll/semiregbook/}
+  http://stat.tamu.edu/~carroll/semiregbook/
 }
 
 \examples{

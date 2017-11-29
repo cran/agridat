@@ -2,7 +2,7 @@
 \alias{blackman.wheat}
 \docType{data}
 \title{
-  Yield for conventional and semi-dwarf wheat varieties
+  Multi-environment trial of conventional and semi-dwarf wheat varieties
 }
 \description{
   Yield for conventional and semi-dwarf wheat varieties at 7 locs with
@@ -12,11 +12,11 @@
 \format{
   A data frame with 168 observations on the following 5 variables.
   \describe{
-    \item{\code{gen}}{Genotype factor}
-    \item{\code{loc}}{Loc factor}
-    \item{\code{nitro}}{Nitrogen fertilizer factor, low/high}
-    \item{\code{yield}}{Yield (g/m^2)}
-    \item{\code{type}}{Type factor, conventional/semi-dwarf}
+    \item{\code{gen}}{genotype}
+    \item{\code{loc}}{location}
+    \item{\code{nitro}}{nitrogen fertilizer, low/high}
+    \item{\code{yield}}{yield (g/m^2)}
+    \item{\code{type}}{type factor, conventional/semi-dwarf}
   }
 }
 \details{
@@ -36,6 +36,7 @@
   Response of semi-dwarf and conventional winter wheat varieties to the
   application of nitrogen fertilizer.
   \emph{The Journal of Agricultural Science}, 90, 543--550.
+  http://doi.org/10.1017/S0021859600056070
 }
 \references{
   Gower, J. and Lubbe, S.G. and Gardner, S. and Le Roux, N. (2011).
@@ -47,7 +48,6 @@ data(blackman.wheat)
 dat <- blackman.wheat
 
 require(lattice)
-require(reshape2)
 
 # Semi-dwarf generally higher yielding than conventional
 # bwplot(yield~type|loc,dat, main="blackman.wheat")
@@ -66,12 +66,15 @@ xyplot(yield~height|loc,dat,group=nitro,type=c('p','r'),
        main="blackman.wheat",
        subset=loc=="Tru", auto.key=TRUE)
 
-# AMMI-style biplot Fig 6.4 of Gower 2011
-dat$env <- factor(paste(dat$loc,dat$nitro,sep="-"))
-datm <- acast(dat, gen~env, value.var='yield')
-datm <- sweep(datm, 1, rowMeans(datm))
-datm <- sweep(datm, 2, colMeans(datm))
-biplot(prcomp(datm), main="blackman.wheat AMMI-style biplot")
+\dontrun{
+  require(reshape2)
+  # AMMI-style biplot Fig 6.4 of Gower 2011
+  dat$env <- factor(paste(dat$loc,dat$nitro,sep="-"))
+  datm <- acast(dat, gen~env, value.var='yield')
+  datm <- sweep(datm, 1, rowMeans(datm))
+  datm <- sweep(datm, 2, colMeans(datm))
+  biplot(prcomp(datm), main="blackman.wheat AMMI-style biplot")
+}
 
 }
 \keyword{datasets}

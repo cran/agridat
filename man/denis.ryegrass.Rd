@@ -2,7 +2,7 @@
 \alias{denis.ryegrass}
 \docType{data}
 \title{
-  Plant strength of perennial ryegrass in France
+  Multi-environment trial of perennial ryegrass in France
 }
 \description{
   Plant strength of perennial ryegrass in France for 21 genotypes at 7
@@ -12,9 +12,9 @@
 \format{
   A data frame with 147 observations on the following 3 variables.
   \describe{
-    \item{\code{gen}}{Genotype factor, 21 levels}
-    \item{\code{loc}}{Location factor, 7 levels}
-    \item{\code{strength}}{Average plant strength * 100}
+    \item{\code{gen}}{genotype, 21 levels}
+    \item{\code{loc}}{location, 7 levels}
+    \item{\code{strength}}{average plant strength * 100}
   }
 }
 \details{
@@ -32,6 +32,7 @@
   Asymptotic confidence regions for biadditive models:
   interpreting genotype-environment interaction,
   \emph{Applied Statistics}, 45, 479-493.
+  http://doi.org/10.2307/2986069
 }
 \references{
   Gower, J.C. and Hand, D.J., 1996.  Biplots.
@@ -42,7 +43,12 @@
 
 data(denis.ryegrass)
 dat <- denis.ryegrass
-anova(aov(strength ~ gen + loc, dat))
+
+# biplots (without ellipses) similar to Denis figure 1 
+if(require(gge)){
+  m1 <- gge(strength ~ gen*loc, dat, scale=FALSE)
+  biplot(m1, main="denis.ryegrass biplot")
+}
 
 }
 \keyword{datasets}

@@ -11,10 +11,10 @@
 \format{
   A data frame with 490 observations on the following 4 variables.
   \describe{
-    \item{\code{gen}}{Genotype (progeny) factor}
-    \item{\code{origin}}{Origin of progeny}
-    \item{\code{loc}}{Location factor}
-    \item{\code{height}}{Height, meters}
+    \item{\code{gen}}{genotype (progeny) factor}
+    \item{\code{origin}}{origin of progeny}
+    \item{\code{loc}}{location}
+    \item{\code{height}}{height, meters}
   }
 }
 \details{
@@ -47,7 +47,8 @@
   Arciniegas-Alarcon, S. and Garcia-Pena, M. and dos Santos Dias,
   C.T. and Krzanowski, W.J. (2010). An alternative methodology for
   imputing missing data in trials with genotype-by-environment
-  interaction, \emph{Biometrical Letters}, 47, 1--14.
+  interaction, \emph{Biometrical Letters}, 47, 1-14.
+  http://doi.org/10.2478/bile-2014-0006
 }
 
 \examples{
@@ -63,10 +64,12 @@ data(lavoranti.eucalyptus)
 dat <- lavoranti.eucalyptus
 
 require(lattice)
-levelplot(height~loc*gen, dat, main="lavoranti.eucalyptus - GxE heatmap")
+grays <- colorRampPalette(c("#d9d9d9","#252525"))
+levelplot(height~loc*gen, dat, main="lavoranti.eucalyptus - GxE heatmap",
+          col.regions=grays)
 
 dat <- droplevels(subset(dat, origin=="Ravenshoe"))
-require(reshape2)
+if(require(reshape2)){
 dat <- acast(dat, gen~loc, value.var='height')
 
 dat[1,1] <- NA
@@ -76,5 +79,7 @@ xc1 <- dat[-1,][,1]
 xr1 <- dat[,-1][1,]
 xm <- xr1 %*% X11.svd$v %*% diag(1/X11.svd$d) %*% t(X11.svd$u) %*% xc1
 xm # = 18.29, Original value was 17.4
+}
+
 }
 \keyword{datasets}

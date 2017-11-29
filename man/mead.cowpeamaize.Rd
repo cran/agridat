@@ -11,12 +11,12 @@
 \format{
   A data frame with 72 observations on the following 6 variables.
   \describe{
-    \item{\code{block}}{Block factor, 3 levels}
-    \item{\code{nitro}}{Nitrogen factor, 4 levels}
-    \item{\code{cowpea}}{Cowpea variety, 2 levels}
-    \item{\code{maize}}{Maize variety, 3 levels}
-    \item{\code{cyield}}{Cowpea yield, kg/ha}
-    \item{\code{myield}}{Maize yield, kg/ha}
+    \item{\code{block}}{block, 3 levels}
+    \item{\code{nitro}}{nitrogen, 4 levels}
+    \item{\code{cowpea}}{cowpea variety, 2 levels}
+    \item{\code{maize}}{maize variety, 3 levels}
+    \item{\code{cyield}}{cowpea yield, kg/ha}
+    \item{\code{myield}}{maize yield, kg/ha}
   }
 }
 \details{
@@ -26,12 +26,12 @@
 \source{
   Roger Mead. 1990. A Review of Methodology For The Analysis of Intercropping
   Experiments.   Training Working Document No. 6.  CIMMYT.
-  \url{http://repository.cimmyt.org/xmlui/handle/10883/868}.
+  http://repository.cimmyt.org/xmlui/handle/10883/868
 }
 \references{
-  Roger Mead, 1992.
-  Statistical Methods in Agriculture and Experimental Biology, 2nd ed.
-  Chapman and Hall.  Page 364.
+  Roger Mead, Robert N Curnow, Anne M Hasted. 2002.
+  Statistical Methods in Agriculture and Experimental Biology, 3rd ed.
+  Chapman and Hall.  Page 390.
 }
 
 \examples{

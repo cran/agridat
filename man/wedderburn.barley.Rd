@@ -2,7 +2,7 @@
 \alias{wedderburn.barley}
 \docType{data}
 \title{
-  Percent of barley leaves affected by leaf blotch
+  Multi-environment trial of barley, percent of leaves affected by leaf blotch
 }
 \description{
   Percent of leaf area affected by leaf blotch on 10 varieties of barley
@@ -22,12 +22,13 @@
   Incidence of \emph{Rhynchosporium secalis} (leaf blotch) on the leaves of
   10 varieties of barley grown at 9 sites in 1965.
 }
+
 \source{
   Wedderburn, R W M (1974).
   Quasilikelihood functions, generalized linear models and the
   Gauss-Newton method.
   \emph{Biometrika}, 61, 439--47.
-  http://www.jstor.org/stable/2334725.
+  http://doi.org/10.2307/2334725
 
   Wedderburn credits the original data to an unpublished thesis by
   J. F. Jenkyn.
@@ -75,6 +76,7 @@ wedder <- list(varfun=function(mu) (mu*(1-mu))^2,
                mustart <- pmax(0.001, pmin(0.99,y)) }),
              name="(mu(1-mu))^2")
 m2 <- glm(y ~ gen + site, data=dat, family=quasi(link="logit", variance=wedder))
+#plot(m2)
 
 \dontrun{
 # Alternatively, the 'gnm' package has the 'wedderburn' family.

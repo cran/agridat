@@ -2,10 +2,10 @@
 \alias{hayman.tobacco}
 \docType{data}
 \title{
-  Two reps of full diallel cross of Aztec tobacco
+  Diallel cross of Aztec tobacco
 }
 \description{
-  Two reps of full diallel cross of Aztec tobacco
+  Diallel cross of Aztec tobacco in 2 reps
 }
 
 \format{
@@ -19,11 +19,10 @@
   }
 }
 \details{
-  The hayman.tobacco data was collected in 1951 (Hayman 1954a) and
-  1952 (Hayman 1954b).
+  
+  Data was collected in 1951 (Hayman 1954a) and 1952 (Hayman 1954b).
 
-  In each year there were 8 varieties of Aztec tobacca (Nicotiana
-  rustica L.).
+  In each year there were 8 varieties of Aztec tobacco, \emph{Nicotiana rustica L.}.
 
   Each cross/self was represented by 10 progeny, in two plots of 5
   plants each.  The data are the mean flowering time per plot.
@@ -43,11 +42,11 @@
 
   B. I. Hayman (1954a). The Analysis of Variance of Diallel Tables.
   \emph{Biometrics}, 10, 235-244.  Table 5, page 241.
-  http://www.jstor.org/stable/3001877
+  http://doi.org/10.2307/3001877
 
   Hayman, B.I. (1954b). The theory and analysis of diallel crosses.
   \emph{Genetics}, 39, 789-809.  Table 3, page 805.
-  \url{http://www.genetics.org/content/39/6/789.full.pdf}
+  http://www.genetics.org/content/39/6/789.full.pdf
 
 }
 
@@ -63,7 +62,7 @@
 
   C. Clark Cockerham and B. S. Weir. (1977).
   Quadratic analyses of reciprocal crosses.
-  \emph{Biometrics} 33, 187-203.  Same data in appendix C.
+  \emph{Biometrics} 33, 187-203.  Appendix C.
 }
 
 \examples{
@@ -118,7 +117,7 @@ densityplot(~day, data=dat2, main="hayman.tobacco",
 d1 <- subset(dat2, block=='B1')
 d2 <- subset(dat2, block=='B2')
 
-require(reshape2)
+if(require(reshape2)){
 m1 <- acast(d1, male~female, value.var='day')
 m2 <- acast(d2, male~female, value.var='day')
 
@@ -130,7 +129,8 @@ vr1 <- apply(mn1, 1, var)
 vr2 <- apply(mn2, 1, var)
 wr1 <- apply(mn1, 1, cov, diag(mn1))
 wr2 <- apply(mn2, 1, cov, diag(mn2))
-
+# Remove row names to prevent a mild warning
+rownames(mn1) <- rownames(mn2) <- NULL
 summ <- data.frame(rbind(mn1,mn2))
 summ$block <- rep(c('B1','B2'), each=8)
 summ$vr <- c(vr1,vr2)
@@ -142,6 +142,8 @@ with(summ, text(vr, wr, male)) # Match Hayman figure 2
 abline(0,1,col="gray")
 # Hayman notes that 1 and 3 do not lie along the line, so modifies them
 # and re-analyzes.
+}
+
 
 }
 \keyword{datasets}

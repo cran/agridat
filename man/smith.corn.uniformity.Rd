@@ -2,27 +2,27 @@
 \alias{smith.corn.uniformity}
 \docType{data}
 \title{
-  Uniformity trial of corn in three consecutive years
+  Uniformity trial of corn, 3 years on same ground
 }
 \description{
-  Uniformity trial of corn in three consecutive years, 1895-1897.  The
-  same field/plots were used in all three years.
+  Uniformity trial of corn, 3 years on same ground, 1895-1897
 }
 
 \format{
   A data frame with 360 observations on the following 5 variables.
   \describe{
-    \item{\code{plot}}{Plot, consistent across years}
-    \item{\code{row}}{Row}
-    \item{\code{col}}{Column}
-    \item{\code{year}}{Year, numeric.  Last two digits of 1895, 1896, 1897}
-    \item{\code{yield}}{Yield in bushels / acre}
+    \item{\code{row}}{row}
+    \item{\code{col}}{column}
+    \item{\code{plot}}{plot number, consistent across years}
+    \item{\code{year}}{year. Last two digits of 1895, 1896, 1897}
+    \item{\code{yield}}{yield, bushels / acre}
   }
 }
 \details{
   The data values are from Smith (1910) and the field map is from Harris (1920).
-
-  The following (edited) text is from Smith (1910).
+  Each plot was 1/10 acre, but the dimensions are not given.
+  
+  The following text is abridged from Smith (1910).
 
   How much variability may we reasonably expect in land that is
   apparently uniform? Some data among the records of the soil plots at
@@ -94,15 +94,16 @@
   involving the average of liberal numbers and extending over long
   periods of time.
 }
+
 \source{
-  Smith, L.H. 1910. Plot arrangement for variety experiment with corn.
-  \emph{Agronomy Journal}, 1, 84--89.
-  \url{http://books.google.com/books?id=mQT0AAAAMAAJ&pg=PA84}
+  Smith, L.H. 1910. Plot arrangement for variety experiments with corn.
+  \emph{Agronomy Journal}, 1, 84--89. Table 1.
+  http://books.google.com/books?id=mQT0AAAAMAAJ&pg=PA84
 
   Harris, J.A. 1920. Practical universality of field heterogeneity as a factor
   influencing plot yields. \emph{Journal of Agricultural Research},
-  19, 279--314.
-  \url{http://books.google.com/books?id=jyEXAAAAYAAJ&pg=PA279}
+  19, 279--314. Page 296-297.
+  http://books.google.com/books?id=jyEXAAAAYAAJ&pg=PA279
 }
 
 \examples{
@@ -111,18 +112,25 @@ data(smith.corn.uniformity)
 dat <- smith.corn.uniformity
 
 dat = transform(dat, year=factor(year))
-desplot(yield~col*row|year, dat, layout=c(1,3),
-        main="smith.corn.uniformity: yield across years 1895-1987")
+if(require(desplot)){
+  desplot(yield~col*row|year, dat, layout=c(1,3),
+          col.regions=colorRampPalette(gray(1:100/100)),
+          main="smith.corn.uniformity: yield across years 1895-1987")
+}
 
-# Outliers are obvious
-# require(lattice)
-# xyplot(yield~row|factor(col), dat, groups=year,
-# auto.key=list(columns=3), main="smith.corn.uniformity")
+## # Outliers are obvious
+## require(lattice)
+## xyplot(yield~row|factor(col), dat, groups=year,
+##        auto.key=list(columns=3), main="smith.corn.uniformity")
+
 
 \dontrun{
-require(rgl)
-# A few odd pairs of outliers in column 6
-plot3d(dat$col, dat$row, dat$yield, col=dat$year)
+  require(rgl)
+  # A few odd pairs of outliers in column 6
+  plot3d(dat$col, dat$row, dat$yield, col=dat$year,
+         xlab="col",ylab="row",zlab="yield")
+  rgl.close()
 }
+
 }
 

@@ -2,7 +2,7 @@
 \alias{lyons.wheat}
 \docType{data}
 \title{
-  Yield of winter wheat at 12 sites in 4 years.
+  Multi-environment trial of winter wheat at 12 sites in 4 years.
 }
 \description{
   Yield of winter wheat at 12 sites in 4 years.
@@ -11,7 +11,7 @@
 \format{
   A data frame with 48 observations on the following 3 variables.
   \describe{
-    \item{\code{loc}}{loc factor, 12 levels}
+    \item{\code{loc}}{location, 12 levels}
     \item{\code{year}}{year, numeric}
     \item{\code{yield}}{yield (kg)}
   }
@@ -32,6 +32,7 @@
 
 data(lyons.wheat)
 dat <- lyons.wheat
+
 require(lattice)
 xyplot(yield~factor(year), dat, group=loc,
   main="lyons.wheat",

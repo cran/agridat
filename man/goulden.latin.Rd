@@ -7,7 +7,7 @@
 \description{
   Latin square experiment for testing fungicide
 }
-\usage{data(goulden.latin)}
+\usage{data("goulden.latin")}
 \format{
   A data frame with 25 observations on the following 4 variables.
   \describe{
@@ -29,14 +29,21 @@
 
 }
 \source{
-  G. Goulden (1952). \emph{Methods of Statistical Analysis}. 2nd ed. Page 216.
+  Cyrus H. Goulden (1952).
+  \emph{Methods of Statistical Analysis}, 2nd ed. Page 216.
+  http://krishikosh.egranth.ac.in/handle/1/2034118
 }
 
 \examples{
 
 data(goulden.latin)
 dat <- goulden.latin
-desplot(yield ~ col*row, dat, text=trt, cex=1, main="goulden.latin")
+
+if(require(desplot)){
+  desplot(yield ~ col*row, dat,
+          text=trt, cex=1, # aspect unknown
+          main="goulden.latin")
+}
 
 # Matches Goulden.
 m1 <- lm(yield~ trt + factor(row) + factor(col), data=dat)

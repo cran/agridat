@@ -2,7 +2,7 @@
 \alias{cochran.bib}
 \docType{data}
 \title{
-  Balanced incomplete block design in corn
+  Multi-environment trial of corn, balanced incomplete block design
 }
 \description{
   Balanced incomplete block design in corn
@@ -11,9 +11,9 @@
 \format{
   A data frame with 52 observations on the following 3 variables.
   \describe{
-    \item{\code{loc}}{Location/block factor, 13 levels}
-    \item{\code{gen}}{Genotype/line factor, 13 levels}
-    \item{\code{yield}}{Yield, pounds/plot}
+    \item{\code{loc}}{location/block, 13 levels}
+    \item{\code{gen}}{genotype/line, 13 levels}
+    \item{\code{yield}}{yield, pounds/plot}
   }
 }
 \details{
@@ -38,8 +38,9 @@ dat <- cochran.bib
 
 # Show the incomplete-block structure
 require(lattice)
+redblue <- colorRampPalette(c("firebrick", "lightgray", "#375997"))
 levelplot(yield~loc*gen, dat,
-          col.regions=RedGrayBlue,
+          col.regions=redblue,
           xlab="loc (block)", main="cochran.bib - incomplete blocks")
 
 with(dat, table(gen,loc))
@@ -51,10 +52,6 @@ summary(m1)
 
 require(nlme)
 m2 = lme(yield ~ -1 + gen, data=dat, random=~1|loc)
-
-if(require(agricolae)){
-  BIB.test(dat$loc, dat$gen, y=dat$yield)
-}
 
 }
 

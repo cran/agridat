@@ -54,10 +54,10 @@
 \source{
   Darwin, C. R. 1876. \emph{The effects of cross and self fertilisation in the
   vegetable kingdom}. London: John Murray. Page 16.
-  \url{http://darwin-online.org.uk/converted/published/1881_Worms_F1357/1876_CrossandSelfFertilisation_F1249/1876_CrossandSelfFertilisation_F1249.html}.
+  http://darwin-online.org.uk/converted/published/1881_Worms_F1357/1876_CrossandSelfFertilisation_F1249/1876_CrossandSelfFertilisation_F1249.html
 }
 \references{
-  R. A. Fisher, (1935) \emph{Design of Experiments},  Oliver and Boyd. Page 30.
+  R. A. Fisher, (1935) \emph{The Design of Experiments},  Oliver and Boyd. Page 30.
 }
 
 \examples{
@@ -69,16 +69,19 @@ dat <- darwin.maize
 require(lattice)
 bwplot(height~type, dat, main="darwin.maize")
 
-require(reshape2)
-dm <- melt(dat)
-d2 <- dcast(dm, pot+pair~type)
-d2$diff <- d2$cross-d2$self
-t.test(d2$diff)
-## 	One Sample t-test
-## t = 2.148, df = 14, p-value = 0.0497
-## alternative hypothesis: true mean is not equal to 0
-## 95 percent confidence interval:
-##  0.003899165 5.229434169
+\dontrun{
+  require(reshape2)
+  dm <- melt(dat)
+  d2 <- dcast(dm, pot+pair~type)
+  d2$diff <- d2$cross-d2$self
+  t.test(d2$diff)
+  ## 	One Sample t-test
+  ## t = 2.148, df = 14, p-value = 0.0497
+  ## alternative hypothesis: true mean is not equal to 0
+  ## 95 percent confidence interval:
+  ##  0.003899165 5.229434169
+}
+
 
 }
 \keyword{datasets}

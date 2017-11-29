@@ -2,7 +2,7 @@
 \alias{engelstad.nitro}
 \docType{data}
 \title{
-  Corn yield response to nitrogen fertilizer
+  Multi-environment trial of corn with nitrogen fertilizer
 }
 \description{
   Corn yield response to nitrogen fertilizer for a single variety of
@@ -12,10 +12,10 @@
 \format{
   A data frame with 60 observations on the following 4 variables.
   \describe{
-    \item{\code{loc}}{Location factor, 2 levels}
-    \item{\code{year}}{Year, 1962-1966}
-    \item{\code{nitro}}{Nitrogen fertilizer kg/ha}
-    \item{\code{yield}}{Corn yield, quintals/ha}
+    \item{\code{loc}}{location, 2 levels}
+    \item{\code{year}}{year, 1962-1966}
+    \item{\code{nitro}}{nitrogen fertilizer kg/ha}
+    \item{\code{yield}}{yield, quintals/ha}
   }
 }
 \details{

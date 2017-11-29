@@ -7,7 +7,7 @@
 \description{
   Lattice experiment in soybeans.
 }
-\usage{data(weiss.lattice)}
+\usage{data("weiss.lattice")}
 \format{
   A data frame with 196 observations on the following 5 variables.
   \describe{
@@ -30,12 +30,13 @@ On the other hand, the analysis by Weiss uses 24 degrees of freedom
 4*(7-1) to fit a separate effect for each column in each
 rep (instead of across reps).
 }
+
 \source{
  Weiss, Martin G. and Cox, Gertrude M. (1939).
  Balanced Incomplete Block and Lattice Square Designs for Testing Yield
  Differences Among Large Numbers of Soybean Varieties.  Table 5.
  \emph{Agricultural Research Bulletins, Nos. 251-259}.
- \url{http://lib.dr.iastate.edu/ag_researchbulletins/24/}
+ http://lib.dr.iastate.edu/ag_researchbulletins/24/
 }
 
 \examples{
@@ -43,8 +44,12 @@ rep (instead of across reps).
 data(weiss.lattice)
 dat <- weiss.lattice
 
-desplot(yield~col*row|rep,dat, text=gen, aspect=3/16,
-        main="weiss.lattice", xlab="Soybean yields", shorten="none", cex=.8)
+if(require(desplot)){
+  desplot(yield~col*row|rep,dat,
+          text=gen, shorten="none", cex=.8, aspect=3/16, # true aspect
+          main="weiss.lattice (layout uncertain)", xlab="Soybean yields")
+}
+
 dat <- transform(dat, xf=factor(col), yf=factor(row))
 m1 <- lm(terms(yield ~ rep + rep:xf + rep:yf + gen, keep.order=TRUE), data=dat)
 anova(m1) # Matches Weiss table 7
@@ -56,18 +61,20 @@ anova(m1) # Matches Weiss table 7
 ## gen       48 1029.87  21.456  3.3327 2.652e-07 ***
 ## Residuals 96  618.05   6.438
 
+# ----------------------------------------------------------------------------
+
 \dontrun{
-require(asreml)
-m2 <- asreml(yield ~ rep + rep:xf + rep:yf + gen, data=dat)
-anova(m2)
-predict(m2, classify="gen")$predictions$pvals # Weiss table 6 means
-##  gen pred.value std.error  est.stat
-##  G01      27.74     1.461 Estimable
-##  G02      24.95     1.461 Estimable
-##  G03      24.38     1.461 Estimable
-##  G04      28.05     1.461 Estimable
-##  G05      19.6      1.461 Estimable
-##  G06      23.79     1.461 Estimable
+  require(asreml)
+  m2 <- asreml(yield ~ rep + rep:xf + rep:yf + gen, data=dat)
+  anova(m2)
+  predict(m2, data=dat, classify="gen")$predictions$pvals # Weiss table 6 means
+  ##  gen pred.value std.error  est.stat
+  ##  G01      27.74     1.461 Estimable
+  ##  G02      24.95     1.461 Estimable
+  ##  G03      24.38     1.461 Estimable
+  ##  G04      28.05     1.461 Estimable
+  ##  G05      19.6      1.461 Estimable
+  ##  G06      23.79     1.461 Estimable
 }
 
 }

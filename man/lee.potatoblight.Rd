@@ -2,19 +2,19 @@
 \alias{lee.potatoblight}
 \docType{data}
 \title{
-  Repeated measurements of resistance to potato blight.
+  Repeated measurements of resistance to potato blight
 }
 \description{
   Repeated measurements of resistance to potato blight.
 }
-\usage{data(lee.potatoblight)}
+\usage{data("lee.potatoblight")}
 \format{
   A data frame with 14570 observations on the following 7 variables.
   \describe{
     \item{\code{year}}{planting year}
     \item{\code{gen}}{genotype / cultivar factor}
-    \item{\code{col}}{column ordinate}
-    \item{\code{row}}{row ordinate}
+    \item{\code{col}}{column}
+    \item{\code{row}}{row}
     \item{\code{rep}}{replicate block (numeric)}
     \item{\code{date}}{date for data collection}
     \item{\code{y}}{score 1-9 for blight resistance}
@@ -43,9 +43,10 @@ In 1997, 18 plots were lost due to flooding. In 2001, by the end of the
 season most plants were nearly dead.
 
 Note, in plant-breeding, it is common to use a "breeder code" for each genotype,
-which after several years of testing is changed to a registered variety name.
+which after several years of testing is changed to a registered
+commercial variety name.
 For this R package, the Potato Pedigree Database,
-\url{http://www.plantbreeding.wur.nl/potatopedigree/reverselookup.php},
+http://www.plantbreeding.wur.nl/potatopedigree/reverselookup.php,
 was used to change breeder codes (in early testing) to the variety names
 used in later testing.  For example, among the changes made were the
 following:
@@ -69,9 +70,13 @@ following:
   Ph.D. thesis, The University of Auckland.
   https://researchspace.auckland.ac.nz/handle/2292/4544.
 
-  Used with permission of Arier Chi Lun Lee and John Anderson.
-  Licensed via Open Database License.  Data retrieved from
+  Used with permission of Arier Chi-Lun Lee and John Anderson.
+
+  Data retrieved from
   https://researchspace.auckland.ac.nz/handle/2292/5240.
+  
+  Licensed via Open Database License 1.0. (allows sub-licensing).
+  See: http://opendatacommons.org/licenses/dbcl/1.0/
 }
 
 \examples{
@@ -104,13 +109,17 @@ skp <- c(rep(0,10),
          rep(0,5),1,1,1,1,1,
          rep(0,5),1,1,1,1,1,
          rep(0,5),1,1,1,1,1)
-desplot(y ~ col*row|date, dat,
-        main="lee.potatoblight - maps of blight resistance",
-        ylab="Year of testing",
-        layout=c(10,11),skip=skp)
 
-# 1983 only.  I.Hardy succumbs quickly
-require(lattice)
+if(require(desplot)){
+  desplot(y ~ col*row|date, dat,
+          ylab="Year of testing", # unknown aspect
+          layout=c(10,11),skip=as.logical(skp),
+          main="lee.potatoblight - maps of blight resistance over time")
+}
+
+
+# 1983 only.  I.Hardy succumbs to blight quickly
+require("lattice")
 xyplot(y ~ date|gen, dat, subset=year==1983, group=rep,
        xlab="Date", ylab="Blight resistance score",
        main="lee.potatoblight 1983", as.table=TRUE,

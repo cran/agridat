@@ -7,7 +7,7 @@
 \description{
   Damage to potato tubers from lifting rods.
 }
-\usage{data(keen.potatodamage)}
+\usage{data("keen.potatodamage")}
 \format{
   A data frame with 1152 observations on the following 6 variables.
   \describe{
@@ -16,7 +16,7 @@
     \item{\code{gen}}{genotype/variety factor}
     \item{\code{rod}}{rod factor}
     \item{\code{damage}}{damage category}
-    \item{\code{count}}{a numeric vector}
+    \item{\code{count}}{count of tubers in each combination of categories}
   }
 }
 \details{
@@ -41,8 +41,8 @@
 \source{
   A. Keen and B. Engel.
   Analysis of a mixed model for ordinal data by iterative re-weighted REML.
-  \emph{Statistica Neerlandica}, 51, 129--144.
-  Table 2.
+  \emph{Statistica Neerlandica}, 51, 129--144. Table 2.
+  http://doi.org/10.1111/1467-9574.00044
 
   Used with permission of Bas Engel.
 }

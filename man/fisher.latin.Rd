@@ -7,7 +7,7 @@
 \description{
   Latin square experiment on mangolds.  Used by R. A. Fisher.
 }
-\usage{data(fisher.latin)}
+\usage{data("fisher.latin")}
 \format{
   A data frame with 25 observations on the following 4 variables.
   \describe{
@@ -28,8 +28,10 @@
 
 }
 \source{
-  Mercer, WB and Hall, AD, 1911. The experimental error of field trials
+  Mercer, WB and Hall, AD, 1911.
+  The experimental error of field trials
   \emph{The Journal of Agricultural Science}, 4, 107-132. Table 1.
+  http::/doi.org/10.1017/S002185960000160X
 
   R. A. Fisher. \emph{Statistical Methods for Research Workers}.
 }

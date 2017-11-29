@@ -10,17 +10,17 @@
   space, narrow space, etc.).
 
   For example, the density of narrow, intermediate and broad-space
-  predictible function for factor level A1 is shown below.
+  predictible function for factor level A1 is shown below (html help only)
   \if{html}{\figure{stroupsplitplot.png}{options: width=50\% alt="Figure: stroup.splitplot.png"}}
-  \if{latex}{\figure{stroupsplitplot.pdf}{options: width=7cm}}
+
 }
 
 \format{
   \describe{
-    \item{\code{y}}{a numeric vector}
-    \item{\code{rep}}{Factor with 4 levels}
-    \item{\code{b}}{Factor with 2 levels}
-    \item{\code{a}}{Factor with 3 levels}
+    \item{\code{y}}{simulated response}
+    \item{\code{rep}}{replicate, 4 levels}
+    \item{\code{b}}{sub-plot, 2 levels}
+    \item{\code{a}}{whole-plot, 3 levels}
   }
 }
 
@@ -32,57 +32,65 @@
 
   Used with permission of Walt Stroup.
 }
+
 \references{
   Wolfinger, R.D. and Kass, R.E., 2000.
   Nonconjugate Bayesian analysis of variance component models,
   \emph{Biometrics}, 56, 768--774.
+  http://doi.org/10.1111/j.0006-341X.2000.00768.x
+  
 }
 
 \examples{
 
 data(stroup.splitplot)
-
-\dontrun{
 dat <- stroup.splitplot
 
-# ---- lme4 -----
-require(lme4)
-m0 <- lmer(y~ -1 + a + b + a:b + (1|rep) + (1|a:rep), data=dat)
-# No predict function
+# ----------------------------------------------------------------------------
 
-# ----- nlme -----
-require(nlme)
-m0 <- lme(y ~ -1 + a + b + a:b, data=dat, random = ~ 1|rep/a)
+\dontrun{
 
-# ----- ASREML model -----
-require(asreml)
-m1 <- asreml(y~ -1 + a + b + a:b, random=~ rep + a:rep, data=dat)
-summary(m1)$var  # Variance components match Stroup p. 41
-#      Effect Estimate Std Err Z Ratio Con
-# rep!rep.var   62.4    56.54      1.1 Pos
-# a:rep!a.var   15.38   11.79      1.3 Pos
-#  R!variance    9.361   4.413     2.1 Pos
+  # ---- lme4 -----
+  require(lme4)
+  m0 <- lmer(y~ -1 + a + b + a:b + (1|rep) + (1|a:rep), data=dat)
+  # No predict function
+  
+  # ----- nlme -----
+  require(nlme)
+  m0 <- lme(y ~ -1 + a + b + a:b, data=dat, random = ~ 1|rep/a)
+  
+  # ----- ASREML model -----
+  require(asreml)
+  m1 <- asreml(y~ -1 + a + b + a:b, random=~ rep + a:rep, data=dat)
+  
+  library(lucid)
+  vc(m1) # Variance components match Stroup p. 41
+  ##   effect component std.error z.ratio bound %ch
+  ##      rep    62.4      56.54      1.1     P   0
+  ##    a:rep    15.38     11.79      1.3     P   0
+  ## units(R)     9.361     4.413     2.1     P   0
+  
+  # Narrow space predictions
+  predict(m1, data=dat, classify="a", average=list(rep=NULL))$predictions$pvals
+  #  a Predicted Std Err    Status
+  # a1     32.88   1.082 Estimable
+  # a2     34.12   1.082 Estimable
+  # a3     25.75   1.082 Estimable
 
-# Narrow space predictions
-predict(m1, classify="a", average=list(rep=NULL))$predictions$pvals
-#  a Predicted Std Err    Status
-# a1     32.88   1.082 Estimable
-# a2     34.12   1.082 Estimable
-# a3     25.75   1.082 Estimable
+  # Intermediate space predictions
+  predict(m1, data=dat, classify="a", ignore=list("a:rep"),
+          average=list(rep=NULL))$predictions$pvals
+  #  a Predicted Std Err    Status
+  # a1     32.88    2.24 Estimable
+  # a2     34.12    2.24 Estimable
+  # a3     25.75    2.24 Estimable
 
-# Intermediate space predictions
-predict(m1, classify="a", ignore=list("a:rep"), average=list(rep=NULL))$predictions$pvals
-#  a Predicted Std Err    Status
-# a1     32.88    2.24 Estimable
-# a2     34.12    2.24 Estimable
-# a3     25.75    2.24 Estimable
-
-# Broad space predictions
-predict(m1, classify="a")$predictions$pvals
-#  a Predicted Std Err    Status
-# a1     32.88    4.54 Estimable
-# a2     34.12    4.54 Estimable
-# a3     25.75    4.54 Estimable
+  # Broad space predictions
+  predict(m1, data=dat, classify="a")$predictions$pvals
+  #  a Predicted Std Err    Status
+  # a1     32.88    4.54 Estimable
+  # a2     34.12    4.54 Estimable
+  # a3     25.75    4.54 Estimable
 
 
 # ----- Mcmcglmm model -----
@@ -134,7 +142,8 @@ rownames(cm) <-   c("a1", "a2", "a3", "b2", "a2:b2", "a3:b2",
                     "a2r3", "a2r4", "a3r1", "a3r2",  "a3r3", "a3r4")
 colnames(cm) <- c("A1n","A1i","A1b", "A1-A2n", "A1-A2ib")
 print(cm)
-post2 <- as.mcmc(m2$Sol \%*\% cm)
+# post2 <- as.mcmc(m2$Sol %*% cm)
+post2 <- as.mcmc(crossprod(t(m2$Sol), cm))
 
 # Following table has columns for A1 estimate (narrow, intermediate, broad)
 # A1-A2 estimate (narrow and intermediat/broad).

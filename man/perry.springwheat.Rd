@@ -2,12 +2,12 @@
 \alias{perry.springwheat}
 \docType{data}
 \title{
-  Yields of wheat cultivars introduced 1860-1982.
+  Multi-environment trial of wheat cultivars introduced 1860-1982.
 }
 \description{
   Yields of wheat cultivars introduced 1860-1982.  Grown in 20 environments.
 }
-\usage{data(perry.springwheat)}
+\usage{data("perry.springwheat")}
 \format{
   A data frame with 560 observations on the following 6 variables.
   \describe{
@@ -35,15 +35,13 @@
 }
 
 \source{
-
   MW Perry and MF D'Antuono. (1989).
   Yield improvement and associated characteristics of some Australian
   spring wheat cultivars introduced between 1860 and 1982.
   \emph{Australian Journal of Agricultural Research}, 40(3), 457--472.
-  \url{http://www.publish.csiro.au/nid/43/issue/1237.htm}
+  http://www.publish.csiro.au/nid/43/issue/1237.htm
 
   Used with permission of Mario D'Antuono and CSIRO Publishing.
-
 }
 
 \examples{
@@ -68,6 +66,8 @@ m1 <- lm(yield ~ env + yor + env:yor, data=dat)
 mean(c(coef(m1)[21], coef(m1)[21]+coef(m1)[22:40]))
 ## [1] 5.496781
 
+# ----------------------------------------------------------------------------
+
 \dontrun{
   # Now a mixed-effects model.  Fixed overall int/slope.  Random env int/slope.
 
@@ -75,8 +75,8 @@ mean(c(coef(m1)[21], coef(m1)[21]+coef(m1)[22:40]))
   dat$y <- dat$yield / 100
 
   require(lme4)
-  # Use || for uncorrelated int/slope
-  m2 <- lmer(y ~ 1 + yor + (1+yor||env), data=dat)
+  # Use || for uncorrelated int/slope.  Bad model.  See below.
+  # m2 <- lmer(y ~ 1 + yor + (1+yor||env), data=dat)
   ## Warning messages:
   ## 1: In checkConv(attr(opt, "derivs"), opt$par, ctrl = control$checkConv,  :
   ##   Model failed to converge with max|grad| = 0.55842 (tol = 0.002, component 1)
@@ -85,32 +85,22 @@ mean(c(coef(m1)[21], coef(m1)[21]+coef(m1)[22:40]))
   ##  - Rescale variables?;Model is nearly unidentifiable: large eigenvalue ratio
   ##  - Rescale variables?
 
-  # Results from lme4 look dangerous.  Try asreml.  No problem.
-  require(asreml)
-  m2a <- asreml(y ~ 1 + yor, data=dat, random = ~ env + env:yor)
-
-  # Compare the two packages
-
-  require(lucid)
-  vc(m2)
-  ##      grp        var1 var2     vcov    sdcor
-  ##      env (Intercept) <NA> 1.311    1.145
-  ##    env.1         yor <NA> 0.000006 0.002465
-  ## Residual        <NA> <NA> 4.179    2.044
-
-  vc(m2a)
-  ##          effect component  std.error z.ratio      con
-  ##     env!env.var  0.000106 0.00000653    16   Boundary
-  ## env:yor!env.var  0.000006 0.00000203     3.1 Positive
-  ##      R!variance  4.181    0.2581        16   Positive
-
   # Looks like lme4 is having trouble with variance of intercepts
   # There is nothing special about 1800 years, so change the
   # intercept -- 'correct' yor by subtracting 1800 and try again.
   dat$yorc <- dat$yor - 1800
   m3 <- lmer(y ~ 1 + yorc + (1+yorc||env), data=dat)
+  
+  # Now lme4 succeeds.  Rate of gain is 100*0.0549 = 5.49
+  fixef(m3)
+  ## (Intercept)        yorc
+  ##  5.87492444  0.05494464
+
+  # asreml3
+  require(asreml)
   m3a <- asreml(y ~ 1 + yorc, data=dat, random = ~ env + env:yorc)
 
+  require(lucid)
   vc(m3)
   ##      grp        var1 var2     vcov   sdcor
   ##      env (Intercept) <NA> 11.61    3.407
@@ -123,13 +113,9 @@ mean(c(coef(m1)[21], coef(m1)[21]+coef(m1)[22:40]))
   ## env:yorc!env.var   0.00063  0.000236     2.7 Positive
   ##       R!variance   3.551    0.2231      16   Positive
 
-  # Now lme4 succeeds.  Rate of gain is 100*0.0549 = 5.49
-
-  fixef(m3)
-  ## (Intercept)        yorc
-  ##  5.87492444  0.05494464
-
 }
+
+# ----------------------------------------------------------------------------
 
 }
 \keyword{datasets}

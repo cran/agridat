@@ -11,11 +11,11 @@
 \format{
   A data frame with 32 observations on the following 5 variables.
   \describe{
-    \item{\code{row}}{Row}
-    \item{\code{col}}{Column}
-    \item{\code{block}}{Block factor, 4 levels}
-    \item{\code{gen}}{Genotype factor, 8 levels}
-    \item{\code{yield}}{Yield, pounds}
+    \item{\code{row}}{row}
+    \item{\code{col}}{column}
+    \item{\code{block}}{block, 4 levels}
+    \item{\code{gen}}{genotype, 8 levels}
+    \item{\code{yield}}{yield, pounds}
   }
 }
 \details{
@@ -30,9 +30,11 @@
 
   The two sub-groups of genotypes are G, V, R1, F and Re, M, E, P.
 }
+
 \source{
   Unknown, but prior to 1968 according to Besag. Probably via R. Mead.
 }
+
 \references{
   R. Mead, 1990, \emph{The Design of Experiments}.
 
@@ -40,7 +42,6 @@
   Bayesian Analysis of Agricultural Field Experiments,
   \emph{Journal of the Royal Statistical Society: Series B (Statistical
     Methodology)},61, 691--746. Table 4.
-
 }
 
 \examples{
@@ -49,7 +50,11 @@ data(mead.strawberry)
 dat <- mead.strawberry
 dat$sub <- ifelse(is.element(dat$gen, c('G', 'V', 'R1', 'F')),
               "S1","S2")
-desplot(yield~col*row, dat, text=gen, cex=1, out1=block, out2=sub,
-        main="mead.strawberry")
+
+if(require(desplot)){
+  desplot(yield~col*row, dat,
+          text=gen, cex=1, out1=block, out2=sub, # unknown aspect
+          main="mead.strawberry")
+}
 
 }

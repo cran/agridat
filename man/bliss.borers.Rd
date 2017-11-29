@@ -12,7 +12,7 @@
   A data frame with 48 observations on the following 3 variables.
   \describe{
     \item{\code{borers}}{number of borers per hill}
-    \item{\code{treat}}{treatment factor, 4 levels}
+    \item{\code{treat}}{treatment factor}
     \item{\code{freq}}{frequency of the borer count}
   }
 }
@@ -30,11 +30,12 @@
   C. Bliss and R. A. Fisher. (1953).
   Fitting the Negative Binomial Distribution to Biological Data.
   \emph{Biometrics}, 9, 176--200.  Table 3.
+  http://doi.org/10.2307/3001850
 
   Geoffrey Beall. 1940. The Fit and Significance of Contagious
   Distributions when Applied to Observations on Larval Insects.
   \emph{Ecology}, 21, 460-474.  Page 463.
-  http://www.jstor.org/stable/1930285.
+  http://doi.org/10.2307/1930285
 }
 
 \examples{
@@ -71,7 +72,7 @@ if(require(latticeExtra)){
   xx <- 0:26
   yy <- dnbinom(0:26, mu=3.17, size=1.47)*120 # estimates are from glm.nb
   histogram(~borers, dd, type='count', subset=treat=='T2',
-            main="bliss.borers trt T2 observed and expected",
+            main="bliss.borers - trt T2 observed and expected",
             breaks=0:27-.5) +
               xyplot(yy~xx, col='navy', type='b')
 }
@@ -80,10 +81,10 @@ if(require(latticeExtra)){
 # "Poissonness"-type plot
 if(require(vcd)) {
   dat2 <- droplevels(subset(dat, treat=='T2'))
-  distplot(dat2$borers, type = "nbinomial",
+  vcd::distplot(dat2$borers, type = "nbinomial",
            main="bliss.borers neg binomialness plot")
   # Better way is a rootogram
-  g1 <- goodfit(dat2$borers, "nbinomial")
+  g1 <- vcd::goodfit(dat2$borers, "nbinomial")
   plot(g1, main="bliss.borers - Treatment 2")
 }
 

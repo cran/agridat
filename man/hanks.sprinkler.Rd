@@ -12,13 +12,13 @@
 \format{
   A data frame with 108 observations on the following 7 variables.
   \describe{
-    \item{\code{block}}{Block factor}
-    \item{\code{row}}{Row ordinate}
-    \item{\code{subplot}}{Column ordinate}
-    \item{\code{gen}}{Genotype factor, 3 levels}
-    \item{\code{yield}}{Yield (tons/ha)}
-    \item{\code{irr}}{Irrigation level, 1..6}
-    \item{\code{dir}}{Factor for direction from sprinkler, N/S}
+    \item{\code{block}}{block}
+    \item{\code{row}}{row}
+    \item{\code{subplot}}{column}
+    \item{\code{gen}}{genotype, 3 levels}
+    \item{\code{yield}}{yield (tons/ha)}
+    \item{\code{irr}}{irrigation level, 1..6}
+    \item{\code{dir}}{direction from sprinkler, N/S}
   }
 }
 \details{
@@ -35,7 +35,7 @@
   Statistical Analysis of Results from Irrigation Experiments Using the
   Line-Source Sprinkler System.
   \emph{Soil Science Society of America Journal}, 44, 886-888.
-  \url{http://www.soils.org/publications/sssaj/abstracts/44/4/SS0440040886}
+  http://doi.org/10.2136/sssaj1980.03615995004400040048x
 }
 \references{
   Johnson, D. E., Chaudhuri, U. N., and Kanemasu, E. T. (1983).
@@ -50,7 +50,7 @@
     Disciplines, Southern Cooperative Series Bulletin No. 343}, 104-122.
 
   SAS Stat User's Guide.
-  \url{http://support.sas.com/documentation/cdl/en/statug/63347/HTML/default/viewer.htm#statug_mixed_sect038.htm}
+  http://support.sas.com/documentation/cdl/en/statug/63347/HTML/default/viewer.htm#statug_mixed_sect038.htm
 }
 
 \examples{
@@ -59,8 +59,11 @@ data(hanks.sprinkler)
 dat <- hanks.sprinkler
 
 # The line sprinkler is vertical between subplots 6 & 7
-desplot(yield~subplot*row, dat, out1=block, out2=irr, cex=1,
-        num=gen, main="hanks.sprinkler")
+if(require(desplot)){
+  desplot(yield~subplot*row, dat,
+          out1=block, out2=irr, cex=1, # aspect unknown
+          num=gen, main="hanks.sprinkler")
+}
 
 require(lattice)
 xyplot(yield~subplot|block, dat, type=c('b'), group=gen,
@@ -71,7 +74,7 @@ xyplot(yield~subplot|block, dat, type=c('b'), group=gen,
          panel.abline(v=6.5, col='wheat')
        })
 
-\dontrun{
+# ----------------------------------------------------------------------------
 
 ## This is the model from the SAS documentation
 ## proc mixed;
@@ -80,32 +83,69 @@ xyplot(yield~subplot|block, dat, type=c('b'), group=gen,
 ## random block block*dir block*irr;
 ## repeated / type=toep(4) sub=block*gen r;
 
-dat <- transform(dat, subf=factor(subplot),
-                 irrf=factor(irr))
-dat <- dat[order(dat$block, dat$gen, dat$subplot),]
+# ----------------------------------------------------------------------------
 
-# Reproduced with asreml
-require(asreml)
-m1 <- asreml(yield ~ gen + dir + irrf + gen:dir + gen:irrf + dir:irrf,
-             data=dat,
-             random= ~ block + block:dir + block:irrf,
-             rcov= ~ block:gen:corb(subf, k=3))
+\dontrun{
+  # asreml3
+  require(asreml)
+  
+  dat <- transform(dat, subf=factor(subplot),
+                   irrf=factor(irr))
+  dat <- dat[order(dat$block, dat$gen, dat$subplot),]
+  
+  m1 <- asreml(yield ~ gen + dir + irrf + gen:dir + gen:irrf + dir:irrf,
+               data=dat,
+               random= ~ block + block:dir + block:irrf,
+               rcov= ~ block:gen:corb(subf, k=3))
 
-require(lucid)
-vc(m1)
-##                effect component std.error z.ratio constr
-##       block!block.var  0.2194     0.2393     0.92    pos
-##   block:dir!block.var  0.01768    0.03154    0.56    pos
-##  block:irrf!block.var  0.03539    0.03617    0.98    pos
-##            R!variance  0.285      0.05086    5.6     pos
-##                R!cor1  0.02802    0.1143     0.25  uncon
-##                R!cor2  0.005095   0.1278     0.04  uncon
-##                R!cor3 -0.3246     0.0905    -3.6   uncon
-
-## # convert asreml correlations to SAS covariances
-## round(.2850 * c(1, .02802, .005095, -.3246),4) # res var * (cor1, cor2, cor3)
-## [1]  0.2850  0.0080  0.0015 -0.0925
-
+  require(lucid)
+  vc(m1)
+  ##                effect component std.error z.ratio constr
+  ##       block!block.var  0.2194     0.2393     0.92    pos
+  ##   block:dir!block.var  0.01768    0.03154    0.56    pos
+  ##  block:irrf!block.var  0.03539    0.03617    0.98    pos
+  ##            R!variance  0.285      0.05086    5.6     pos
+  ##                R!cor1  0.02802    0.1143     0.25  uncon
+  ##                R!cor2  0.005095   0.1278     0.04  uncon
+  ##                R!cor3 -0.3246     0.0905    -3.6   uncon
+  
+  ## # convert asreml correlations to SAS covariances
+  ## round(.2850 * c(1, .02802, .005095, -.3246),4) # res var * (cor1, cor2, cor3)
+  ## [1]  0.2850  0.0080  0.0015 -0.0925
 }
+
+# ----------------------------------------------------------------------------
+
+\dontrun{
+  ## require(asreml4)
+  
+  ## dat <- transform(dat, subf=factor(subplot),
+  ##                  irrf=factor(irr))
+  ## dat <- dat[order(dat$block, dat$gen, dat$subplot),]
+
+  ## # FIXME asreml4
+  ## m1 <- asreml(yield ~ gen + dir + irrf + gen:dir + gen:irrf + dir:irrf,
+  ##              data=dat,
+  ##              random= ~ block + block:dir + block:irrf,
+  ##              resid = ~ block:gen:corb(subf, b=3))
+
+  ## require(lucid)
+  ## vc(m1)
+  ## ##                effect component std.error z.ratio constr
+  ## ##       block!block.var  0.2194     0.2393     0.92    pos
+  ## ##   block:dir!block.var  0.01768    0.03154    0.56    pos
+  ## ##  block:irrf!block.var  0.03539    0.03617    0.98    pos
+  ## ##            R!variance  0.285      0.05086    5.6     pos
+  ## ##                R!cor1  0.02802    0.1143     0.25  uncon
+  ## ##                R!cor2  0.005095   0.1278     0.04  uncon
+  ## ##                R!cor3 -0.3246     0.0905    -3.6   uncon
+  
+  ## ## # convert asreml correlations to SAS covariances
+  ## ## round(.2850 * c(1, .02802, .005095, -.3246),4) # res var * (cor1, cor2, cor3)
+  ## ## [1]  0.2850  0.0080  0.0015 -0.0925
+
+  ## detach(package:asreml4)
+}
+
 }
 

@@ -11,23 +11,23 @@
 \format{
   A data frame with 32 observations on the following 5 variables.
   \describe{
-    \item{\code{inf}}{Numeric, infection percent}
-    \item{\code{trt}}{Treatment factor}
-    \item{\code{row}}{Row}
-    \item{\code{col}}{Column}
+    \item{\code{inf}}{infection percent}
+    \item{\code{trt}}{treatment factor}
+    \item{\code{row}}{row}
+    \item{\code{col}}{column}
   }
 }
 \details{
-The experiment was conducted to investigate the effect of sulfur on
-controlling scab disease in potatoes. There were seven treatments.
-Control, plus spring and fall application of 300, 600, 1200 lbs/acre of
-sulfur.  The response variable was infection as a percent of the surface
-area covered with scab.  A completely randomized design was used with 8
-replications of the control and 4 replications of the other treatments.
-
-Although the original analysis did not show significant differences in
-the sulfur treatments, including a polynomial trend in the model
-uncovered significant differences (Tamura, 1988).
+  The experiment was conducted to investigate the effect of sulfur on
+  controlling scab disease in potatoes. There were seven treatments.
+  Control, plus spring and fall application of 300, 600, 1200 lbs/acre of
+  sulfur.  The response variable was infection as a percent of the surface
+  area covered with scab.  A completely randomized design was used with 8
+  replications of the control and 4 replications of the other treatments.
+  
+  Although the original analysis did not show significant differences in
+  the sulfur treatments, including a polynomial trend in the model
+  uncovered significant differences (Tamura, 1988).
 }
 \source{
   W.G. Cochran and G. Cox, 1957.  \emph{Experimental Designs}, 2nd
@@ -35,8 +35,11 @@ uncovered significant differences (Tamura, 1988).
 }
 \references{
   Tamura, R.N. and Nelson, L.A. and Naderman, G.C., (1988).
-  An investigation of the validity and usefulness of trend analysis for field plot data.
+  An investigation of the validity and usefulness of
+  trend analysis for field plot data.
   \emph{Agronomy Journal}, 80, 712-718.
+  
+  http://doi.org/10.2134/agronj1988.00021962008000050003x
 }
 \examples{
 
@@ -44,7 +47,11 @@ data(cochran.crd)
 dat <- cochran.crd
 
 # Field plan
-desplot(inf~col*row, data=dat, text=trt, cex=1, main="cochran.crd")
+if(require(desplot)){
+  desplot(inf~col*row, data=dat,
+          text=trt, cex=1, # aspect unknown
+          main="cochran.crd")
+}
 
 # CRD anova.  Table 6 of Tamura 1988
 contrasts(dat$trt) <- cbind(c1=c(1,1,1,-6,1,1,1),   # Control vs Sulf

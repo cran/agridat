@@ -7,7 +7,7 @@
 \description{
   Counts of arthropods in a grid-sampled wheat field
 }
-\usage{data(holland.arthropods)}
+\usage{data("holland.arthropods")}
 \format{
   A data frame with 63 observations on the following 8 variables.
   \describe{
@@ -37,7 +37,8 @@
   within winter wheat.
   Bulletin of Entomological Research, 89: 499-513.  Figure 3 (large
   grid in 1996).
-
+  http://doi.org/10.1017/S0007485399000656
+  
   Used with permission of John Holland.
 }
 
@@ -46,19 +47,32 @@
 data(holland.arthropods)
 dat <- holland.arthropods
 
-require(lattice)
-contourplot(linyphiidae ~ col*row, dat, at=c(0,40,80,120,160,200), region=TRUE,
-            col.regions=c('gray90','gray70','gray50','gray30','gray10'),
-            main="holland.arthropods - linyphiidae counts in winter wheat")
+
+# use log count to make it possible to have same scale for insects
+if(require(reshape2) & require(lattice)){
+  grays <- colorRampPalette(c("#d9d9d9","#252525"))
+  dat2 <- melt(dat, id.var=c('row','col'))
+  contourplot(log(value) ~ col*row|variable, dat2,
+              col.regions=grays(7), region=TRUE,
+              main="holland.arthropods - log counts in winter wheat")
+}
+
 
 \dontrun{
-contourplot(n.brevicollis ~ col*row, dat, region=TRUE)
-contourplot(linyphiidae~ col*row, dat, region=TRUE)
-contourplot(collembola ~ col*row, dat, region=TRUE)
-contourplot(carabidae ~ col*row, dat, region=TRUE)
-contourplot(lycosidae ~ col*row, dat, region=TRUE)
-contourplot(weedcover ~ col*row, dat, region=TRUE)
+  # individual species
+  require(lattice)
+  grays <- colorRampPalette(c("#d9d9d9","#252525"))
+  contourplot(linyphiidae ~ col*row, dat, at=c(0,40,80,120,160,200), region=TRUE,
+              col.regions=grays(5),
+              main="holland.arthropods - linyphiidae counts in winter wheat")
+  contourplot(n.brevicollis ~ col*row, dat, region=TRUE)
+  contourplot(linyphiidae~ col*row, dat, region=TRUE)
+  contourplot(collembola ~ col*row, dat, region=TRUE)
+  contourplot(carabidae ~ col*row, dat, region=TRUE)
+  contourplot(lycosidae ~ col*row, dat, region=TRUE)
+  contourplot(weedcover ~ col*row, dat, region=TRUE)
 }
 
 }
+
 \keyword{datasets}

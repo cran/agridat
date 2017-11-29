@@ -2,7 +2,7 @@
 \alias{hunter.corn}
 \docType{data}
 \title{
-  Corn yield response to nitrogen
+  Multi-environment trial of corn with nitrogen fertilizer
 }
 \description{
   Corn yield response to nitrogen
@@ -13,7 +13,7 @@
   \describe{
     \item{\code{nitro}}{nitrogen fertilizer, pound/acre}
     \item{\code{year}}{year}
-    \item{\code{loc}}{location factor}
+    \item{\code{loc}}{location}
     \item{\code{yield}}{yield, bu/ac}
   }
 }
@@ -28,13 +28,14 @@
   Variations in Fertility Levels Upon the Yield and Protein
   Content of Field Corn in Eastern Oregon.
   \emph{Soil Science Society of America Journal}, 19, 214-218.
+  http://doi.org/10.2136/sssaj1955.03615995001900020027x
 }
 \references{
   James Leo Paschal, Burton Leroy French (1956).
   A method of economic analysis applied to nitrogen fertilizer rate
   experiments on irrigated corn.
   Tech Bull 1141. United States Dept of Agriculture.
-  \url{books.google.com/books?id=gAdZtsEziCcC&pg=PP1}
+  books.google.com/books?id=gAdZtsEziCcC&pg=PP1
 }
 
 \examples{

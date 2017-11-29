@@ -2,30 +2,39 @@
 \alias{goulden.barley.uniformity}
 \docType{data}
 \title{
-  Barley uniformity trial
+  Uniformity trial of barley
 }
 \description{
-  Barley uniformity trial
+  Uniformity trial of barley
 }
 
 \format{
   A data frame with 400 observations on the following 3 variables.
   \describe{
-    \item{\code{row}}{Row}
-    \item{\code{col}}{Column}
-    \item{\code{yield}}{Yield, grams per plot}
+    \item{\code{row}}{row}
+    \item{\code{col}}{column}
+    \item{\code{yield}}{yield, grams per plot}
   }
 }
 \details{
   Yield in grams for 400 square-yard barley plots.
+
+  Field length: 20 plots x 1 yd = 20 yd
+
+  Field width: 20 plots x 1 yd = 20 yd
 }
 \source{
-  C. H. Goulden, 1939. \emph{Methods of statistical analysis}.
-  Wiley. Page 18.
-  \url{http://archive.org/details/methodsofstatist031744mbp}
+  C. H. Goulden, (1939).
+  \emph{Methods of statistical analysis}, 1st ed. Page 18.  
+  https://archive.org/stream/methodsofstatist031744mbp
+  
 }
 \references{
-  See LeClerg, Leonard, Clark. \emph{Field Plot Technique}. Page 27.
+  Erwin LeClerg, Warren Leonard, Andrew Clark (1962).
+  \emph{Field Plot Technique}, 2nd ed. Page 27.
+
+  Alternatively, page 39 in 1939 edition:
+  https://archive.org/stream/fieldplottechniq00leon
 }
 
 \examples{
@@ -33,7 +42,12 @@
 data(goulden.barley.uniformity)
 dat <- goulden.barley.uniformity
 
-desplot(yield ~ col*row, data=dat, main="goulden.barley.uniformity")
+if(require(desplot)){
+  desplot(yield ~ col*row, data=dat,
+          aspect=20/20, # true aspect
+          main="goulden.barley.uniformity")
+}
+
 
 # See LeClerg, Leonard, Clark
 hist(dat$yield, main="goulden.barley.uniformity",

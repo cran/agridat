@@ -2,17 +2,17 @@
 \alias{kalamkar.potato.uniformity}
 \docType{data}
 \title{
-  Uniformity trial of potatoes.
+  Uniformity trial of potatoes
 }
 \description{
-  Uniformity trial of potatoes.
+  Uniformity trial of potatoes at Saskatchewan, Canada, 1929.
 }
-\usage{data(kalamkar.potato.uniformity)}
+\usage{data("kalamkar.potato.uniformity")}
 \format{
   A data frame with 576 observations on the following 3 variables.
   \describe{
-    \item{\code{row}}{row number, 1-96}
-    \item{\code{col}}{column number, 1-6}
+    \item{\code{row}}{row}
+    \item{\code{col}}{column}
     \item{\code{yield}}{yield of potatoes per plot}
   }
 }
@@ -22,11 +22,16 @@
 
   Each row was harvested as six plots, each 22 feet long.  Each hill had
   one seed piece.  Hills were spaced 2 feet apart in each row.
+
+  Field width: 6 plots * 22 feet = 132 feet
+
+  Field length: 96 rows * 3 feet = 288 feet
 }
 \source{
   Kalamkar, R.J. (1932).
   Experimental Error and the Field-Plot Technique with Potatoes.
   \emph{The Journal of Agricultural Science}, 22, 373-385.
+  http://doi.org/10.1017/S0021859600053697
 }
 
 \examples{
@@ -34,10 +39,12 @@
 data(kalamkar.potato.uniformity)
 dat <- kalamkar.potato.uniformity
 
-# True field dimension is 132 foot-long row horizontal, 96*3=288 feet vertical
 # Similar to figure 1 of Kalamkar
-desplot(yield~col*row, data=dat, main="kalamkar.potato.uniformity",
-        flip=TRUE, tick=TRUE, aspect=288/132)
+if(require(desplot)){
+  desplot(yield~col*row, data=dat,
+          flip=TRUE, tick=TRUE, aspect=288/132, # true aspect
+          main="kalamkar.potato.uniformity")
+}
 
 }
 \keyword{datasets}

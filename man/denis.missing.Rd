@@ -2,7 +2,7 @@
 \alias{denis.missing}
 \docType{data}
 \title{
-Multi-environment trial with structured missing values
+  Multi-environment trial with structured missing values
 }
 \description{
   Grain yield was measured on 5 genotypes in 26 environments.  Missing
@@ -11,9 +11,9 @@ Multi-environment trial with structured missing values
 
 \format{
   \describe{
-    \item{\code{env}}{Environment factor, 26 levels}
-    \item{\code{gen}}{Genotype factor, 5 levels}
-    \item{\code{yield}}{Yield}
+    \item{\code{env}}{environment, 26 levels}
+    \item{\code{gen}}{genotype factor, 5 levels}
+    \item{\code{yield}}{yield}
   }
 }
 
@@ -27,6 +27,7 @@ Multi-environment trial with structured missing values
 \references{
   H P Piepho, (1999) Stability analysis using the SAS system,
   \emph{Agron Journal}, 91, 154--160.
+  http://doi.og/10.2134/agronj1999.00021962009100010024x
 }
 
 \examples{
@@ -34,15 +35,19 @@ Multi-environment trial with structured missing values
 data(denis.missing)
 dat <- denis.missing
 
-# View missingness structure
-require(reshape2)
-acast(dat, env~gen, value.var='yield')
+# view missingness structure
+if(require(reshape2)){
+  acast(dat, env~gen, value.var='yield')
+}
+
+
 require(lattice)
+redblue <- colorRampPalette(c("firebrick", "lightgray", "#375997"))
 levelplot(yield ~ gen*env, data=dat,
-          col.regions=RedGrayBlue,
+          col.regions=redblue,
           main="denis.missing - incidence heatmap")
 
-# Stability variance (Table 3 in Piepho)
+# stability variance (Table 3 in Piepho)
 require("nlme")
 m1 <- lme(yield ~ -1 + gen, data=dat, random= ~ 1|env,
           weights = varIdent(form= ~ 1|gen),
@@ -51,5 +56,8 @@ svar <- m1$sigma^2 * c(1, coef(m1$modelStruct$varStruct, unc = FALSE))^2
 round(svar, 2)
 ##          G5    G3    G1    G2
 ## 39.25 22.95 54.36 12.17 23.77
+
+# m2 <- asreml(yield ~ gen, random = ~ env + at(gen):env, data=dat)
+
 }
 

@@ -12,13 +12,13 @@ Rice strip-split-plot experiment
 
 \format{
   \describe{
-    \item{\code{yield}}{Grain yield in kg/ha}
-    \item{\code{planting}}{Planting factor, P1=broadcast, P2=transplanted}
-    \item{\code{rep}}{Rep factor, 3 levels}
-    \item{\code{nitro}}{Nitrogen fertilizer in kg/ha}
-    \item{\code{gen}}{Genotype factor, G1 to G6}
-    \item{\code{x}}{Ordinate in the field}
-    \item{\code{y}}{Ordinate in the field}
+    \item{\code{yield}}{grain yield in kg/ha}
+    \item{\code{planting}}{planting factor, P1=broadcast, P2=transplanted}
+    \item{\code{rep}}{rep, 3 levels}
+    \item{\code{nitro}}{nitrogen fertilizer, kg/ha}
+    \item{\code{gen}}{genotype, G1 to G6}
+    \item{\code{col}}{column}
+    \item{\code{row}}{row}
   }
 }
 \details{
@@ -38,8 +38,12 @@ data(gomez.stripsplitplot)
 dat <- gomez.stripsplitplot
 
 # Layout
-desplot(gen~x+y, dat, out1=rep, col=nitro, text=planting, cex=1,
-        main="gomez.stripsplitplot")
+if(require(desplot)){
+  desplot(gen ~ col*row, dat,
+          out1=rep, col=nitro, text=planting, cex=1,
+          main="gomez.stripsplitplot")
+}
+
 
 # Gomez table 4.19, ANOVA of strip-split-plot design
 dat <- transform(dat, nf=factor(nitro))
@@ -52,7 +56,9 @@ summary(m1)
 # an artifact that blocking will remove, or may need to be modeled.
 # Note the outside values in the high-nitro boxplot.
 require("HH")
-interaction2wt(yield ~ nitro + gen + planting + y, dat, x.relation="free")
+  interaction2wt(yield ~ nitro + gen + planting + row, dat,
+                 x.between=0, y.between=0,
+                 x.relation="free")
 }
 }
 

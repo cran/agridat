@@ -12,7 +12,7 @@
   A data frame with 1258 observations on the following 4 variables.
   \describe{
     \item{\code{year}}{year}
-    \item{\code{plot}}{plot factor}
+    \item{\code{plot}}{plot}
     \item{\code{grain}}{grain yield, tonnes}
     \item{\code{straw}}{straw yield, tonnes}
   }
@@ -53,11 +53,11 @@
 	\emph{Data: A Collection of Problems from Many Fields for the Student
 	  and Research Worker}.  Springer.
 
-  Retrieved from \url{http://lib.stat.cmu.edu/datasets/Andrews/}.
+  Retrieved from http://lib.stat.cmu.edu/datasets/Andrews/
 }
 \references{
   Broadbalk Winter Wheat Experiment.
-  \url{http://www.era.rothamsted.ac.uk/index.php?area=home&page=index&dataset=4}
+  http://www.era.rothamsted.ac.uk/index.php?area=home&page=index&dataset=4
 }
 \examples{
 
@@ -65,13 +65,14 @@ data(broadbalk.wheat)
 dat <- broadbalk.wheat
 
 require(lattice)
-xyplot(grain~straw|plot, dat, type=c('p','smooth'), as.table=TRUE,
-       main="broadbalk.wheat")
-## xyplot(grain~year|plot, dat, type=c('p','smooth'), as.table=TRUE,
-##        main="broadbalk.wheat") # yields are decreasing
+## xyplot(grain~straw|plot, dat, type=c('p','smooth'), as.table=TRUE,
+##        main="broadbalk.wheat")
+xyplot(grain~year|plot, dat, type=c('p','smooth'), as.table=TRUE,
+       main="broadbalk.wheat") # yields are decreasing
 
 # See the treatment descriptions to understand the patterns
-levelplot(grain~year*plot, dat, main="broadbalk.wheat: Grain", col.regions=RedGrayBlue)
-levelplot(straw~year*plot, dat, main="broadbalk.wheat: Straw", col.regions=RedGrayBlue)
+redblue <- colorRampPalette(c("firebrick", "lightgray", "#375997"))
+levelplot(grain~year*plot, dat, main="broadbalk.wheat: Grain", col.regions=redblue)
+
 }
 \keyword{datasets}

@@ -28,11 +28,17 @@
   The data are the percentages of squares showing attack by boll weevils.
   A 'square' is the name given to a young flower bud.
 
+  The plot orientation is not clear.
+  
 }
 \source{
 
   William G. Cochran, Gertrude M. Cox. \emph{Experimental Designs}, 2nd
   Edition. Page 490.
+
+  Originally from: F. M. Wadley (1946).
+  Incomplete block designs in insect population problems.
+  \emph{J. Economic Entomology}, 38, 651--654.
   
 }
 \references{
@@ -40,6 +46,7 @@
   Walter Federer.
   Combining Standard Block Analyses With Spatial Analyses Under a Random
   Effects Model. Cornell Univ Tech Report BU-1373-MA.
+  http://hdl.handle.net/1813/31971
 
 }
 \examples{
@@ -47,10 +54,15 @@
 data(cochran.lattice)
 dat <- cochran.lattice
 
-desplot(y~row*col|rep, dat, text=trt, cex=2, main="cochran.lattice")
+if(require(desplot)){
+  desplot(y~row*col|rep, dat,
+          text=trt, # aspect unknown, should be 2 or .5
+          main="cochran.lattice")
+}
 
-# Random rep,row,column model often used by Federer
-if(require(lme4)){
+\dontrun{
+  # Random rep,row,column model often used by Federer
+  require(lme4)
   dat <- transform(dat, rowf=factor(row), colf=factor(col))
   m1 <-  lmer(y ~ trt + (1|rep) + (1|rep:row) + (1|rep:col), data=dat)
   summary(m1)

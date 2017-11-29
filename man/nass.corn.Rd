@@ -28,10 +28,10 @@
 }
 \format{
   \describe{
-    \item{\code{year}}{Year, numeric}
-    \item{\code{state}}{State factor}
-    \item{\code{acres}}{Acres harvested}
-    \item{\code{yield}}{Average yield}
+    \item{\code{year}}{year}
+    \item{\code{state}}{state factor}
+    \item{\code{acres}}{acres harvested}
+    \item{\code{yield}}{average yield}
   }
 }
 \details{
@@ -43,10 +43,11 @@
   Each crop is in a separate dataset: nass.barley, nass.corn, nass.cotton,
   nass.hay, nass.sorghum, nass.wheat, nass.rice, nass.soybean.
 }
+
 \source{
   United States Department of Agriculture,
   National Agricultural Statistics Service.
-  \url{http://quickstats.nass.usda.gov/}
+  http://quickstats.nass.usda.gov/
 }
 
 \examples{
@@ -66,7 +67,8 @@ xyplot(acres ~ year|state, dat, type='l', as.table=TRUE,
 ## Plain levelplot, using only states
 ## require(reshape2)
 ## datm <- acast(dat, year~state, value.var='yield')
-## levelplot(datm, aspect=.7, col.regions=RedGrayBlue,
+## redblue <- colorRampPalette(c("firebrick", "lightgray", "#375997"))
+## levelplot(datm, aspect=.7, col.regions=redblue,
 ##           main="nass.corn",
 ##           scales=list(x=list(rot=90, cex=.7)))
 

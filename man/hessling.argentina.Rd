@@ -11,22 +11,22 @@
 \format{
   A data frame with 30 observations on the following 15 variables.
   \describe{
-    \item{\code{yield}}{Average yield, kg/ha}
-    \item{\code{year}}{Year}
-    \item{\code{p05}}{Precipitation (mm) in May}
-    \item{\code{p06}}{Precip in June}
-    \item{\code{p07}}{Precip in July}
-    \item{\code{p08}}{Precip in August}
-    \item{\code{p09}}{Precip in Septempber}
-    \item{\code{p10}}{Precip in October}
-    \item{\code{p11}}{Precip in November}
-    \item{\code{p12}}{Precip in December}
-    \item{\code{t06}}{June temperature deviation from normal, deg Celsius}
-    \item{\code{t07}}{July temp deviation}
-    \item{\code{t08}}{August temp deviation}
-    \item{\code{t09}}{September temp deviation}
-    \item{\code{t10}}{October temp deviation}
-    \item{\code{t11}}{November temp deviation}
+    \item{\code{yield}}{average yield, kg/ha}
+    \item{\code{year}}{year}
+    \item{\code{p05}}{precipitation (mm) in May}
+    \item{\code{p06}}{precip in June}
+    \item{\code{p07}}{precip in July}
+    \item{\code{p08}}{precip in August}
+    \item{\code{p09}}{precip in Septempber}
+    \item{\code{p10}}{precip in October}
+    \item{\code{p11}}{precip in November}
+    \item{\code{p12}}{precip in December}
+    \item{\code{t06}}{june temperature deviation from normal, deg Celsius}
+    \item{\code{t07}}{july temp deviation}
+    \item{\code{t08}}{august temp deviation}
+    \item{\code{t09}}{september temp deviation}
+    \item{\code{t10}}{october temp deviation}
+    \item{\code{t11}}{november temp deviation}
   }
 }
 \details{
@@ -37,7 +37,7 @@
   N. A. Hessling, 1922.
   Relations between the weather and the yield of wheat in the
   Argentine republic, \emph{Monthly Weather Review}, 50, 302-308.
-  \url{http://dx.doi.org/10.1175/1520-0493(1922)50<302:RBTWAT>2.0.CO;2}
+  http://doi.org/10.1175/1520-0493(1922)50<302:RBTWAT>2.0.CO;2
 }
 \examples{
 

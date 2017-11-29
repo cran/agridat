@@ -7,11 +7,11 @@
 \description{
   Yield of corn, alfalfa, clover with two fertilizers
 }
-\usage{data(heady.fertilizer)}
+\usage{data("heady.fertilizer")}
 \format{
   A data frame with 81 observations on the following 3 variables.
   \describe{
-    \item{\code{crop}}{crop factor}
+    \item{\code{crop}}{crop}
     \item{\code{rep}}{replicate (not block)}
     \item{\code{P}}{phosphorous, pounds/acre}
     \item{\code{K}}{potassium, pounds/acre}
@@ -41,7 +41,7 @@
   Crop Response Surfaces and Economic Optima in Fertilizer Use.
   Agricultural Experiment Station, Iowa State College. Research bulletin
   424.  Pages 330-332.
-  \url{http://lib.dr.iastate.edu/cgi/viewcontent.cgi?filename=12&article=1032&context=ag_researchbulletins&type=additional}
+  https://lib.dr.iastate.edu/cgi/viewcontent.cgi?filename=12&article=1032&context=ag_researchbulletins&type=additional
 }
 
 \references{
@@ -49,7 +49,7 @@
   A two nutrient-response function with determination of economic optima
   for the rate and grade of fertilizer for alfalfa.
   \emph{Soil Science Society of America Journal}, 20, 240-246.
-  \url{https://dl.sciencesocieties.org/publications/sssaj/abstracts/20/2/SS0200020240}
+  https://doi.org/10.2136/sssaj1956.03615995002000020025x
 }
 
 \examples{
@@ -93,11 +93,12 @@ m4 <- lm(yield ~ N + P + sqrt(N) + sqrt(P) + sqrt(N*P), data=d4)
 summary(m4)
 
 \dontrun{
-require(rgl)
-with(d1, plot3d(N,P,yield))
-with(d2, plot3d(K,P,yield))
-with(d3, plot3d(K,P,yield))
-with(d4, plot3d(N,P,yield)) # Mostly linear in both N and P
+  require(rgl)
+  with(d1, plot3d(N,P,yield))
+  with(d2, plot3d(K,P,yield))
+  with(d3, plot3d(K,P,yield))
+  with(d4, plot3d(N,P,yield)) # Mostly linear in both N and P
+  rgl.close()
 }
 
 }

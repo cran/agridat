@@ -2,20 +2,20 @@
 \alias{kang.maize}
 \docType{data}
 \title{
-  Maize yields at 4 locs in 3 years in Louisianna.
+  Multi-environment trial of maize in Louisianna at 4 locs in 3 years
 }
 \description{
   Maize yields at 4 locs in 3 years in Louisianna.
 }
-\usage{data(kang.maize)}
+\usage{data("kang.maize")}
 \format{
   \describe{
-    \item{\code{gen}}{genotype factor, 17 levels}
-    \item{\code{env}}{environment factor, 12 levels}
+    \item{\code{gen}}{genotype, 17 levels}
+    \item{\code{env}}{environment, 12 levels}
     \item{\code{yield}}{yield, tonnes/ha}
-    \item{\code{}}{environment factor, 13 levels}
+    \item{\code{}}{environment, 13 levels}
     \item{\code{year}}{year, 85-87}
-    \item{\code{loc}}{loc factor, 4 levels}
+    \item{\code{loc}}{location, 4 levels}
   }
 }
 \details{
@@ -38,7 +38,7 @@ data(kang.maize)
 dat <- kang.maize
 
 # Sweep out loc means, then show interaction plot.
-require(reshape2)
+if(require(reshape2)){
 mat <- acast(dat, gen~env, value.var='yield')
 mat <- sweep(mat, 2, colMeans(mat))
 dat2 <- melt(mat)
@@ -51,6 +51,7 @@ xyplot(yield~env|gen, data=dat2, type='l', group=gen,
        },
        ylab="Environment-centered yield",
        main="kang.maize - maize hybrid yields", scales=list(x=list(rot=90)))
+}
 
 # Weather covariates for each environment.
 covs <- data.frame(env=c("AL85","AL86","AL87", "BR85","BR86","BR87",
@@ -59,7 +60,6 @@ covs <- data.frame(env=c("AL85","AL86","AL87", "BR85","BR86","BR87",
                    mint=c(18.7,19.3,18.5, 19.7,18,17.2, 19.1,20.4,20.3, 20.4,19.1,17.5),
                    rain=c(.2,.34,.22, .28,.36,.61, .2,.43,.2, .36,.41,.22),
                    humid=c(82.8,91.1,85.4, 88.1,90.9,88.6, 95.4,90.4,86.7, 95.6,89.5,85))
-
 
 }
 \keyword{datasets}

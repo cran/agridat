@@ -5,32 +5,42 @@
   Uniformity trial of potatoes
 }
 \description{
-  Uniformity trial of potatoes
+  Uniformity trial of potatoes at Nebraska Experiment Station, 1909.
 }
 
 \format{
   A data frame with 204 observations on the following 3 variables.
   \describe{
-    \item{\code{row}}{Row, numeric}
-    \item{\code{section}}{Section, numeric}
-    \item{\code{yield}}{Yield, in pounds}
+    \item{\code{row}}{row}
+    \item{\code{col}}{column, section}
+    \item{\code{yield}}{yield, pounds}
   }
 }
 \details{
-  In 1909, potatoes were harvested from uniform land.  There were 34
-  rows, 34 inches apart.  Each row was harvested in 6 sections, each
-  being 72 feet, 7 inches long.
+  In 1909, potatoes were harvested from uniform land at Nebraska
+  Experiment Station.
+  
+  There were 34 rows, 34 inches apart.
+  Lyon, page 97 says "He harvested each row in six sections,
+  each of which was seventy-two feet and seven inches long."
+  It is not clear if each section is 72 feet long, or if the
+  entire row is 72 feet long.  Yield of potato is roughly 0.5 to 0.8
+  pounds per square foot, so it seems more plausible the entire row is
+  72 feet long (see calculations below).
+
+  Field width: 6 plots = 72 feet
+
+  Field length: 34 rows * 34 in / 12in/ft = 96 ft
+  
 }
 
 \source{
   Lyon, T.L. (1911). Some experiments to estimate errors in field plat
-  tests. \emph{Proc. Amer. Soc. Agron}, 3, 89-114.
-  \url{https://www.crops.org/publications/aj/abstracts/3/1/AJ0030010089}
+  tests. \emph{Proc. Amer. Soc. Agron}, 3, 89-114. Table III.
+  http://doi.org/10.2134/agronj1911.00021962000300010016x
 }
 \references{
-  Harris, J.A. (1920). Practical universality of field heterogeneity as a factor
-  influencing plot yields. \emph{Journal of Agricultural Research}, 19, 279-314.
-  \url{http://books.google.com/books?id=jyEXAAAAYAAJ&pg=PA279}
+  None.
 }
 
 \examples{
@@ -38,8 +48,16 @@
 data(lyon.potato.uniformity)
 dat <- lyon.potato.uniformity
 
-desplot(yield ~ row*section, dat, tick=TRUE,
-        main="lyon.potato.uniformity")
+# Yield per square foot, assuming 72 foot rows
+sum(dat$yield)/(72*96) # 0.67 # seems about right
+# Yield per square foot, assuming 72 foot plots
+sum(dat$yield)/(6*72*96) # 0.11
+
+if(require(desplot)){
+  desplot(yield ~ col*row, dat,
+          tick=TRUE, flip=TRUE, aspect=96/72, # true aspect
+          main="lyon.potato.uniformity")
+}
 
 }
 \keyword{datasets}

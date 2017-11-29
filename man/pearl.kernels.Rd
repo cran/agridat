@@ -12,12 +12,12 @@
 \format{
   A data frame with 59 observations on the following 6 variables.
   \describe{
-    \item{\code{ear}}{Factor for ear 8, 9, 10, 11}
-    \item{\code{obs}}{Factor for observer, 1-15}
-    \item{\code{ys}}{Number of yellow starchy kernels}
-    \item{\code{yt}}{Yellow sweet}
-    \item{\code{ws}}{White starchy}
-    \item{\code{wt}}{White sweet}
+    \item{\code{ear}}{ear, 8-11}
+    \item{\code{obs}}{observer, 1-15}
+    \item{\code{ys}}{number of yellow starchy kernels}
+    \item{\code{yt}}{yellow sweet}
+    \item{\code{ws}}{white starchy}
+    \item{\code{wt}}{white sweet}
   }
 }
 \details{
@@ -50,11 +50,12 @@
   }
 
 }
+
 \source{
   Raymond Pearl, 1911.
   The Personal Equation In Breeding Experiments Involving Certain
   Characters of Maize, Biol. Bull., 21, 339-366.
-  \url{http://www.biolbull.org/cgi/reprint/21/6/339.pdf}
+  http://www.biolbull.org/cgi/reprint/21/6/339.pdf
 }
 
 \examples{

@@ -2,7 +2,7 @@
 \alias{crossa.wheat}
 \docType{data}
 \title{
-  Wheat yields for 18 genotypes at 25 locations
+  Multi-environment trial of wheat for 18 genotypes at 25 locations
 }
 \description{
   Wheat yields for 18 genotypes at 25 locations
@@ -11,8 +11,10 @@
 \format{
   A data frame with 450 observations on the following 3 variables.
   \describe{
-    \item{\code{loc}}{location factor}
-    \item{\code{gen}}{genotype factor}
+    \item{\code{loc}}{location}
+    \item{\code{locgroup}}{location group: Grp1-Grp2}
+    \item{\code{gen}}{genotype}
+    \item{\code{gengroup}}{genotype group: W1, W2, W3}
     \item{\code{yield}}{grain yield, tons/ha}
   }
 }
@@ -20,6 +22,9 @@
   Grain yield from the 8th Elite Selection Wheat Yield Trial to evaluate
   18 bread wheat genotypes at 25 locations in 15 countries.
 
+  Cross et al. used this data to cluster loctions into 2
+  mega-environments and clustered genotypes into 3 wheat clusters.
+  
   Locations
   \tabular{lllrr}{
     Code \tab Country \tab Location \tab Latitude (N) \tab Elevation (m) \cr
@@ -56,6 +61,7 @@
   HG. (1991). AMMI adjustment for statistical analysis of an
   international wheat yield trial.
   \emph{Theoretical and Applied Genetics}, 81, 27--37.
+  http://doi.org/10.1007/BF00226108
 
   Used with permission of Jose' Crossa.
 }
@@ -63,7 +69,7 @@
   Jean-Louis Laffont, Kevin Wright and Mohamed Hanafi (2013).
   Genotype + Genotype x Block of Environments (GGB) Biplots.
   \emph{Crop Science}, 53, 2332-2341.
-  \url{https://www.crops.org/publications/cs/abstracts/53/6/2332}.
+  http://doi.org/10.2135/cropsci2013.03.0178
 }
 
 \examples{
@@ -91,7 +97,23 @@ if(require(agricolae)){
          col= "brown", lwd=1.8,length=0.1)
 }
 
-# GGB example ...
+# GGB example
+library(agridat)
+data(crossa.wheat)
+dat2 <- crossa.wheat
+
+# FIXME: The loc grouping is now in the data
+
+# Define mega-environment groups of locations
+dat2$eg <- ifelse(is.element(dat2$loc,
+                             c("KN","NB","PA","BJ","IL","TC",
+                               "JM","PI","AS","ID","SC","SS",
+                               "SJ","MS","MG","MM")), "Grp1", "Grp2")
+
+library(gge)
+# Specify env.group as column in data frame
+m2 <- gge(yield~gen*loc, dat2, env.group=eg, scale=FALSE)
+biplot(m2, main="crossa.wheat - GGB biplot")
 
 }
 \keyword{datasets}

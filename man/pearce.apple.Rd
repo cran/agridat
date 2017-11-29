@@ -25,11 +25,15 @@
   seasons previous to the application of the treatments.
 
 }
+
 \source{
-  S. C. Pearce (1953). \emph{Field Experiments With Fruit Trees and
-    Other Perennial Plants}. Commonwealth Bureau of Horticulture
-  and Plantation Crops, Farnham Royal, Slough, England, App. IV.
+  S. C. Pearce (1953).
+  \emph{Field Experiments With Fruit Trees and
+    Other Perennial Plants}.
+  Commonwealth Bureau of Horticulture and Plantation Crops, Farnham
+  Royal, Slough, England, App. IV. 
 }
+
 \references{
   James G. Booth, Walter T. Federer, Martin T. Wells and Russell
   D. Wolfinger (2009). A Multivariate Variance Components Model for

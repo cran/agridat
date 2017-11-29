@@ -2,7 +2,7 @@
 \alias{australia.soybean}
 \docType{data}
 \title{
-  Australia soybeans
+  Multi-environment trial of soybean in Australia
 }
 \description{
   Yield and other traits of 58 varieties of soybeans, grown in four
@@ -13,30 +13,31 @@
 \format{
   A data frame with 464 observations on the following 10 variables.
   \describe{
-    \item{\code{env}}{Factor with 8 levels, first character of location
+    \item{\code{env}}{environment, 8 levels, first character of location
       and last two characters of year}
-    \item{\code{loc}}{Four locations: Brookstead, Lawes, Nambour, RedlandBay}
-    \item{\code{year}}{Year: 1970 or 1971}
-    \item{\code{gen}}{Genotype factor of soybeans, 1-58}
-    \item{\code{yield}}{Yield, metric tons / hectare}
-    \item{\code{height}}{Height, in meters}
-    \item{\code{lodging}}{Lodging}
-    \item{\code{size}}{Seed size in millimeters}
-    \item{\code{protein}}{Protein in percentage}
-    \item{\code{oil}}{Oil, in percentage}
+    \item{\code{loc}}{location}
+    \item{\code{year}}{year}
+    \item{\code{gen}}{genotype of soybeans, 1-58}
+    \item{\code{yield}}{yield, metric tons / hectare}
+    \item{\code{height}}{height (meters)}
+    \item{\code{lodging}}{lodging}
+    \item{\code{size}}{seed size, (millimeters)}
+    \item{\code{protein}}{protein (percentage)}
+    \item{\code{oil}}{oil (percentage)}
   }
 }
 \details{
-Measurement are available from four locations in Queensland, Australia in two
-consecutive years 1970, 1971.
 
-The 58 different genotypes of soybeans consisted of 43 lines (40
-local Australian selections from a cross, their two parents, and one other
-which was used a parent in earlier trials) and 15 other lines of which 12 were
-from the US.
+  Measurement are available from four locations in Queensland, Australia in two
+  consecutive years 1970, 1971.
 
-Lines 1-40 were local Australian selections from Mamloxi (CPI 172) and
-Avoyelles (CPI 15939).
+  The 58 different genotypes of soybeans consisted of 43 lines (40 local
+  Australian selections from a cross, their two parents, and one other
+  which was used a parent in earlier trials) and 15 other lines of which
+  12 were from the US.
+
+  Lines 1-40 were local Australian selections from Mamloxi (CPI 172) and
+  Avoyelles (CPI 15939).
 
 \tabular{ll}{
 No. \tab Line \cr
@@ -73,36 +74,61 @@ been corrected.
   data illustrated with a plant breeding trial. Chapman and Hall/CRC.
 
   Retrieved from:
-  \url{http://three-mode.leidenuniv.nl/data/soybeaninf.htm}.
+  http://three-mode.leidenuniv.nl/data/soybeaninf.htm
 
   Used with permission of Kaye Basford, Pieter Kroonenberg.
 }
 \references{
+  
   K E Basford. 1982. The Use of Multidimensional Scaling in Analysing
   Multi-Attribute Genotype Response Across Environments,
   \emph{Aust J Agric Res}, 33, 473--480.
 
   Kroonenberg, P. M., & Basford, K. E. B. (1989). An investigation of
   multi-attribute genotype response across environments using three-mode
-  principal component analysis. \emph{Euphytica}, 44, 109--123.
+  principal component analysis.
+  \emph{Euphytica}, 44, 109--123.
+
+  Marcin Kozak (2010).
+  Use of parallel coordinate plots in multi-response selection of
+  interesting genotypes.
+  \emph{Communications in Biometry and Crop Science}, 5, 83-95.
+
 }
 \examples{
 
 data(australia.soybean)
 dat <- australia.soybean
 
-require(reshape2)
+if(require(reshape2)){
 dm <- melt(dat, id.var=c('env', 'year','loc','gen'))
 
 # Joint plot of genotypes & traits. Similar to Figure 1 of Kroonenberg 1989
 dmat <- acast(dm, gen~variable, fun=mean)
 dmat <- scale(dmat)
 biplot(princomp(dmat), main="australia.soybean trait x gen biplot", cex=.75)
+}
 
 # Figure 1 of Kozak 2010, lines 44-58
-# dmat2 <- dmat[44:58,]
-# require("lattice")
-# parallelplot(dmat2[,c(2:6,1)], main="australia.soybean", horiz=FALSE)
+\dontrun{
+  require(agridat); require(reshape2) ; require(lattice); require(latticeExtra)
+  data(australia.soybean)
+  dat <- australia.soybean
+  dat <- melt(dat, id.var=c('env', 'year','loc','gen'))
+  dat <- acast(dat, gen~variable, fun=mean)
+  dat <- scale(dat)
+  dat <- as.data.frame(dat)[,c(2:6,1)]
+  dat$gen <- rownames(dat)
+  # data for the graphic by Kozak
+  dat2 <- dat[44:58,]
+  dat3 <- subset(dat2, is.element(gen, c("G48","G49","G50","G51")))
+  
+  parallelplot( ~ dat3[,1:6]|dat3$gen, main="australia.soybean",
+               as.table=TRUE, horiz=FALSE) +
+    parallelplot( ~ dat2[,1:6], horiz=FALSE, col="gray80") +
+    parallelplot( ~ dat3[,1:6]|dat3$gen,
+                 as.table=TRUE, horiz=FALSE, lwd=2)
+}
 
 }
 

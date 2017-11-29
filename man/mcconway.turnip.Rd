@@ -12,11 +12,11 @@
 \format{
   A data frame with 64 observations on the following 6 variables.
   \describe{
-    \item{\code{gen}}{Genotype factor}
-    \item{\code{date}}{Planting date factor, levels \code{21Aug1990} \code{28Aug1990}}
-    \item{\code{density}}{Planting density, 1, 2, 4, 8 kg/ha}
-    \item{\code{block}}{Block factor, 4 levels}
-    \item{\code{yield}}{Yield}
+    \item{\code{gen}}{genotype}
+    \item{\code{date}}{planting date, levels \code{21Aug1990} \code{28Aug1990}}
+    \item{\code{density}}{planting density, 1, 2, 4, 8 kg/ha}
+    \item{\code{block}}{block, 4 levels}
+    \item{\code{yield}}{yield}
   }
 }
 \details{
@@ -25,17 +25,19 @@
   were combinations of two varieties, two planting dates, and
   four densities.
 
-  Lee et al (2008) proposed an anlysis using mixed models with changing
+  Lee et al (2008) proposed an analysis using mixed models with changing
   treatment variances.
 
   Piepho (2009) proposed an ordinary ANOVA using transformed data.
 }
+
 \source{
   Statistical Modelling Using Genstat, K. J. McConway, M. C. Jones,
   P. C. Taylor.
 
   Used with permission of Kevin McConway.
 }
+
 \references{
   Michael Berthold, D. J. Hand.
   \emph{Intelligent data analysis: an introduction}, 1998.
@@ -76,6 +78,7 @@ summary(m0)
 # Boxplots suggest heteroskedasticity for date, density
 if(require("HH")){
   interaction2wt(yield ~ gen + date + densf +block, dat,
+                 x.between=0, y.between=0,
                  main="mcconway.turnip - yield")
 }
 

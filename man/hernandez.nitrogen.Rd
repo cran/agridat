@@ -2,7 +2,7 @@
 \alias{hernandez.nitrogen}
 \docType{data}
 \title{
-  Corn response to nitrogen fertilizer at 5 sites.
+  Multi-environment trial of corn with nitrogen fertilizer at 5 sites.
 }
 \description{
   Corn response to nitrogen fertilizer at 5 sites.
@@ -11,11 +11,11 @@
 \format{
   A data frame with 136 observations on the following 5 variables.
   \describe{
-    \item{\code{site}}{Site factor, 5 levels}
-    \item{\code{loc}}{Location name}
-    \item{\code{rep}}{Rep factor, 4 levels}
-    \item{\code{nitro}}{Nitrogen, kg/ha}
-    \item{\code{yield}}{Yield, Mg/ha}
+    \item{\code{site}}{site factor, 5 levels}
+    \item{\code{loc}}{location name}
+    \item{\code{rep}}{rep, 4 levels}
+    \item{\code{nitro}}{nitrogen, kg/ha}
+    \item{\code{yield}}{yield, Mg/ha}
   }
 }
 \details{
@@ -25,7 +25,7 @@
   Hernandez, J.A. and Mulla, D.J. 2008.
   Estimating uncertainty of economically optimum fertilizer rates,
   \emph{Agronomy Journal}, 100, 1221-1229.
-  \url{http://www.crops.org/publications/aj/abstracts/100/5/1221}.
+  https://doi.org/10.2134/agronj2007.0273
 
   Electronic data kindly supplied by Jose Hernandez.
 }
@@ -42,18 +42,15 @@ nprice <- 0.6615 # $0.66/kg N or $0.30/lb N
 dat <- transform(dat, inc = yield * cprice - nitro * nprice)
 require(lattice)
 xyplot(inc ~ nitro|site, dat, groups=rep, auto.key=list(columns=4),
-       main="hernandez.nitrogen")
+       xlab="nitrogen", ylab="income", main="hernandez.nitrogen")
 
 # Site 5 only
 dat1 <- subset(dat, site=='S5')
 
 # When we optimize on income, a simple quadratic model works just fine,
 # and matches the results of the nls model below.
-lm1 <- lm(inc ~ 1 + nitro + I(nitro^2), data=dat1) # Note, 'poly' gives weird coefs
-if(require("latticeExtra")){
-# xyplot(inc~nitro, dat1, main="hernandez.nitrogen") +
-  #   xyplot(fitted(lm1) ~ nitro, dat1, type='l')
-}
+# Note, 'poly(nitro)' gives weird coefs
+lm1 <- lm(inc ~ 1 + nitro + I(nitro^2), data=dat1) 
 c1 <- coef(lm1)
 -c1[2] / (2*c1[3])
 ##    nitro
@@ -82,7 +79,7 @@ wald <- function(object, alpha=0.1){
   stderr <- summary(object)$parameters[,2]
   tval <- qt(1-alpha/2, nobs-npar)
   ci <- cbind(est - tval * stderr, est + tval * stderr)
-  colnames(ci) <- paste(round(100*c(alpha/2, 1-alpha/2), 1), "%", sep= "")
+  colnames(ci) <- paste(round(100*c(alpha/2, 1-alpha/2), 1), "pct", sep= "")
   return(ci)
 }
 round(wald(nls1),2)
@@ -97,7 +94,6 @@ require(MASS)
 round(confint(nls1, "th2", level = 0.9),2)
 ##       5%      95%
 ## 147.96 401.65
-plot(profile(nls1,  "th2"),  conf  =  c(50, 80, 90, 95)/100)
 
 
 # Bootstrap conf int

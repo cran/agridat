@@ -2,18 +2,18 @@
 \alias{williams.barley.uniformity}
 \docType{data}
 \title{
-Yield from a barley uniformity trial
+  Uniformity trial of barley
 }
 \description{
-  Yield from a barley uniformity trial
+  Uniformity trial of barley at Narrabri, New South Wales, 1984.
 }
 
 \format{
   A data frame with 720 observations on the following 3 variables.
   \describe{
-    \item{\code{row}}{Row position}
-    \item{\code{col}}{Column position}
-    \item{\code{yield}}{Yield kg/ha divided by 10}
+    \item{\code{row}}{row}
+    \item{\code{col}}{column}
+    \item{\code{yield}}{grain yield kg/ha divided by 10}
   }
 }
 \details{
@@ -23,11 +23,18 @@ Yield from a barley uniformity trial
   A three-plot seeder was used, planting in a serpentine fashion.
   Williams noted that it appears that the middle plot of each pass
   has a lower yield, possibly due to soil compaction from the tractor.
+
+  Field width: 48 plots * .75 m = 36 m
+
+  Field length: 15 plots * 5 m = 75 m
+  
 }
+
 \source{
-  Williams, ER and Luckett, DJ. 1988. The use of uniformity data in the
-  design and analysis of cotton and barley variety trials.
+  Williams, ER and Luckett, DJ. 1988.
+  The use of uniformity data in the design and analysis of cotton and barley variety trials.
   \emph{Australian Journal of Agricultural Research}, 39, 339-350.
+  http://doi.org/10.1071/AR9880339
 }
 
 \examples{
@@ -35,14 +42,19 @@ Yield from a barley uniformity trial
 data(williams.barley.uniformity)
 dat <- williams.barley.uniformity
 
-require("lattice")
-asp = (15*5)/(48*.75) # true aspect
-desplot(yield ~ col*row, dat, aspect=asp,
-        main="williams.barley.uniformity")
+if(require(desplot)){
+  desplot(yield ~ col*row, dat,
+          aspect= 75/36, # true aspect
+          main="williams.barley.uniformity")
+}
+
 
 # Smoothed contour/persp plot like Williams Fig 1b, 2b
+require("lattice")
 dat$fit <- fitted(loess(yield~col*row, dat, span=.1))
-contourplot(fit~col*row, data=dat, main="williams.barley.uniformity")
+contourplot(fit~col*row, data=dat,
+            aspect=75/36, region=TRUE, col.regions=RedGrayBlue,
+            main="williams.barley.uniformity")
 wireframe(fit~col*row, data=dat, zlim=c(100, 350),
           main="williams.barley.uniformity")
 

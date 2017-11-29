@@ -2,7 +2,7 @@
 \alias{crowder.seeds}
 \docType{data}
 \title{
-  Germination of Orobanche seeds from Crowder (1978)
+  Germination of Orobanche seeds for two genotypes and two treatments.
 }
 \description{
   Number of Orobanche seeds tested/germinated for two genotypes and
@@ -19,28 +19,40 @@
   }
 }
 \details{
-  Orobanche aegyptiaca (commonly known as Egyptian broomrape) is a
-  parasitic plant family.
-  The plants have no chlorophyll and grow on the roots of other plants.
-  The seeds remain dormant in soil until certain compounds from
+
+  Egyptian broomrape, \emph{orobanche aegyptiaca} is a parasitic plant
+  family.  The plants have no chlorophyll and grow on the roots of other
+  plants.  The seeds remain dormant in soil until certain compounds from
   living plants stimulate germination.
-  Two genotypes were studied in the experiment, \emph{O. aegyptiaca 73} and
-  \emph{O. aegyptiaca 75}.  The seeds were brushed with one of two extracts
-  prepared from either a bean plant or cucmber plant.
-  The experimental design was a 2x2 factorial, each with 5 or 6 reps of plates.
+  
+  Two genotypes were studied in the experiment, \emph{O. aegyptiaca 73}
+  and \emph{O. aegyptiaca 75}.  The seeds were brushed with one of two
+  extracts prepared from either a bean plant or cucmber plant.
+
+  The experimental design was a 2x2 factorial, each with 5 or 6 reps of
+  plates.
+  
 }
 \source{
-  Crowder, M.J., 1978. Beta-binomial anova for proportions.
+
+  Crowder, M.J., 1978.
+  Beta-binomial anova for proportions.
   \emph{Appl. Statist.}, 27, 34-37.
+  http://doi.org/10.2307/2346223
+
 }
+
 \references{
+  
   N. E. Breslow and D. G. Clayton. 1993.
   Approximate inference in generalized linear mixed models.
   \emph{Journal of the American Statistical Association}, 88:9-25.
-
+  http://doi.org/10.2307/2290687
+  
   Y. Lee and J. A. Nelder. 1996.
   Hierarchical generalized linear models with discussion.
   \emph{J. R. Statist. Soc. B}, 58:619-678.
+
 }
 
 \examples{
@@ -55,9 +67,14 @@ require(lattice)
 dotplot(germ/n~gen|extract, dat, main="crowder.seeds")
 
 
-# ----- GLM
+# ----- GLM.
+# family=binomial() fixes dispersion at 1
+# family=quasibinomial() estimates dispersion, had larger std errors
 m1.glm <- glm(cbind(germ,n-germ) ~ gen*extract,
-   data=dat, family=quasibinomial())
+              data=dat,
+              #family="binomial",
+              family=quasibinomial()
+              )
 summary(m1.glm)
 
 
@@ -96,14 +113,14 @@ round(summary(m1.glmm)$tTable,2)
 ## extractcucumber         0.52      0.34 17    1.56    0.14
 ## genO75:extractcucumber  0.80      0.42 17    1.88    0.08
 
-round(summary(m1.bb)$BCoef,2)
+## round(summary(m1.bb)$BCoef,2)
 ##                        Estimate Std. Error z value Pr(> |z|)
 ## (Intercept)               -0.44       0.22   -2.04      0.04
 ## genO75                    -0.10       0.27   -0.36      0.72
 ## extractcucumber            0.52       0.30    1.76      0.08
 ## genO75:extractcucumber     0.80       0.38    2.11      0.03
 
-round(summary(m1.hglm)$FixCoefMat,2)
+## round(summary(m1.hglm)$FixCoefMat,2)
 ##                                     Estimate Std. Error t-value Pr(>|t|)
 ## (Intercept)                            -0.47       0.24   -1.92     0.08
 ## I(gen == "O75")TRUE                    -0.08       0.31   -0.25     0.81
@@ -128,7 +145,7 @@ jdat =list(germ = dat$germ, n = dat$n,
 
 jinit = list(int = 0, genO75 = 0, extcuke = 0, g75ecuke = 0, tau = 10)
 
-# Unlike the BUGS docs, we use names that we can actually interpret
+# Use logical names (unlike BUGS documentation)
 mod.bug =
 "model {
   for(i in 1:nobs) {
@@ -177,8 +194,8 @@ if(require(latticeExtra)){
 # ----------------------------------------------------------------------------
 ## --- R2jags version ---
 
-require(agridat)
-require(R2jags)
+require("agridat")
+require("R2jags")
 dat <- crowder.seeds
 
 # To match the output on the BUGS web page, use: dat$gen=="O73".

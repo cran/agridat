@@ -2,18 +2,18 @@
 \alias{theobald.barley}
 \docType{data}
 \title{
-  Barley yields at multiple locs, years, fertilizer levels
+  Multi-environment trial of barley, multiple years & fertilizer levels
 }
 \description{
   Barley yields at multiple locs, years, fertilizer levels
 }
-\usage{data(theobald.barley)}
+\usage{data("theobald.barley")}
 \format{
   A data frame with 105 observations on the following 5 variables.
   \describe{
     \item{\code{yield}}{yield, tonnes/ha}
-    \item{\code{gen}}{genotype factor}
-    \item{\code{loc}}{loc factor, 5 levels}
+    \item{\code{gen}}{genotype}
+    \item{\code{loc}}{location, 5 levels}
     \item{\code{nitro}}{nitrogen kg/ha}
     \item{\code{year}}{year, 2 levels}
   }
@@ -33,6 +33,7 @@
   Chris M. Theobald and Mike Talbot, (2002).
   The Bayesian choice of crop variety and fertilizer dose.
   \emph{Appl Statistics}, 51, 23-36.
+  http://doi.org/10.1111/1467-9876.04863
 
   Data provided by Chris Theobald and Mike Talbot.
 }
@@ -46,7 +47,7 @@ dat <- transform(dat, income=100*yield - 400*nitro/1000)
 
 require(lattice)
 xyplot(income~nitro|env, dat, groups=gen, type='b',
-       auto.key=TRUE, main="theobald.barley")
+       auto.key=list(columns=3), main="theobald.barley")
 
 }
 \keyword{datasets}

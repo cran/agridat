@@ -2,7 +2,7 @@
 \alias{theobald.covariate}
 \docType{data}
 \title{
-  Corn silage yields for Year * Loc * Variety with covariate
+  Multi-environment trial of corn silage, Year * Loc * Variety with covariate
 }
 \description{
   Corn silage yields for maize in 5 years at 7 districts for 10 hybrids.
@@ -11,11 +11,11 @@
 \format{
   A data frame with 256 observations on the following 5 variables.
   \describe{
-    \item{\code{year}}{Year, 1990-1994}
-    \item{\code{env}}{Environment/District, 1-7}
-    \item{\code{gen}}{Genotype factor, 1-10}
-    \item{\code{yield}}{Dry-matter silage yield for corn}
-    \item{\code{chu}}{Corn heat units, thousand degrees Celsius}
+    \item{\code{year}}{year, 1990-1994}
+    \item{\code{env}}{environment/district, 1-7}
+    \item{\code{gen}}{genotype, 1-10}
+    \item{\code{yield}}{dry-matter silage yield for corn}
+    \item{\code{chu}}{corn heat units, thousand degrees Celsius}
   }
 }
 \details{
@@ -32,6 +32,7 @@
   Chris M. Theobald and Mike Talbot and Fabian Nabugoomu, 2002.
   A Bayesian Approach to Regional and Local-Area Prediction From Crop
   Variety Trials, \emph{Journ Agric Biol Env Sciences}, 7, 403--419.
+  http://doi.org/10.1198/108571102230
 }
 
 \examples{
@@ -43,11 +44,12 @@ xyplot(yield ~ chu|gen, dat, type=c('p','smooth'),
        xlab =  "chu = corn heat units",
        main="theobald.covariate - yield vs heat")
 
-# REML estimates (Means) in table 3 of Theobald 2002
-if(require(lme4)){
-dat <- transform(dat, year=factor(year))
-m0 <- lmer(yield ~ -1 + gen + (1|year/env) + (1|gen:year), data=dat)
-round(fixef(m0),2)
+\dontrun{
+  # REML estimates (Means) in table 3 of Theobald 2002
+  require(lme4)
+  dat <- transform(dat, year=factor(year))
+  m0 <- lmer(yield ~ -1 + gen + (1|year/env) + (1|gen:year), data=dat)
+  round(fixef(m0),2)
 }
 
 \dontrun{
@@ -68,7 +70,7 @@ jdat <- list(nVar = 10, nYear = 5, nLoc = 7, nYL = 29, yield = ymat,
             chu = chu, year = yridx, loc = locidx)
 
 require(rjags)
-m1 <- jags.model(file=system.file("/files/theobald.bug", package="agridat"),
+m1 <- jags.model(file=system.file(package="agridat", "files/theobald.covariate.jag"),
   data=jdat, n.chains=2)
 
 # Table 3, Variety deviations from means (Expert prior)

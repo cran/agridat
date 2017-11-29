@@ -7,7 +7,7 @@
 \description{
   Clover yields in a factorial fertilizer experiment
 }
-\usage{data(sinclair.clover)}
+\usage{data("sinclair.clover")}
 \format{
   A data frame with 25 observations on the following 3 variables.
   \describe{
@@ -22,15 +22,18 @@
   Dec 1992 to Mar 1994.  Yields reported are the total dry matter across
   all cuttings.
 }
+
 \source{
   Sinclair AG, Risk WH, Smith LC, Morrison JD & Dodds KG (1994)
   Sulphur and phosphorus in balanced pasture nutrition.
   \emph{Proc N Z Grass Assoc}, 56, 13-16.
 }
+
 \references{
   Dodds, KG and Sinclair, AG and Morrison, JD. (1995).
   A bivariate response surface for growth data.
   \emph{Fertilizer research}, 45, 117-122.
+  http://doi.org/10.1007/BF00790661
 }
 
 \examples{
@@ -39,7 +42,9 @@ data(sinclair.clover)
 dat <- sinclair.clover
 
 require(lattice)
-xyplot(yield~P|factor(S), dat, layout=c(5,1), main="sinclair.clover")
+xyplot(yield~P|factor(S), dat, layout=c(5,1),
+       main="sinclair.clover - Yield by sulfur levels",
+       xlab="Phosphorous")
 
 # Dodds fits a two-dimensional Mitscherlich-like model:
 # z = a*(1+b*{(s+t*x)/(x+1)}^y) * (1+d*{(th+r*y)/(y+1)}^x)
@@ -89,7 +94,8 @@ axes3d()
 title3d("sinclair.clover - yield","", xlab="Phosphorous/10",
         ylab="Sulfur/10", zlab="", line=3, cex=1.5)
 view3d(userMatrix=matrix(c(.7,.2,-.7,0, -.7,.2,-.6,0, 0,.9,.3,0, 0,0,0,1),ncol=4))
-# snapshot3d(file, "png")
+  # snapshot3d(file, "png")
+  rgl.close()
 }
 
 }

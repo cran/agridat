@@ -7,7 +7,7 @@
 \description{
   Soybean balanced incomplete block experiment
 }
-\usage{data(weiss.incblock)}
+\usage{data("weiss.incblock")}
 \format{
   A data frame with 186 observations on the following 5 variables.
   \describe{
@@ -25,18 +25,24 @@
   plus 4 gaps of 4 feet).  Weiss shows a figure of the field (that was
   later doubled in dize via using two rows per plot).
 
-  Note that only 30 varities were tested.  Varieties 7 and 14 are the
+  Note that only 30 varieties were tested.  Varieties 7 and 14 are the
   same variety (Mukden).  Although total yields of these varieties were
   not equal, the correction for blocks adjusted their means to identical
   values. Such accuracy is not, however, claimed to be a constant
   characteristic of the design.
+
+  Field length: 252 feet
+
+  Field width: 96 feet
+  
 }
+
 \source{
- Weiss, Martin G. and Cox, Gertrude M. (1939).
- Balanced Incomplete Block and Lattice Square Designs for Testing Yield
- Differences Among Large Numbers of Soybean Varieties.
- \emph{Agricultural Research Bulletins, Nos. 251-259}.
- \url{http://lib.dr.iastate.edu/ag_researchbulletins/24/}
+  Weiss, Martin G. and Cox, Gertrude M. (1939).
+  Balanced Incomplete Block and Lattice Square Designs for Testing Yield
+  Differences Among Large Numbers of Soybean Varieties.
+  \emph{Agricultural Research Bulletins, Nos. 251-259}.
+  http://lib.dr.iastate.edu/ag_researchbulletins/24/
 }
 
 \examples{
@@ -45,14 +51,19 @@ data(weiss.incblock)
 dat <- weiss.incblock
 
 # True aspect as shown in Weiss and Cox
-desplot(yield~col*row, dat, text=gen, shorten='none', cex=.8, out1=block,
-    main="weiss.incblock", xlab="Soybean yields", aspect=252/96)
+if(require(desplot)){
+  desplot(yield~col*row, dat,
+          text=gen, shorten='none', cex=.6, out1=block,
+          aspect=252/96, # true aspect
+          main="weiss.incblock")
+}
+
 
 \dontrun{
   # Standard inc block analysis used by Weiss and Cox
   require(asreml)
   m1 <- asreml(yield ~ gen + block , data=dat)
-  predict(m1, classify="gen")$predictions$pvals
+  predict(m1, data=dat, classify="gen")$predictions$pvals
   ## gen pred.value std.error est.stat
   ## G01     24.59    0.8312  Estimable
   ## G02     26.92    0.8312  Estimable

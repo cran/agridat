@@ -2,10 +2,10 @@
 \alias{baker.barley.uniformity}
 \docType{data}
 \title{
-  Ten years of barley uniformity trials on same ground
+  Uniformity trials of barley, 10 years on same ground
 }
 \description{
-  Ten years of barley uniformity trials on same ground
+  Uniformity trials of barley at Davis, California, 1925-1935, 10 years on same ground.
 }
 
 \format{
@@ -13,17 +13,24 @@
   \describe{
     \item{\code{row}}{row}
     \item{\code{col}}{column}
-    \item{\code{year}}{year, numeric}
-    \item{\code{yield}}{yield, (pound/acre)}
+    \item{\code{year}}{year}
+    \item{\code{yield}}{yield, pounds/acre}
   }
 }
 \details{
-  Ten years of uniformity trials were sown on the same ground.
+  Ten years of uniformity trials were sown on the same ground.  Baker
+  (1952) shows a map of the field.
+
+  Field width: 19 plots = 827 ft
+
+  Field length: 3 plots * 161 ft + 2 alleys * 15 feet = 513 ft
+  
 }
 \source{
   Baker, GA and Huberty, MR and Veihmeyer, FJ.  (1952)
   A uniformity trial on unirrigated barley of ten years' duration.
   \emph{Agronomy Journal}, 44, 267-270.
+  http://doi.org/10.2134/agronj1952.00021962004400050011x
 }
 
 \examples{
@@ -31,12 +38,21 @@
 data(baker.barley.uniformity)
 dat <- baker.barley.uniformity
 
-asp <- (161*3+30)/827 # True aspect ratio
-desplot(yield~col*row|year, data=dat,
-        main="baker.barley.uniformity heatmaps by year", aspect=asp)
+# Ten-year average
 dat2 <- aggregate(yield ~ row*col, data=dat, FUN=mean, na.rm=TRUE)
-desplot(yield~col*row, data=dat2, main="baker.barley.uniformity 10-year average", aspect=asp)
-# Note low yield in upper right, slanting to left a bit due to sandy soil.
+
+if(require(desplot)){
+  desplot(yield~col*row|year, data=dat,
+          aspect = 513/827, # true aspect
+          main="baker.barley.uniformity - heatmaps by year")
+}
+if(require(desplot)){
+  desplot(yield~col*row, data=dat2,
+          aspect = 513/827, # true aspect
+          main="baker.barley.uniformity - heatmap of 10-year average")
+  # Note low yield in upper right, slanting to left a bit due to sandy soil
+  # as shown in Baker figure 1.
+}
 
 # Baker fig 2, stdev vs mean
 dat3 <- aggregate(yield ~ row*col, data=dat, FUN=sd, na.rm=TRUE)
@@ -44,9 +60,10 @@ plot(dat2$yield, dat3$yield, xlab="Mean yield", ylab="Std Dev yield",
      main="baker.barley.uniformity")
 
 # Baker table 4, correlation of plots across years
-require(reshape2)
+if(require(reshape2)){
 mat <- acast(dat, row+col~year)
 round(cor(mat, use='pair'),2)
+}
 
 }
 \keyword{datasets}

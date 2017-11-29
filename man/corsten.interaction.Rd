@@ -1,18 +1,20 @@
 \name{corsten.interaction}
 \alias{corsten.interaction}
 \docType{data}
-\title{Corn yield in multi-environment trial}
+\title{
+  Multi-environment trial of corn
+}
 \description{
-  The data is the average yield (kg/acre) of 20 genotypes of corn at 7
+  The data is the yield (kg/acre) of 20 genotypes of corn at 7
   locations.
 }
 
 \format{
   A data frame with 140 observations on the following 3 variables.
   \describe{
-    \item{\code{gen}}{Genotype factor with 20 levels }
-    \item{\code{loc}}{Location factor with 7 levels }
-    \item{\code{yield}}{yield in kg/acre}
+    \item{\code{gen}}{genotype, 20 levels }
+    \item{\code{loc}}{location, 7 levels }
+    \item{\code{yield}}{yield, kg/acre}
   }
 }
 \details{
@@ -24,8 +26,10 @@
   The correct order of the loc labels is 1 2 4 5 6 7 3.
 }
 \source{
-  L C A Corsten and J B Denis, Structuring Interaction in Two-Way Tables
-  By Clustering, \emph{Biometrics}, 1990, 46, 207--215. Table 1.
+  L C A Corsten and J B Denis, (1990).
+  Structuring Interaction in Two-Way Tables By Clustering.
+  \emph{Biometrics}, 46, 207--215. Table 1.
+  http://doi.org/10.2307/2531644
 
   Used with permission of Jean-Baptiste Denis.
 }
@@ -35,7 +39,7 @@
 data(corsten.interaction)
 dat <- corsten.interaction
 
-require(reshape2)
+if(require(reshape2)){
 m1 <- melt(dat, measure.var='yield')
 dmat <- acast(m1, loc~gen)
 
@@ -46,5 +50,8 @@ dmat <- acast(m1, loc~gen)
 # For comparison, the 'heatmap' function clusters the rows and
 # columns _independently_ of each other.
 heatmap(dmat, main="corsten.interaction")
+}
+
+
 }
 

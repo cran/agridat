@@ -11,10 +11,10 @@
 \format{
   A data frame with 186 observations on the following 5 variables.
   \describe{
-    \item{\code{time}}{time factor, 4 levels}
-    \item{\code{manage}}{management factor, 2 levels}
-    \item{\code{rep}}{rep/block factor, 3 levels}
-    \item{\code{sample}}{subsample, 2 levels}
+    \item{\code{time}}{time factor, T1-T4}
+    \item{\code{manage}}{management, M1-M6}
+    \item{\code{rep}}{rep/block, R1-R3}
+    \item{\code{sample}}{subsample, S1-S2}
     \item{\code{height}}{plant height (cm)}
   }
 }
@@ -35,9 +35,11 @@
 
 data(gomez.splitplot.subsample)
 dat <- gomez.splitplot.subsample
-require(HH)
-interaction2wt(height ~ rep + time + manage, data=dat,
-               main="gomez.splitplot.subsample - plant height")
+if(require(HH)){
+  interaction2wt(height ~ rep + time + manage, data=dat,
+                 x.between=0, y.between=0,
+                 main="gomez.splitplot.subsample - plant height")
+}
 
 # Management totals, Gomez table 6.8
 tapply(dat$height, dat$manage, sum)

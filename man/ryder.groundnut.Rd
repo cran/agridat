@@ -11,12 +11,12 @@
 \format{
   A data frame with 24 observations on the following 6 variables.
   \describe{
-    \item{\code{block}}{Block factor}
-    \item{\code{row}}{Row}
-    \item{\code{col}}{Column}
-    \item{\code{gen}}{Genotype factor}
-    \item{\code{wet}}{Wet yield, kg/plot}
-    \item{\code{dry}}{Dry yield, kg/plot}
+    \item{\code{block}}{block}
+    \item{\code{row}}{row}
+    \item{\code{col}}{column}
+    \item{\code{gen}}{genotype factor}
+    \item{\code{wet}}{wet yield, kg/plot}
+    \item{\code{dry}}{dry yield, kg/plot}
   }
 }
 \details{
@@ -25,9 +25,12 @@
   he suggests that varieties A and B in block 3 may have had their data
   swapped.
 }
+
 \source{
   K. Ryder (1981). Field plans: why the biometrician finds them useful,
   \emph{Experimental Agriculture}, 17, 243--256.
+
+  http://doi.org/10.1017/S0014479700011601
 }
 
 \examples{
@@ -43,14 +46,23 @@ dat$res1 <- resid(m1)
 round(dat$res1 * 596.6,0)
 
 # Visually.  Note largest positive/negative residuals are adjacent
-desplot(res1 ~ col + row, dat, text=gen, main="ryder.groundnut")
+if(require(desplot)){
+  desplot(res1 ~ col + row, dat,
+          text=gen, # aspect unknown
+          main="ryder.groundnut - residuals")
+}
 
-# Swap the dry yields for the plots and re-analyze
-dat[dat$block=="B3" & dat$gen=="A", "dry"] <- 2.8
-dat[dat$block=="B3" & dat$gen=="B", "dry"] <- 1.4
-m2 <- lm(dry~block+gen, dat)
-dat$res2 <- resid(m2)
-desplot(res2 ~ col+row, dat, text=gen, main="ryder.groundnut")
+\dontrun{
+  require(desplot)
+  # Swap the dry yields for two plots and re-analyze
+  dat[dat$block=="B3" & dat$gen=="A", "dry"] <- 2.8
+  dat[dat$block=="B3" & dat$gen=="B", "dry"] <- 1.4
+  m2 <- lm(dry~block+gen, dat)
+  dat$res2 <- resid(m2)
+  desplot(res2 ~ col+row, dat,
+          # aspect unknown
+          text=gen, main="ryder.groundnut")
+}
 
 }
 \keyword{datasets}

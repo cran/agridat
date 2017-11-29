@@ -13,15 +13,18 @@
 \format{
   A data frame with 150 observations on the following 4 variables.
   \describe{
-    \item{\code{yield}}{Yield of wheat}
-    \item{\code{gen}}{Genetic variety, factor with 50 levels}
-    \item{\code{block}}{Block/column (numeric)}
-    \item{\code{row}}{Row (numeric)}
+    \item{\code{yield}}{yield of wheat}
+    \item{\code{gen}}{genotype, factor with 50 levels}
+    \item{\code{col}}{column/block}
+    \item{\code{row}}{row}
   }
 }
 \details{
   RCB experiment on wheat at El Batan, Mexico.  There are three
   single-column replicates with 50 varieties in each replicate.
+
+  Plot dimensions are not given by Besag.
+  
 }
 \source{
   Julian Besag and D Higdon, 1999.
@@ -29,10 +32,18 @@
   \emph{Journal of the Royal Statistical Society: Series B (Statistical
     Methodology)},61, 691--746. Table 1.
 
+  http://doi.org/10.1111/1467-9868.00201
+
   Retrieved from
-  \url{http://web.archive.org/web/19991008143232/www.stat.duke.edu/~higdon/trials/elbatan.dat}.
+  http://web.archive.org/web/19991008143232/www.stat.duke.edu/~higdon/trials/elbatan.dat
 
   Used with permission of David Higdon.
+}
+
+\references{
+  Wilkinson 1984.
+
+  Besag & Seheult 1989.
 }
 
 \examples{
@@ -40,49 +51,37 @@
 data(besag.elbatan)
 dat <- besag.elbatan
 
-desplot(yield~block*row, dat, main="besag.elbatan wheat yields",
-num=gen)
-
-# Besag figure 1
-# xyplot(yield~row|block, dat, groups=block, type=c('l'),
-#        layout=c(1,3), main="besag.elbatan wheat yields")
-
-# RCB
-m1 <- lm(yield ~ 0 + gen + factor(block), dat)
-p1 <- coef(m1)[1:50]
-
-# Add smooth trend with GAM
-if(require(mgcv)){
-  m3 <- gam(yield ~ -1 + gen + factor(block) + s(row), data=dat)
-  plot(m3, residuals=TRUE, cex=3, main="besag.elbatan")
-  # pred <- cbind(dat, predict(m3, data=dat, type="terms"))
-
-  # Compare estimates
-  p2 <- coef(m3)[1:50]
-  lims <- range(c(p1,p2))
-  plot(p1, p2, xlab="RCB prediction",
-       ylab="RCB with smooth trend (predicted)",
-       type='n', xlim=lims, ylim=lims,
-       main="besag.elbatan")
-  text(p1, p2, 1:50, cex=.5)
-  abline(0,1,col="gray")
+if(require(desplot)){
+  desplot(yield~col*row, dat,
+          num=gen, # aspect unknown
+          main="besag.elbatan wheat yields")
 }
 
-# Formerly used gam package, but as of R 3.1, Rcmd check --as-cran
-# is complaining
-# Calls: plot.gam ... model.matrix.gam -> predict -> predict.gam -> array
-# but it works perfectly in interactive mode !!!
-# Remove the FALSE to run the code below
-if(FALSE & require(gam)){
-  m2 <- gam(yield ~ -1 + gen + factor(block) + lo(row), data=dat)
-  plot.gam(m2)
+\dontrun{
+  # Besag figure 1
+  library(lattice)
+  xyplot(yield~row|col, dat, type=c('l'),
+         layout=c(1,3), main="besag.elbatan wheat yields")
+}
 
-  plot(m2, residuals=TRUE, se=TRUE,
-       terms="lo(row)", main="besag.elbatan")
+# RCB
+m1 <- lm(yield ~ 0 + gen + factor(col), dat)
+p1 <- coef(m1)[1:50]
+
+\dontrun{
+  # Formerly used gam package, but as of R 3.1, Rcmd check --as-cran
+  # is complaining
+  # Calls: plot.gam ... model.matrix.gam -> predict -> predict.gam -> array
+  # but it works perfectly in interactive mode !!!
+  # Remove the FALSE to run the code below
+  if(is.element("gam", search())) detach(package:gam)
+  library(mgcv)
+  m2 <- mgcv::gam(yield ~ -1 + gen + factor(col) + s(row), data=dat)
+  plot(m2, residuals=TRUE, main="besag.elbatan")
   pred <- cbind(dat, predict(m2, dat, type="terms"))
   # Need to correct for the average loess effect, which is like
   # an overall intercept term.
-  adjlo <-  mean(pred$"lo(row)")
+  adjlo <-  mean(pred$"s(row)")
   p2 <- coef(m2)[1:50] + adjlo
 
   # Compare estimates

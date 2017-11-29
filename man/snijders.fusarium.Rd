@@ -34,28 +34,27 @@
 
 }
 \source{
-
   Snijders, CHA and Van Eeuwijk, FA. 1991.
   Genotype x strain interactions for resistance to Fusarium head blight
   caused by Fusarium culmorum in winter wheat.
   \emph{Theoretical and Applied Genetics}, 81, 239--244. Table 1.
+  http://doi.org/10.1007/BF00215729
 
   Used with permission of Fred van Eeuwijk.
-
 }
-\references{
 
+\references{
   Fred A van Eeuwijk. 1995.
   Multiplicative interaction in generalized linear models.
   \emph{Biometrics}, 51, 1017-1032.
-  http://www.jstor.org/stable/2533001
-
+  http://doi.org/10.2307/2533001
 }
 
 \examples{
 
 data(snijders.fusarium)
 dat <- snijders.fusarium
+
 aggregate(y ~ strain + year, dat, FUN=mean) # Match means in Snijders table 1
 
 dat <- transform(dat, y=y/100, year=factor(year), yrstr=factor(paste0(year,"-",strain)))
@@ -77,15 +76,15 @@ anova(m2) # Match to VanEeuwijk table 5
 \dontrun{
 
 # GLM on untransformed data using logit link, variance mu^2(1-mu)^2
-require(gnm)
+require(gnm) # for 'wedderburn' family
 m2 <- glm(y ~ yrstr + gen, data=dat, family="wedderburn")
 anova(m2) # Main effects match VanEeuwijk table 6
 
 # Generalized AMMI-2 model. Matches VanEeuwijk table 6
-bilin2 <- gnm(y ~ yrstr + gen +instances(Mult(yrstr, gen), 2),
+bilin2 <- gnm(y ~ yrstr + gen + instances(Mult(yrstr, gen), 2),
               data=dat, family = wedderburn)
 # plot(bilin2,1) # Resid vs fitted plot matches VanEeuwijk figure 3c
-anova(bilin2)
+## anova(bilin2)
 ##                            Df Deviance Resid. Df Resid. Dev
 ## NULL                                         203     369.44
 ## yrstr                      11  150.847       192     218.60
@@ -105,7 +104,7 @@ y12 <- cbind(y1,y2)
 rownames(y12) <- substring(rownames(y12), 31)
 g12[,1] <- -1 * g12[,1]
 y12[,1] <- -1 * y12[,1]
-# AMMI biplot.  Inner-products of points projected onto
+# GAMMI biplot.  Inner-products of points projected onto
 # arrows match VanEeuwijk figure 4.  Slight rotation of graph is ignorable.
 biplot(y12, g12, cex=.75, main="snijders.fusarium") # Arrows to genotypes.
 

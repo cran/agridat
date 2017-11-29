@@ -7,7 +7,7 @@
 \description{
   Potato yields in single-drill plots
 }
-\usage{data(connolly.potato)}
+\usage{data("connolly.potato")}
 \format{
   A data frame with 80 observations on the following 6 variables.
   \describe{
@@ -45,8 +45,10 @@
   Connolly, T and Currie, ID and Bradshaw, JE and McNicol, JW. (1993).
   Inter-plot competition in yield trials of potatoes
   \emph{Solanum tuberosum L.} with single-drill plots.
-  \emph{Annals of applied biology}, 123, 367-377.
+  \emph{Annals of Applied Biology}, 123, 367-377.
 
+  http://doi.org/10.1111/j.1744-7348.1993.tb04099.x
+  
   Used with permission of Iain Currie.
 }
 
@@ -56,7 +58,13 @@ data(connolly.potato)
 dat <- connolly.potato
 
 # Field plan
-desplot(yield~col*row, data=dat, out1=rep, main="connolly.potato yields")
+if(require(desplot)){
+  desplot(yield~col*row, data=dat,
+          out1=rep, # aspect unknown
+          main="connolly.potato yields (reps not contiguous)")
+}
+
+
 # Later maturities are higher yielding
 require(lattice)
 bwplot(yield~matur, dat, main="connolly.potato yield by maturity")
@@ -66,7 +74,7 @@ mn <- aggregate(yield~gen, data=dat, FUN=mean)
 mn[rev(order(mn$yield)),]
 
 # Create a covariate which is the average of neighboring plot yields
-require(reshape2)
+if(require(reshape2)){
 mat <- acast(dat, row~col, value.var='yield')
 mat2 <- matrix(NA, nrow=4, ncol=20)
 mat2[,2:19] <- (mat[ , 1:18] + mat[ , 3:20])/2
@@ -97,6 +105,8 @@ xyplot(yadj~cov, data=dat, type=c('p','r'),
        main="connolly.potato",
        xlab="Avg yield of nearest neighbors",
        ylab="Yield, adjusted for variety and block effects")
+}
+
 
 }
 \keyword{datasets}

@@ -11,13 +11,13 @@
 \format{
   A data frame with 48 observations on the following 7 variables.
   \describe{
-    \item{\code{block}}{Block factor, 4 levels}
-    \item{\code{row}}{Row in field}
-    \item{\code{col}}{Column in field}
-    \item{\code{fumigant}}{Fumigant factor}
-    \item{\code{dose}}{Dose.  Numeric 0,1,2.  Maybe should be a factor?}
-    \item{\code{initial}}{Count of eelworms pre-treatment}
-    \item{\code{final}}{Count of eelworms post-treatment}
+    \item{\code{block}}{block factor, 4 levels}
+    \item{\code{row}}{row}
+    \item{\code{col}}{column}
+    \item{\code{fumigant}}{fumigant factor}
+    \item{\code{dose}}{dose, Numeric 0,1,2.  Maybe should be a factor?}
+    \item{\code{initial}}{count of eelworms pre-treatment}
+    \item{\code{final}}{count of eelworms post-treatment}
   }
 }
 \details{
@@ -48,12 +48,18 @@ data(cochran.eelworms)
 dat <- cochran.eelworms
 
 # Very strong spatial trends
-desplot(initial ~ col*row, data=dat, flip=TRUE, main="cochran.eelworms")
+if(require(desplot)){
+  desplot(initial ~ col*row, data=dat,
+          flip=TRUE, # aspect unknown
+          main="cochran.eelworms")
+}
+
 
 # final counts are strongly related to initial counts
 require(lattice)
-xyplot(final~initial|dose, data=dat, group=fumigant,
-       main="cochran.eelworms", xlab="Initial worm count",
+xyplot(final~initial|factor(dose), data=dat, group=fumigant,
+       main="cochran.eelworms - by dose (panel) & fumigant",
+       xlab="Initial worm count",
        ylab="Final worm count", auto.key=list(columns=5))
 
 # One approach...log transform, use 'initial' as covariate, create 9 treatments

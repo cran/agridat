@@ -7,13 +7,13 @@
 \description{
   Root counts for propagated columnar apple shoots.
 }
-\usage{data(ridout.appleshoots)}
+\usage{data("ridout.appleshoots")}
 \format{
   A data frame with 270 observations on the following 4 variables.
   \describe{
-    \item{\code{roots}}{Number of roots per shoot}
-    \item{\code{trtn}}{Number of shoots per treatment combination}
-    \item{\code{photo}}{Photoperiod, 8 or 16}
+    \item{\code{roots}}{number of roots per shoot}
+    \item{\code{trtn}}{number of shoots per treatment combination}
+    \item{\code{photo}}{photoperiod, 8 or 16}
     \item{\code{bap}}{BAP concentration, numeric}
   }
 }
@@ -33,21 +33,19 @@
   perhaps not for columnar varieties.
 
 }
-\source{
 
+\source{
   Ridout, M. S., Hinde, J. P., and Demetrio, C. G. B. (1998).
   Models for Count Data with Many Zeros.
   \emph{Proceedings of the 19th International Biometric Conference},
   179-192.
 
   Used with permission of Martin Ridout.
-
 }
+
 \references{
-
   SAS. Fitting Zero-Inflated Count Data Models by Using PROC GENMOD.
-  \url{support.sas.com/rnd/app/examples/stat/GENMODZIP/roots.pdf}
-
+  support.sas.com/rnd/app/examples/stat/GENMODZIP/roots.pdf
 }
 
 \examples{
@@ -71,7 +69,7 @@ foo.obs <- histogram(~roots|photo*bap, dat, breaks=0:18-0.5, type="density",
                      xlab="Number of roots for photoperiod 8, 16",
                      ylab="Density for BAP levels",
                      main="ridout.appleshoots")
-if(require(latticeExtra)) useOuterStrips(foo.obs)
+if(require(latticeExtra)) useOuterStrips(foo.obs) else print(foo.obs)
 
 # Ordinary (non-ZIP) Poisson GLM
 m1 <- glm(roots ~ bap + photo + bap:photo, data=dat,
@@ -110,15 +108,16 @@ newdat$ltrtn <- log(newdat$trtn)
 
 # The predicted (Poisson + Zero) probabilities
 d2 <- cbind(newdat[,c('bap','photo')], predict(m2, newdata=newdat, type="prob"))
-require(reshape2)
+if(require(reshape2)){
 d2 <- melt(d2, id.var = c('bap','photo')) # wide to tall
 d2$xpos <- as.numeric(as.character(d2$variable))
 foo.poi <- xyplot(value~xpos|photo*bap, d2, col="black", pch=20, cex=1.5)
 
 # Plot data and model
-foo.obs <- update(foo.obs, main="ridout.appleshoots: observed (bars) & predicted")
+foo.obs <- update(foo.obs, main="ridout.appleshoots: observed (bars) & predicted (dots)")
 useOuterStrips(foo.obs + foo.poi)
-
+}
+  
 # Restore contrasts
 options(oo)
 

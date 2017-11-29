@@ -7,7 +7,7 @@
 \description{
   Germination of alfalfa seeds at various salt concentrations
 }
-\usage{data(carlson.germination)}
+\usage{data("carlson.germination")}
 \format{
   A data frame with 120 observations on the following 3 variables.
   \describe{
@@ -24,9 +24,9 @@
 \source{
   Carlson, JR and Ditterline, RL and Martin, JM and Sands, DC and Lund,
   RE. (1983).
-  Alfalfa Seed Germination in Antiobiotic Agar Containing NaCl.
+  Alfalfa Seed Germination in Antibiotic Agar Containing NaCl.
   \emph{Crop science}, 23, 882-885.
-  \url{https://dl.sciencesocieties.org/publications/cs/abstracts/23/5/CS0230050882}.
+  http://doi.org/10.2135/cropsci1983.0011183X002300050016x
 }
 
 \examples{

@@ -2,7 +2,7 @@
 \alias{shafii.rapeseed}
 \docType{data}
 \title{
-  Rapeseed yield multi-environment trial, 3 years
+  Multi-environment trial of rapeseed
 }
 \description{
   Rapeseed yield multi-environment trial, 3 years
@@ -11,16 +11,16 @@
 \format{
   A data frame with 648 observations on the following 5 variables.
   \describe{
-    \item{\code{year}}{Year, numeric: 87, 88, 89}
-    \item{\code{loc}}{Location factor, 14 levels}
-    \item{\code{rep}}{Rep factor, 3 levels}
-    \item{\code{gen}}{Genotype factor, 6 levels}
-    \item{\code{yield}}{Yield, kg/ha}
+    \item{\code{year}}{year, numeric: 87, 88, 89}
+    \item{\code{loc}}{location, 14 levels}
+    \item{\code{rep}}{rep, 3 levels}
+    \item{\code{gen}}{genotype, 6 levels}
+    \item{\code{yield}}{yield, kg/ha}
   }
 }
 \details{
   SAS codes for the analysis can be found at
-  \url{http://www.uiweb.uidaho.edu/ag/statprog/ammi/}
+  http://www.uiweb.uidaho.edu/ag/statprog/ammi/
 
   The data are from the U.S. National Winter Rapeseed trials conducted
   in 1986, 1987, and 1988.  Trial locations included Georgia (GGA, TGA),
@@ -31,16 +31,20 @@
 
 }
 \source{
-  Electronic version retrieved from
-  \url{http://www.uiweb.uidaho.edu/ag/statprog/ammi/yld.data}.
+  Bahman Shafii and William J Price, 1998.
+  Analysis of Genotype-by-Environment Interaction Using the
+  Additive Main Effects and Multiplicative Interaction Model
+  and Stability Estimates, \emph{Journal of Agricultural Biological
+    Environmental Statistics}, 3, 335--345.
+  http://doi.org/10.2307/1400587
+
+  Electronic version from:
+  http://www.uiweb.uidaho.edu/ag/statprog/ammi/yld.data
 
   Used with permission of Benjamin Price.
 }
 \references{
-  Bahman Shafii and William J Price, 1998.
-  Analysis of Genotype-by-Environment Interaction Using the
-  Additive Main Effects and Multiplicative Interaction Model
-  and Stability Estimates, \emph{JABES}, 3, 335--345.
+  None.
 }
 
 \examples{
@@ -80,11 +84,13 @@ dotplot(loc~yield|gen,group=year,data=dat,
 m1.lm <- lm(yield ~ gen + locyr, data=datm)
 datm$res <- resid(m1.lm)
 # Convert to a matrix
-require("reshape2")
+if(require(reshape2)){
 dm <- melt(datm, measure.var='res', id.var=c('gen', 'locyr'))
 dmat <- acast(dm, gen~locyr)
 # AMMI biplot.  Figure 1 of Shafii (1998)
 biplot(prcomp(dmat), main="shafii.rapeseed - AMMI biplot")
+}
+
 trellis.par.set(op) # Unset graphics changes
 
 }

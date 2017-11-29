@@ -2,7 +2,7 @@
 \alias{allcroft.lodging}
 \docType{data}
 \title{
-  Lodging data from a multi-environment trial cereal crop
+  Multi-environment trial of cereal with lodging data
 }
 \description{
   Percent lodging is given for 32 genotypes at 7 environments.
@@ -11,8 +11,8 @@
 \format{
   A data frame with 224 observations on the following 3 variables.
   \describe{
-    \item{\code{env}}{environment factor, 1-7}
-    \item{\code{gen}}{genotype factor, 1-32}
+    \item{\code{env}}{environment, 1-7}
+    \item{\code{gen}}{genotype, 1-32}
     \item{\code{y}}{percent lodged}
   }
 }
@@ -23,13 +23,14 @@
   D. J. Allcroft and C. A. Glasbey, 2003.
   Analysis of crop lodging using a latent variable model.
   \emph{Journal of Agricultural Science}, 140, 383--393.
+  http://doi.org/10.1017/S0021859603003332
 
   Used with permission of Chris Glasbey.
 }
 
 \examples{
 
-data(allcroft.lodging)
+data("allcroft.lodging")
 dat <- allcroft.lodging
 
 # Transformation

@@ -12,14 +12,14 @@
 \format{
   A data frame with 719 observations on the following 8 variables.
   \describe{
-    \item{\code{site}}{Site factor, 6 levels}
-    \item{\code{year}}{Year, 1927-1936, numeric}
-    \item{\code{mo}}{Month, 1-12, numeric}
-    \item{\code{cdd}}{Monthly cooling degree days, Fahrenheit}
-    \item{\code{hdd}}{Monthly heating degree days, Fahrenheit}
-    \item{\code{precip}}{Monthly precipitation, inches}
-    \item{\code{min}}{Monthly average daily minimum temp, Fahrenheit}
-    \item{\code{max}}{Monthly average daily maximum temp, Fahrenheit}
+    \item{\code{site}}{site, 6 levels}
+    \item{\code{year}}{year, 1927-1936}
+    \item{\code{mo}}{month, 1-12, numeric}
+    \item{\code{cdd}}{monthly cooling degree days, Fahrenheit}
+    \item{\code{hdd}}{monthly heating degree days, Fahrenheit}
+    \item{\code{precip}}{monthly precipitation, inches}
+    \item{\code{min}}{monthly average daily minimum temp, Fahrenheit}
+    \item{\code{max}}{monthly average daily maximum temp, Fahrenheit}
   }
 }
 \details{
@@ -29,13 +29,13 @@
   and the proximity to the town (site) for the barley data.
 
   \tabular{lll}{
-    site\tab station name\tab station\cr
-    Morris\tab MORRIS WC EXPERIMENTAL STATION\tab USC00215638\cr
-    StPaul\tab MINNEAPOLIS WEATHER BUREAU DOWNTOWN\tab USC00215433\cr
-    Crookston\tab CROOKSTON NW EXPERIMENTAL STATION\tab USC00211891\cr
-    GrandRapids\tab GRAND RAPIDS FRS LAB\tab USC00213303\cr
-    Waseca\tab  WASECA EXPERIMENTAL STATION\tab USC00218692\cr
-    Duluth\tab  SUPERIOR\tab USC00478349\cr
+    site       \tab station name \tab station\cr
+    Morris     \tab MORRIS WC EXPERIMENTAL STATION \tab USC00215638\cr
+    StPaul     \tab MINNEAPOLIS WEATHER BUREAU DOWNTOWN \tab USC00215433\cr
+    Crookston  \tab CROOKSTON NW EXPERIMENTAL STATION \tab USC00211891\cr
+    GrandRapids\tab GRAND RAPIDS FRS LAB \tab USC00213303\cr
+    Waseca     \tab WASECA EXPERIMENTAL STATION \tab USC00218692\cr
+    Duluth     \tab SUPERIOR \tab USC00478349\cr
   }
 
   'cdd' are cooling degree days, which is the number of degree days with
@@ -46,13 +46,13 @@
   No data is available for Duluth in Dec, 1931.
 }
 \source{
-  National Climate Data Center, \url{http://www.ncdc.noaa.gov/}.
+  National Climate Data Center, http://www.ncdc.noaa.gov/.
 }
 
 \references{
   Kevin Wright. 2013.  Revisiting Immer's Barley Data.
   \emph{The American Statistitician}, 67, 129-133.
-  \url{http://dx.doi.org/10.1080/00031305.2013.801783}.
+  http://doi.org/10.1080/00031305.2013.801783
 }
 
 \examples{
@@ -83,7 +83,7 @@ minn <- merge(ww, yy)
 
 
 # Higher yields generally associated with cooler temps, more precip
-require(reshape2)
+if(require(reshape2)){
 me <- melt(minn, id.var=c('site','year'))
 mey <- subset(me, variable=="yield")
 mey <- mey[,c('site','year','value')]
@@ -105,7 +105,8 @@ foo <- xyplot(y~x|covar*site, data=mecy, groups=yr, cex=1, ylim=c(5,65),
 if(require(latticeExtra)){
   foo <- useOuterStrips(foo, strip.left = strip.custom(par.strip.text=list(cex=.7)))
   combineLimits(foo, margin.x=2L) # Use a common x axis for all rows
-}
+} 
+} # reshape2
 
 }
 \keyword{datasets}
