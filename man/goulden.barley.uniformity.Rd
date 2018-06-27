@@ -19,9 +19,10 @@
 \details{
   Yield in grams for 400 square-yard barley plots.
 
-  Field length: 20 plots x 1 yd = 20 yd
+  Field width: 20 plots x 3 feet = 60 feet
 
-  Field width: 20 plots x 1 yd = 20 yd
+  Field length: 20 plots x 3 feet = 60 feet
+
 }
 \source{
   C. H. Goulden, (1939).
@@ -33,25 +34,25 @@
   Erwin LeClerg, Warren Leonard, Andrew Clark (1962).
   \emph{Field Plot Technique}, 2nd ed. Page 27.
 
-  Alternatively, page 39 in 1939 edition:
+  Alternatively, page 39 in 1939 edition of "Field Plot Technique".
   https://archive.org/stream/fieldplottechniq00leon
 }
 
 \examples{
+\dontrun{
+  
+  data(goulden.barley.uniformity)
+  dat <- goulden.barley.uniformity
 
-data(goulden.barley.uniformity)
-dat <- goulden.barley.uniformity
-
-if(require(desplot)){
+  require(desplot)
   desplot(yield ~ col*row, data=dat,
           aspect=20/20, # true aspect
           main="goulden.barley.uniformity")
-}
 
+  # Left skewed distribution. See LeClerg, Leonard, Clark
+  hist(dat$yield, main="goulden.barley.uniformity",
+       breaks=c(21,40,59,78,97,116,135,154,173,192,211,230,249)+.5)
 
-# See LeClerg, Leonard, Clark
-hist(dat$yield, main="goulden.barley.uniformity",
-     breaks=c(21,40,59,78,97,116,135,154,173,192,211,230,249)+.5)
-
+}  
 }
 \keyword{datasets}

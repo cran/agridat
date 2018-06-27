@@ -25,22 +25,32 @@
 
 \tabular{llll}{
 name                                      \tab dimensions \tab other \tab model \cr
+\link{ansari.wheat.uniformity}            \tab 96 x 8 \tab xy \tab \cr
 \link{baker.barley.uniformity}            \tab 3 x 19 \tab xy, 10 years \tab \cr
+\link{baker.wheat.uniformity}             \tab 12 x 12 \tab xy \tab \cr
+\link{bancroft.peanut.uniformity}         \tab 6 x 18 \tab xy, 2 blocks \tab \cr
 \link{batchelor.apple.uniformity}         \tab 8 x 28 \tab xy \tab \cr
 \link{batchelor.lemon.uniformity}         \tab 14 x 16 \tab xy \tab \cr
 \link{batchelor.navel1.uniformity}        \tab 20 x 50 \tab xy \tab \cr
 \link{batchelor.navel2.uniformity}        \tab 15 x 33 \tab xy \tab \cr
 \link{batchelor.valencia.uniformity}      \tab 12 x 20 \tab xy \tab \cr
 \link{batchelor.walnut.uniformity}        \tab 10 x 28 \tab xy \tab \cr
+\link{bose.multi.uniformity}              \tab 15 x 26 \tab xy, 3 years \tab \cr
 \link{bradley.multi.uniformity}           \tab 10 x 11 \tab xy \tab \cr
+\link{christidis.cotton.uniformity}       \tab 16 x 16 \tab xy, 4 blocks \tab \cr
 \link{christidis.wheat.uniformity}        \tab 12 x 24 \tab xy \tab \cr
+\link{correa.soybean.uniformity}          \tab 24 x 48 \tab xy \tab \cr
+\link{davies.pasture.uniformity}          \tab 19 x 40 \tab xy \tab \cr
 \link{day.wheat.uniformity}               \tab 31 x 100 \tab xy \tab \cr
 \link{draper.safflower.uniformity}        \tab 18 x 16 \tab xy, 2 expt \tab smith\cr
+\link{eden.tea.uniformity}                \tab 12 x 12 \tab xy \tab \cr
 \link{garber.multi.uniformity}            \tab 45 x 6 \tab xy, 2 years/crops \tab \cr
 \link{gomez.rice.uniformity}              \tab 18 x 36 \tab xy \tab aov,smith \cr
 \link{goulden.barley.uniformity}          \tab 20 x 20 \tab xy \tab \cr
 \link{harris.multi.uniformity}            \tab 2 x 23 \tab xy, 23 crops \tab corrgram\cr
 \link{holtsmark.timothy.uniformity}       \tab 6 x 40 \tab xy \tab \cr
+\link{hutchinson.cotton.uniformity}       \tab 32 x 40 \tab xy \tab \cr
+\link{igue.sugarcane.uniformity}          \tab 36 x 42 \tab xy \tab \cr
 \link{immer.sugarbeet.uniformity}         \tab 10 x 60 \tab xy, 3 traits \tab \cr
 \link{iyer.wheat.uniformity}              \tab 25 x 80 \tab xy \tab \cr
 \link{kadam.millet.uniformity}            \tab 8 x 20 \tab xy, 2 expts \tab \cr
@@ -50,10 +60,14 @@ name                                      \tab dimensions \tab other \tab model 
 \link{khin.rice.uniformity}               \tab 30 x 36 \tab xy \tab \cr
 \link{kiesselbach.oats.uniformity}        \tab 3 x 69 \tab xy \tab \cr
 \link{kristensen.barley.uniformity}       \tab 22 x 11 \tab xy \tab \cr
+\link{kulkarni.sorghum.uniformity}        \tab 4 x 40 \tab xy, 3 years \tab \cr
+\link{lander.multi.uniformity}            \tab 5 x 39 \tab xy, 4 years \tab \cr
 \link{lessman.sorghum.uniformity}         \tab 46 x 60 \tab xy \tab \cr
 \link{li.millet.uniformity}               \tab 6 x 100 \tab xy \tab \cr
+\link{lord.rice.uniformity}               \tab 5 x 14 \tab xy, 8 fields \tab \cr
 \link{love.cotton.uniformity}             \tab 16 x 10 \tab xy \tab \cr
 \link{lyon.potato.uniformity}             \tab 34 x 6 \tab xy \tab \cr
+\link{magistad.pineapple.uniformity}      \tab 5 x 5 \tab xy \tab \cr
 \link{masood.rice.uniformity}             \tab 12 x 24 \tab xy \tab \cr
 \link{mcclelland.corn.uniformity}         \tab 2 x 219 \tab xy \tab \cr
 \link{mercer.mangold.uniformity}          \tab 10 x 20 \tab xy \tab \cr
@@ -62,20 +76,28 @@ name                                      \tab dimensions \tab other \tab model 
 \link{moore.polebean.uniformity}          \tab 12 x 12 \tab xy \tab \cr
 \link{moore.bushbean.uniformity}          \tab 24 x 24 \tab xy \tab \cr
 \link{moore.sweetcorn.uniformity}         \tab 24 x 12 \tab xy \tab \cr
-\link{moore.carrots.uniformity}           \tab 24 x 12 \tab xy \tab \cr
+\link{moore.carrot.uniformity}            \tab 24 x 12 \tab xy \tab \cr
 \link{moore.springcauliflower.uniformity} \tab 12 x 20 \tab xy \tab \cr
 \link{moore.fallcauliflower.uniformity}   \tab 12 x 20 \tab xy \tab \cr
-\link{nonnecke.corn.uniformity}           \tab 32 x 18 \tab xy, 3 loc \tab \cr
+\link{nagai.strawberry.uniformity}        \tab 18 x 24 \ tab xy \tab \cr
+\link{narain.sorghum.uniformity}          \tab 10 x 16 \tab xy \tab \cr
 \link{nonnecke.peas.uniformity}           \tab 15 x 18 \tab xy, 2 traits \tab \cr
+\link{nonnecke.sweetcorn.uniformity}      \tab 32 x 18 \tab xy, 3 loc \tab \cr
 \link{odland.soybean.uniformity}          \tab 25 x 42 \tab xy \tab \cr
 \link{odland.soyhay.uniformity}           \tab 28 x 55 \tab xy \tab \cr
 \link{parker.orange.uniformity}           \tab 10 x 27 \tab xy, 6 yr \tab \cr
 \link{polson.safflower.uniformity}        \tab 52 x 33 \tab xy \tab smith\cr
+\link{robinson.peanut.uniformity}         \tab 16 x 36 \tab xy \tab \cr
 \link{sawyer.multi.uniformity}            \tab 8 x 6   \tab xy, 3 year \tab \cr
-\link{smith.beans.uniformity}             \tab 18x12, 16x15 \tab xy, 2 yr, 2 crops \tab \cr
+\link{sayer.sugarcane.uniformity}         \tab 8 x 136, 8 x 121 \tab xy, 2 year \tab \cr
+\link{smith.beans.uniformity}             \tab 18 x 12, 16 x 15 \tab xy, 2 yr, 2 crops \tab \cr
 \link{smith.corn.uniformity}              \tab 6 x 20 \tab xy, 3 years \tab rgl \cr
 \link{stephens.sorghum.uniformity}        \tab 100 x 20 \tab xy \tab \cr
 \link{stickler.sorghum.uniformity}        \tab 20 x 20 \tab xy, 4 expts, 2 years \tab \cr
+\link{strickland.apple.uniformity}        \tab 11 x 18 \tab xy \tab \cr
+\link{strickland.grape.uniformity}        \tab 5 x 31 \tab xy \tab \cr
+\link{strickland.peach.uniformity}        \tab 8 x 18 \tab xy \tab \cr
+\link{strickland.tomato.uniformity}       \tab 30 x 6 \tab xy \tab \cr
 \link{wassom.brome.uniformity}            \tab 36 x 36 \tab xy, 3 expts \tab \cr
 \link{wiebe.wheat.uniformity}             \tab 12 x 125 \tab xy \tab medianpolish, loess \cr
 \link{wiedemann.safflower.uniformity}     \tab 54 x 33 \tab xy \tab smith \cr
@@ -185,6 +207,7 @@ name                               \tab gen \tab loc\tab reps\tab years \tab trt
 \link{crowder.seeds}               \tab 2   \tab    \tab 21  \tab    \tab 2     \tab \tab glm,jags \cr
 \link{cox.stripsplit}              \tab     \tab    \tab  4  \tab    \tab 3,4,2 \tab split-block \tab aov \cr
 \link{cullis.earlygen}             \tab 532 \tab    \tab     \tab    \tab       \tab xy \tab asreml \cr
+\link{dasilva.maize}               \tab 55  \tab 9  \tab 3   \tab    \tab       \tab \tab \cr
 \link{darwin.maize}                \tab     \tab    \tab 12  \tab    \tab 2     \tab \tab t.test \cr
 \link{denis.missing}               \tab 5   \tab 26 \tab     \tab    \tab       \tab \tab lme \cr
 \link{denis.ryegrass}              \tab 21  \tab 7  \tab     \tab    \tab       \tab \tab aov \cr
@@ -265,6 +288,7 @@ name                               \tab gen \tab loc\tab reps\tab years \tab trt
 \link{mead.cowpeamaize}            \tab 3,2 \tab    \tab 3   \tab    \tab 4     \tab intercrop \tab \cr
 \link{mead.germination}            \tab     \tab    \tab 4   \tab    \tab 4,4   \tab binomial\tab glm\cr
 \link{mead.strawberry}             \tab 8   \tab    \tab 4   \tab    \tab       \tab \tab \cr
+\link{mead.turnip}                 \tab     \tab    \tab 3   \tab    \tab 5,4   \tab \tab aov \cr
 \link{minnesota.barley.weather}    \tab     \tab 6  \tab     \tab 10 \tab       \tab \tab \cr
 \link{minnesota.barley.yield}      \tab 22  \tab 6  \tab     \tab 10 \tab       \tab \tab dotplot\cr
 \link{omer.sorghum}                \tab 18  \tab 2  \tab 4   \tab 3  \tab       \tab \tab jags\cr

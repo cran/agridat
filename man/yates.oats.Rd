@@ -15,9 +15,9 @@
 
   Each plot is 1/80 acre = 28.4 links * 44 links.
   
-  Field length: 18 rows * 28.4 links = 511 links
-
   Field width: 4 plots * 44 links = 176 links.
+
+  Field length: 18 rows * 28.4 links = 511 links
 
   The 'block' numbers in this data are as given in the Rothamsted Report.  
   The 'grain' and 'straw' values are the actual pounds per sub-plot as
@@ -58,6 +58,7 @@
 
 \examples{
 
+library(agridat)
 data(yates.oats)
 dat <- yates.oats
 
@@ -106,11 +107,11 @@ xyplot(yield ~ col|factor(nitro), dat,
 
 \dontrun{
 
-  # Marginal predictions from lsmeans package and asreml::predict
+  # Marginal predictions from emmeans package and asreml::predict
 
   # --- nlme ---
   require(nlme)
-  require(lsmeans)
+  require(emmeans)
   # create unbalance
   dat2 <- yates.oats[-c(1,2,3,5,8,13,21,34,55),]
   m5l <- lme(yield ~ factor(nitro) + gen, random = ~1 | block/gen,
@@ -125,7 +126,7 @@ xyplot(yield ~ col|factor(nitro), dat,
   vc(m5l)
   vc(m5a)
 
-  lsmeans::lsmeans(m5l, "gen")
+  emmeans::emmeans(m5l, "gen")
   predict(m5a, data=dat, classify="gen")$predictions$pvals
 
 }

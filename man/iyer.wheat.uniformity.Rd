@@ -2,7 +2,7 @@
 \alias{iyer.wheat.uniformity}
 \docType{data}
 \title{
-  Uniformity trials of wheat in India.
+  Uniformity trials of wheat in India
 }
 \description{
   Uniformity trials of wheat in India.
@@ -23,6 +23,7 @@
   ft all around the net area.
 
   Field width: 80 plots * 5 feet = 400 feet
+
   Field length: 25 rows * 5 feet = 125 feet
 
   In a second paper, Iyer used this data to compare random vs. balanced
@@ -43,24 +44,26 @@
   None.
 }
 \examples{
-data(iyer.wheat.uniformity)
-dat <- iyer.wheat.uniformity
+\dontrun{
+  
+  data(iyer.wheat.uniformity)
+  dat <- iyer.wheat.uniformity
 
-if(require(desplot)){
-desplot(yield ~ col*row, data=dat,
-        main="iyer.wheat.uniformity", tick=TRUE, 
-        aspect=(25*5)/(80*5)) # true aspect
+  require(desplot)
+  desplot(yield ~ col*row, data=dat,
+          main="iyer.wheat.uniformity", tick=TRUE, 
+          aspect=(25*5)/(80*5)) # true aspect
+
+  # not exactly the same as Iyer table 1, p. 241
+  var(subset(dat, col <= 20)$yield)
+  var(subset(dat, col > 20 & col <= 40)$yield)
+  var(subset(dat, col > 40 & col <= 60)$yield)
+  var(subset(dat, col > 60)$yield)
+  
+  # cv for 1x1 whole-field
+  # sd(dat$yield)/mean(dat$yield)
+  # 18.3
+
 }
-
-# not exactly the same as Iyer table 1, p. 241
-var(subset(dat, col <= 20)$yield)
-var(subset(dat, col > 20 & col <= 40)$yield)
-var(subset(dat, col > 40 & col <= 60)$yield)
-var(subset(dat, col > 60)$yield)
-
-# cv for 1x1 whole-field
-# sd(dat$yield)/mean(dat$yield)
-# 18.3
-
 }
 \keyword{datasets}

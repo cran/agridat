@@ -2,7 +2,7 @@
 \alias{sawyer.multi.uniformity}
 \docType{data}
 \title{
-  Uniformity trials of wheat, swedes, oats, 3 years on the same land.
+  Uniformity trials of wheat, swedes, oats, 3 years on the same land
 }
 \description{
   Uniformity trials of wheat, swedes, oats at Rothamsted, England, 1925-1927.
@@ -24,8 +24,7 @@
 }
 \details{
   
-  An experiment conducted at Rothamsted, England, in 1925-1927, in
-  Sawyers Field.
+  An experiment conducted at Rothamsted, England, in 1925-1927, in Sawyers Field.
 
   Row 6, column 1 was not planted in any year.
   
@@ -40,11 +39,13 @@
   Note the summaries statistics at the bottom of the page in each report
   are calibrated to ACRES.
 
-  Field width: 8 plots * 1 chain each
-  Field length: 6 plots * 1 chain each
+  Field width: 8 plots * 22 feet = 528 feet
+  
+  Field length: 6 plots * 22 feet = 396 feet
   
   The field is 8 plots wide, 6 plots long.  The plots are drawn in the
-  source documents as squares .098 acres each.
+  source documents as squares .098 acres each (1 chain = 66 feet on each
+  side).
 
   Eden & Maskell (page 165) say the field was clover, and ploughed in
   the autumn of 1924. The field was laid out uniformly in lands of one

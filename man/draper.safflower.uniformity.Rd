@@ -14,7 +14,7 @@
     \item{\code{expt}}{experiment}
     \item{\code{row}}{row}
     \item{\code{col}}{column}
-    \item{\code{yield}}{yield per plot (gramsm)}
+    \item{\code{yield}}{yield per plot (grams)}
   }
 }
 \details{
@@ -36,9 +36,9 @@
   variability.  The optimum plot size was 1 bed wide, 24 feet long.
   Considering economic costs, the optimum size was 1 bed, 12 feet long.
 
-  Field length: 18 ranges * 4 feet = 72 feet
-
   Field width: 16 beds * 3.33 = 53 feet
+
+  Field length: 18 ranges * 4 feet = 72 feet
 
 
   \bold{Experiment E5 (five foot test)}
@@ -49,42 +49,38 @@
   long.
   Considering economic costs, the optimum size was 1 bed, 18 feet long.
 
-  Field length: 18 ranges * 5 feet = 90 feet.
-
   Field width: 14 beds * 3.33 = 46.6 feet.
+
+  Field length: 18 ranges * 5 feet = 90 feet.
 
 }
 
 \source{
-
   Arlen D. Draper. (1959).
   Optimum plot size and shape for safflower yield tests.
   Dissertation. University of Arizona. 
   http://hdl.handle.net/10150/319371
-
 }
 \references{
   None
 }
 
 \examples{
-data("draper.safflower.uniformity")
-dat4 <- subset(draper.safflower.uniformity, expt=="E4")
-dat5 <- subset(draper.safflower.uniformity, expt=="E5")
+\dontrun{
+  
+  data("draper.safflower.uniformity")
+  dat4 <- subset(draper.safflower.uniformity, expt=="E4")
+  dat5 <- subset(draper.safflower.uniformity, expt=="E5")
 
-if(require(desplot)){
+  require(desplot)
   desplot(yield~col*row, dat4,
           flip=TRUE, tick=TRUE, aspect=72/53, # true aspect
           main="draper.safflower.uniformity (four foot)")
-}
 
-if(require(desplot)){
   desplot(yield~col*row, dat5,
           flip=TRUE, tick=TRUE, aspect=90/46, # true aspect
           main="draper.safflower.uniformity (five foot)")
-}
 
-\dontrun{
   require(agricolae)
   require(reshape2)
   # Remove border plots at either end and right side
@@ -104,6 +100,5 @@ if(require(desplot)){
   ## s5 # match Draper table 1, p 21
   
 }
-
 }
 \keyword{datasets}

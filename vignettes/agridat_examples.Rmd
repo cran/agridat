@@ -2,8 +2,8 @@
 title: "Graphical Gems in the agridat Package"
 author: "Kevin Wright"
 date: "`r Sys.Date()`"
-output:
-  pdf_document: default
+output: 
+  rmarkdown::html_vignette: default
   html_document:
     highlight: tango
 bibliography: agridat.bib
@@ -21,8 +21,6 @@ pre > code { border: 0; }
 </style>
 
 
-# Abstract
-
 The `agridat` package is an extensive collection of data sets that have
 been previously published in books and journals, primarily from agricultural
 experiments.
@@ -33,9 +31,7 @@ This vignette presents graphical views of a few of the datasets in this package.
 # Setup
 
 ```{r setup, results="hide", echo=FALSE}
-knitr::opts_chunk$set(echo=FALSE)
-#knitr::opts_chunk$set(fig.align="center", fig.width=6, fig.height=6, dpi=36)
-# chunk option dpi=72 is the default resolution
+knitr::opts_chunk$set(echo=FALSE, fig.height = 5, fig.width = 5)
 options(width=90)
 ```
 This exhibit of agricultural data uses the following packages.
@@ -54,7 +50,7 @@ library("reshape2")
 
 # Potato blight incidence over space and time
 
-```{r lee1, eval=TRUE, fig.height=7.5}
+```{r lee1, eval=TRUE, fig.height=7.5, fig.width=5}
 data(lee.potatoblight)
 dat <- lee.potatoblight
 # Note the progression to lower scores as time passes in each year
@@ -407,16 +403,13 @@ Does barley yield better in cooler or warmer weather?
 
 # GGE biplot
 
-```{r crossa, eval=TRUE, message=FALSE}
+```{r crossa, eval=FALSE, message=FALSE}
 
 # Specify env.group as column in data frame
 data(crossa.wheat)
 dat2 <- crossa.wheat
-dat2$eg <- ifelse(is.element(dat2$loc,
-c("KN","NB","PA","BJ","IL","TC", "JM","PI","AS","ID","SC","SS",
-"SJ","MS","MG","MM")), "Grp1", "Grp2")
 require(gge)
-m4 <- gge(yield~gen*loc, dat2, env.group=eg, scale=FALSE)
+m4 <- gge(yield~gen*loc, dat2, env.group=locgroup, scale=FALSE)
 # plot(m4)
 biplot(m4, lab.env=TRUE, main="crossa.wheat")
 ```

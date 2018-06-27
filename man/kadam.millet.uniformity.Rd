@@ -25,16 +25,16 @@
 
   In 1933:
   
-  Field length: 10 plots * 33 feet
-  
   Field width: 8 plots * 16.5 feet
+  
+  Field length: 10 plots * 33 feet
   
   In 1934:
   
-  Field length: 20 plots * 16.5 feet
-  
   Field width: 8 plots * 16.5 feet
 
+  Field length: 20 plots * 16.5 feet
+  
 }
 \source{
   B. S. Kadam and S. M. Patel. (1937).
@@ -46,22 +46,23 @@
   None.
 }
 \examples{
-data(kadam.millet.uniformity)
-
-# similar to Kadam fig 1
-dat1 <- subset(kadam.millet.uniformity, year==1933)
-if(require(desplot)){
-  desplot(yield ~ col*row, dat1, flip=TRUE,
-          aspect=(10*33)/(8*16.5), # true aspect
+\dontrun{
+  
+  data(kadam.millet.uniformity)
+  dat <- kadam.millet.uniformity
+  
+  # similar to Kadam fig 1
+  require(desplot)
+  desplot(yield ~ col*row, dat,
+          subset=year==1933,
+          flip=TRUE, aspect=(10*33)/(8*16.5), # true aspect
           main="kadam.millet.uniformity 1933")
-}
 
-dat2 <- subset(kadam.millet.uniformity, year==1934)
-if(require(desplot)){
-  desplot(yield ~ col*row, dat2, flip=TRUE,
-          aspect=(20*16.5)/(8*16.5), # true aspect
+  desplot(yield ~ col*row, dat,
+          subset=year==1934,
+          flip=TRUE, aspect=(20*16.5)/(8*16.5), # true aspect
           main="kadam.millet.uniformity 1934")
+  
 }
-
 }
 \keyword{datasets}

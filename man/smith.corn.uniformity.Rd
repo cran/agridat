@@ -5,7 +5,7 @@
   Uniformity trial of corn, 3 years on same ground
 }
 \description{
-  Uniformity trial of corn, 3 years on same ground, 1895-1897
+  Uniformity trial of corn, 3 years on same ground, 1895-1897, in Illinois.
 }
 
 \format{
@@ -19,8 +19,11 @@
   }
 }
 \details{
+  Data come from the Illinois Experiment Station.
+  
   The data values are from Smith (1910) and the field map is from Harris (1920).
-  Each plot was 1/10 acre, but the dimensions are not given.
+  Each plot was 1/10 acre, but the dimensions are not given. Note that
+  1/10 acre is also the area of a square 1 chain (66 feet) on a side.
   
   The following text is abridged from Smith (1910).
 
@@ -107,30 +110,29 @@
 }
 
 \examples{
+\dontrun{
 
 data(smith.corn.uniformity)
 dat <- smith.corn.uniformity
 
-dat = transform(dat, year=factor(year))
-if(require(desplot)){
-  desplot(yield~col*row|year, dat, layout=c(1,3),
-          col.regions=colorRampPalette(gray(1:100/100)),
+  dat = transform(dat, year=factor(year))
+  require(desplot)
+  desplot(yield~col*row|year, dat,
+          layout=c(2,2), aspect=1,
           main="smith.corn.uniformity: yield across years 1895-1987")
-}
 
-## # Outliers are obvious
-## require(lattice)
-## xyplot(yield~row|factor(col), dat, groups=year,
-##        auto.key=list(columns=3), main="smith.corn.uniformity")
+  ## # Outliers are obvious
+  ## require(lattice)
+  ## xyplot(yield~row|factor(col), dat, groups=year,
+  ##        auto.key=list(columns=3), main="smith.corn.uniformity")
 
-
-\dontrun{
   require(rgl)
   # A few odd pairs of outliers in column 6
+  # black/gray dots very close to each other
   plot3d(dat$col, dat$row, dat$yield, col=dat$year,
          xlab="col",ylab="row",zlab="yield")
   rgl.close()
+  
 }
-
 }
 

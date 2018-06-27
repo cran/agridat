@@ -29,22 +29,24 @@
   Khin, San. 1950.
   Investigation into the relative costs of rice experiments based on the
   efficiency of designs.
-  Dissertation: Imperial College of Tropical Agriculture
-  (ICTA). Appendix XV.
+  Dissertation: Imperial College of Tropical Agriculture (ICTA).
+  Appendix XV.
   http://hdl.handle.net/2139/42422
 }
 \references{
  None.
 }
 \examples{
-data(khin.rice.uniformity)
-dat <- khin.rice.uniformity
+\dontrun{
+  
+  data(khin.rice.uniformity)
+  dat <- khin.rice.uniformity
 
-if(require(desplot)){
+  require(desplot)
   desplot(yield ~ col*row, data=dat, flip=TRUE,
           main="khin.rice.uniformity",
           aspect=(36*3)/(30*3)) # true aspect
+  
 }
-
 }
 \keyword{datasets}

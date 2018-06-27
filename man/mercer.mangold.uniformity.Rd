@@ -20,6 +20,7 @@
 }
 \details{
   Grown in 1910.
+  
   Each plot was 3 drills, each drill being 2.4 feet wide.
   Plots were 1/200 acres, 7.2 feet by 30.25 feet long
   The "length of the plots runs with the horizontal lines of figures [in
@@ -45,25 +46,24 @@
 }
 
 \examples{
-
-data(mercer.mangold.uniformity)
-dat <- mercer.mangold.uniformity
-
-if(require(desplot)){
+\dontrun{
+  
+  data(mercer.mangold.uniformity)
+  dat <- mercer.mangold.uniformity
+  
+  require(desplot)
   desplot(leaves~col*row, data=dat,
           aspect=145/302, # true aspect
           main="mercer.mangold.uniformity - leaves")
-}
-if(require(desplot)){
+
+  require(desplot)
   desplot(roots~col*row, data=dat,
           aspect=145/302, # true aspect
           main="mercer.mangold.uniformity - roots")
-}
 
-\dontrun{
   require(lattice)
   xyplot(roots~leaves, data=dat)
+  
 }
-
 }
 \keyword{datasets}

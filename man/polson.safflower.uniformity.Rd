@@ -33,8 +33,9 @@
 
 \source{
   David Polson. 1964.
-  Estimation of Optimum Size, Shape, and Replicate
-  Number of Safflower Plots for Yield Trials. Table 6.
+  Estimation of Optimum Size, Shape, and Replicate Number of Safflower Plots for Yield Trials.
+  Utah State University, All Graduate Theses and Dissertations, 2979.
+  Table 6.
   http://digitalcommons.usu.edu/etd/2979
 }
 
@@ -42,16 +43,18 @@
   None.
 }
 \examples{
-data(polson.safflower.uniformity)
-dat <- polson.safflower.uniformity
+\dontrun{
 
-if(require("desplot")){
+  data(polson.safflower.uniformity)
+  dat <- polson.safflower.uniformity
+  
+  require(desplot)
   desplot(yield ~ col*row, data=dat,
           flip=TRUE, aspect=189/110, # true aspect
           main="polson.safflower.uniformity")
-}
 
-if(require(agricolae) & require(reshape2)){
+  require(agricolae)
+  require(reshape2)
   dmat <- acast(dat, row~col, value.var="yield")
   # Similar to Polson fig 4.
   tab <- index.smith(dmat, col="red",

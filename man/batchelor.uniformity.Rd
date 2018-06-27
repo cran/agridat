@@ -40,11 +40,11 @@
 
   Note: The orientation of the field is not given in the paper, but all other
   fields in the paper have north at the top, so that is assumed to be
-  true for this field as well.
-
-  Field length: 28 rows * 30 feet = 840 feet
+  true for this field as well.  Yields may be from 1916.
 
   Field width: 8 trees * 16 feet = 128 feet
+
+  Field length: 28 rows * 30 feet = 840 feet
 
   
   \bold{Eureka Lemon}
@@ -64,7 +64,7 @@
 
   Field length: 26 trees * 24 feet = 624 feet
   
-  \bold{Navel 1 (Arlington)}
+  \bold{Navel 1 at Arlington}
 
   These records were of the 1915-16 yields of one thousand 24-year-old
   navel-orange trees near Arlington station, Riverside, California. The
@@ -78,11 +78,11 @@
   variations, which are present in every orchard, bring uncertainty into
   the results offield experiments.
 
-  Field length: 50 trees * 22 feet = 1100 feet
-
   Field width: 20 trees * 22 feet = 440 feet
   
-  \bold{Navel 2 (Antelope)}
+  Field length: 50 trees * 22 feet = 1100 feet
+
+  \bold{Navel 2 at Antelope}
 
   The navel-orange grove later referred to as the Antelope Heights
   navels is a plantation of 480 ten-yearold trees planted 22 by 22 feet,
@@ -101,10 +101,10 @@
   planted 21 feet 6 inches by 22 feet 6 inches, located at Villa Park,
   California. The yields were obtained in 1916.
 
-  Field length: 20 rows * 22 feet = 440 feet
-
   Field width: 12 rows * 22 feet = 264 feet
   
+  Field length: 20 rows * 22 feet = 440 feet
+
   \bold{Walnut}
 
   The walnut (Juglans regia) yields were obtained during the seasons of
@@ -135,54 +135,44 @@
   http://doi.org/10.1098/rspa.2006.1667
 }
 \examples{
-
-if(require(desplot)){
+\dontrun{
+  
+  require(desplot)
   # Apple
   data(batchelor.apple.uniformity)
   desplot(yield~col*row, data=batchelor.apple.uniformity,
           aspect=840/128, tick=TRUE, # true aspect
           main="batchelor.apple.uniformity")
-}
 
-if(require(desplot)){
   # Lemon
   data(batchelor.lemon.uniformity)
   desplot(yield~col*row, data=batchelor.lemon.uniformity,
           aspect=624/336, # true aspect
           main="batchelor.lemon.uniformity")
-}
 
-if(require(desplot)){
   # Navel1 (Arlington)
   data(batchelor.navel1.uniformity)
   desplot(yield~col*row, batchelor.navel1.uniformity,
           aspect=1100/440, # true aspect
           main="batchelor.navel1.uniformity - Arlington")
-}
 
-if(require(desplot)){
   # Navel2 (Antelope)
   data(batchelor.navel2.uniformity)
   desplot(yield~col*row, data=batchelor.navel2.uniformity,
           aspect=726/330, # true aspect
           main="batchelor.navel2.uniformity - Antelope")
-}
 
-if(require(desplot)){
   # Valencia
   data(batchelor.valencia.uniformity)
   desplot(yield~col*row, data=batchelor.valencia.uniformity,
           aspect=440/264, # true aspect
           main="batchelor.valencia.uniformity")
-}
 
-if(require(desplot)){
   # Walnut
   data(batchelor.walnut.uniformity)
   desplot(yield~col*row, data=batchelor.walnut.uniformity,
           aspect=1600/500, # true aspect
           main="batchelor.walnut.uniformity")
-}
 
 }
-
+}

@@ -1,7 +1,5 @@
 ## ----setup, results="hide", echo=FALSE--------------------------------------------------
-knitr::opts_chunk$set(echo=FALSE)
-#knitr::opts_chunk$set(fig.align="center", fig.width=6, fig.height=6, dpi=36)
-# chunk option dpi=72 is the default resolution
+knitr::opts_chunk$set(echo=FALSE, fig.height = 5, fig.width = 5)
 options(width=90)
 
 ## ----packs, eval=TRUE, message=FALSE, echo=TRUE-----------------------------------------
@@ -15,7 +13,7 @@ library("mapproj")
 library("maps")
 library("reshape2")
 
-## ----lee1, eval=TRUE, fig.height=7.5----------------------------------------------------
+## ----lee1, eval=TRUE, fig.height=7.5, fig.width=5---------------------------------------
 data(lee.potatoblight)
 dat <- lee.potatoblight
 # Note the progression to lower scores as time passes in each year
@@ -230,18 +228,15 @@ foo <- xyplot(y~x|covar*site, data=mecy, groups=yr, cex=1, ylim=c(5,65),
 foo <- useOuterStrips(foo, strip.left = strip.custom(par.strip.text=list(cex=.7)))
 combineLimits(foo, margin.x=2L)
 
-## ----crossa, eval=TRUE, message=FALSE---------------------------------------------------
-
-# Specify env.group as column in data frame
-data(crossa.wheat)
-dat2 <- crossa.wheat
-dat2$eg <- ifelse(is.element(dat2$loc,
-c("KN","NB","PA","BJ","IL","TC", "JM","PI","AS","ID","SC","SS",
-"SJ","MS","MG","MM")), "Grp1", "Grp2")
-require(gge)
-m4 <- gge(yield~gen*loc, dat2, env.group=eg, scale=FALSE)
-# plot(m4)
-biplot(m4, lab.env=TRUE, main="crossa.wheat")
+## ----crossa, eval=FALSE, message=FALSE--------------------------------------------------
+#  
+#  # Specify env.group as column in data frame
+#  data(crossa.wheat)
+#  dat2 <- crossa.wheat
+#  require(gge)
+#  m4 <- gge(yield~gen*loc, dat2, env.group=locgroup, scale=FALSE)
+#  # plot(m4)
+#  biplot(m4, lab.env=TRUE, main="crossa.wheat")
 
 ## ----nebr1, eval=TRUE-------------------------------------------------------------------
 library("maps")

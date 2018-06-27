@@ -28,7 +28,7 @@
 
   Field width: 48 rows * 40 inches / 12in/ft = 160 feet
 
-  Field length: 300 feet
+  Field length: 60 plots * 5 feet = 300 feet
   
   Plot yields from the two outer rows on each side of the field were
   omitted from the analysis.
@@ -39,38 +39,40 @@
   obvious errors like 0/o).
 }
 \source{
-  Lessman, Koert James, (1962)
-  \emph{Comparisons of methods for testing grain yield of sorghum}
+  Lessman, Koert James (1962).
+  \emph{Comparisons of methods for testing grain yield of sorghum}.
+  Iowa State University.
   Retrospective Theses and Dissertations. Paper 2063. Appendix Table 17.
 }
 \references{
   None.
 }
 \examples{
-
-data(lessman.sorghum.uniformity)
-dat <- lessman.sorghum.uniformity
-
-if(require(desplot)){
+\dontrun{
+  
+  data(lessman.sorghum.uniformity)
+  dat <- lessman.sorghum.uniformity
+  
+  require(desplot)
   desplot(yield ~ col*row, dat,
           aspect=300/160, tick=TRUE, flip=TRUE, # true aspect
           main="lessman.sorghum.uniformity")
-}
 
-# Omit outer two columns (called 'rows' by Lessman)
-dat <- subset(dat, col > 2 & col < 47)
-nrow(dat)
-var(dat$yield) # 9.09
-sd(dat$yield)/mean(dat$yield) # CV 9.2%
+  # Omit outer two columns (called 'rows' by Lessman)
+  dat <- subset(dat, col > 2 & col < 47)
+  nrow(dat)
+  var(dat$yield) # 9.09
+  sd(dat$yield)/mean(dat$yield) # CV 9.2%
 
-if(require(reshape2) & require(agricolae)){
+  require(reshape2)
+  require(agricolae)
   dmat <- acast(dat, row~col, value.var='yield')
   index.smith(dmat,
               main="lessman.sorghum.uniformity",
               col="red") # Similar to Lessman Table 1
   # Lessman said that varying the width of plots did not have an appreciable
   # effect on CV, and optimal row length was 3.2 basic plots, about 15-20
+  
 }
-
 }
 \keyword{datasets}
