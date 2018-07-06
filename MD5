@@ -1,4 +1,4 @@
-fbe49c5d4a976455f4ddcccc2a1d9d88 *DESCRIPTION
+fb752c418fee7895a2181088798b5842 *DESCRIPTION
 b5b2e20c75457107297b566908b8c29d *NAMESPACE
 68bda9b2d9580efaf27fc9499eae05ae *build/vignette.rds
 a61bc7d766d1b849769e00e4a6d460e9 *data/aastveit.barley.covs.txt
@@ -314,13 +314,13 @@ b137667370193f4b475cb2b420f5a4f8 *data/wiedemann.safflower.uniformity.txt
 9217e117bcc1ba550c92c4faec5dff17 *data/yates.oats.txt
 ede96a4d5744c5bfcd26f2495bba4fbd *data/zuidhof.broiler.txt
 f819c3ed9f65f76a8fa16eafb6e2d8c9 *inst/doc/agridat_data.Rmd
-8d62c9fc91ef5137b955b41466ca8e00 *inst/doc/agridat_data.html
+c273d4c8b055c430bba090cdcae6b5e5 *inst/doc/agridat_data.html
 2aeab64d1dfdc01c3bb79fb2927d6858 *inst/doc/agridat_examples.R
 e5d3dbc55750f8ae2eb0dd44749c2c77 *inst/doc/agridat_examples.Rmd
-bde9d2a0e072c27ed434f86bf6d98ff8 *inst/doc/agridat_examples.html
+ea5e6a6d607952282ad05326fd0536b5 *inst/doc/agridat_examples.html
 1598ec82d37629972d34c1426011e413 *inst/doc/agridat_papadakis.R
 d191b53eddc90b807b1e53d7d3f39fac *inst/doc/agridat_papadakis.Rmd
-97460a8b33dbceefede6d31c1fce41b1 *inst/doc/agridat_papadakis.html
+33e1cd337cf00d6e2e4f695af41bc261 *inst/doc/agridat_papadakis.html
 54ba18ba9f06de9cbddfd276023643ba *inst/files/gartner.corn.dbf
 c742bee3d4edfc2948a2ad08de1790a5 *inst/files/gartner.corn.prj
 2a5e4156c6d1e686e6e8bca113eac7dd *inst/files/gartner.corn.shp
@@ -521,7 +521,7 @@ c76e04229de504cc64e12373a612ecd5 *man/magistad.pineapple.uniformity.Rd
 7476fb57328ab6cd50d4aa4ae79e4264 *man/mead.cauliflower.Rd
 00a51abaf3b179b07e145f4ebf32e55d *man/mead.cowpeamaize.Rd
 3a0447ee598d90b8a1c01e21d07a153d *man/mead.germination.Rd
-9a262006ce5d363b11c0fd858b281bc3 *man/mead.lamb.Rd
+d25a00e3596ed5c3e89172f8d0f5f237 *man/mead.lamb.Rd
 3adf03e9bea6168cbc40ef83ab516421 *man/mead.strawberry.Rd
 e86024d1c9300ca1928d70bea2d6a490 *man/mead.turnip.Rd
 a6fc4cebe67000ee507df1a0f9f1b0d1 *man/mercer.mangold.uniformity.Rd
