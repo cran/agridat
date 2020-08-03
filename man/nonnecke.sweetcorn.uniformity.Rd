@@ -50,13 +50,15 @@
 
 \examples{
 \dontrun{
+
+library(agridat)
   
   # Corn 1
   data(nonnecke.sweetcorn.uniformity)
   dat <- nonnecke.sweetcorn.uniformity
 
-  require(desplot)
-  desplot(yield~col*row|loc, dat,
+  libs(desplot)
+  desplot(dat, yield~col*row|loc,
           flip=TRUE, tick=TRUE, aspect=96/180, # true aspect
           main="nonnecke.sweetcorn.uniformity")
     

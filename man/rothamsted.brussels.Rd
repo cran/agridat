@@ -2,10 +2,10 @@
 \alias{rothamsted.brussels}
 \docType{data}
 \title{
-  Yield of brussels sprouts, RCB with 9 fertilizer treatments
+  RCB experiment of brussels sprouts, 9 fertilizer treatments
 }
 \description{
-  Yield of brussels sprouts, RCB with 9 fertilizer treatments
+  RCB experiment of brussels sprouts, 9 fertilizer treatments
 }
 
 \format{
@@ -35,22 +35,25 @@
   McCullagh, P. and Clifford, D., (2006).
   Evidence for conformal invariance of crop yields,
   \emph{Proceedings of the Royal Society A: Mathematical, Physical and
-  Engineering Science}, 462, 2119--2143.
+    Engineering Science}, 462, 2119--2143.
+  http://doi.org/10.1098/rspa.2006.1667 
 }
 
 \examples{
-
+\dontrun{
+  
+library(agridat)
 data(rothamsted.brussels)
 dat <- rothamsted.brussels
 
-require(lattice)
+libs(lattice)
 bwplot(yield~trt, dat, main="rothamsted.brussels")
 
-if(require(desplot)){
-  desplot(yield~col*row, data=dat,
+  libs(desplot)
+  desplot(dat, yield~col*row,
           num=trt, out1=block, cex=1, # aspect unknown
           main="rothamsted.brussels")
-}
 
+}
 }
 

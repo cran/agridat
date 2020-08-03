@@ -51,28 +51,33 @@
   http://krishikosh.egranth.ac.in/handle/1/21153
 }
 \examples{
+\dontrun{
 
-data(bose.multi.uniformity)
-dat <- bose.multi.uniformity
+  library(agridat)
+  data(bose.multi.uniformity)
+  dat <- bose.multi.uniformity
 
-# match sum at bottom of Bose tables 1, 4, 5
-# dat %>% group_by(year) %>% summarize(sum=sum(yield))
+  # match sum at bottom of Bose tables 1, 4, 5
+  # library(dplyr)
+  # dat %>% group_by(year) %>% summarize(sum=sum(yield))
 
-if(require(desplot) & require(dplyr)){
+  libs(desplot, dplyr)
   # Calculate percent of mean yield for each year
-  dat <- group_by_(dat, ~ year)
-  dat <- mutate_(dat, pctyld = ~ (yield-mean(yield))/mean(yield))
-  dat$year = factor(dat$year)
+  dat <- group_by(dat, year)
+  dat <- mutate(dat, pctyld = (yield-mean(yield))/mean(yield))
+
+  dat <- ungroup(dat)
+  dat <- mutate(dat, year=as.character(year))
   # Bose smoothed the data by averaging 2x3 plots together before drawing
   # contour maps.  Heatmaps of raw data have similar structure to Bose Fig 1.
-  desplot(pctyld ~ col*row|year, dat,
+  desplot(dat, pctyld ~ col*row|year,
           tick=TRUE, flip=TRUE, aspect=(26)/(15),
           main="bose.multi.* - Percent of mean yield")
   
   # contourplot() results need to be mentally flipped upside down
   # contourplot(pctyld ~ col*row|year, dat,
   #   region=TRUE, as.table=TRUE, aspect=26/15)
-}
 
+}
 }
 \keyword{datasets}

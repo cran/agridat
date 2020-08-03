@@ -35,7 +35,7 @@
   T. Eden. (1931).
   Studies in the yield of tea. 1. The experimental errors of field
   experiments with tea.
-  \emph{Agricultural Science}, 21, 547-573.
+  Agricultural Science, 21, 547-573.
   https://doi.org/10.1017/S0021859600088511
 }
 \references{
@@ -43,6 +43,8 @@
 }
 \examples{
 \dontrun{
+
+library(agridat)
   
   data(eden.tea.uniformity)
   dat <- eden.tea.uniformity
@@ -53,8 +55,8 @@
   m1 <- aov(yield ~ factor(entry) + factor(row) + factor(col), data=dat)
   summary(m1)
   
-  require(desplot)
-  desplot(yield ~ col*row, dat,
+  libs(desplot)
+  desplot(dat, yield ~ col*row,
           aspect=1,
           main="eden.tea.uniformity")
   

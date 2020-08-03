@@ -31,36 +31,38 @@
   Field length: 24 plots x 1m = 24m.
 
   Field width: 12 plots x 1m = 12m.
+  
+  Used with permission of Asif Masood.
 }
 
 \source{
   Masood, M Asif and Raza, Irum. 2012.
   Estimation of optimum field plot size and shape in paddy yield trial.
-  \emph{Pakistan J. Agric. Res.}, Vol. 25 No. 4, 2012
-  
-  Used with permission of Asif Masood.
+  Pakistan J. Agric. Res., Vol. 25 No. 4, 2012
 }
 
 \references{
   Masood, M Asif and Raza, Irum. 2012.
   Estimation of optimum field plot size and shape in paddy yield trial.
-  \emph{American-Eurasian Journal of Scientific Research}, 7, 264-269.
+  American-Eurasian Journal of Scientific Research, 7, 264-269.
   Table 1.
   http://doi.org/10.5829/idosi.aejsr.2012.7.6.1926
 }
 \examples{
 \dontrun{
 
+library(agridat)
+
   data(masood.rice.uniformity)
   dat <- masood.rice.uniformity
   
-  require(desplot)
-  desplot(yield ~ col*row, data=dat,
+  libs(desplot)
+  desplot(dat, yield ~ col*row,
           flip=TRUE, tick=TRUE, aspect=24/12, # true aspect
           main="masood.rice.uniformity - yield heatmap")
 
-  require(agricolae)
-  require(reshape2)
+  libs(agricolae)
+  libs(reshape2)
   dmat <- acast(dat, row~col, value.var='yield')
   index.smith(dmat,
               main="masood.rice.uniformity",

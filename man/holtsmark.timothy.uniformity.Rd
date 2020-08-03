@@ -27,24 +27,24 @@
   
 }
 \source{
-
   Holtsmark, G and Larsen, BR (1905).
   Om Muligheder for at indskraenke de Fejl, som ved Markforsog betinges af Jordens Uensartethed.
-  \emph{Tidsskrift for Landbrugets Planteavl}. 12, 330-351. (In Danish)
+  Tidsskrift for Landbrugets Planteavl. 12, 330-351. (In Danish)
   https://books.google.com/books?id=MdM0AQAAMAAJ&pg=PA330
   http://dca.au.dk/publikationer/historiske/planteavl/
 
   Uber die Fehler, welche bei Feldversuchen, durch die Ungleichartigkeit des Bodens bedingt werden.
-  \emph{Die Landwirtschaftlichen Versuchs-Stationen}, 65, 1--22. (In German)
+  Die Landwirtschaftlichen Versuchs-Stationen, 65, 1--22. (In German)
   https://books.google.com/books?id=eXA2AQAAMAAJ&pg=PA1
-
 }
 \references{
   Theodor Roemer (1920). \emph{Der Feldversuch}.
 }
 
 \examples{
+\dontrun{
 
+library(agridat)
 data(holtsmark.timothy.uniformity)
 dat <- holtsmark.timothy.uniformity
 
@@ -52,14 +52,14 @@ dat <- holtsmark.timothy.uniformity
 dat <- transform(dat,
                  check = ifelse(floor((row+col)/3)==(row+col)/3, "C", ""))
                  
-if(require(desplot)){
-  desplot(yield ~ col*row, data=dat, flip=TRUE, text=check, show.key=FALSE,
-          aspect=30/200, # true aspect
-          main="holtsmark.timothy.uniformity")
+libs(desplot)
+desplot(dat, yield ~ col*row,
+        flip=TRUE, text=check, show.key=FALSE,
+        aspect=30/200, # true aspect
+        main="holtsmark.timothy.uniformity")
+
+# sd(dat$yield) # 2.92 matches Holtsmark p. 348
+
 }
-
-sd(dat$yield) # 2.92 matches Holtsmark p. 348
-
 }
-
 \keyword{datasets}

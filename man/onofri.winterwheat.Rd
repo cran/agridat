@@ -2,10 +2,10 @@
 \alias{onofri.winterwheat}
 \docType{data}
 \title{
-  Yield of winter wheat varieties across 7 years.
+  Multi-environment trial of winter wheat, 7 years
 }
 \description{
-  Yield of 8 durum winter wheat varieties across 7 years with 3 reps.
+  Multi-environment trial of winter wheat, 7 years, 8 gen
 }
 \usage{data("onofri.winterwheat")}
 \format{
@@ -20,17 +20,17 @@
 }
 \details{
   Yield of 8 durum winter wheat varieties across 7 years with 3 reps.
+
+  Downloaded electronic version from here Nov 2015:
+  http://www.casaonofri.it/Biometry/index.html
+
+  Used with permission of Andrea Onofri.
 }
 
 \source{
   Andrea Onofri, Egidio Ciriciofolo (2007).
   Using R to Perform the AMMI Analysis on Agriculture Variety Trials.
   R News, Vol. 7, No. 1, pp. 14-19.
-  
-  Downloaded electronic version from here Nov 2015:
-  http://www.casaonofri.it/Biometry/index.html
-
-  Used with permission of Andrea Onofri.
 }
 
 \references{
@@ -43,6 +43,8 @@
 }
 
 \examples{
+
+library(agridat)
 data(onofri.winterwheat)
 dat <- onofri.winterwheat
 dat <- transform(dat, year=factor(dat$year))
@@ -50,7 +52,8 @@ dat <- transform(dat, year=factor(dat$year))
 m1 <- aov(yield ~ year + block:year + gen + gen:year, dat)
 anova(m1) # Matches Onofri figure 1
 
-if(require(agricolae)){
+\dontrun{
+  libs(agricolae)
   m2 <- AMMI(dat$year, dat$gen, dat$block, dat$yield)
   plot(m2)
   title("onofri.winterwheat - AMMI biplot")

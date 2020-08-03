@@ -33,19 +33,21 @@
   Field width: 18m + 1m guard rows = 19m
   
   Field length: 3 blocks * 12m + 2*0.5m spacing = 37m
-}
-\source{
-  Durban, M., Currie, I. and R. Kempton, 2001.
-  Adjusting for fertility and competition in variety trials.
-  \emph{J. of Agricultural Science}, 136, 129--140.
-
   Retrieved from
   http://www.ma.hw.ac.uk/~iain/research/JAgSciData/data/Trial1.dat
 
   Used with permission of Iain Currie.
 }
+\source{
+  Durban, M., Currie, I. and R. Kempton, 2001.
+  Adjusting for fertility and competition in variety trials.
+  J. of Agricultural Science, 136, 129--140.
+}
 
 \examples{
+\dontrun{
+
+library(agridat)
 
 data(durban.competition)
 dat <- durban.competition
@@ -53,18 +55,17 @@ dat <- durban.competition
 # Check that genotypes were balanced across wheel tracks.
 with(dat, table(gen,wheel))
 
-if(require(desplot)){
-  desplot(yield ~ col*block, dat,
-          out1=block, text=gen, col=wheel, aspect=37/19, # true aspect
-          main="durban.competition")
-}
+libs(desplot)
+desplot(dat, yield ~ col*block,
+        out1=block, text=gen, col=wheel, aspect=37/19, # true aspect
+        main="durban.competition")
 
 
 # Calculate residual after removing block/genotype effects
 m1 <- lm(yield ~ gen + block, data=dat)
 dat$res <- resid(m1)
 
-## desplot(res ~ col*block, dat, out1=block, text=gen, col=wheel,
+## desplot(dat, res ~ col*block, out1=block, text=gen, col=wheel,
 ##         main="durban.competition - residuals")
 
 # Calculate mean of neighboring plots
@@ -75,8 +76,9 @@ dat$comp[79:112] <- ( dat$yield[78:111] + dat$yield[80:113] ) / 2
 
 # Demonstrate the competition effect
 # Competitor plots have low/high yield -> residuals are negative/positive
-require(lattice)
+libs(lattice)
 xyplot(res~comp, dat, type=c('p','r'), main="durban.competition",
        xlab="Average yield of neighboring plots", ylab="Residual")
 
+}
 }

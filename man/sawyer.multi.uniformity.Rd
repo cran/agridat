@@ -75,42 +75,43 @@
   
   McCullagh, P. and Clifford, D., (2006).
   Evidence for conformal invariance of crop yields,
-  \emph{Proceedings of the Royal Society A: Mathematical, Physical and
-    Engineering Science}, 462, 2119--2143.
+  Proceedings of the Royal Society A: Mathematical, Physical and
+    Engineering Science, 462, 2119--2143.
   http://doi.org/10.1098/rspa.2006.1667
 
   Winifred A. Mackenzie. (1926)
   Note on a remarkable correlation between grain and straw, obtained at
   Rothamsted.
-  \emph{Journal of Agricultural Science}, 16, 275-279.
+  Journal of Agricultural Science, 16, 275-279.
   https://doi.org/10.1017/S0021859600018256
 }
 
 \examples{
-
-data("sawyer.multi.uniformity")
-dat <- sawyer.multi.uniformity
-
-if(require(desplot)){
+\dontrun{
+  
+  library(agridat)
+  data("sawyer.multi.uniformity")
+  dat <- sawyer.multi.uniformity
+  
+  libs(desplot)
   # The field plan shows square plots
-  desplot(grain~col*row, subset(dat, year==1925),
+  desplot(dat, grain~col*row,
+          subset= year==1925,
           main="sawyer.multi.uniformity - 1925 wheat grain yield",
           aspect=(6)/(8)) # true aspect
-}
-if(require(desplot)){
-  desplot(rootwt~col*row, subset(dat, year==1926),
+  
+  desplot(dat, rootwt~col*row,
+          subset= year==1926,
           main="sawyer.multi.uniformity - 1926 root weight of swedes",
           aspect=(6)/(8))
-}
-if(require(desplot)){
-  desplot(grain~col*row, subset(dat, year==1927),
+
+  desplot(dat, grain~col*row, subset= year==1927,
           main="sawyer.multi.uniformity - 1927 oats grain yield",
           aspect=(6)/(8))
-}
 
-\dontrun{
+
   # This plot shows the "outlier" in the wheat data reported by Mackenzie.
-  require(lattice)
+  libs(lattice)
   xyplot(grain ~ straw, data=subset(dat, year==1925))
   
   round(cor(dat[,7:9], use="pair"),2) # Matches McCullagh p 2121
@@ -121,7 +122,7 @@ if(require(desplot)){
   
   ## pairs(dat[,7:9],
   ##       main="sawyer.multi.uniformity")
-}
 
+}
 }
 \keyword{datasets}

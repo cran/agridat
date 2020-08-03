@@ -45,7 +45,7 @@ Field length: 121 rows * 3 feet = 363 feet
   
   Wynne Sayer, M. Vaidyanathan and S. Subrammonia Iyer (1936).
   Ideal size and shape of sugar-cane experimental plots based upon tonnage experiments with Co 205 and Co 213 conducted in Pusa.
-  Indian J. Agric. Sci., 1936, 6, 684-714. Appendex, page 712.
+  Indian J. Agric. Sci., 1936, 6, 684-714. Appendix, page 712.
   https://archive.org/details/in.ernet.dli.2015.271737
   
   1934 data
@@ -60,6 +60,8 @@ Field length: 121 rows * 3 feet = 363 feet
 }
 \examples{
 \dontrun{
+
+library(agridat)
   
   data(sayer.sugarcane.uniformity)
   dat33 <- subset(sayer.sugarcane.uniformity, year==1933)
@@ -76,13 +78,13 @@ Field length: 121 rows * 3 feet = 363 feet
 
   mean(dat34$yield) # 270.83 vs Sayer 270.83
   
-  require(desplot)
+  libs(desplot)
   
-  desplot(yield ~ col*row, dat33,
+  desplot(dat33, yield ~ col*row,
           flip=TRUE, aspect=408/480, # true aspect
           main="sayer.sugarcane.uniformity 1933")
 
-  desplot(yield ~ col*row, dat34,
+  desplot(dat34, yield ~ col*row,
           flip=TRUE, aspect=363/480, # true aspect
           main="sayer.sugarcane.uniformity 1934")
   

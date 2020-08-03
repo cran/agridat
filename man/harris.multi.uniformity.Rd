@@ -66,31 +66,33 @@
   canal bank has been worn away by internal erosion, exposing a stratum
   of sandy subsoil that underlies the canal and part of the field.
 
-  Whereas in the earlier crops Series II was better for
-  alfalfa, Series III was better for alfalfa in the later period.  The
-  writers feel inclined to suggest that in the earlier experiments the
-  height of the water table had no harmful effect upon a deep-rooted
-  crop such as alfalfa.  It is quite possible that during drier periods
-  the higher water table  actually favored alfalfa growth on Series
-  II. The higher water tables of recent years have probably had a
-  deleterious influence, which has been especially marked on Series II,
-  where the water apparently comes nearer to the surface than in Series
-  III.
+  Whereas in the earlier crops Series II was better for alfalfa, Series
+  III was better for alfalfa in the later period.  The writers feel
+  inclined to suggest that in the earlier experiments the height of the
+  water table had no harmful effect upon a deep-rooted crop such as
+  alfalfa.  It is quite possible that during drier periods the higher
+  water table actually favored alfalfa growth on Series II. The higher
+  water tables of recent years have probably had a deleterious
+  influence, which has been especially marked on Series II, where the
+  water apparently comes nearer to the surface than in Series III.
   
 }
 \source{
   Harris, J Arthur and Scofield, CS. (1920).
   Permanence of differences in the plats of an experimental field.
-  \emph{Jour. Agr. Res}, 20, 335-356.
+  Jour. Agr. Res, 20, 335-356.
   http://naldc.nal.usda.gov/catalog/IND43966236
 
   Harris, J Arthur and Scofield, CS. (1928).
   Further studies on the permanence of differences in the plots of an
-  experimental field. \emph{Jour. Agr. Res}, 36, 15--40.
+  experimental field.
+  Jour. Agr. Res, 36, 15--40.
   http://naldc.nal.usda.gov/catalog/IND43967538
 }
 
 \examples{
+\dontrun{
+library(agridat)
 
 data(harris.multi.uniformity)
 dat <- harris.multi.uniformity
@@ -103,16 +105,15 @@ dat$yield[dat$year==1911] <- 340 * dat$yield[dat$year==1911]
 aggregate(yield~harv, dat, mean)
 
 # Corrgram
-if(require(reshape2) & require(corrgram)){
-  mat <- acast(dat, series+plot~harv, value.var='yield')
-  corrgram(mat, main="harris.multi.uniformity - correlation of crop yields")
-}
+libs(reshape2,corrgram)
+mat <- acast(dat, series+plot~harv, value.var='yield')
+corrgram(mat, main="harris.multi.uniformity - correlation of crop yields")
+
 
 # Compare to Harris 1928, table 4.  More positive than negative correlations.
 # densityplot(as.vector(cor(mat)), xlab="correlations",
 #             main="harris.multi.uniformity")
 
-\dontrun{
   
 # Standardize yields for each year
 mats <- scale(mat)
@@ -127,21 +128,18 @@ d2$plot <- as.numeric(substring(d2$ord,3))
 d2$xord <- 5 - dat$series
 # Note that for alfalfa, higher-yielding plots in 1912-1914 were
 # lower-yielding in 1922-1923.
-if(require(desplot)){
-  desplot(yield ~ xord*plot|harv, d2,
-          aspect=536/639, flip=TRUE, # true aspect
-          main="harris.multi.uniformity")
+libs(desplot)
+desplot(d2, yield ~ xord*plot|harv,
+        aspect=536/639, flip=TRUE, # true aspect
+        main="harris.multi.uniformity")
 
 # Crude fertility map by averaging across years shows probable
 # sub-surface water effects
 agg <- aggregate(yield ~ xord + plot, data=d2, mean)
-desplot(yield ~ xord + plot, agg,
+desplot(agg, yield ~ xord + plot,
         aspect=536/639, # true aspect
         main="harris.multi.uniformity fertility")
 
 }
-
-} # dontrun
-
 }
 \keyword{datasets}

@@ -18,7 +18,7 @@
 }
 \details{
   Numbers of leaves for 10 cauliflower plants in each of two years, and
-  temperature degree-days above 32F, divided by 100.)
+  temperature degree-days above 32F, divided by 100.
 
   The year is 1956-57 or 1957-58.
 
@@ -37,7 +37,9 @@
 }
 
 \examples{
+\dontrun{
 
+library(agridat)
 data(mead.cauliflower)
 dat <- mead.cauliflower
 
@@ -49,13 +51,14 @@ coef(m1)
 ##  3.49492453  0.08512651  0.21688760
 
 dat$pred <- predict(m1, type="response")
-require(lattice)
-if(require(latticeExtra)){
+libs(lattice)
+libs(latticeExtra)
 xyplot(leaves~degdays, data=dat, groups=year, type=c('p'),
-       auto.key=list(columns=2), main="mead.cauliflower - observed (symbol) & fitted (line)",
+       auto.key=list(columns=2),
+       main="mead.cauliflower - observed (symbol) & fitted (line)",
        xlab="degree days", ylab="Number of leaves", ) +
   xyplot(pred~degdays, data=dat, groups=year, type=c('l'), col="black")
-}
 
+}
 }
 \keyword{datasets}

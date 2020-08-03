@@ -74,24 +74,26 @@
     E53 \tab Centeno, Trinidad Tobago\cr
   }
   
-}
-
-\source{
-  
-  Rodomiro Ortiz and Jose Crossa and Mateo Vargas and Juan Izquierdo, 2007.
-  Studying the Effect of Environmental Variables On the Genotype x
-  Environment Interaction of Tomato. \emph{Euphytica}, 153, 119--134.
-  http://doi.org/10.1007/s10681-006-9248-7
   
   Used with permission of Rodomiro Ortiz.
 }
 
-\examples{
+\source{
+  Rodomiro Ortiz and Jose Crossa and Mateo Vargas and Juan Izquierdo, 2007.
+  Studying the Effect of Environmental Variables On the Genotype x
+  Environment Interaction of Tomato.
+  Euphytica, 153, 119--134.
+  http://doi.org/10.1007/s10681-006-9248-7
+}
 
+\examples{
+\dontrun{
+
+library(agridat)
 data(ortiz.tomato.covs)
 data(ortiz.tomato.yield)
 
-if(require(pls) & require(reshape2))
+libs(pls, reshape2)
 # Double-centered yield matrix
 Y <- acast(ortiz.tomato.yield, env ~ gen, value.var='yield')
 Y <- sweep(Y, 1, rowMeans(Y, na.rm=TRUE))
@@ -112,5 +114,5 @@ m1 <- plsr(Y~X)
 biplot(m1, which="x", var.axes=TRUE, main="ortiz.tomato - env*cov biplot")
 #biplot(m1, which="y", var.axes=TRUE)
 }
-
+}
 \keyword{datasets}

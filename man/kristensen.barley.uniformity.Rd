@@ -39,7 +39,7 @@
 \source{
   R. K. Kristensen (1925). 
   Anlaeg og Opgoerelse af Markforsoeg.
-  \emph{Tidsskrift for landbrugets planteavl}, Vol 31, 464-494.
+  Tidsskrift for landbrugets planteavl, Vol 31, 464-494.
   Fig 1, pg. 467.
   http://dca.au.dk/publikationer/historiske/planteavl/ 
 }
@@ -47,7 +47,7 @@
 \references{
   J. Neyman, K. Iwaszkiewicz, St. Kolodziejczyk. (1935).
   Statistical Problems in Agricultural Experimentation.
-  \emph{Supplement to the Journal of the Royal Statistical Society},
+  Supplement to the Journal of the Royal Statistical Society,
   Vol. 2, No. 2 (1935), pp. 107-180.
   http://doi.org/10.2307/2983637
 }
@@ -55,13 +55,14 @@
 \examples{
 \dontrun{
 
-  data(kristensen.barley.uniformity)
-  dat <- kristensen.barley.uniformity
+library(agridat)
+data(kristensen.barley.uniformity)
+dat <- kristensen.barley.uniformity
 
-  require(desplot)
-  desplot(yield ~ col*row, dat,
-          flip=TRUE, aspect=(11*6.24)/(22*8.79),
-          main="kristensen.barley.uniformity")
+libs(desplot)
+desplot(dat, yield ~ col*row,
+        flip=TRUE, aspect=(11*6.24)/(22*8.79),
+        main="kristensen.barley.uniformity")
   
 }
 }

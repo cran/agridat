@@ -64,11 +64,6 @@ following:
     White Delight \tab 1949.64 \cr
   }
 
-}
-\source{
-  Lee, Arier Chi-Lun (2009). Random effects models for ordinal data.
-  Ph.D. thesis, The University of Auckland.
-  https://researchspace.auckland.ac.nz/handle/2292/4544.
 
   Used with permission of Arier Chi-Lun Lee and John Anderson.
 
@@ -78,9 +73,17 @@ following:
   Licensed via Open Database License 1.0. (allows sub-licensing).
   See: http://opendatacommons.org/licenses/dbcl/1.0/
 }
+\source{
+  Lee, Arier Chi-Lun (2009).
+  Random effects models for ordinal data.
+  Ph.D. thesis, The University of Auckland.
+  https://researchspace.auckland.ac.nz/handle/2292/4544.
+}
 
 \examples{
+\dontrun{
 
+library(agridat)
 data(lee.potatoblight)
 dat <- lee.potatoblight
 
@@ -110,20 +113,19 @@ skp <- c(rep(0,10),
          rep(0,5),1,1,1,1,1,
          rep(0,5),1,1,1,1,1)
 
-if(require(desplot)){
-  desplot(y ~ col*row|date, dat,
-          ylab="Year of testing", # unknown aspect
-          layout=c(10,11),skip=as.logical(skp),
-          main="lee.potatoblight - maps of blight resistance over time")
-}
+libs(desplot)
+desplot(dat, y ~ col*row|date,
+        ylab="Year of testing", # unknown aspect
+        layout=c(10,11),skip=as.logical(skp),
+        main="lee.potatoblight - maps of blight resistance over time")
 
 
 # 1983 only.  I.Hardy succumbs to blight quickly
-require("lattice")
+libs(lattice)
 xyplot(y ~ date|gen, dat, subset=year==1983, group=rep,
        xlab="Date", ylab="Blight resistance score",
        main="lee.potatoblight 1983", as.table=TRUE,
        auto.key=list(columns=5),
        scales=list(alternating=FALSE, x=list(rot=90, cex=.7)))
 }
-\keyword{datasets}
+}

@@ -35,8 +35,9 @@
 }
 
 \source{
-  Lyon, T.L. (1911). Some experiments to estimate errors in field plat
-  tests. \emph{Proc. Amer. Soc. Agron}, 3, 89-114. Table III.
+  Lyon, T.L. (1911).
+  Some experiments to estimate errors in field plat tests.
+  Proc. Amer. Soc. Agron, 3, 89-114. Table III.
   http://doi.org/10.2134/agronj1911.00021962000300010016x
 }
 \references{
@@ -45,6 +46,8 @@
 
 \examples{
 \dontrun{
+
+library(agridat)
   
   data(lyon.potato.uniformity)
   dat <- lyon.potato.uniformity
@@ -54,8 +57,8 @@
   # Yield per square foot, assuming 72 foot plots
   sum(dat$yield)/(6*72*96) # 0.11
   
-  require(desplot)
-  desplot(yield ~ col*row, dat,
+  libs(desplot)
+  desplot(dat, yield ~ col*row,
           tick=TRUE, flip=TRUE, aspect=96/72, # true aspect
           main="lyon.potato.uniformity")
   

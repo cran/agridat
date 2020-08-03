@@ -28,26 +28,28 @@
 \source{
   Cyrus H. Goulden (1952).
   \emph{Methods of Statistical Analysis}, 2nd ed. Page 425.
-  http://krishikosh.egranth.ac.in/handle/1/2034118
 }
 \references{
   None.
 }
 \examples{
+\dontrun{
+
+library(agridat)
 data(goulden.eggs)
 dat <- goulden.eggs
 
-if(require(qicharts)){
-  # Figure 19-4 of Goulden. (Goulden uses 1/n when calculating std dev)
-  op <- par(mfrow=c(2,1))
-  qic(weight, x = day, data = dat, chart = 'xbar',
-      main = 'goulden.eggs - Xbar chart',
-      xlab = 'Date', ylab = 'Avg egg weight' )
-  qic(weight, x = day, data = dat, chart = 's',
-      main = 'goulden.eggs - S chart',
-      xlab = 'Date', ylab = 'Std dev egg weight' )
-  par(op)
-}
+libs(qicharts)
+# Figure 19-4 of Goulden. (Goulden uses 1/n when calculating std dev)
+op <- par(mfrow=c(2,1))
+qic(weight, x = day, data = dat, chart = 'xbar',
+    main = 'goulden.eggs - Xbar chart',
+    xlab = 'Date', ylab = 'Avg egg weight' )
+qic(weight, x = day, data = dat, chart = 's',
+    main = 'goulden.eggs - S chart',
+    xlab = 'Date', ylab = 'Std dev egg weight' )
+par(op)
 
+}
 }
 \keyword{datasets}

@@ -2,10 +2,10 @@
 \alias{gomez.heteroskedastic}
 \docType{data}
 \title{
-  RCB in rice with heteroskedastic varieties
+  RCB experiment of rice, heteroskedastic varieties
 }
 \description{
-  RCB in rice with heteroskedastic varieties, 35 genotypes, 3 reps
+  RCB experiment of rice, heteroskedastic varieties
 }
 \usage{data("gomez.heteroskedastic")}
 \format{
@@ -21,32 +21,34 @@
   
   RCB design with three reps.  Genotypes 1-15 are hybrids, 16-32 are
   parents, 33-35 are checks.
+
+  Used with permission of Kwanchai Gomez.
   
 }
 
 \source{
   Gomez, K.A. and Gomez, A.A.. 1984,
-  \emph{Statistical Procedures for Agricultural Research}.
-  Wiley-Interscience. Page 310.
-
-  Used with permission of Kwanchai Gomez.
+  Statistical Procedures for Agricultural Research.
+  Wiley-Interscience.
+  Page 310.
 }
 \references{
   None.
 }
 
 \examples{
+\dontrun{
 
+library(agridat)
 data(gomez.heteroskedastic)
 dat <- gomez.heteroskedastic
 
 # Fix the outlier as reported by Gomez p. 311
 dat[dat$gen=="G17" & dat$rep=="R2","yield"] <- 7.58
 
-if(require(lattice)){
-  bwplot(gen ~ yield, dat, group=as.numeric(dat$group),
-         ylab="genotype", main="gomez.heterogeneous")
-}
+libs(lattice)
+bwplot(gen ~ yield, dat, group=as.numeric(dat$group),
+       ylab="genotype", main="gomez.heterogeneous")
 
 # Match Gomez table 7.28
 m1 <- lm(yield ~ rep + gen, data=dat)
@@ -57,5 +59,6 @@ anova(m1)
 ## gen       34 40.020 1.17705  3.9992 5.806e-07 ***
 ## Residuals 68 20.014 0.29432                      
 
+}
 }
 \keyword{datasets}

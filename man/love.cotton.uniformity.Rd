@@ -30,9 +30,10 @@
 }
 
 \source{
-  Harry Love (1936).
-  \emph{Application of Statistical Methods to Agricultural Research}.
-  The Commercial Press, Shanghai.
+  Harry Love (1937).
+  Application of Statistical Methods to Agricultural Research.
+  The Commercial Press, Shanghai. Page 411.
+  https://archive.org/details/in.ernet.dli.2015.233346/page/n421
 }
 
 \references{
@@ -42,13 +43,15 @@
 \examples{
 \dontrun{
 
+library(agridat)
+
   data(love.cotton.uniformity)
   # omit first column which has 20-foot plots
   dat <- subset(love.cotton.uniformity, col > 1)
 
-  require(desplot)
-  desplot(yield ~ col*row, dat, flip=TRUE,
-          aspect=20/80, # just a guess
+  libs(desplot)
+  desplot(dat, yield ~ col*row,
+          flip=TRUE, aspect=20/80, # just a guess
           main="love.cotton.uniformity")
   
 }

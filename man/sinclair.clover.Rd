@@ -38,10 +38,12 @@
 
 \examples{
 
+library(agridat)
+
 data(sinclair.clover)
 dat <- sinclair.clover
 
-require(lattice)
+libs(lattice)
 xyplot(yield~P|factor(S), dat, layout=c(5,1),
        main="sinclair.clover - Yield by sulfur levels",
        xlab="Phosphorous")
@@ -82,7 +84,7 @@ pred <- expand.grid(x=0:17, y=0:9)
 pred$z <- predict(m1, pred)
 
 # 3D plot of data with fitted surface.  Matches Dodds figure 2.
-require(rgl)
+libs(rgl)
 bg3d(color = "white")
 clear3d()
 spheres3d(dat$x, dat$y, dat$yield,
@@ -95,7 +97,8 @@ title3d("sinclair.clover - yield","", xlab="Phosphorous/10",
         ylab="Sulfur/10", zlab="", line=3, cex=1.5)
 view3d(userMatrix=matrix(c(.7,.2,-.7,0, -.7,.2,-.6,0, 0,.9,.3,0, 0,0,0,1),ncol=4))
   # snapshot3d(file, "png")
-  rgl.close()
+
+rgl.close()
 }
 
 }

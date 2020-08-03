@@ -18,6 +18,12 @@
   }
 }
 \details{
+
+  Note: This data is only 1852-1925.  You can find recent data for these
+  experiments at the Electronic Rothamsted Archive:
+  http://www.era.rothamsted.ac.uk/
+
+  
   Rothamsted Experiment station conducted wheat experiments on the
   Broadbalk Fields beginning in 1844 with data for yields of grain and
   straw collected from 1852 to 1925.
@@ -61,10 +67,11 @@
 }
 \examples{
 
+library(agridat)
 data(broadbalk.wheat)
 dat <- broadbalk.wheat
 
-require(lattice)
+libs(lattice)
 ## xyplot(grain~straw|plot, dat, type=c('p','smooth'), as.table=TRUE,
 ##        main="broadbalk.wheat")
 xyplot(grain~year|plot, dat, type=c('p','smooth'), as.table=TRUE,

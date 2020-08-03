@@ -31,12 +31,14 @@
 \source{
   Stephens, Joseph C. 1928.
   Experimental methods and the probable error in field experiments with sorghum.
-  \emph{Journal of Agricultural Research}, 37, 629--646.
+  Journal of Agricultural Research, 37, 629--646.
   http://naldc.nal.usda.gov/catalog/IND43967516
 }
 
 \examples{
 \dontrun{
+
+library(agridat)
   
   data(stephens.sorghum.uniformity)
   dat <- stephens.sorghum.uniformity
@@ -53,9 +55,9 @@
   d4 <- aggregate(yield ~ row2+col, data=d4, FUN=sum)
   d4$row2 <- 25-d4$row2 # flip horizontally
   
-  require(desplot)
+  libs(desplot)
   grays <- colorRampPalette(c("#d9d9d9","#252525"))
-  desplot(yield ~ row2*col, data=d4,
+  desplot(d4, yield ~ row2*col,
           aspect=333/330, flip=TRUE, # true aspect
           main="stephens.sorghum.uniformity",
           col.regions=grays(3),

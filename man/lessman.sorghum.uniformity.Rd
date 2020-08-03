@@ -40,21 +40,24 @@
 }
 \source{
   Lessman, Koert James (1962).
-  \emph{Comparisons of methods for testing grain yield of sorghum}.
+  Comparisons of methods for testing grain yield of sorghum.
   Iowa State University.
   Retrospective Theses and Dissertations. Paper 2063. Appendix Table 17.
+  https://lib.dr.iastate.edu/rtd/2063
 }
 \references{
   None.
 }
 \examples{
 \dontrun{
+
+library(agridat)
   
   data(lessman.sorghum.uniformity)
   dat <- lessman.sorghum.uniformity
   
-  require(desplot)
-  desplot(yield ~ col*row, dat,
+  libs(desplot)
+  desplot(dat, yield ~ col*row,
           aspect=300/160, tick=TRUE, flip=TRUE, # true aspect
           main="lessman.sorghum.uniformity")
 
@@ -64,8 +67,8 @@
   var(dat$yield) # 9.09
   sd(dat$yield)/mean(dat$yield) # CV 9.2%
 
-  require(reshape2)
-  require(agricolae)
+  libs(reshape2)
+  libs(agricolae)
   dmat <- acast(dat, row~col, value.var='yield')
   index.smith(dmat,
               main="lessman.sorghum.uniformity",

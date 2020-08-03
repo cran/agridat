@@ -122,7 +122,7 @@
   
 }
 \source{
-  Batchelor, LD and Reed, HS. 1918.
+  L. D. Batchelor and H. S. Reed. (1918).
   Relation of the variability of yields of fruit trees to the accuracy
   of field trials. \emph{J. Agric. Res}, 12, 245--283.
   http://books.google.com/books?id=Lil6AAAAMAAJ&lr&pg=PA245
@@ -136,41 +136,43 @@
 }
 \examples{
 \dontrun{
-  
-  require(desplot)
+
+library(agridat)
+libs(desplot)
+
   # Apple
   data(batchelor.apple.uniformity)
-  desplot(yield~col*row, data=batchelor.apple.uniformity,
+  desplot(batchelor.apple.uniformity, yield~col*row,
           aspect=840/128, tick=TRUE, # true aspect
           main="batchelor.apple.uniformity")
 
   # Lemon
   data(batchelor.lemon.uniformity)
-  desplot(yield~col*row, data=batchelor.lemon.uniformity,
+  desplot(batchelor.lemon.uniformity, yield~col*row,
           aspect=624/336, # true aspect
           main="batchelor.lemon.uniformity")
 
   # Navel1 (Arlington)
   data(batchelor.navel1.uniformity)
-  desplot(yield~col*row, batchelor.navel1.uniformity,
+  desplot(batchelor.navel1.uniformity, yield~col*row,
           aspect=1100/440, # true aspect
           main="batchelor.navel1.uniformity - Arlington")
 
   # Navel2 (Antelope)
   data(batchelor.navel2.uniformity)
-  desplot(yield~col*row, data=batchelor.navel2.uniformity,
+  desplot(batchelor.navel2.uniformity, yield~col*row,
           aspect=726/330, # true aspect
           main="batchelor.navel2.uniformity - Antelope")
 
   # Valencia
   data(batchelor.valencia.uniformity)
-  desplot(yield~col*row, data=batchelor.valencia.uniformity,
+  desplot(batchelor.valencia.uniformity, yield~col*row,
           aspect=440/264, # true aspect
           main="batchelor.valencia.uniformity")
 
   # Walnut
   data(batchelor.walnut.uniformity)
-  desplot(yield~col*row, data=batchelor.walnut.uniformity,
+  desplot(batchelor.walnut.uniformity, yield~col*row,
           aspect=1600/500, # true aspect
           main="batchelor.walnut.uniformity")
 

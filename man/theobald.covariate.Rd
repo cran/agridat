@@ -17,6 +17,8 @@
     \item{\code{yield}}{dry-matter silage yield for corn}
     \item{\code{chu}}{corn heat units, thousand degrees Celsius}
   }
+
+  Used with permission of Chris Theobald.
 }
 \details{
   The trials were carried out in seven districts in the maritime
@@ -25,28 +27,29 @@
   The covariate CHU (Corn Heat Units) is the accumulated average daily
   temperatures (thousands of degrees Celsius) during the growing season
   at each location.
-
-  Used with permission of Chris Theobald.
 }
 \source{
   Chris M. Theobald and Mike Talbot and Fabian Nabugoomu, 2002.
   A Bayesian Approach to Regional and Local-Area Prediction From Crop
-  Variety Trials, \emph{Journ Agric Biol Env Sciences}, 7, 403--419.
+  Variety Trials.
+  Journ Agric Biol Env Sciences, 7, 403--419.
   http://doi.org/10.1198/108571102230
 }
 
 \examples{
 
+library(agridat)
+
 data(theobald.covariate)
 dat <- theobald.covariate
-require(lattice)
+libs(lattice)
 xyplot(yield ~ chu|gen, dat, type=c('p','smooth'),
        xlab =  "chu = corn heat units",
        main="theobald.covariate - yield vs heat")
 
 \dontrun{
   # REML estimates (Means) in table 3 of Theobald 2002
-  require(lme4)
+  libs(lme4)
   dat <- transform(dat, year=factor(year))
   m0 <- lmer(yield ~ -1 + gen + (1|year/env) + (1|gen:year), data=dat)
   round(fixef(m0),2)
@@ -56,7 +59,7 @@ xyplot(yield ~ chu|gen, dat, type=c('p','smooth'),
 
 # Use JAGS to fit Theobald (2002) model 3.2 with 'Expert' prior
 
-require(reshape2)
+libs(reshape2)
 ymat <- acast(dat, year+env~gen, value.var='yield')
 chu <- acast(dat, year+env~., mean, value.var='chu', na.rm=TRUE)
 chu <- as.vector(chu - mean(chu))  # Center the covariate
@@ -69,7 +72,7 @@ locidx <- as.vector(locidx)
 jdat <- list(nVar = 10, nYear = 5, nLoc = 7, nYL = 29, yield = ymat,
             chu = chu, year = yridx, loc = locidx)
 
-require(rjags)
+libs(rjags)
 m1 <- jags.model(file=system.file(package="agridat", "files/theobald.covariate.jag"),
   data=jdat, n.chains=2)
 

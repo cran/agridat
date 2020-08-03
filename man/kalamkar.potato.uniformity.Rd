@@ -30,21 +30,22 @@
 \source{
   Kalamkar, R.J. (1932).
   Experimental Error and the Field-Plot Technique with Potatoes.
-  \emph{The Journal of Agricultural Science}, 22, 373-385.
+  The Journal of Agricultural Science, 22, 373-385.
   http://doi.org/10.1017/S0021859600053697
 }
 
 \examples{
 \dontrun{
-  
-  data(kalamkar.potato.uniformity)
-  dat <- kalamkar.potato.uniformity
 
-  # Similar to figure 1 of Kalamkar
-  require(desplot)
-  desplot(yield~col*row, data=dat,
-          flip=TRUE, tick=TRUE, aspect=288/132, # true aspect
-          main="kalamkar.potato.uniformity")
+library(agridat)
+data(kalamkar.potato.uniformity)
+dat <- kalamkar.potato.uniformity
+
+# Similar to figure 1 of Kalamkar
+libs(desplot)
+desplot(dat, yield~col*row,
+        flip=TRUE, tick=TRUE, aspect=288/132, # true aspect
+        main="kalamkar.potato.uniformity")
   
 }
 }

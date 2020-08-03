@@ -46,25 +46,27 @@
 \source{
   F. R. Immer. 1932.
   Size and shape of plot in relation to field experiments with sugar beets.
-  \emph{Jour. Agr. Research}, 44, 649--668.
-  naldc.nal.usda.gov/download/IND43968078/PDF
+  Jour. Agr. Research, 44, 649--668.
+  http://naldc.nal.usda.gov/download/IND43968078/PDF
 }
 
 \examples{
 \dontrun{
+
+library(agridat)
   
   data(immer.sugarbeet.uniformity)
   dat <- immer.sugarbeet.uniformity
 
   # Immer numbers rows from the top
-  require(desplot)
-  desplot(yield~col*row, data=dat,
+  libs(desplot)
+  desplot(dat, yield~col*row,
           aspect=110/348, tick=TRUE, flip=TRUE, # true aspect
           main="immer.sugarbeet.uniformity - yield")
-  desplot(sugar~col*row, data=dat,
+  desplot(dat, sugar~col*row,
           aspect=110/348, tick=TRUE, flip=TRUE,
           main="immer.sugarbeet.uniformity - sugar")
-  desplot(purity~col*row, data=dat,
+  desplot(dat, purity~col*row,
           aspect=110/348, tick=TRUE, flip=TRUE,
           main="immer.sugarbeet.uniformity - purity")
   

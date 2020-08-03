@@ -2,11 +2,10 @@
 \alias{mcconway.turnip}
 \docType{data}
 \title{
-  Yields of turnips grown for winter fodder
+  RCB experiment of turnips
 }
 \description{
-  Yields of turnips grown for winter fodder with two treatments for
-  planting date and density, planted as RCB.
+  RCB experiment of turnips, 2 treatments for planting date and density
 }
 
 \format{
@@ -29,32 +28,35 @@
   treatment variances.
 
   Piepho (2009) proposed an ordinary ANOVA using transformed data.
+
+  Used with permission of Kevin McConway.
 }
 
 \source{
   Statistical Modelling Using Genstat, K. J. McConway, M. C. Jones,
   P. C. Taylor.
-
-  Used with permission of Kevin McConway.
 }
 
 \references{
   Michael Berthold, D. J. Hand.
-  \emph{Intelligent data analysis: an introduction}, 1998.
+  Intelligent data analysis: an introduction, 1998.
   Pages 75--82.
 
   Lee, C.J. and O Donnell, M. and O Neill, M. (2008).
   Statistical analysis of field trials with changing treatment
-  variance. \emph{Agronomy Journal}, 100, 484--489.
+  variance.
+  Agronomy Journal, 100, 484--489.
 
   Piepho, H.P. (2009),
   Data transformation in statistical analysis of field trials
   with changing treatment variance.
-  \emph{Agronomy Journal}, 101, 865--869.
+  Agronomy Journal, 101, 865--869.
 }
 
 \examples{
+\dontrun{
 
+library(agridat)
 data(mcconway.turnip)
 dat <- mcconway.turnip
 dat$densf <- factor(dat$density)
@@ -76,13 +78,13 @@ summary(m0)
 ## Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
 
 # Boxplots suggest heteroskedasticity for date, density
-if(require("HH")){
-  interaction2wt(yield ~ gen + date + densf +block, dat,
-                 x.between=0, y.between=0,
-                 main="mcconway.turnip - yield")
-}
+libs("HH")
+interaction2wt(yield ~ gen + date + densf +block, dat,
+               x.between=0, y.between=0,
+               main="mcconway.turnip - yield")
 
-require(nlme)
+
+libs(nlme)
 # Random block model
 m1 <- lme(yield ~ gen * date * densf, random= ~1|block, data=dat)
 summary(m1)
@@ -104,5 +106,6 @@ anova(m3)
 m4 <- aov( yield^.235 ~ gen * date * densf + block, dat )
 summary(m4)
 
+}
 }
 

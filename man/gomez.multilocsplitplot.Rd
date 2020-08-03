@@ -5,7 +5,7 @@
   Multi-environment trial of rice, split-plot design
 }
 \description{
-  Grain yield was measured at 3 locations with 3 reps per location.
+  Grain yield was measured at 3 locations with 2 reps per location.
   Within each rep, the main plot was 6 nitrogen fertilizer treatments
   and the sub plot was 2 rice varieties.
 }
@@ -15,28 +15,31 @@
   \describe{
     \item{\code{loc}}{location, 3 levels}
     \item{\code{nitro}}{nitrogen in kg/ha}
-    \item{\code{rep}}{replicate, 3 levels}
+    \item{\code{rep}}{replicate, 2 levels}
     \item{\code{gen}}{genotype, 2 levels}
     \item{\code{yield}}{yield, kg/ha}
   }
-}
-
-\source{
-  Gomez, K.A. and Gomez, A.A.. 1984,
-  \emph{Statistical Procedures for Agricultural Research}.
-  Wiley-Interscience. Page 339.
 
   Used with permission of Kwanchai Gomez.
 }
 
+\source{
+  Gomez, K.A. and Gomez, A.A.. 1984,
+  Statistical Procedures for Agricultural Research.
+  Wiley-Interscience.
+  Page 339.
+}
+
 \examples{
+
+library(agridat)
 
 data(gomez.multilocsplitplot)
 dat <- gomez.multilocsplitplot
 dat$nf <- factor(dat$nitro)
 
 # Gomez figure 8.3
-require(lattice)
+libs(lattice)
 xyplot(yield~nitro, dat, group=loc, type=c('p','smooth'), auto.key=TRUE,
        main="gomez.multilocsplitplot")
 
@@ -50,7 +53,7 @@ summary(m1)
 
 \dontrun{
   # F values are somewhat similar to Gomez Table 8.21
-  require(lme4)
+  libs(lme4)
   m2 <- lmer(yield ~ loc*nf*gen + (1|loc/rep/nf), dat)
   anova(m2)
   ## Analysis of Variance Table

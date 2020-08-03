@@ -2,10 +2,10 @@
 \alias{vaneeuwijk.drymatter}
 \docType{data}
 \title{
-  Dry matter content for Dutch maize varieties in multiple years/sites
+  Multi-environment trial of maize, dry matter content
 }
 \description{
-  Dry matter content for Dutch maize varieties in multiple years/sites
+  Multi-environment trial of maize, dry matter content
 }
 \usage{data("vaneeuwijk.drymatter")}
 \format{
@@ -28,56 +28,57 @@
   van Eeuwijk, Keizer, and Bakker (1995b) and
   Kroonenberg, Basford, and Ebskamp (1995).
   
+  
+  Used with permission of Fred van Eeuwijk.
 }
 \source{  
   van Eeuwijk, Fred A. and Pieter M. Kroonenberg (1998).
   Multiplicative Models for Interaction in Three-Way ANOVA, with Applications to Plant Breeding
-  \emph{Biometrics}, 54, 1315-1333.
+  Biometrics, 54, 1315-1333.
   http://doi.org/10.2307/2533660
-  
-  Used with permission of Fred van Eeuwijk.
 }
 
 \references{
   
   Kroonenberg, P.M., Basford, K.E. & Ebskamp, A.G.M. (1995).
   Three-way cluster and component analysis of maize variety trials.
-  \emph{Euphytica}, 84(1):31-42.
+  Euphytica, 84(1):31-42.
   http://doi.org/10.1007/BF01677554
 
   van Eeuwijk, F.A., Keizer, L.C.P. & Bakker, J.J. Van Eeuwijk. (1995b).
   Linear and bilinear models for the analysis of multi-environment trials: 
   II. An application to data from the Dutch Maize Variety Trials
-  \emph{Euphytica}, 84(1):9-22.
+  Euphytica, 84(1):9-22.
   http://doi.org/10.1007/BF01677552
 
   Hardeo Sahai, Mario M. Ojeda.
-  \emph{Analysis of Variance for Random Models}, Volume 1. Page 261.
+  Analysis of Variance for Random Models, Volume 1. Page 261.
   
 }
 \examples{
+\dontrun{
+  
+  library(agridat)
+  data(vaneeuwijk.drymatter)
+  dat <- vaneeuwijk.drymatter
+  dat <- transform(dat, year=factor(year))
+  dat <- transform(dat, env=factor(paste(year,site)))
 
-data(vaneeuwijk.drymatter)
-dat <- vaneeuwijk.drymatter
-dat <- transform(dat, year=factor(year))
-dat <- transform(dat, env=factor(paste(year,site)))
-
-if(require(HH)){
+  libs(HH)
   HH::interaction2wt(y ~ year+site+variety,dat,rot=c(90,0),
                      x.between=0, y.between=0,
                      main="vaneeuwijk.drymatter")
-}
 
-\dontrun{
+  
   # anova model
   m1 <- aov(y ~ variety+env+variety:env, data=dat)
   anova(m1) # Similar to VanEeuwijk table 2
   m2 <- aov(y ~ year*site*variety, data=dat)
   anova(m2) # matches Sahai table 5.5
-
+  
   # variance components model
-  require(lme4)
-  require(lucid)
+  libs(lme4)
+  libs(lucid)
   m3 <- lmer(y ~ (1|year) + (1|site) + (1|variety) +
                (1|year:site) + (1|year:variety) + (1|site:variety),
              data=dat)
@@ -90,7 +91,7 @@ if(require(HH)){
   ##      variety (Intercept) <NA> 0.4867  0.6976
   ##         site (Intercept) <NA> 6.504   2.55  
   ##     Residual        <NA> <NA> 0.8885  0.9426
+  
 }
-
 }
 \keyword{datasets}

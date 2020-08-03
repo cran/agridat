@@ -39,38 +39,37 @@
     NorthernSunrise \tab    NA \tab   NA \cr
     Olds \tab  114.09 \tab 51.78 \cr
     StPaul \tab  111.28 \tab 53.98 \cr
-    Stettler \tab  112.71 \tab 52.31 \cr
+    Stettler \tab  112.71 \tab 52.31
   }
 
+
+  Used with permission of Rong-Cai Yang.
 }
 
 \source{
   Rong-Cai Yang (2007).
   Mixed-Model Analysis of Crossover Genotype-Environment Interactions.
-  \emph{Crop Science}, 47, 1051-1062.
+  Crop Science, 47, 1051-1062.
   http://doi.org/10.2135/cropsci2006.09.0611
-
-  Used with permission of Rong-Cai Yang.
 }
 
 \references{
   Zhiqiu Hu and Rong-Cai Yang, (2013).
   Improved Statistical Inference for Graphical Description and
   Interpretation of Genotype x Environment Interaction.
-  \emph{Crop Science}, 53, 2400-2410.
+  Crop Science, 53, 2400-2410.
   http://doi.org/10.2135/cropsci2013.04.0218 
 }
 
 \examples{
+\dontrun{
 
+library(agridat)
 data(yang.barley)
 dat <- yang.barley
 
-if(require(reshape2)){
-  dat <- acast(dat, gen~site, value.var='yield')
-}
-
-\dontrun{
+libs(reshape2)
+dat <- acast(dat, gen~site, value.var='yield')
 
   ## For bootstrapping of a biplot, see the non-cran packages:
   ## 'bbplot' and 'distfree.cr'
@@ -78,9 +77,9 @@ if(require(reshape2)){
   ## install.packages("http://statgen.ualberta.ca/download/software/bbplot_1.0.zip")
   ## install.packages("http://statgen.ualberta.ca/download/software/distfree.cr_1.5.zip")
 
-  ## require(SDMTools)
-  ## require(distfree.cr)
-  ## require(bbplot)
+  ## libs(SDMTools)
+  ## libs(distfree.cr)
+  ## libs(bbplot)
 
   ## d1 <- bbplot.boot(dat, nsample=2000) # bootstrap the data
   ## plot(d1) # plot distributions of principal components
@@ -88,6 +87,5 @@ if(require(reshape2)){
   ## plot(b1) # create the confidence regions on the biplot
 
 }
-
 }
 \keyword{datasets}

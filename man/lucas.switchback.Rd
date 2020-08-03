@@ -1,11 +1,12 @@
+
 \name{lucas.switchback}
 \alias{lucas.switchback}
 \docType{data}
 \title{
-  Switchback trial in dairy with three treatments
+  Switchback experiment on dairy cattle, milk yield for 3 treatments
 }
 \description{
-  Switchback trial in dairy with three treatments
+  Switchback experiment on dairy cattle, milk yield for 3 treatments
 }
 \usage{data("lucas.switchback")}
 \format{
@@ -19,9 +20,9 @@
   }
 }
 \details{
-  Lucas says "because no data from feeding trials employing
-  the present designs are yet available, uniformity data
-  will be used".
+  
+  Lucas says
+  "because no data from feeding trials employing the present designs are yet available, uniformity data will be used".
 
   Six cows were started together in block 1, then three cows in block 2
   and three cows in block 3.
@@ -30,18 +31,20 @@
 \source{
   Lucas, HL. 1956.
   Switchback trials for more than two treatments.
-  \emph{Journal of Dairy Science}, 39, 146-154.
+  Journal of Dairy Science, 39, 146-154.
   http://doi.org/10.3168/jds.S0022-0302(56)94721-X
 }
 
 \references{
   Sanders, WL and Gaynor, PJ. 1987.
   Analysis of Switchback Data Using Statistical Analysis System.
-  \emph{Journal of Dairy Science}, 70, 2186-2191.
+  Journal of Dairy Science, 70, 2186-2191.
   http://doi.org/10.3168/jds.S0022-0302(87)80273-4
 }
 
 \examples{
+
+library(agridat)
 
 data(lucas.switchback)
 dat <- lucas.switchback
@@ -49,7 +52,7 @@ dat <- lucas.switchback
 # Create a numeric period variable
 dat$per <- as.numeric(substring(dat$period,2))
 
-require(lattice)
+libs(lattice)
 xyplot(yield ~ period|block, data=dat, group=cow, type=c('l','r'),
        auto.key=list(columns=6),
        main="lucas.switchback - (actually uniformity data)")

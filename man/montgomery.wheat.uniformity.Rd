@@ -52,7 +52,7 @@
   E. G. Montgomery (1912).
   Variation in Yield and Methods of Arranging Plats To Secure
   Comparative Results.
-  \emph{Twenty-Fifth Annual Report of the Agricultural Experiment Station of Nebraska}, 164-180.
+  Twenty-Fifth Annual Report of the Agricultural Experiment Station of Nebraska, 164-180.
   https://books.google.com/books?id=M-5BAQAAMAAJ&pg=RA4-PA164
   
   E. G. Montgomery (1913).
@@ -66,13 +66,15 @@
 \references{
   Surface & Pearl, (1916).
   A method of correcting for soil heterogeneity in variety tests.
-  \emph{Journal of Agricultural Research}, 5, 22, 1039-1050.
+  Journal of Agricultural Research, 5, 22, 1039-1050.
   Figure 2.
   https://books.google.com/books?id=BVNyoZXFVSkC&pg=PA1039
 }
 
 \examples{
 \dontrun{
+
+library(agridat)
   
   data(montgomery.wheat.uniformity)
   dat <- montgomery.wheat.uniformity
@@ -80,11 +82,11 @@
   dat11 <- subset(dat, year==1911)
 
   # Match the figures of Montgomery 1912 Fig 3, p. 178
-  require(desplot)
-  desplot(yield ~ col*row, dat09,
+  libs(desplot)
+  desplot(dat09, yield ~ col*row,
           aspect=1, # true aspect
           main="montgomery.wheat.uniformity - 1909 yield")
-  desplot(yield ~ col*row, subset(dat, year==1911),
+  desplot(dat, yield ~ col*row, subset= year==1911,
           aspect=1, # true aspect
           main="montgomery.wheat.uniformity - 1911 yield")
 
@@ -100,11 +102,11 @@
   # Corrected.  Similar (but not exact) to Surface, fig 2.
   dat09$correct <- round(dat09$yield - dev1,0)
 
-  require(desplot)
-  desplot(yield ~ col*row, dat09,
+  libs(desplot)
+  desplot(dat09, yield ~ col*row,
           shorten="none", text=yield,
           main="montgomery.wheat.uniformity 1909 observed")
-  desplot(correct ~ col*row, dat09, text=correct,
+  desplot(dat09, correct ~ col*row, text=correct,
           cex=0.8, shorten="none",
           main="montgomery.wheat.uniformity 1909 corrected")
   # Corrected yields are slightly shrunk toward overall mean

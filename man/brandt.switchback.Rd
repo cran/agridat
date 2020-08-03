@@ -2,10 +2,10 @@
 \alias{brandt.switchback}
 \docType{data}
 \title{
-  Switchback trial of milk yield for two feed mixtures in cattle
+  Switchback experiment on dairy cattle, milk yield for two treatments
 }
 \description{
-  Switchback trial of milk yield for two feed mixtures in cattle
+  Switchback experiment on dairy cattle, milk yield for two treatments
 }
 \usage{data("brandt.switchback")}
 \format{
@@ -49,6 +49,8 @@
 }
 \examples{
 
+library(agridat)
+
 data(brandt.switchback)
 dat <- brandt.switchback
 
@@ -59,7 +61,7 @@ dat <- brandt.switchback
 # Yield at period 2 (trt T2) is above the trend in group A,
 # below the trend (trt T1) in group B.
 # Equivalently, treatment T2 is above the trend line
-require(lattice)
+libs(lattice)
 xyplot(yield~period|group, data=dat, group=cow, type=c('l','r'),
     auto.key=list(columns=5), main="brandt.switchback",
     xlab="Period.  Group A: T1,T2,T1.  Group B: T2,T1,T2",

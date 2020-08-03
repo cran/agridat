@@ -65,13 +65,15 @@ Total area: 2400*48/43560=2.64 acres
 \source{
   O. C. Magistad & C. A. Farden (1934).
   Experimental Error In Field Experiments With Pineapples.
-  \emph{Journal of the American Society of Agronomy}, 26, 631--643.
+  Journal of the American Society of Agronomy, 26, 631--643.
 }
 \references{
   None
 }
 \examples{
 \dontrun{
+
+library(agridat)
 
   data(magistad.pineapple.uniformity)
   dat <- magistad.pineapple.uniformity
@@ -86,20 +88,20 @@ Total area: 2400*48/43560=2.64 acres
   ## 3    21 171.1600 2056.800
   ## 4    82 220.7500 1264.500
   
-  require(desplot)
-  desplot(weight ~ col*row, dat,
+  libs(desplot)
+  desplot(dat, weight ~ col*row,
           subset=field==1,
           aspect=2400/48,
           main="magistad.pineapple.uniformity - field 1")          
-  desplot(weight ~ col*row, dat,
+  desplot(dat, weight ~ col*row,
           subset=field==19,
           aspect=300/39,
           main="magistad.pineapple.uniformity - field 19")
-  desplot(weight ~ col*row, dat,
+  desplot(dat, weight ~ col*row,
           subset=field==82,
           aspect=228/192,
           main="magistad.pineapple.uniformity - field 82")          
-  desplot(weight ~ col*row, dat,
+  desplot(dat, weight ~ col*row,
           subset=field==21,
           aspect=300/112.5,
           main="magistad.pineapple.uniformity - field 21")

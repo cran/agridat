@@ -30,25 +30,26 @@
 \source{
   Williams, ER and Luckett, DJ. 1988.
   The use of uniformity data in the design and analysis of cotton and barley variety trials.
-  \emph{Australian Journal of Agricultural Research}, 39, 339-350.
+  Australian Journal of Agricultural Research, 39, 339-350.
   http://doi.org/10.1071/AR9880339
 }
 
 \examples{
+\dontrun{
 
+library(agridat)
 data(williams.cotton.uniformity)
 dat <- williams.cotton.uniformity
 
-if(require(desplot)){
-desplot(yield ~ col*row, dat,
+libs(desplot)
+desplot(dat, yield ~ col*row,
         aspect=144/24, # true aspect
         main="williams.cotton.uniformity")
-}
 
 
 # Smoothed contour/persp plot like Williams 1988 Fig 1a, 2a
 dat$fit <- fitted(loess(yield~col*row, dat, span=.5))
-require("lattice")
+libs("lattice")
 contourplot(fit~col*row, data=dat,
             aspect=144/24,
             region=TRUE, cuts=6, col.regions=RedGrayBlue,
@@ -58,5 +59,6 @@ contourplot(fit~col*row, data=dat,
 
 # Williams table 1
 anova(aov(yield ~ factor(row) + factor(col), dat))
+}
 }
 \keyword{datasets}

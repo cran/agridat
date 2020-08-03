@@ -2,7 +2,7 @@
 \alias{fox.wheat}
 \docType{data}
 \title{
-  Multi-environment trial of wheat for 22 varieties at 14 sites in Australia
+  Multi-environment trial of wheat, 22 varieties at 14 sites in Australia
 }
 \description{
   Wheat yields of 22 varieties at 14 sites in Australia
@@ -39,6 +39,8 @@
 
 \examples{
 
+library(agridat)
+
 data(fox.wheat)
 dat <- fox.wheat
 
@@ -55,7 +57,7 @@ m1 <- lm(yield~site+site:genm, data=dat)
 sort(round(coef(m1)[15:28],2), dec=TRUE)
 
 # Figure 1 of Fox
-require(lattice)
+libs(lattice)
 xyplot(yield~genm|state, data=dat, type=c('p','r'), group=site,
        auto.key=list(columns=4),
        main="fox.wheat", xlab="Variety mean across all sites",

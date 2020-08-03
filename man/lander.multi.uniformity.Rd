@@ -19,7 +19,12 @@
   }
 }
 \details{
+
+  Note, "chari" in this paper is \emph{Andropogon Sorghum}, and "wheat"
+  is \emph{Triticum vulgare}.
+  
   Uniformity trials carried out at Rawalpindi, India.
+  
   The area consisted of 5 fields (D4,D5,D6,D7,D8), each 5 acres in
   size. Each of these 5 fields was divided into three sub-divisions A,
   B, C, by means of two strong bunds each 5 feet wide. These 3
@@ -44,13 +49,16 @@
 }
 \source{
   Lander, P. E. et al. (1938).
-  "Soil Uniformity Trials in the Punjab I."
+  Soil Uniformity Trials in the Punjab I.
   Ind. J. Agr. Sci. 8:271-307.
 }
 \references{
   None
 }
 \examples{
+\dontrun{
+
+library(agridat)
 data(lander.multi.uniformity)
 dat <- lander.multi.uniformity
 
@@ -62,12 +70,11 @@ dat <- lander.multi.uniformity
 ## 4 1932   14.1
 
 # heatmaps for all years
-if(require(desplot)){
-  dat$year <- factor(dat$year)
-  desplot(yield ~ col*row|year, dat,
-          flip=TRUE, aspect=(1037.1/939.12),
-          main="lander.multi.uniformity")
-}
+libs(desplot)
+dat$year <- factor(dat$year)
+desplot(dat, yield ~ col*row|year,
+        flip=TRUE, aspect=(1037.1/939.12),
+        main="lander.multi.uniformity")
 
 }
-\keyword{datasets}
+}

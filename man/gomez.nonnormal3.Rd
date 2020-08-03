@@ -2,10 +2,10 @@
 \alias{gomez.nonnormal3}
 \docType{data}
 \title{
-  RCB of 12 rice varieties with leafhopper survival
+  RCB experiment of rice, 12 varieties with leafhopper survival
 }
 \description{
-  RCB of 12 rice varieties with leafhopper survival
+  RCB experiment of rice, 12 varieties with leafhopper survival
 }
 \usage{data("gomez.nonnormal3")}
 \format{
@@ -28,19 +28,22 @@
   Because the data are percents, Gomez suggested using the arcsin
   transformation.
   
+  Used with permission of Kwanchai Gomez.
+
 }
 \source{
   Gomez, K.A. and Gomez, A.A.. 1984,
-  \emph{Statistical Procedures for Agricultural Research}.
-  Wiley-Interscience. Page 307.
-
-  Used with permission of Kwanchai Gomez.
-
+  Statistical Procedures for Agricultural Research.
+  Wiley-Interscience.
+  Page 307.
 }
 \references{
   None.
 }
 \examples{
+\dontrun{
+
+library(agridat)
 data(gomez.nonnormal3)
 dat <- gomez.nonnormal3
 
@@ -53,10 +56,10 @@ dat <- transform(dat, thoppers=ifelse(thoppers==100, 100-1/(4*75), thoppers))
 dat <- transform(dat, thoppers=asin(sqrt(thoppers/100))/(pi/2)*90)
 
 # QQ plots for raw/transformed data
-if(require(reshape2) & require(lattice))
-  qqmath( ~ value|variable, data=melt(dat),
-         main="gomez.nonnormal3 - raw/transformed QQ plot",
-         scales=list(relation="free"))
+libs(reshape2, lattice)
+qqmath( ~ value|variable, data=melt(dat),
+       main="gomez.nonnormal3 - raw/transformed QQ plot",
+       scales=list(relation="free"))
 
 m1 <- lm(thoppers ~ gen, data=dat)
 anova(m1) # Match Gomez table 7.25
@@ -65,5 +68,6 @@ anova(m1) # Match Gomez table 7.25
 ## gen       11 16838.7 1530.79  16.502 1.316e-08 ***
 ## Residuals 24  2226.4   92.77                      
 
+}
 }
 \keyword{datasets}

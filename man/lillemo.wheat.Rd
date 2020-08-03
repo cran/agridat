@@ -42,6 +42,10 @@
   'Aa03' had 3 reps and so the mean for genotype 1 was probably 16.333,
   not 16.3. 
 
+  
+  Used with permission of Morten Lillemo.
+
+  Electronic data supplied by Miroslav Zoric.
 }
 \source{
 
@@ -50,15 +54,13 @@
   on Parametric and Nonparametric Methods
   Crop Sci. 50:478-485.
   http://doi.org/10.2135/cropsci2009.03.0116
-  
-  Used with permission of Morten Lillemo.
-
-  Electronic data supplied by Miroslav Zoric.
 }
 \references{
   None.
 }
 \examples{
+
+library(agridat)
 
 data(lillemo.wheat)
 dat <- lillemo.wheat
@@ -70,7 +72,7 @@ dat$env <- factor(dat$env,
                            "Kh06","Gl05","BT06","Ch04","Ce04",
                            "Ha03","Ha04","Ha05","Ha07","Aa03","Aa04","Aa05"))
 # Interesting look at different measurement scales by environment
-require(lattice)
+libs(lattice)
 qqmath(~score|env, dat, group=scale,
        as.table=TRUE, scales=list(y=list(relation="free")),
        auto.key=list(columns=4),
@@ -80,7 +82,7 @@ qqmath(~score|env, dat, group=scale,
 
 \dontrun{
   # Change data to matrix format
-  require(reshape2)
+  libs(reshape2)
   datm <- acast(dat, gen~env, value.var='score')
   
   # Environment means. Matches Lillemo Table 3
@@ -96,13 +98,13 @@ qqmath(~score|env, dat, group=scale,
   round(rowMeans(datt),2)
 
   # Biplot of transformed data like Lillemo Fig 2
-  require(gge)
+  libs(gge)
   biplot(gge(datt, scale=FALSE), main="lillemo.wheat")
   
   # Median polish of transformed table
   m1 <- medpolish(datt)
   # Half-normal prob plot like Fig 1
-  # require(faraway)
+  # libs(faraway)
   # halfnorm(abs(as.vector(m1$resid)))
 
   # Nonparametric stability statistics. Lillemo Table 4.
@@ -135,7 +137,7 @@ qqmath(~score|env, dat, group=scale,
   round(huehn(datm),2) # Matches table 4
   
   # I do not think phenability package gives correct values for S1
-  # require(phenability)
+  # libs(phenability)
   # nahu(datm)
   
 }

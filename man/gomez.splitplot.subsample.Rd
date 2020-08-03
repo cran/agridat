@@ -2,10 +2,10 @@
 \alias{gomez.splitplot.subsample}
 \docType{data}
 \title{
-  Height of rice in a split-plot experiment with subsamples
+  Split-plot experiment of rice, with subsamples
 }
 \description{
-  Height of rice in a split-plot experiment with subsamples
+  Split-plot experiment of rice, with subsamples
 }
 
 \format{
@@ -22,27 +22,31 @@
   A split-plot experiment in three blocks.  Whole-plot is 'management',
   sub-plot is 'time' of application, with two subsamples.  The data are
   the heights, measured on two single-hill sampling units in each plot.
-}
-\source{
-  Gomez, K.A. and Gomez, A.A.. 1984,
-  \emph{Statistical Procedures for Agricultural Research}.
-  Wiley-Interscience. Page 481.
 
   Used with permission of Kwanchai Gomez.
 }
-
-\examples{
-
-data(gomez.splitplot.subsample)
-dat <- gomez.splitplot.subsample
-if(require(HH)){
-  interaction2wt(height ~ rep + time + manage, data=dat,
-                 x.between=0, y.between=0,
-                 main="gomez.splitplot.subsample - plant height")
+\source{
+  Gomez, K.A. and Gomez, A.A.. 1984,
+  Statistical Procedures for Agricultural Research.
+  Wiley-Interscience.
+  Page 481.
 }
 
+\examples{
+\dontrun{
+
+library(agridat)
+data(gomez.splitplot.subsample)
+dat <- gomez.splitplot.subsample
+
+libs(HH)
+interaction2wt(height ~ rep + time + manage, data=dat,
+               x.between=0, y.between=0,
+               main="gomez.splitplot.subsample - plant height")
+
+
 # Management totals, Gomez table 6.8
-tapply(dat$height, dat$manage, sum)
+# tapply(dat$height, dat$manage, sum)
 
 # Gomez table 6.11 analysis of variance
 m1 <- aov(height ~ rep + manage + time + manage:time +
@@ -71,5 +75,6 @@ summary(m1)
 ##           Df Sum Sq Mean Sq F value Pr(>F)
 ## Residuals 96  167.4   1.744
 
+}
 }
 \keyword{datasets}

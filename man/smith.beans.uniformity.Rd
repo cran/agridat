@@ -20,6 +20,7 @@
 \details{
   
   Trials were conducted in California.
+  
   In 1955 plots were twice as wide and twice as long as in 1954. 
   Red Kidney is a bush variety bean, Standard Pink is a viny variety.
 
@@ -55,7 +56,7 @@
   Francis L. Smith, 1958.
   Effects of plot size, plot shape, and number of replications on the
   efficacy of bean yield trials.
-  \emph{Hilgardia}, 28, 43-63.
+  Hilgardia, 28, 43-63.
   http://doi.org/10.3733/hilg.v28n02p043  
 }
 
@@ -65,6 +66,8 @@
 
 \examples{
 \dontrun{
+
+library(agridat)
   
   data(smith.beans.uniformity)
   dat1 <- subset(smith.beans.uniformity, expt=="E1")
@@ -78,20 +81,20 @@
   cv(dat3$yield)
   cv(dat4$yield)
 
-  require("desplot")
-  desplot(yield ~ col*row, dat1, 
+  libs("desplot")
+  desplot(dat1, yield ~ col*row,
           aspect=180/45, flip=TRUE, # true aspect
           main="smith.beans.uniformity, expt 1 (true aspect)")
 
-  desplot(yield ~ col*row, dat2, 
+  desplot(dat2, yield ~ col*row,
           aspect=180/45, flip=TRUE, # true aspect
           main="smith.beans.uniformity, expt 2 (true aspect)")
 
-  desplot(yield ~ col*row, dat3, 
+  desplot(dat3, yield ~ col*row,
           aspect=450/80, flip=TRUE, # true aspect
           main="smith.beans.uniformity, expt 3 (true aspect)")
 
-  desplot(yield ~ col*row, dat4, 
+  desplot(dat4, yield ~ col*row,
           aspect=450/80, flip=TRUE, # true aspect
           main="smith.beans.uniformity expt 4, (true aspect)")
   

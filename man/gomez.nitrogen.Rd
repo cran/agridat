@@ -23,13 +23,14 @@
   Soil nitrogen content was measured at three times.  P1 = 15 days post
   transplanting. P2 = 40 days post transplanting. P3 = panicle initiation.
 
+  Used with permission of Kwanchai Gomez.
+
 }
 \source{
   Gomez, K.A. and Gomez, A.A.. 1984,
-  \emph{Statistical Procedures for Agricultural Research}.
-  Wiley-Interscience. Page 259.
-
-  Used with permission of Kwanchai Gomez.
+  Statistical Procedures for Agricultural Research.
+  Wiley-Interscience.
+  Page 259.
 }
 \references{
   R-help mailing list, 9 May 2013.
@@ -37,21 +38,23 @@
 }
 
 \examples{
+\dontrun{
+
+library(agridat)
 
 data(gomez.nitrogen)
 dat <- gomez.nitrogen
 
 # Note the depletion of nitrogen over time (stage)
-if(require(HH)){
-  interaction2wt(nitro ~ rep/trt + trt*stage, data=dat,
-                 x.between=0, y.between=0,
-                 main="gomez.nitrogen")
+libs(HH)
+interaction2wt(nitro ~ rep/trt + trt*stage, data=dat,
+               x.between=0, y.between=0,
+               main="gomez.nitrogen")
   
-  # Just the fertilizer profiles
-  with(dat, interaction.plot(stage, trt, nitro,
-                             col=1:4, lty=1:3, main="gomez.nitrogen",
-                             xlab="Soil nitrogen at three times for each treatment"))
-}
+# Just the fertilizer profiles
+with(dat, interaction.plot(stage, trt, nitro,
+                           col=1:4, lty=1:3, main="gomez.nitrogen",
+                           xlab="Soil nitrogen at three times for each treatment"))
 
 # Gomez table 6.16
 m1 <- aov(nitro ~ Error(rep/trt) + trt*stage, data=dat)
@@ -82,5 +85,6 @@ summary(m2, expand.split=FALSE,
             "rest:P"=c(5,6,7,12,13,14))
           ))
 
+}
 }
 \keyword{datasets}

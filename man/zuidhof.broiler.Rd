@@ -2,10 +2,10 @@
 \alias{zuidhof.broiler}
 \docType{data}
 \title{
-  Daily weight, feed, egg measurements for a broiler
+  Daily weight, feed, egg measurements for a broiler chicken
 }
 \description{
-  Daily weight, feed, egg measurements for a broiler
+  Daily weight, feed, egg measurements for a broiler chicken
 }
 
 \format{
@@ -23,16 +23,19 @@
   Using graphs like the one in the examples section, the authors
   discovered that a drop in body weight commonly occurs around the time
   of first egg production.
+
+  Used with permission of Martin Zuidhof.
 }
 \source{
   Martin J. Zuidhof and Robert A. Renema and Frank E. Robinson, (2008).
   Understanding Multiple, Repeated Animal Measurements with the Help of
   PROC GPLOT.  SAS Global Forum 2008, Paper 250-2008.
-
-  Used with permission of Martin Zuidhof.
+  https://support.sas.com/resources/papers/proceedings/pdfs/sgf2008/250-2008.pdf
 }
 
 \examples{
+
+library(agridat)
 
 data(zuidhof.broiler)
 dat <- zuidhof.broiler
@@ -64,5 +67,6 @@ legend(20, -40, c("Body weight", "Target BW", "Feed/day", "Gain/day", "Egg wt"),
        col=c("black","black","red","red","red"),
        lty=c(-1,1,2,1,1), lwd=c(1,1,1,2,1), pch=c(20,-1,-1,-1,-1))
 par(op)
+
 }
 \keyword{datasets}

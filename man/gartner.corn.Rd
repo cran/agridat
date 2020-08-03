@@ -54,9 +54,20 @@
 
   Used under Creative Commons BY-SA 3.0 license.
 }
+\references{
+  Suman Rakshit, Adrian Baddeley, Katia Stefanova, Karyn Reeves, Kefei
+  Chen, Zhanglong Cao, Fiona Evans, Mark Gibberd (2020).
+  Novel approach to the analysis of spatially-varying treatment effects
+  in on-farm experiments.
+  Field Crops Research, 255, 15 September 2020, 107783.
+  https://doi.org/10.1016/j.fcr.2020.107783
+
+}
 
 \examples{
+\dontrun{
 
+library(agridat)
 data(gartner.corn)
 dat <- gartner.corn
 
@@ -84,7 +95,7 @@ dat <- transform(dat, yldbin = as.numeric(cut(yield, breaks= yldbrks)))
 # Download the zip file and find the soilmu_a_aoi files.
 
 # Read shape files
-if(require(rgdal)){
+libs(rgdal)
 # shp <- readOGR("C:/x/rpack/agridat/inst/files","gartner.corn")
 shp <- readOGR(system.file(package="agridat", "files"), "gartner.corn")
 
@@ -116,14 +127,14 @@ dat$mu <- shp@data[, "MUSYM"][dat$ix]
 # Aggregate points by soil type and analyze
 tapply(dat$yield, dat$mu, mean)
 tapply(dat$yield, dat$mu, sd)
-require(lattice)
+libs(lattice)
 densityplot(~yield|mu, dat, layout=c(1,5),
             main="gartner.corn - yield density plot")
-}
 
-\dontrun{
+
+if(0){
   # Draw a 3D surface.  Clearly shows the low drainage area
-  library(rgl)
+  libs(rgl)
   dat <- transform(dat, x=long-min(long), y=lat-min(lat), z=elev-min(elev))
   clear3d()
   points3d(dat$x, dat$y, dat$z/50000,
@@ -133,5 +144,6 @@ densityplot(~yield|mu, dat, layout=c(1,5),
   rgl.close()
 }
 
+}
 }
 \keyword{datasets}

@@ -37,62 +37,59 @@
 }
 \details{
 
-As described by Hayes et al (1993), a population of 150 barley doubled
-haploid (DH) lines was developed by the Oregon State University Barley
-Breeding Program for the North American Barley Genome Mapping
-Project. The parentage of the population is Steptoe / Morex.
+  As described by Hayes et al (1993), a population of 150 barley doubled
+  haploid (DH) lines was developed by the Oregon State University Barley
+  Breeding Program for the North American Barley Genome Mapping
+  Project. The parentage of the population is Steptoe / Morex.
+  
+  Steptoe is the dominant feed barley in the northwestern U.S.
+  
+  Morex is the spring U.S. malting quality standard.
+  
+  Seed from a single head of each parent was used to create the F1, from which a
+  set of 150 lines was developed.
+  
+  Phenotypic values for the parents Steptoe and Morex are here:
+  http://wheat.pw.usda.gov/ggpages/SxM/parental_values.html
+  
+  There are 16 locations, The average across locations is in column 17.  Not all
+  traits were collected at every location.  At each location, all 150 lines were
+  included in block 1, a random subset of 50 lines was used in block 2.
+  
+  The traits are:
+  Alpha Amylase (20 Deg Units),
+  Diastatic Power (Deg Units),
+  Heading Date (Julian Days),
+  Lodging (percent),
+  Malt Extract (percent),
+  Grain Protein (percent),
+  Grain Yield (Mt/Ha).
+  
+  Phenotypic values of the 150 lines in the F1 population are here:
+  http://wheat.pw.usda.gov/ggpages/SxM/phenotypes.html
+  
+  Each trait is in a different file, in which each block of numbers
+  represents one location.
+  
+  The 223-markers Steptoe/Morex base map is here:
+  http://wheat.pw.usda.gov/ggpages/SxM/smbasev2.map
 
-Steptoe is the dominant feed barley in the northwestern U.S.
-
-Morex is the spring U.S. malting quality standard.
-
-Seed from a single head of each parent was used to create the F1, from which a
-set of 150 lines was developed.
-
-Phenotypic values for the parents Steptoe and Morex are here:
-http://wheat.pw.usda.gov/ggpages/SxM/parental_values.html
-
-There are 16 locations, The average across locations is in column 17.  Not all
-traits were collected at every location.  At each location, all 150 lines were
-included in block 1, a random subset of 50 lines was used in block 2.
-
-The traits are:
-Alpha Amylase (20 Deg Units),
-Diastatic Power (Deg Units),
-Heading Date (Julian Days),
-Lodging (percent),
-Malt Extract (percent),
-Grain Protein (percent),
-Grain Yield (Mt/Ha).
-
-Phenotypic values of the 150 lines in the F1 population are here:
-http://wheat.pw.usda.gov/ggpages/SxM/phenotypes.html
-
-Each trait is in a different file, in which each block of numbers represents
-one location.
-
-The 223-markers Steptoe/Morex base map is here:
-http://wheat.pw.usda.gov/ggpages/SxM/smbasev2.map
-.
-The data for these markers on the 150 lines is
-http://wheat.pw.usda.gov/ggpages/SxM/smbasev2.mrk
-
-These were hand-assembled (e.g. marker distances were
-cumulated to marker positions) into a .csv file which was then imported into
-R using \code{qtl::read.cross}.  The class was manually changed from
-c('bc','cross') to c('dh','cross').
-
-The marker data is coded as A = Steptoe, B = Morex, - = missing.
-
-The pedigrees for the 150 lines are found here:
-http://wheat.pw.usda.gov/ggpages/SxM/pedigrees.html
+  The data for these markers on the 150 lines is
+  http://wheat.pw.usda.gov/ggpages/SxM/smbasev2.mrk
+  
+  These were hand-assembled (e.g. marker distances were cumulated to
+  marker positions) into a .csv file which was then imported into
+  R using \code{qtl::read.cross}.  The class was manually changed from
+  c('bc','cross') to c('dh','cross').
+  
+  The marker data is coded as A = Steptoe, B = Morex, - = missing.
+  
+  The pedigrees for the 150 lines are found here:
+  http://wheat.pw.usda.gov/ggpages/SxM/pedigrees.html
 
 }
 
 \source{
-  The phenotypic, genotypic, pedigree, etc information can be found from
-  various pages found at the following site:
-
   The Steptoe x Morex Barley Mapping Population.
   Map: Version 2, August 1, 1995
   http://wheat.pw.usda.gov/ggpages/SxM.  Accessed Jan 2015.
@@ -101,7 +98,7 @@ http://wheat.pw.usda.gov/ggpages/SxM/pedigrees.html
 }
 
 \references{
-
+  
   P.M. Hayes, B.H. Liu, S.J. Knapp, F. Chen, B. Jones, T. Blake,
   J. Franckowiak, D. Rasmusson, M. Sorrells, S.E. Ullrich, and others. 1993.
   Quantitative trait locus effects and environmental interaction in a sample of
@@ -129,105 +126,67 @@ http://wheat.pw.usda.gov/ggpages/SxM/pedigrees.html
 }
 
 \examples{
-
-data(steptoe.morex.pheno)
-dat <- steptoe.morex.pheno
-
 \dontrun{
+  
+  library(agridat)
+  data(steptoe.morex.pheno)
+  dat <- steptoe.morex.pheno
+
   # Visualize GxE of traits
-  require(lattice)
+  libs(lattice)
   redblue <- colorRampPalette(c("firebrick", "lightgray", "#375997"))
   levelplot(amylase~env*gen, data=dat, col.regions=redblue,
             scales=list(x=list(rot=90)), main="amylase")
-  levelplot(diapow~env*gen, data=dat, col.regions=redblue,
-            scales=list(x=list(rot=90)), main="diapow")
-  levelplot(hddate~env*gen, data=dat, col.regions=redblue,
-            scales=list(x=list(rot=90)), main="hddate")
-  levelplot(lodging~env*gen, data=dat, col.regions=redblue,
-            scales=list(x=list(rot=90)), main="lodging")
-  levelplot(malt~env*gen, data=dat, col.regions=redblue,
-            scales=list(x=list(rot=90)), main="malt")
-  levelplot(height~env*gen, data=dat, col.regions=redblue,
-            scales=list(x=list(rot=90)), main="height")
-  levelplot(protein~env*gen, data=dat, col.regions=redblue,
-            scales=list(x=list(rot=90)), main="protein")
-  levelplot(yield~env*gen, data=dat, col.regions=redblue,
-            scales=list(x=list(rot=90)), main="yield")
-}
+  ## levelplot(diapow~env*gen, data=dat, col.regions=redblue,
+  ##           scales=list(x=list(rot=90)), main="diapow")
+  ## levelplot(hddate~env*gen, data=dat, col.regions=redblue,
+  ##           scales=list(x=list(rot=90)), main="hddate")
+  ## levelplot(lodging~env*gen, data=dat, col.regions=redblue,
+  ##           scales=list(x=list(rot=90)), main="lodging")
+  ## levelplot(malt~env*gen, data=dat, col.regions=redblue,
+  ##           scales=list(x=list(rot=90)), main="malt")
+  ## levelplot(height~env*gen, data=dat, col.regions=redblue,
+  ##           scales=list(x=list(rot=90)), main="height")
+  ## levelplot(protein~env*gen, data=dat, col.regions=redblue,
+  ##           scales=list(x=list(rot=90)), main="protein")
+  ## levelplot(yield~env*gen, data=dat, col.regions=redblue,
+  ##           scales=list(x=list(rot=90)), main="yield")
 
-# ----------------------------------------------------------------------------
 
-# Calculate avg yield for each loc as in Romagosa 1996, table 3
-t(t(round(tapply(dat$yield, dat$env, FUN=mean),2)))
-# SKo92,SKg92 means in table 3 are switched.  Who is right, him or me?
+  # Calculate avg yield for each loc as in Romagosa 1996, table 3
+  # t(t(round(tapply(dat$yield, dat$env, FUN=mean),2)))
+  # SKo92,SKg92 means in table 3 are switched.  Who is right, him or me?
 
-# ----------------------------------------------------------------------------
-
-# Draw marker map
-if(require(qtl)){
+  # Draw marker map
+  libs(qtl)
   data(steptoe.morex.geno)
   datg <- steptoe.morex.geno
   plot.map(datg, main="steptoe.morex.pheno")  # or just use plot()
-}
 
-# ----------------------------------------------------------------------------
 
-\dontrun{
   # This is a very rudimentary example.
+    
   # Fit a simple multi-environment mixed model
-  # asreml3
-  require(asreml)
+  libs(asreml)
   m1 <- asreml(yield ~ env, data=dat, random=~gen)
   
-  require(wgaim)
+  libs(wgaim)
   qtl::plotMissing(datg)
-  link.map(datg)
+  wgaim::linkMap(datg)
   # Create an interval object for wgaim
-  class(datg)[1] <- "bc"
   dati <- cross2int(datg, id="gen")
   
   # Whole genome qtl
-  assign("dat", dat, 1) # Needed for wgaim in script mode
-  q1 <- wgaim(m1, dat, dati, merge.by="gen", na.method.X='include')
-  link.map(q1, dati) # Visualize
-  out.stat(q1, dati) # outlier statistic
+  q1 <- wgaim(m1, intervalObj=dati, merge.by="gen", na.action=na.method(x="include"))
+  #wgaim::linkMap(q1, dati) # Visualize
+  outStat(q1, dati) # outlier statistic
   summary(q1, dati)  # Table of important intervals
   # Chrom Left Marker dist(cM) Right Marker dist(cM)   Size Pvalue % Var
   #     3      ABG399     52.6       BCD828     56.1  0.254  0.000  45.0
   #     5      MWG912      148      ABG387A    151.2  0.092  0.001   5.9
   #     6     ABC169B     64.8       CDO497     67.5 -0.089  0.001   5.6
-}
-
-# ----------------------------------------------------------------------------
-
-\dontrun{
-  # This is a very rudimentary example.
-
-  # Fit a simple multi-environment mixed model
-  ## require(asreml4)
-  ## m1 <- asreml(yield ~ env, data=dat, random=~gen)
   
-  ## require(wgaim)
-  ## plotMissing(datg)
-  ## link.map(datg)
-  ## # Create an interval object for wgaim
-  ## class(datg)[1] <- "bc"
-  ## dati <- cross2int(datg, id="gen")
-  
-  ## # Whole genome qtl
-  ## assign("dat", dat, 1) # Needed for wgaim in script mode
-  ## q1 <- wgaim(m1, dat, dati, merge.by="gen", na.method.X='include')
-  ## link.map(q1, dati) # Visualize
-  ## out.stat(q1, dati) # outlier statistic
-  ## summary(q1, dati)  # Table of important intervals
-  ## # Chrom Left Marker dist(cM) Right Marker dist(cM)   Size Pvalue % Var
-  ## #     3      ABG399     52.6       BCD828     56.1  0.254  0.000  45.0
-  ## #     5      MWG912      148      ABG387A    151.2  0.092  0.001   5.9
-  ## #     6     ABC169B     64.8       CDO497     67.5 -0.089  0.001   5.6
-
+}
 }
 
-# ----------------------------------------------------------------------------
-
-}
 \keyword{datasets}

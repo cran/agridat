@@ -22,24 +22,28 @@
   replicates.  The number of living insect larvae were recorded.
 
   The data show signs of non-normality, and a log transform was used by Gomez.
+
+  Used with permission of Kwanchai Gomez.
   
 }
 \source{
   Gomez, K.A. and Gomez, A.A.. 1984,
-  \emph{Statistical Procedures for Agricultural Research}.
-  Wiley-Interscience. Page 300.
-
-  Used with permission of Kwanchai Gomez.
+  Statistical Procedures for Agricultural Research.
+  Wiley-Interscience.
+  Page 300.
 }
 \references{
   None.
 }
 \examples{
+\dontrun{
+
+library(agridat)
 data(gomez.nonnormal1)
 dat <- gomez.nonnormal1
 
 # Gomez figure 7.3
-## require(dplyr)
+## libs(dplyr)
 ## dat2 <- dat %>% group_by(trt)
 ## dat2 <- summarize(dat2, mn=mean(larvae), rng=diff(range(larvae)))
 ## plot(rng ~ mn, data=dat2,
@@ -52,10 +56,11 @@ dat <- gomez.nonnormal1
 dat <- transform(dat, tlarvae=log10(larvae+1))
 
 # QQ plots for raw/transformed data
-if(require(reshape2) & require(lattice))
-  qqmath( ~ value|variable, data=melt(dat),
-         main="gomez.nonnormal1 - raw/transformed QQ plot",
-         scales=list(relation="free"))
+libs(reshape2, lattice)
+qqmath( ~ value|variable, data=melt(dat),
+       main="gomez.nonnormal1 - raw/transformed QQ plot",
+       scales=list(relation="free"))
+
 
 # Gomez table 7.16
 m1 <- lm(tlarvae ~ rep + trt, data=dat)
@@ -66,5 +71,6 @@ anova(m1)
 ## trt        8 3.9823 0.49779  5.6995 0.0004092 ***
 ## Residuals 24 2.0961 0.08734
 
+}
 }
 \keyword{datasets}

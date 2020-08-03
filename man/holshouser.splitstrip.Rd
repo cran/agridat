@@ -2,10 +2,10 @@
 \alias{holshouser.splitstrip}
 \docType{data}
 \title{
-  Split strip plot on soybeans
+  Split-strip-plot of soybeans
 }
 \description{
-  Split strip plot on soybeans
+  Split-strip-plot of soybeans
 }
 
 \format{
@@ -25,54 +25,55 @@
   Within each block, cultivars were whole plots.  Withing whole plots,
   spacing was applied in strips vertically, and population was applied
   in strips horizontally.
-}
-
-\source{
-  Schabenberger, Oliver and Francis J. Pierce. 2002.
-  \emph{Contemporary Statistical Models for the Plant and Soil
-    Sciences}. CRC Press, Boca Raton, FL.  Page 493.
 
   Used with permission of David Holshouser at Virginia Polytechnic.
 }
 
-\examples{
+\source{
+  Schabenberger, Oliver and Francis J. Pierce. 2002.
+  Contemporary Statistical Models for the Plant and Soil Sciences
+  CRC Press, Boca Raton, FL.  Page 493.
+}
 
+\examples{
+\dontrun{
+  
+library(agridat)
 data(holshouser.splitstrip)
 dat <- holshouser.splitstrip
 dat$spacing <- factor(dat$spacing)
 dat$pop <- factor(dat$pop)
 
 # Experiment layout and field trends
-if(require(desplot)){
-  desplot(yield ~ col*row, data=dat,
+  libs(desplot)
+  desplot(dat, yield ~ col*row,
           out1=block, # unknown aspect
           main="holshouser.splitstrip")
-  desplot(spacing ~ col*row, data=dat,
+  desplot(dat, spacing ~ col*row,
           out1=block, out2=cultivar, # unknown aspect
           col=cultivar, text=pop, cex=.8, shorten='none', col.regions=c('wheat','white'),
           main="holshouser.splitstrip experiment design")
-}
 
 
 # Overall main effects and interactions
-if(require(HH)){
+  libs(HH)
   interaction2wt(yield~cultivar*spacing*pop, dat,
                  x.between=0, y.between=0,
                  main="holshouser.splitstrip")
-}
 
-## Schabenberger's SAS model, page 497
-## proc mixed data=splitstripplot;
-##   class block cultivar pop spacing;
-##   model yield = cultivar spacing spacing*cultivar pop pop*cultivar
-##                 spacing*pop spacing*pop*cultivar / ddfm=satterth;
-##   random block block*cultivar block*cultivar*spacing block*cultivar*pop;
-## run;
 
-\dontrun{
+  ## Schabenberger's SAS model, page 497
+  ## proc mixed data=splitstripplot;
+  ##   class block cultivar pop spacing;
+  ##   model yield = cultivar spacing spacing*cultivar pop pop*cultivar
+  ##                 spacing*pop spacing*pop*cultivar / ddfm=satterth;
+  ##   random block block*cultivar block*cultivar*spacing block*cultivar*pop;
+  ## run;
+
+  
   ## Now lme4. This design has five error terms--four are explicitly given.
-  require(lme4)
-  require(lucid)
+  libs(lme4)
+  libs(lucid)
   m1 <- lmer(yield ~ cultivar * spacing * pop +
                (1|block) + (1|block:cultivar) + (1|block:cultivar:spacing) +
                (1|block:cultivar:pop), data=dat)
@@ -85,6 +86,5 @@ if(require(HH)){
   ##               Residual        <NA> <NA> 3.928  1.982
   
 }
-
 }
 \keyword{datasets}

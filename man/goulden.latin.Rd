@@ -31,23 +31,27 @@
 \source{
   Cyrus H. Goulden (1952).
   \emph{Methods of Statistical Analysis}, 2nd ed. Page 216.
-  http://krishikosh.egranth.ac.in/handle/1/2034118
 }
 
 \examples{
+\dontrun{
 
+library(agridat)
+library(agridat)
 data(goulden.latin)
 dat <- goulden.latin
 
-if(require(desplot)){
-  desplot(yield ~ col*row, dat,
-          text=trt, cex=1, # aspect unknown
-          main="goulden.latin")
-}
+
+libs(desplot)
+desplot(dat, yield ~ col*row,
+        text=trt, cex=1, # aspect unknown
+        main="goulden.latin")
+
 
 # Matches Goulden.
 m1 <- lm(yield~ trt + factor(row) + factor(col), data=dat)
 anova(m1)
 
+}
 }
 \keyword{datasets}

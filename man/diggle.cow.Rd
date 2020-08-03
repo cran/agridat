@@ -60,59 +60,61 @@ Bodyweight of cows in a 2-by-2 factorial experiment
 }
 
 \examples{
+\dontrun{
 
-data(diggle.cow)
-dat <- diggle.cow
-
-# Figure 1 of Verbyla 1999
-require(lattice)
-if(require(latticeExtra)){
+  library(agridat)
+  data(diggle.cow)
+  dat <- diggle.cow
+  
+  # Figure 1 of Verbyla 1999
+  libs(latticeExtra)
   useOuterStrips(xyplot(weight ~ day|iron*infect, dat, group=animal,
                         type='b', cex=.5, 
                         main="diggle.cow"))
-}
 
-# Scaling
-dat <- transform(dat, time = (day-122)/10)
+  # Scaling
+  dat <- transform(dat, time = (day-122)/10)
 
-# ----------------------------------------------------------------------------
 
-\dontrun{
-  # asreml3
-  require(asreml)
+  libs(asreml)
+  if( utils::packageVersion("asreml") < "4") {
+    # asreml3
+    
   
-  # Smooth for each animal.  No treatment effects. Similar to SAS Output 38.6.9
+    # Smooth for each animal.  No treatment effects. Similar to SAS Output 38.6.9
+
+    m1 <- asreml(weight ~ 1 + lin(time) + animal + animal:lin(time),
+                 data=dat,
+                 random = ~ animal:spl(time))
+    p1 <- predict(m1, data=dat, classify="animal:time",
+                  predictpoints=list(time=seq(0,65.9, length=50)))
+    p1 <- p1$pred$pval
+    p1 <- merge(dat, p1, all=TRUE) # to get iron/infect merged in
+    foo1 <- xyplot(weight ~ day|iron*infect, dat, group=animal)
+    foo2 <- xyplot(predicted.value ~ day|iron*infect, p1,
+                   type='l', group=animal)
+    print(foo1+foo2)
+
+  }
+
+  libs(asreml)
+  if( utils::packageVersion("asreml") > "4") {
+    # asreml4
+  ## libs(latticeExtra)
+  
+  ## # Smooth for each animal.  No treatment effects. Similar to SAS Output 38.6.9
 
   m1 <- asreml(weight ~ 1 + lin(time) + animal + animal:lin(time), data=dat,
                random = ~ animal:spl(time))
   p1 <- predict(m1, data=dat, classify="animal:time",
-                predictpoints=list(time=seq(0,65.9, length=50)))
-  p1 <- p1$pred$pval
+                design.points=list(time=seq(0,65.9, length=50)))
+  p1 <- p1$pvals
   p1 <- merge(dat, p1, all=TRUE) # to get iron/infect merged in
   foo1 <- xyplot(weight ~ day|iron*infect, dat, group=animal)
   foo2 <- xyplot(predicted.value ~ day|iron*infect, p1, type='l', group=animal)
   print(foo1+foo2)
+  }
 
 }
-
-# ----------------------------------------------------------------------------
-
-\dontrun{
-  ## require(asreml4)
-  ## require(latticeExtra)
-  
-  ## # Smooth for each animal.  No treatment effects. Similar to SAS Output 38.6.9
-
-  ## m1 <- asreml(weight ~ 1 + lin(time) + animal + animal:lin(time), data=dat,
-  ##              random = ~ animal:spl(time))
-  ## p1 <- predict(m1, data=dat, classify="animal:time",
-  ##               design.points=list(time=seq(0,65.9, length=50)))
-  ## p1 <- p1$pvals
-  ## p1 <- merge(dat, p1, all=TRUE) # to get iron/infect merged in
-  ## foo1 <- xyplot(weight ~ day|iron*infect, dat, group=animal)
-  ## foo2 <- xyplot(predicted.value ~ day|iron*infect, p1, type='l', group=animal)
-  ## print(foo1+foo2)
-}
-
 }
 \keyword{datasets}

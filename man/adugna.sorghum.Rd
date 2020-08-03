@@ -33,23 +33,25 @@
   Trial 1 was 14 hybrids and one open-pollinated variety.
 
   Trial 2 was 12 experimental lines.
+
+  Used with permission of Asfaw Adugna.
 }
 \source{
   Asfaw Adugna (2008).
   Assessment of yield stability in sorghum using
   univariate and multivariate statistical approaches.
-  \emph{Hereditas}, 145, 28--37.  
+  Hereditas, 145, 28--37.  
   http://doi.org/10.1111/j.0018-0661.2008.2023.x
-
-  Used with permission of Asfaw Adugna.
 }
 
 \examples{
+\dontrun{
 
+library(agridat)
 data(adugna.sorghum)
 dat <- adugna.sorghum
 
-require(lattice)
+libs(lattice)
 redblue <- colorRampPalette(c("firebrick", "lightgray", "#375997"))
 levelplot(yield ~ env*gen, data=dat, main="adugna.sorghum gxe heatmap",
           col.regions=redblue)
@@ -59,7 +61,7 @@ tapply(dat$yield, dat$gen, mean)
 
 # CV for each genotype.  G1..G15 match, except for G2.
 # The table in Adugna scrambles the means for G16..G28
-if(require(reshape2)){
+libs(reshape2)
 mat <- acast(dat, gen~env,  value.var='yield')
 round(sqrt(apply(mat, 1, var, na.rm=TRUE)) / apply(mat, 1, mean, na.rm=TRUE) * 100,2)
 

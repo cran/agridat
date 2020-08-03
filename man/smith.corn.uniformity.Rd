@@ -100,33 +100,35 @@
 
 \source{
   Smith, L.H. 1910. Plot arrangement for variety experiments with corn.
-  \emph{Agronomy Journal}, 1, 84--89. Table 1.
+  Agronomy Journal, 1, 84--89. Table 1.
   http://books.google.com/books?id=mQT0AAAAMAAJ&pg=PA84
 
   Harris, J.A. 1920. Practical universality of field heterogeneity as a factor
-  influencing plot yields. \emph{Journal of Agricultural Research},
-  19, 279--314. Page 296-297.
+  influencing plot yields.
+  Journal of Agricultural Research, 19, 279--314. Page 296-297.
   http://books.google.com/books?id=jyEXAAAAYAAJ&pg=PA279
 }
 
 \examples{
 \dontrun{
 
+library(agridat)
+
 data(smith.corn.uniformity)
 dat <- smith.corn.uniformity
 
   dat = transform(dat, year=factor(year))
-  require(desplot)
-  desplot(yield~col*row|year, dat,
+  libs(desplot)
+  desplot(dat, yield~col*row|year,
           layout=c(2,2), aspect=1,
           main="smith.corn.uniformity: yield across years 1895-1987")
 
   ## # Outliers are obvious
-  ## require(lattice)
+  ## libs(lattice)
   ## xyplot(yield~row|factor(col), dat, groups=year,
   ##        auto.key=list(columns=3), main="smith.corn.uniformity")
 
-  require(rgl)
+  libs(rgl)
   # A few odd pairs of outliers in column 6
   # black/gray dots very close to each other
   plot3d(dat$col, dat$row, dat$yield, col=dat$year,

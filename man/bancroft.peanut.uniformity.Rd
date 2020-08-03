@@ -36,7 +36,7 @@
 }
 \source{
   Bancroft, T. A. et a1., (1948).
-  "Size and Shape of Plots and Distribution of Plot Yield for Field Experiments with Peanuts."
+  Size and Shape of Plots and Distribution of Plot Yield for Field Experiments with Peanuts.
   Alabama Agricultural Experiment Station Progress Report, sec. 39.
   Table 4, page 6.
   https://aurora.auburn.edu/bitstream/handle/11200/1345/0477PROG.pdf;sequence=1
@@ -46,22 +46,23 @@
 }
 \examples{
 \dontrun{
+
+library(agridat)
+data(bancroft.peanut.uniformity)
+dat <- bancroft.peanut.uniformity
   
-  data(bancroft.peanut.uniformity)
-  dat <- bancroft.peanut.uniformity
+# match means Bancroft page 3
+## dat %>% group_by(block) %>% summarize(mn=mean(yield))
+## # A tibble: 2 x 2
+##   block    mn
+##   <chr> <dbl>
+## 1 B1     2.46
+## 2 B2     2.05
   
-  # match means Bancroft page 3
-  ## dat %>% group_by(block) %>% summarize(mn=mean(yield))
-  ## # A tibble: 2 x 2
-  ##   block    mn
-  ##   <chr> <dbl>
-  ## 1 B1     2.46
-  ## 2 B2     2.05
-  
-  require(desplot)
-  desplot(yield ~ col*row|block, dat,
-          flip=TRUE, aspect=(18*3)/(6*16.66), # true aspect
-          main="bancroft.peanut.uniformity")
+libs(desplot)
+desplot(dat, yield ~ col*row|block,
+        flip=TRUE, aspect=(18*3)/(6*16.66), # true aspect
+        main="bancroft.peanut.uniformity")
 
 }  
 }

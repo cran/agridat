@@ -2,10 +2,10 @@
 \alias{ryder.groundnut}
 \docType{data}
 \title{
-  Wet and dry groundnut yields
+  RCB experiment of groundut, wet and dry yields
 }
 \description{
-    Wet and dry groundnut yields with a possible data error.
+  RCB experiment of groundut, wet and dry yields
 }
 
 \format{
@@ -34,7 +34,9 @@
 }
 
 \examples{
-
+\dontrun{
+  
+library(agridat)
 data(ryder.groundnut)
 dat <- ryder.groundnut
 
@@ -45,24 +47,25 @@ dat$res1 <- resid(m1)
 # Table 3 of Ryder.  Scale up from kg/plot to kg/ha
 round(dat$res1 * 596.6,0)
 
-# Visually.  Note largest positive/negative residuals are adjacent
-if(require(desplot)){
-  desplot(res1 ~ col + row, dat,
+  # Visually.  Note largest positive/negative residuals are adjacent
+  libs(desplot)
+  desplot(dat, res1 ~ col + row,
           text=gen, # aspect unknown
           main="ryder.groundnut - residuals")
-}
 
-\dontrun{
-  require(desplot)
+
+if(0){
+  libs(desplot)
   # Swap the dry yields for two plots and re-analyze
   dat[dat$block=="B3" & dat$gen=="A", "dry"] <- 2.8
   dat[dat$block=="B3" & dat$gen=="B", "dry"] <- 1.4
   m2 <- lm(dry~block+gen, dat)
   dat$res2 <- resid(m2)
-  desplot(res2 ~ col+row, dat,
+  desplot(dat, res2 ~ col+row,
           # aspect unknown
           text=gen, main="ryder.groundnut")
 }
 
+}
 }
 \keyword{datasets}

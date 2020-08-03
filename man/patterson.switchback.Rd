@@ -2,10 +2,10 @@
 \alias{patterson.switchback}
 \docType{data}
 \title{
-  A switchback trial in dairy cattle
+  Switchback experiment on dairy cattle, milk yield for 4 treatments
 }
 \description{
-  A switchback trial in dairy cattle
+  Switchback experiment on dairy cattle, milk yield for 4 treatments
 }
 \usage{data("patterson.switchback")}
 \format{
@@ -30,7 +30,7 @@
 }
 
 \source{
-  Patterson, HD and Lucas, HL. 1962.
+  Patterson, H.D. and Lucas, H.L. 1962.
   Change-over designs.
   \emph{Technical Bulletin 147}, North Carolina Agricultural Experimental Station.
 }
@@ -39,13 +39,14 @@
   Lowry, S.R. 1989.
   Statistical design and analysis of dairy nutrition experiments to
   improve detection of milk response differences.
-  \emph{Proceedings of the Conference on Applied Statistics in
-    Agriculture}, 1989.
+  \emph{Proceedings of the Conference on Applied Statistics in Agriculture}, 1989.
   http://newprairiepress.org/agstatconference/1989/proceedings/7/
 }
 
 \examples{
+\dontrun{
 
+library(agridat)
 data(patterson.switchback)
 dat <- patterson.switchback
 
@@ -55,14 +56,14 @@ datp2 <- subset(dat, period=="P2")
 dat$p1trt <- datp1$trt[match(dat$cow, datp1$cow)]
 dat$p2trt <- datp2$trt[match(dat$cow, datp2$cow)]
                      
-if(require(latticeExtra)){
-  useOuterStrips(xyplot(y ~ period|p1trt*p2trt, data=dat,
-                        group=cow, type=c('l','r'),
-                        auto.key=list(columns=5),
-                        main="patterson.switchback",
-                        xlab="First/Third period treatment", 
-                        ylab="Second period treatment"))
-}
+libs(latticeExtra)
+useOuterStrips(xyplot(y ~ period|p1trt*p2trt, data=dat,
+                      group=cow, type=c('l','r'),
+                      auto.key=list(columns=5),
+                      main="patterson.switchback",
+                      xlab="First/Third period treatment", 
+                      ylab="Second period treatment"))
+
 
 # Create a numeric period variable
 dat$per <- as.numeric(substring(dat$period,2))
@@ -78,5 +79,6 @@ anova(m1) # Match table 2 of Lowry
 ## trt        3   58.3  19.418  3.5237 0.0685092 .
 ## Residuals  8   44.1   5.511
 
+}
 }
 \keyword{datasets}

@@ -33,20 +33,22 @@
 \source{
   Li, HW and Meng, CJ and Liu, TN. 1936.
   Field Results in a Millet Breeding Experiment.
-  \emph{Agronomy Journal}, 28, 1-15.  Table 1.
+  Agronomy Journal, 28, 1-15.  Table 1.
   http://doi.org/10.2134/agronj1936.00021962002800010001x
 }
 
 \examples{
 \dontrun{
+
+library(agridat)
   
   data(li.millet.uniformity)
   dat <- li.millet.uniformity
 
   mean(dat$yield) # matches Li et al.
   
-  require(desplot)
-  desplot(yield~col*row, dat,
+  libs(desplot)
+  desplot(dat, yield~col*row,
           aspect=100/100, # true aspect
           main="li.millet.uniformity")
   

@@ -64,28 +64,29 @@ data("aastveit.barley.height")
   sowing to harvest.  Because the plant stop growing about 20 days after
   ear emergence, only the first 6 periods are included here.
 
+  Used with permission of Harald Martens.
 }
 
 \source{
   Aastveit, A. H. and Martens, H. (1986).
   ANOVA interactions interpreted by partial least squares regression.
-  \emph{Biometrics}, 42, 829--844.
+  Biometrics, 42, 829--844.
   http://doi.org/10.2307/2530697
-
-  Used with permission of Harald Martens.
 }
 \references{
   J. Chadoeuf and J. B. Denis (1991).
   Asymptotic variances for the multiplicative interaction model.
-  \emph{J. App. Stat.} 18, 331-353.
+  J. App. Stat., 18, 331-353.
   http://doi.org/10.1080/02664769100000032
 }
 \examples{
+\dontrun{
 
+library(agridat)
 data("aastveit.barley.covs")
 data("aastveit.barley.height")
 
-if(require(reshape2) & require(pls)){
+libs(reshape2, pls)
   
   # First, PCA of each matrix separately
 
@@ -104,9 +105,9 @@ if(require(reshape2) & require(pls)){
   U$year <- NULL
   U <- scale(U) # Standardized covariates
   sv <- svd(U)$d
-  round(100 * sv^2/sum(sv^2),1) # Proportion of variance on each axis
+  # Proportion of variance on each axis
+  round(100 * sv^2/sum(sv^2),1)
 
-  \dontrun{
   # Now, PLS relating the two matrices
   m1 <- plsr(Z~U)
   loadings(m1)
@@ -114,23 +115,17 @@ if(require(reshape2) & require(pls)){
   biplot(m1, which="y", var.axes=TRUE)
   # Fig 2b, 2c (not rotated)
   biplot(m1, which="x", var.axes=TRUE)
-  }
 
-}
-
-\dontrun{
   # Adapted from section 7.4 of Turner & Firth,
   # "Generalized nonlinear models in R: An overview of the gnm package"
   # who in turn reproduce the analysis of Chadoeuf & Denis (1991),
   # "Asymptotic variances for the multiplicative interaction model"
 
-  require(agridat)
-  require(gnm)
-  data("aastveit.barley.height")
+  libs(gnm)
   dath <- aastveit.barley.height
   dath$year = factor(dath$year)
 
-  set.seed(1)
+  set.seed(42)
   m2 <- gnm(height ~ year + gen + Mult(year, gen), data = dath)
   # Turner: "To obtain parameterization of equation 1, in which sig_k is the
   # singular value for component k, the row and column scores must be constrained
@@ -152,6 +147,5 @@ if(require(reshape2) & require(pls)){
   round(cbind(delta[,1], delta[, 1] +
                            outer(delta[, 2], c(-1.96, 1.96))) ,3)
 }
-
 }
 

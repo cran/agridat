@@ -30,13 +30,15 @@
 \source{
   Mercer, WB and Hall, AD, 1911.
   The experimental error of field trials
-  \emph{The Journal of Agricultural Science}, 4, 107-132. Table 1.
+  The Journal of Agricultural Science, 4, 107-132. Table 1.
   http::/doi.org/10.1017/S002185960000160X
 
   R. A. Fisher. \emph{Statistical Methods for Research Workers}.
 }
 
 \examples{
+
+library(agridat)
 
 data(fisher.latin)
 dat <- fisher.latin

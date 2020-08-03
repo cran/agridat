@@ -50,10 +50,13 @@
   
 }
 \examples{
-data(fisher.barley)
-dat <- fisher.barley
+\dontrun{
 
-if(require(dplyr) & require(lattice)) {
+  library(agridat)
+  data(fisher.barley)
+  dat <- fisher.barley
+
+  libs(dplyr,lattice)
   # Yates 1938 figure 1. Regression on env mean
   # Sum years within loc
   dat2 <- aggregate(yield ~ gen + env, data=dat, FUN=sum)
@@ -64,48 +67,48 @@ if(require(dplyr) & require(lattice)) {
          main="fisher.barley - stability regression",
          xlab="Environment total", ylab="Variety mean",
          auto.key=list(columns=3))
-}
 
-# ----------------------------------------------------------------------------
 
-\dontrun{
+  if(0){
+    # calculate stability according to the sum-of-squares approach used by
+    # Shukla (1972), eqn 11. match to Shukla, Table 4, M.S. column
+    # also matches fernandez, table 3, stabvar column
+    libs(dplyr)
+    dat2 <- dat
+    dat2 <- group_by(dat2, gen,env)
+    dat2 <- summarize(dat2, yield=sum(yield)) # means across years
+    dat2 <- group_by(dat2, env)
+    dat2 <- mutate(dat2, envmn=mean(yield)) # env means
+    dat2 <- group_by(dat2, gen)
+    dat2 <- mutate(dat2, genmn=mean(yield)) # gen means
+    dat2 <- ungroup(dat2)
+    dat2 <- mutate(dat2, grandmn=mean(yield)) # grand mean
+    # correction factor overall
+    dat2 <- mutate(dat2, cf = sum((yield - genmn - envmn + grandmn)^2))
+    t=5; s=6 # t genotypes, s environments
+    dat2 <- group_by(dat2, gen)
+    dat2 <- mutate(dat2, ss=sum((yield-genmn-envmn+grandmn)^2))
+    # divide by 6 to scale down to plot-level
+    dat2 <- mutate(dat2, sig2i = 1/((s-1)*(t-1)*(t-2)) * (t*(t-1)*ss-cf)/6)
+    dat2[!duplicated(dat2$gen),c('gen','sig2i')]    
+    ##       <chr>     <dbl>
+    ## 1 Manchuria  25.87912
+    ## 2  Peatland  75.68001
+    ## 3  Svansota  19.59984
+    ## 4     Trebi 225.52866
+    ## 5    Velvet  22.73051
+  }
 
-  # calculate stability according to the sum-of-squares approach used by
-  # Shukla (1972), eqn 11. match to Shukla, Table 4, M.S. column
-  # also matches fernandez, table 3, stabvar column
-  require(dplyr)
-  dat2 <- dat
-  dat2 <- group_by(dat2, gen,env)
-  dat2 <- summarize(dat2, yield=sum(yield)) # means across years
-  dat2 <- group_by(dat2, env)
-  dat2 <- mutate(dat2, envmn=mean(yield)) # env means
-  dat2 <- group_by(dat2, gen)
-  dat2 <- mutate(dat2, genmn=mean(yield)) # gen means
-  dat2 <- ungroup(dat2)
-  dat2 <- mutate(dat2, grandmn=mean(yield)) # grand mean
-  # correction factor overall
-  dat2 <- mutate(dat2, cf = sum((yield - genmn - envmn + grandmn)^2))
-  t=5; s=6 # t genotypes, s environments
-  dat2 <- group_by(dat2, gen)
-  dat2 <- mutate(dat2, ss=sum((yield-genmn-envmn+grandmn)^2))
-  # divide by 6 to scale down to plot-level
-  dat2 <- mutate(dat2, sig2i = 1/((s-1)*(t-1)*(t-2)) * (t*(t-1)*ss-cf)/6)
-  dat2[!duplicated(dat2$gen),c('gen','sig2i')]    
-  ##       <chr>     <dbl>
-  ## 1 Manchuria  25.87912
-  ## 2  Peatland  75.68001
-  ## 3  Svansota  19.59984
-  ## 4     Trebi 225.52866
-  ## 5    Velvet  22.73051
-}
 
-# ----------------------------------------------------------------------------
+  libs(asreml,lucid)
+  if( utils::packageVersion("asreml") < "4") {
+    # asreml3
+    # mixed model approach gives similar results (but not identical)
 
-\dontrun{
-  # mixed model approach gives similar results (but not identical)
-  # asreml3
-  library(asreml)
-  dat2 <- dat2[order(dat2$gen),]
+    dat2 <- dat
+    dat2 <- dplyr::group_by(dat2, gen,env)
+    dat2 <- dplyr::summarize(dat2, yield=sum(yield)) # means across years
+    dat2 <- dat2[order(dat2$gen),]
 
   # G-side
   m1g <- asreml(yield ~ gen, data=dat2,
@@ -136,5 +139,6 @@ if(require(dplyr) & require(lattice)) {
   
 }
 
+}
 }
 \keyword{datasets}

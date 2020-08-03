@@ -2,7 +2,7 @@
 \alias{gomez.splitsplit}
 \docType{data}
 \title{
-Rice split-split plot experiment
+  Split-split-plot experiment of rice
 }
 
 \description{
@@ -23,14 +23,15 @@ Rice split-split plot experiment
     \item{\code{col}}{column position in the field}
     \item{\code{row}}{row position in the field}
   }
+
+  Used with permission of Kwanchai Gomez.
 }
 
 \source{
   Gomez, K.A. and Gomez, A.A.. 1984,
-  \emph{Statistical Procedures for Agricultural Research}.
-  Wiley-Interscience. Page 143.
-
-  Used with permission of Kwanchai Gomez.
+  Statistical Procedures for Agricultural Research.
+  Wiley-Interscience.
+  Page 143.
 }
 \references{
   H. P. Piepho, R. N. Edmondson. (2018).
@@ -41,22 +42,25 @@ Rice split-split plot experiment
 }
 
 \examples{
+\dontrun{
+
+library(agridat)
 
 data(gomez.splitsplit)
 dat <- gomez.splitsplit
 dat$nf <- factor(dat$nitro)
 
-if(require(desplot)){
-  desplot(nf ~ col*row, dat,
-          # aspect unknown
-          out1=rep, col=management, num=gen, cex=1,
-          main="gomez.splitsplit")
-  desplot(yield ~ col*row, dat,
-          # aspect unknown
-          out1=rep, main="gomez.splitsplit")
-}
+libs(desplot)
+desplot(dat, nf ~ col*row,
+        # aspect unknown
+        out1=rep, col=management, num=gen, cex=1,
+        main="gomez.splitsplit")
+desplot(dat, yield ~ col*row,
+        # aspect unknown
+        out1=rep, main="gomez.splitsplit")
 
-if(require(HH)){
+
+libs(HH)
 position(dat$nf) <- c(0,50,80,110,140)
 interaction2wt(yield~rep+nf+management+gen, data=dat,
                main="gomez.splitsplit",
@@ -64,12 +68,13 @@ interaction2wt(yield~rep+nf+management+gen, data=dat,
                relation=list(x="free", y="same"),
                rot=c(90,0), xlab="",
                par.strip.text.input=list(cex=.7))
-}
+
 
 # AOV.  Gomez page 144-153
 m0 <- aov(yield~ nf * management * gen + Error(rep/nf/management),
          data=dat)
 summary(m0) # Similar to Gomez, p. 153.
 
+}
 }
 

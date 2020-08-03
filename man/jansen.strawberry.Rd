@@ -2,10 +2,10 @@
 \alias{jansen.strawberry}
 \docType{data}
 \title{
-  Ordered disease ratings on strawberry crosses.
+  Ordered disease ratings of strawberry crosses.
 }
 \description{
-  Ordered disease ratings on strawberry crosses.
+  Ordered disease ratings of strawberry crosses.
 }
 \usage{data("jansen.strawberry")}
 \format{
@@ -34,17 +34,20 @@
   plants.  Each plant was assessed for damage from fungus and rated as
   belonging to category C1, C2, or C3 (increasing damage).
 
+
+  Used with permission of Hans Jansen.
 }
 \source{
   J. Jansen, 1990.
   On the statistical analysis of ordinal data when extravariation is present.
-  \emph{Applied Statistics}, 39, 75-84, Table 1.
+  Applied Statistics, 39, 75-84, Table 1.
   http://doi.org/10.2307/2347813
-
-  Used with permission of Hans Jansen.
 }
 
 \examples{
+\dontrun{
+
+library(agridat)
 
 data(jansen.strawberry)
 dat <- jansen.strawberry
@@ -58,11 +61,11 @@ mosaicplot(dtab,
            main="jansen.strawberry disease ratings",
            xlab="Male parent", ylab="Female parent")
 
-if(require(MASS) & require(vcd)){
-  # Friendly suggests a minimal model is [MF][C]
-  # m1 <- loglm( ~ 1*2 + 3, dtab) # Fails, only with devtools
-  # mosaic(m1)
-}
+libs(MASS,vcd)
+# Friendly suggests a minimal model is [MF][C]
+# m1 <- loglm( ~ 1*2 + 3, dtab) # Fails, only with devtools
+# mosaic(m1)
 
+}
 }
 \keyword{datasets}

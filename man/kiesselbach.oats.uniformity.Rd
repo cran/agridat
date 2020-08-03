@@ -39,9 +39,7 @@
   Studies Concerning the Elimination of Experimental Error in Comparative Crop Tests.
   University of Nebraska Agricultural Experiment Station Research Bulletin No. 13.
   Pages 51-72.
-
   https://archive.org/details/StudiesConcerningTheEliminationOfExperimentalErrorInComparativeCrop
-
   http://digitalcommons.unl.edu/extensionhist/430/
 }
 \references{
@@ -49,14 +47,16 @@
 }
 \examples{
 \dontrun{
+
+library(agridat)
   
   data(kiesselbach.oats.uniformity)
   dat <- kiesselbach.oats.uniformity
   
   range(dat$yield) # 56.7 92.8 match Kiesselbach p 64.
 
-  require(desplot)
-  desplot(yield ~ col*row, dat,
+  libs(desplot)
+  desplot(dat, yield ~ col*row,
           tick=TRUE, flip=TRUE, aspect=792/469, # true aspect
           main="kiesselbach.oats.uniformity")
   

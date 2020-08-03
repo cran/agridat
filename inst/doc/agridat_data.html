@@ -1,27 +1,226 @@
 <!DOCTYPE html>
 
-<html xmlns="http://www.w3.org/1999/xhtml">
+<html>
 
 <head>
 
 <meta charset="utf-8" />
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <meta name="generator" content="pandoc" />
+<meta http-equiv="X-UA-Compatible" content="IE=EDGE" />
 
-<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="viewport" content="width=device-width, initial-scale=1" />
 
 <meta name="author" content="Kevin Wright" />
 
-<meta name="date" content="2018-07-06" />
+<meta name="date" content="2020-07-30" />
 
 <title>Additional sources of agricultural data</title>
 
+<script>// Hide empty <a> tag within highlighted CodeBlock for screen reader accessibility (see https://github.com/jgm/pandoc/issues/6352#issuecomment-626106786) -->
+// v0.0.1
+// Written by JooYoung Seo (jooyoung@psu.edu) and Atsushi Yasumoto on June 1st, 2020.
+
+document.addEventListener('DOMContentLoaded', function() {
+  const codeList = document.getElementsByClassName("sourceCode");
+  for (var i = 0; i < codeList.length; i++) {
+    var linkList = codeList[i].getElementsByTagName('a');
+    for (var j = 0; j < linkList.length; j++) {
+      if (linkList[j].innerHTML === "") {
+        linkList[j].setAttribute('aria-hidden', 'true');
+      }
+    }
+  }
+});
+</script>
 
 
 
 
 
-<link href="data:text/css;charset=utf-8,body%20%7B%0Abackground%2Dcolor%3A%20%23fff%3B%0Amargin%3A%201em%20auto%3B%0Amax%2Dwidth%3A%20700px%3B%0Aoverflow%3A%20visible%3B%0Apadding%2Dleft%3A%202em%3B%0Apadding%2Dright%3A%202em%3B%0Afont%2Dfamily%3A%20%22Open%20Sans%22%2C%20%22Helvetica%20Neue%22%2C%20Helvetica%2C%20Arial%2C%20sans%2Dserif%3B%0Afont%2Dsize%3A%2014px%3B%0Aline%2Dheight%3A%201%2E35%3B%0A%7D%0A%23header%20%7B%0Atext%2Dalign%3A%20center%3B%0A%7D%0A%23TOC%20%7B%0Aclear%3A%20both%3B%0Amargin%3A%200%200%2010px%2010px%3B%0Apadding%3A%204px%3B%0Awidth%3A%20400px%3B%0Aborder%3A%201px%20solid%20%23CCCCCC%3B%0Aborder%2Dradius%3A%205px%3B%0Abackground%2Dcolor%3A%20%23f6f6f6%3B%0Afont%2Dsize%3A%2013px%3B%0Aline%2Dheight%3A%201%2E3%3B%0A%7D%0A%23TOC%20%2Etoctitle%20%7B%0Afont%2Dweight%3A%20bold%3B%0Afont%2Dsize%3A%2015px%3B%0Amargin%2Dleft%3A%205px%3B%0A%7D%0A%23TOC%20ul%20%7B%0Apadding%2Dleft%3A%2040px%3B%0Amargin%2Dleft%3A%20%2D1%2E5em%3B%0Amargin%2Dtop%3A%205px%3B%0Amargin%2Dbottom%3A%205px%3B%0A%7D%0A%23TOC%20ul%20ul%20%7B%0Amargin%2Dleft%3A%20%2D2em%3B%0A%7D%0A%23TOC%20li%20%7B%0Aline%2Dheight%3A%2016px%3B%0A%7D%0Atable%20%7B%0Amargin%3A%201em%20auto%3B%0Aborder%2Dwidth%3A%201px%3B%0Aborder%2Dcolor%3A%20%23DDDDDD%3B%0Aborder%2Dstyle%3A%20outset%3B%0Aborder%2Dcollapse%3A%20collapse%3B%0A%7D%0Atable%20th%20%7B%0Aborder%2Dwidth%3A%202px%3B%0Apadding%3A%205px%3B%0Aborder%2Dstyle%3A%20inset%3B%0A%7D%0Atable%20td%20%7B%0Aborder%2Dwidth%3A%201px%3B%0Aborder%2Dstyle%3A%20inset%3B%0Aline%2Dheight%3A%2018px%3B%0Apadding%3A%205px%205px%3B%0A%7D%0Atable%2C%20table%20th%2C%20table%20td%20%7B%0Aborder%2Dleft%2Dstyle%3A%20none%3B%0Aborder%2Dright%2Dstyle%3A%20none%3B%0A%7D%0Atable%20thead%2C%20table%20tr%2Eeven%20%7B%0Abackground%2Dcolor%3A%20%23f7f7f7%3B%0A%7D%0Ap%20%7B%0Amargin%3A%200%2E5em%200%3B%0A%7D%0Ablockquote%20%7B%0Abackground%2Dcolor%3A%20%23f6f6f6%3B%0Apadding%3A%200%2E25em%200%2E75em%3B%0A%7D%0Ahr%20%7B%0Aborder%2Dstyle%3A%20solid%3B%0Aborder%3A%20none%3B%0Aborder%2Dtop%3A%201px%20solid%20%23777%3B%0Amargin%3A%2028px%200%3B%0A%7D%0Adl%20%7B%0Amargin%2Dleft%3A%200%3B%0A%7D%0Adl%20dd%20%7B%0Amargin%2Dbottom%3A%2013px%3B%0Amargin%2Dleft%3A%2013px%3B%0A%7D%0Adl%20dt%20%7B%0Afont%2Dweight%3A%20bold%3B%0A%7D%0Aul%20%7B%0Amargin%2Dtop%3A%200%3B%0A%7D%0Aul%20li%20%7B%0Alist%2Dstyle%3A%20circle%20outside%3B%0A%7D%0Aul%20ul%20%7B%0Amargin%2Dbottom%3A%200%3B%0A%7D%0Apre%2C%20code%20%7B%0Abackground%2Dcolor%3A%20%23f7f7f7%3B%0Aborder%2Dradius%3A%203px%3B%0Acolor%3A%20%23333%3B%0Awhite%2Dspace%3A%20pre%2Dwrap%3B%20%0A%7D%0Apre%20%7B%0Aborder%2Dradius%3A%203px%3B%0Amargin%3A%205px%200px%2010px%200px%3B%0Apadding%3A%2010px%3B%0A%7D%0Apre%3Anot%28%5Bclass%5D%29%20%7B%0Abackground%2Dcolor%3A%20%23f7f7f7%3B%0A%7D%0Acode%20%7B%0Afont%2Dfamily%3A%20Consolas%2C%20Monaco%2C%20%27Courier%20New%27%2C%20monospace%3B%0Afont%2Dsize%3A%2085%25%3B%0A%7D%0Ap%20%3E%20code%2C%20li%20%3E%20code%20%7B%0Apadding%3A%202px%200px%3B%0A%7D%0Adiv%2Efigure%20%7B%0Atext%2Dalign%3A%20center%3B%0A%7D%0Aimg%20%7B%0Abackground%2Dcolor%3A%20%23FFFFFF%3B%0Apadding%3A%202px%3B%0Aborder%3A%201px%20solid%20%23DDDDDD%3B%0Aborder%2Dradius%3A%203px%3B%0Aborder%3A%201px%20solid%20%23CCCCCC%3B%0Amargin%3A%200%205px%3B%0A%7D%0Ah1%20%7B%0Amargin%2Dtop%3A%200%3B%0Afont%2Dsize%3A%2035px%3B%0Aline%2Dheight%3A%2040px%3B%0A%7D%0Ah2%20%7B%0Aborder%2Dbottom%3A%204px%20solid%20%23f7f7f7%3B%0Apadding%2Dtop%3A%2010px%3B%0Apadding%2Dbottom%3A%202px%3B%0Afont%2Dsize%3A%20145%25%3B%0A%7D%0Ah3%20%7B%0Aborder%2Dbottom%3A%202px%20solid%20%23f7f7f7%3B%0Apadding%2Dtop%3A%2010px%3B%0Afont%2Dsize%3A%20120%25%3B%0A%7D%0Ah4%20%7B%0Aborder%2Dbottom%3A%201px%20solid%20%23f7f7f7%3B%0Amargin%2Dleft%3A%208px%3B%0Afont%2Dsize%3A%20105%25%3B%0A%7D%0Ah5%2C%20h6%20%7B%0Aborder%2Dbottom%3A%201px%20solid%20%23ccc%3B%0Afont%2Dsize%3A%20105%25%3B%0A%7D%0Aa%20%7B%0Acolor%3A%20%230033dd%3B%0Atext%2Ddecoration%3A%20none%3B%0A%7D%0Aa%3Ahover%20%7B%0Acolor%3A%20%236666ff%3B%20%7D%0Aa%3Avisited%20%7B%0Acolor%3A%20%23800080%3B%20%7D%0Aa%3Avisited%3Ahover%20%7B%0Acolor%3A%20%23BB00BB%3B%20%7D%0Aa%5Bhref%5E%3D%22http%3A%22%5D%20%7B%0Atext%2Ddecoration%3A%20underline%3B%20%7D%0Aa%5Bhref%5E%3D%22https%3A%22%5D%20%7B%0Atext%2Ddecoration%3A%20underline%3B%20%7D%0A%0Acode%20%3E%20span%2Ekw%20%7B%20color%3A%20%23555%3B%20font%2Dweight%3A%20bold%3B%20%7D%20%0Acode%20%3E%20span%2Edt%20%7B%20color%3A%20%23902000%3B%20%7D%20%0Acode%20%3E%20span%2Edv%20%7B%20color%3A%20%2340a070%3B%20%7D%20%0Acode%20%3E%20span%2Ebn%20%7B%20color%3A%20%23d14%3B%20%7D%20%0Acode%20%3E%20span%2Efl%20%7B%20color%3A%20%23d14%3B%20%7D%20%0Acode%20%3E%20span%2Ech%20%7B%20color%3A%20%23d14%3B%20%7D%20%0Acode%20%3E%20span%2Est%20%7B%20color%3A%20%23d14%3B%20%7D%20%0Acode%20%3E%20span%2Eco%20%7B%20color%3A%20%23888888%3B%20font%2Dstyle%3A%20italic%3B%20%7D%20%0Acode%20%3E%20span%2Eot%20%7B%20color%3A%20%23007020%3B%20%7D%20%0Acode%20%3E%20span%2Eal%20%7B%20color%3A%20%23ff0000%3B%20font%2Dweight%3A%20bold%3B%20%7D%20%0Acode%20%3E%20span%2Efu%20%7B%20color%3A%20%23900%3B%20font%2Dweight%3A%20bold%3B%20%7D%20%20code%20%3E%20span%2Eer%20%7B%20color%3A%20%23a61717%3B%20background%2Dcolor%3A%20%23e3d2d2%3B%20%7D%20%0A" rel="stylesheet" type="text/css" />
+<style type="text/css">body {
+background-color: #fff;
+margin: 1em auto;
+max-width: 700px;
+overflow: visible;
+padding-left: 2em;
+padding-right: 2em;
+font-family: "Open Sans", "Helvetica Neue", Helvetica, Arial, sans-serif;
+font-size: 14px;
+line-height: 1.35;
+}
+#TOC {
+clear: both;
+margin: 0 0 10px 10px;
+padding: 4px;
+width: 400px;
+border: 1px solid #CCCCCC;
+border-radius: 5px;
+background-color: #f6f6f6;
+font-size: 13px;
+line-height: 1.3;
+}
+#TOC .toctitle {
+font-weight: bold;
+font-size: 15px;
+margin-left: 5px;
+}
+#TOC ul {
+padding-left: 40px;
+margin-left: -1.5em;
+margin-top: 5px;
+margin-bottom: 5px;
+}
+#TOC ul ul {
+margin-left: -2em;
+}
+#TOC li {
+line-height: 16px;
+}
+table {
+margin: 1em auto;
+border-width: 1px;
+border-color: #DDDDDD;
+border-style: outset;
+border-collapse: collapse;
+}
+table th {
+border-width: 2px;
+padding: 5px;
+border-style: inset;
+}
+table td {
+border-width: 1px;
+border-style: inset;
+line-height: 18px;
+padding: 5px 5px;
+}
+table, table th, table td {
+border-left-style: none;
+border-right-style: none;
+}
+table thead, table tr.even {
+background-color: #f7f7f7;
+}
+p {
+margin: 0.5em 0;
+}
+blockquote {
+background-color: #f6f6f6;
+padding: 0.25em 0.75em;
+}
+hr {
+border-style: solid;
+border: none;
+border-top: 1px solid #777;
+margin: 28px 0;
+}
+dl {
+margin-left: 0;
+}
+dl dd {
+margin-bottom: 13px;
+margin-left: 13px;
+}
+dl dt {
+font-weight: bold;
+}
+ul {
+margin-top: 0;
+}
+ul li {
+list-style: circle outside;
+}
+ul ul {
+margin-bottom: 0;
+}
+pre, code {
+background-color: #f7f7f7;
+border-radius: 3px;
+color: #333;
+white-space: pre-wrap; 
+}
+pre {
+border-radius: 3px;
+margin: 5px 0px 10px 0px;
+padding: 10px;
+}
+pre:not([class]) {
+background-color: #f7f7f7;
+}
+code {
+font-family: Consolas, Monaco, 'Courier New', monospace;
+font-size: 85%;
+}
+p > code, li > code {
+padding: 2px 0px;
+}
+div.figure {
+text-align: center;
+}
+img {
+background-color: #FFFFFF;
+padding: 2px;
+border: 1px solid #DDDDDD;
+border-radius: 3px;
+border: 1px solid #CCCCCC;
+margin: 0 5px;
+}
+h1 {
+margin-top: 0;
+font-size: 35px;
+line-height: 40px;
+}
+h2 {
+border-bottom: 4px solid #f7f7f7;
+padding-top: 10px;
+padding-bottom: 2px;
+font-size: 145%;
+}
+h3 {
+border-bottom: 2px solid #f7f7f7;
+padding-top: 10px;
+font-size: 120%;
+}
+h4 {
+border-bottom: 1px solid #f7f7f7;
+margin-left: 8px;
+font-size: 105%;
+}
+h5, h6 {
+border-bottom: 1px solid #ccc;
+font-size: 105%;
+}
+a {
+color: #0033dd;
+text-decoration: none;
+}
+a:hover {
+color: #6666ff; }
+a:visited {
+color: #800080; }
+a:visited:hover {
+color: #BB00BB; }
+a[href^="http:"] {
+text-decoration: underline; }
+a[href^="https:"] {
+text-decoration: underline; }
+
+code > span.kw { color: #555; font-weight: bold; } 
+code > span.dt { color: #902000; } 
+code > span.dv { color: #40a070; } 
+code > span.bn { color: #d14; } 
+code > span.fl { color: #d14; } 
+code > span.ch { color: #d14; } 
+code > span.st { color: #d14; } 
+code > span.co { color: #888888; font-style: italic; } 
+code > span.ot { color: #007020; } 
+code > span.al { color: #ff0000; font-weight: bold; } 
+code > span.fu { color: #900; font-weight: bold; } 
+code > span.er { color: #a61717; background-color: #e3d2d2; } 
+</style>
+
+
+
 
 </head>
 
@@ -31,29 +230,25 @@
 
 
 <h1 class="title toc-ignore">Additional sources of agricultural data</h1>
-<h4 class="author"><em>Kevin Wright</em></h4>
-<h4 class="date"><em>2018-07-06</em></h4>
+<h4 class="author">Kevin Wright</h4>
+<h4 class="date">2020-07-30</h4>
 
 
 
 <div id="books" class="section level1">
 <h1>Books</h1>
 <div id="die-landwirtschaftlichen-versuchs-stations" class="section level3">
-<h3>Die Landwirtschaftlichen Versuchs-Stations</h3>
+<h3><em>Die Landwirtschaftlichen Versuchs-Stations</em></h3>
 <p><a href="http://catalog.hathitrust.org/Record/000549685" class="uri">http://catalog.hathitrust.org/Record/000549685</a></p>
 <p>Full view of research station reports 1859-1920. In German.</p>
-</div>
-<div id="s.-j.-welham-et-al.-2015.-statistical-methods-in-biology." class="section level3">
-<h3>S. J. Welham et al. (2015). <em>Statistical Methods In Biology</em>.</h3>
-<p>The online-supplements contain many small datasets for the examples and exercises.</p>
 </div>
 <div id="d.-f.-andrews-and-a.-m.-herzberg-1985.-data." class="section level3">
 <h3>D. F. Andrews and A. M. Herzberg (1985). <em>Data</em>.</h3>
 <p><a href="https://www2.stat.duke.edu/courses/Spring01/sta114/data/andrews.html" class="uri">https://www2.stat.duke.edu/courses/Spring01/sta114/data/andrews.html</a></p>
-<pre><code>Table 2.1:  agridat::darwin.maize 
-Table 5.1:  agridat::broadbalk.wheat 
-Table 6.1:  agridat::mercer.wheat.uniformity 
-Table 6.2:  agridat::wiebe.wheat.uniformity 
+<pre><code>Table  2.1: agridat::darwin.maize 
+Table  5.1: agridat::broadbalk.wheat 
+Table  6.1: agridat::mercer.wheat.uniformity 
+Table  6.2: agridat::wiebe.wheat.uniformity 
 Table 58.1: agridat::caribbean.maize</code></pre>
 </div>
 <div id="d.-bayisa-2010.-application-of-spatial-mixed-model-in-agricultural-field-experiment." class="section level3">
@@ -63,23 +258,24 @@ Table 58.1: agridat::caribbean.maize</code></pre>
 </div>
 <div id="m.-n.-das-narayan-c.-giri-1987.-design-and-analysis-of-experiments." class="section level3">
 <h3>M. N. Das &amp; Narayan C. Giri (1987). <em>Design and Analysis of Experiments</em>.</h3>
-<pre><code>31 Wool from 24 ewes, 6 cuttings
-116 NPK factorial, 3 years
-116 2^5 factorial, 1 rep
+<pre><code> 31 wool from 24 ewes, 6 cuttings
+116 grass NPK factorial, 3 years, 36 obs
+116 2^5 factorial, 1 rep, 32 obs
 117 2^3 factorial, 3 rep
-117 3^3 factorial
-149 NPK split-plot, xy
-150 nitro-variety split-plot
-201 variety balanced lattice
-279 covariate, yield &amp; plant count</code></pre>
+117 sugar beet 3^3 factorial, 2 rep, 54 obs
+139 alfalfa 3x2^2 factorial
+149 cabbage NPK split-plot, xy, 2 rep, 108 obs
+150 soybean nitro-variety split-plot
+193 wheat variety inc block, 9 block
+201 rice variety balanced lattice, 80 obs
+279 maize covariate, yield &amp; plant count, 4 rep, 32 obs</code></pre>
 </div>
 <div id="peter-diggle-patrick-heagerty-kung-yee-liang-scott-zeger.-analysis-of-longitudinal-data." class="section level3">
 <h3>Peter Diggle, Patrick Heagerty, Kung-Yee Liang, Scott Zeger. <em>Analysis of Longitudinal Data</em>.</h3>
 <p><a href="http://faculty.washington.edu/heagerty/Books/AnalysisLongitudinal/datasets.html" class="uri">http://faculty.washington.edu/heagerty/Books/AnalysisLongitudinal/datasets.html</a></p>
-<p>Pig weight data is found in SemiPar::pig.weights</p>
-<p>Sitka spruce data is found in: geepack::spruce</p>
-<p>Milk protein data is found in: nlme::Milk. A thorough description of this data can be found in Molenberghs &amp; Kenward, <em>Missing Data in Clinical Studies</em>, p. 377.<br />
-Original source: A. P. Verbyla and B. R. Cullis, Modelling in Repeated Measures Experiments. <a href="http://www.jstor.org/stable/2347384" class="uri">http://www.jstor.org/stable/2347384</a></p>
+<p>Pig weight data is found in <code>SemiPar::pig.weights</code></p>
+<p>Sitka spruce data is found in: <code>geepack::spruce</code></p>
+<p>Milk protein data is found in: <code>nlme::Milk</code>. A thorough description of this data can be found in Molenberghs &amp; Kenward, <em>Missing Data in Clinical Studies</em>, p. 377. Original source: A. P. Verbyla and B. R. Cullis, Modelling in Repeated Measures Experiments. <a href="http://www.jstor.org/stable/2347384" class="uri">http://www.jstor.org/stable/2347384</a></p>
 </div>
 <div id="federer-walt-1955.-experimental-design." class="section level3">
 <h3>Federer, Walt (1955). <em>Experimental Design</em>.</h3>
@@ -95,20 +291,28 @@ Original source: A. P. Verbyla and B. R. Cullis, Modelling in Repeated Measures 
 </div>
 <div id="finney-1972.-an-introduction-to-statistical-science-in-agriculture." class="section level3">
 <h3>Finney 1972. <em>An Introduction to Statistical Science in Agriculture</em>.</h3>
-<p>Not reviewed.</p>
+<p>Small, mostly simulated data.</p>
 </div>
 <div id="galwey-n.w.-2014.-introduction-to-mixed-modelling-2nd-ed." class="section level3">
 <h3>Galwey, N.W. (2014). <em>Introduction to Mixed Modelling</em>, 2nd ed.</h3>
 <p><a href="http://www.wiley.com/WileyCDA/WileyTitle/productCd-1119945496.html" class="uri">http://www.wiley.com/WileyCDA/WileyTitle/productCd-1119945496.html</a></p>
-<pre><code>83  agridat::yates.oats
-104 doubled-haploid barley
-135 wheat/rye competition, heritability
-190 chickpea flowering in families
-250 canola oil gxe, sowing date, rainfall, oil Si &amp; Walton
-290 wheat anoxia, McDonald
-291 wool fibers
-370 alphalpha design (row-column inc block)
-434 hollamby wheat trial, layout</code></pre>
+<pre><code> 2  83 variety x nitro split-plot - agridat::yates.oats
+ 3 104 doubled-haploid barley
+ 3 135 wheat/rye competition, heritability
+ 5 190 chickpea flowering in families
+ 7 250 canola oil gxe, sowing date, rainfall, oil.  Si &amp; Walton 2004.
+ 7 284 pig growth, 4 diets
+ 7 285 sheep milk fat and lactose
+ 7 290 wheat anoxia root porosity, 9 gen
+ 7 291 wool fibers, 3 trt, 21 animals
+ 9 370 alphalpha design (row-column inc block), xy
+10 434 hollamby wheat trial, xy - agridat::gilmour.serpentine</code></pre>
+</div>
+<div id="o.v.s.-heath.-investigation-by-experiment." class="section level3">
+<h3>O.V.S. Heath. <em>Investigation by experiment</em>.</h3>
+<p><a href="https://archive.org/details/investigationbye0000heat" class="uri">https://archive.org/details/investigationbye0000heat</a></p>
+<pre><code>?  uniformity trial of raddish - agridat::heath.raddish.uniformity
+50 uniformity trial of cabbage 6x8 plots</code></pre>
 </div>
 <div id="kwanchai-a.-gomez-gomez-1984.-statistical-procedures-for-agricultural-research." class="section level3">
 <h3>Kwanchai A. Gomez &amp; Gomez (1984). <em>Statistical Procedures for Agricultural Research</em>.</h3>
@@ -117,16 +321,16 @@ Original source: A. P. Verbyla and B. R. Cullis, Modelling in Repeated Measures 
 <div id="cyril-h.-goulden-methods-of-statistical-analysis." class="section level3">
 <h3>Cyril H. Goulden, <em>Methods of Statistical Analysis</em>.</h3>
 <p>First edition: <a href="http://archive.org/details/methodsofstatist031744mbp" class="uri">http://archive.org/details/methodsofstatist031744mbp</a></p>
-<pre><code>18 Uniformity trial: agridat::goulden.barley.uniformity 
-153 Split-split plot with factorial sub-plot treatment: agridat::goulden.splitsplit 
+<pre><code> 18 Uniformity trial - agridat::goulden.barley.uniformity 
+153 Split-split plot with factorial sub-plot treatment - agridat::goulden.splitsplit 
 194 Incomplete block 
 197 Inc block 
 205 Latin square 
 208 Inc block 
-255 Covariates in feeding trial: agridat::crampton.pig</code></pre>
-<p>Second edition: <a href="http://krishikosh.egranth.ac.in/handle/1/2034118" class="uri">http://krishikosh.egranth.ac.in/handle/1/2034118</a></p>
-<pre><code>216 Latin square: agridat::goulden.latin 
-423 Control chart with egg weights: agridat::goulden.eggs</code></pre>
+255 Covariates in feeding trial - agridat::crampton.pig</code></pre>
+<p>Second edition: <code>http://krishikosh.egranth.ac.in/handle/1/2034118</code> (broken)</p>
+<pre><code>216 Latin square - agridat::goulden.latin 
+423 Control chart with egg weights - agridat::goulden.eggs</code></pre>
 </div>
 <div id="harry-love-1936.-applications-of-statistical-methods-to-agricultural-research." class="section level3">
 <h3>Harry Love (1936). <em>Applications of Statistical Methods to Agricultural Research</em>.</h3>
@@ -146,7 +350,7 @@ Original source: A. P. Verbyla and B. R. Cullis, Modelling in Repeated Measures 
 <div id="erwin-leclerg-warren-leonard-andrew-clark-1962.-field-plot-technique" class="section level3">
 <h3>Erwin LeClerg, Warren Leonard, Andrew Clark (1962). <em>Field Plot Technique</em></h3>
 <p>Many small datasets.</p>
-<pre><code>27 uniformity agridat::goulden.barley.uniformity
+<pre><code> 27 uniformity - agridat::goulden.barley.uniformity
 213 split-plot
 234 immer multi-environment
 260 lattice pinto-bean
@@ -157,10 +361,10 @@ Original source: A. P. Verbyla and B. R. Cullis, Modelling in Repeated Measures 
 </div>
 <div id="thomas-m-little-f.-jackson-hills-1978.-agricultural-experimentation." class="section level3">
 <h3>Thomas M Little &amp; F. Jackson Hills (1978). <em>Agricultural Experimentation</em>.</h3>
-<pre><code>79 Latin square 
-89 Split-plot 
+<pre><code> 79 Latin square 
+ 89 Split-plot 
 103 Split-split 
-117 Split-block: agridat::little.splitblock 
+117 Split-block - agridat::little.splitblock 
 126 Repeated harvests</code></pre>
 </div>
 <div id="harald-martens-magni-martens.-multivariate-analysis-of-quality" class="section level3">
@@ -170,9 +374,9 @@ Original source: A. P. Verbyla and B. R. Cullis, Modelling in Repeated Measures 
 </div>
 <div id="roger-mead-robert-n.-curnow-anne-m.-hasted-2002.-statistical-methods-in-agriculture-and-experimental-biology-3rd-ed." class="section level3">
 <h3>Roger Mead, Robert N. Curnow, Anne M. Hasted (2002). <em>Statistical Methods in Agriculture and Experimental Biology</em>, 3rd ed.</h3>
-<pre><code>10 weekly milk yields
-24 carrot weight
-96 cabbage fertilizer
+<pre><code> 10 weekly milk yields
+ 24 carrot weight
+ 96 cabbage fertilizer
 143 intercropping cowpea maize
 177 honeybee repellent non-normal
 251 cauliflower poisson - agridat::mead.cauliflower
@@ -191,7 +395,12 @@ Original source: A. P. Verbyla and B. R. Cullis, Modelling in Repeated Measures 
 <div id="roger-mead-1988.-the-design-of-experiments" class="section level3">
 <h3>Roger Mead (1988). <em>The Design of Experiments</em></h3>
 <p><a href="https://books.google.com/books?id=CaFZPbCllrMC&amp;pg=PA323" class="uri">https://books.google.com/books?id=CaFZPbCllrMC&amp;pg=PA323</a></p>
-<pre><code>323 Turnip spacing data  agridat::mead.turnip</code></pre>
+<pre><code>323 Turnip spacing data - agridat::mead.turnip</code></pre>
+</div>
+<div id="leonard-c.-onyiah-2008." class="section level3">
+<h3>Leonard C. Onyiah (2008).</h3>
+<p><em>Design and Analysis of Experiments: Classical and Regression Approaches with SAS</em>. <a href="https://books.google.com/books?id=_P3LBQAAQBAJ&amp;pg=PA334" class="uri">https://books.google.com/books?id=_P3LBQAAQBAJ&amp;pg=PA334</a></p>
+<pre><code>334 Two examples of 5x5 Graeco-Latin squares in cassava and maize</code></pre>
 </div>
 <div id="bernard-ostle-1963.-statistics-in-research-2nd-ed." class="section level3">
 <h3>Bernard Ostle (1963). <em>Statistics in Research</em>, 2nd ed.</h3>
@@ -201,9 +410,9 @@ Original source: A. P. Verbyla and B. R. Cullis, Modelling in Repeated Measures 
 </div>
 <div id="v.-g.-panse-and-p.-v.-sukhatme-1957.-statistical-methods-for-agricultural-workers." class="section level3">
 <h3>V. G. Panse and P. V. Sukhatme (1957). <em>Statistical Methods for Agricultural Workers</em>.</h3>
-<p><a href="http://krishikosh.egranth.ac.in/bitstream/1/2049376/1/44688.pdf" class="uri">http://krishikosh.egranth.ac.in/bitstream/1/2049376/1/44688.pdf</a></p>
-<pre><code>3 Length and number of grains per ear of wheat
-138 Uniformity trial agridat::hutchinson.cotton.uniformity
+<p><a href="https://krishikosh.egranth.ac.in/handle/1/5810134296" class="uri">https://krishikosh.egranth.ac.in/handle/1/5810134296</a></p>
+<pre><code>  3 Length and number of grains per ear of wheat
+138 Uniformity trial - agridat::panse.cotton.uniformity
 154 RCB 8 blocks
 167 two factorial, 6 rep trial
 178 2^4 factorial, 8 blocks, partial confounding
@@ -220,31 +429,47 @@ Original source: A. P. Verbyla and B. R. Cullis, Modelling in Repeated Measures 
 <div id="d.-d.-paterson-1939.-statistical-technique-in-agricultural-research." class="section level3">
 <h3>D. D. Paterson (1939). <em>Statistical Technique in Agricultural Research</em>.</h3>
 <p><a href="https://archive.org/details/statisticaltechn031729mbp" class="uri">https://archive.org/details/statisticaltechn031729mbp</a></p>
-<pre><code>84 Distribution of purple/white starchy/sweet seeds from 11 ears
+<pre><code> 84 Distribution of purple/white starchy/sweet seeds from 11 ears
 190 Sugar cane MET: 2 year, 5 block, 5 variety
 199 Tea MET: 3 year, 2^2 factorial fertilizer
 206 Grass: 4 rep, 2 gen, 4 cutting treatments
-211 Cotton: 4 dates, 3 spacings, 3 irrigation, 2 nitro. agridat::gregory.cotton</code></pre>
+211 Cotton: 4 dates, 3 spacings, 3 irrigation, 2 nitro - agridat::gregory.cotton</code></pre>
 </div>
 <div id="arthur-asquith-rayner-1969.-a-first-course-in-biometry-for-agriculture-students." class="section level3">
 <h3>Arthur Asquith Rayner (1969). <em>A First Course In Biometry For Agriculture Students</em>.</h3>
-<pre><code>19/456. 2x2x4 Factorial, 2 rep
-19/466. 2x4 factorial, layout, plot size, kale (from Rothamsted)
-19/466. 3x5 factorial, 3 rep, potato
-20/494. 3x4 Split-plot with layout
-21/505. 2x2x2 Factorial, 5 rep
-21/515. 2x2x2x2 Factorial, 3 rep, with layout. (Evaluated, rejected as too variable)
-22/537. 2x2x2 factorial, 6 rep, potato
-22/537. 2x2x2x2 factorial, 2 rep, wheat, layout</code></pre>
+<pre><code>19 456 2x2x4 Factorial, 2 rep
+19 466 2x4 factorial, layout, plot size, kale (from Rothamsted)
+19 466 3x5 factorial, 3 rep, potato
+20 494 3x4 Split-plot with layout
+21 505 2x2x2 Factorial, 5 rep
+21 515 2x2x2x2 Factorial, 3 rep, with layout. (Evaluated, rejected as too variable)
+22 537 2x2x2 factorial, 6 rep, potato
+22 537 2x2x2x2 factorial, 2 rep, wheat, layout</code></pre>
 </div>
 <div id="f.s.f.-shaw-1936.-a-handbook-of-statistics-for-use-in-plant-breeding-and-agricultural-problems" class="section level3">
 <h3>F.S.F. Shaw (1936). <em>A Handbook of Statistics For Use in Plant Breeding and Agricultural Problems</em></h3>
 <p><a href="https://archive.org/details/in.ernet.dli.2015.176662" class="uri">https://archive.org/details/in.ernet.dli.2015.176662</a></p>
-<pre><code>95 4 variety RCB, 25 rep, diagonal layout</code></pre>
+<pre><code>5 - Length of ear head and number of grains per ear, 400 ears.
+95 - variety RCB, 5 gen, 25 rep, diagonal layout
+107 - Latin square, 8 entries.
+117 - Factorial: 8 blocks, 3 varieties, 5 treatments, 2 infections
+126 - Multi-environment trial, 3 year, 13 varieties, 2 loc, 5 blocks  agridat::shaw.oats
+</code></pre>
 </div>
 <div id="g.-w.-snedecor-w.-g.-cochran.-statistical-methods." class="section level3">
 <h3>G. W. Snedecor &amp; W. G. Cochran. <em>Statistical Methods</em>.</h3>
-<p>Not yet reviewed.</p>
+<pre><code>168 regression
+352 3x3 factorial, 4 blocks
+359 2x2x2 factorial, 8 blocks, daily pig gain
+362 2x3x4 factorial, 2 blocks, daily pig gain
+371 3x4 split-plot, 3 var, 4 date, 6 blocks
+374 2x3x3 split-split-plot, irrig, stand, fert, block
+378 4x4 split-plot, 4 block, 4 year, 4 cuttings asparagus
+384 regression with 2 predictors
+428 covariates, 6 varieties, 4 blocks, yield vs stand
+440 pig gain vs initial weight, 4 treatments, 40 pigs
+454 protein vs yield for wheat, 91 plots, quadratic regression
+</code></pre>
 </div>
 <div id="robert-g.-d.-steel-james-hiram-torrie.-principles-and-procedures-of-statistics-2nd-ed." class="section level3">
 <h3>Robert G. D. Steel &amp; James Hiram Torrie. <em>Principles and Procedures of Statistics</em>, 2nd ed.</h3>
@@ -262,32 +487,34 @@ Original source: A. P. Verbyla and B. R. Cullis, Modelling in Repeated Measures 
 <h3>Oliver Schabenberger and Francis J. Pierce. <em>Contemporary Statistical Models for the Plant and Soil Sciences</em>.</h3>
 <p>Many datasets</p>
 </div>
+<div id="s.-j.-welham-et-al.-2015.-statistical-methods-in-biology." class="section level3">
+<h3>S. J. Welham et al. (2015). <em>Statistical Methods In Biology</em>.</h3>
+<p>The online-supplements contain many small datasets for the examples and exercises.</p>
+</div>
 <div id="pesticides-in-the-nations-streams-and-ground-water-1992-2001" class="section level3">
 <h3>Pesticides in the Nation’s Streams and Ground Water, 1992-2001</h3>
 <p>Extensive data for detection of pesticides in water samples. See Appendix 5 and Appendix 6 of the supporting info. <a href="https://water.usgs.gov/nawqa/pnsp/pubs/circ1291/supporting_info.php" class="uri">https://water.usgs.gov/nawqa/pnsp/pubs/circ1291/supporting_info.php</a></p>
 </div>
 </div>
-<div id="journals---data" class="section level1">
-<h1>Journals - Data</h1>
+<div id="data-repositories" class="section level1">
+<h1>Data Repositories</h1>
 <div id="ag-data-commons" class="section level3">
 <h3>Ag Data Commons</h3>
-<p><a href="https://data.nal.usda.gov/about-ag-data-commons" class="uri">https://data.nal.usda.gov/about-ag-data-commons</a></p>
+<p><a href="https://data.nal.usda.gov/about-ag-data-commons" class="uri">https://data.nal.usda.gov/about-ag-data-commons</a> <a href="https://data.nal.usda.gov/search/type/dataset" class="uri">https://data.nal.usda.gov/search/type/dataset</a></p>
 </div>
 <div id="cyverse-data-commons" class="section level3">
 <h3>CyVerse Data Commons</h3>
 <p><a href="http://datacommons.cyverse.org/" class="uri">http://datacommons.cyverse.org/</a></p>
 <p><a href="http://datacommons.cyverse.org/browse/iplant/home/shared/commons_repo/curated" class="uri">http://datacommons.cyverse.org/browse/iplant/home/shared/commons_repo/curated</a></p>
 </div>
-<div id="cyverse-genomes-by-environment-dataset-now-publicly-accessible" class="section level3">
-<h3>CyVerse: Genomes by environment dataset now publicly accessible</h3>
-<p><a href="http://www.cyverse.org/news/genomes-environment-dataset-now-publicly-accessible" class="uri">http://www.cyverse.org/news/genomes-environment-dataset-now-publicly-accessible</a></p>
-<p><a href="http://datacommons.cyverse.org/browse/iplant/home/shared/commons_repo/curated/Carolyn_Lawrence_Dill_G2F_Nov_2016" class="uri">http://datacommons.cyverse.org/browse/iplant/home/shared/commons_repo/curated/Carolyn_Lawrence_Dill_G2F_Nov_2016</a></p>
-<p>Very large GxE data here. Currently 2014, but more years planned. Hybrid &amp; inbred phenotype data, weather data, genomic data. Very nice.</p>
-</div>
 <div id="datadryad" class="section level3">
 <h3>DataDryad</h3>
 <p><a href="http://datadryad.org/" class="uri">http://datadryad.org/</a></p>
-<p>Data from: MycoDB, a global database of plant response to mycorrhizal fungi <a href="http://datadryad.org/resource/doi%3A10.5061/dryad.723m1">http://datadryad.org/resource/doi%3A10.5061/dryad.723m1</a></p>
+</div>
+<div id="harvard-dataverse" class="section level3">
+<h3>Harvard Dataverse</h3>
+<p><a href="https://dataverse.harvard.edu/" class="uri">https://dataverse.harvard.edu/</a></p>
+<p>IRRI Rice Research includes plot-level data for long term rice experiments. <a href="https://dataverse.harvard.edu/dataverse/RiceResearch" class="uri">https://dataverse.harvard.edu/dataverse/RiceResearch</a></p>
 </div>
 <div id="nature-scientific-data" class="section level3">
 <h3>Nature Scientific Data</h3>
@@ -299,7 +526,7 @@ Original source: A. P. Verbyla and B. R. Cullis, Modelling in Repeated Measures 
 </div>
 <div id="plant-genomics-and-phenomics-research-data-repository" class="section level3">
 <h3>Plant Genomics and Phenomics Research Data Repository</h3>
-<p><a href="http://edal.ipk-gatersleben.de/repos/pgp/" class="uri">http://edal.ipk-gatersleben.de/repos/pgp/</a></p>
+<p><a href="https://edal-pgp.ipk-gatersleben.de/" class="uri">https://edal-pgp.ipk-gatersleben.de/</a></p>
 </div>
 <div id="wolfram-data-repository" class="section level3">
 <h3>Wolfram Data Repository</h3>
@@ -327,10 +554,10 @@ Page 126: Cubic lattice, 16 blocks * 4 plots = 64 varieties, 9 reps, cotton
 Vol 32/396. Wassom. Bromegrass Uniformity Trial: agridat::wassom.bromegrass.uniformity
 
 Vol 33/424. Heady. Crop Response Surfaces and Economic Optima in 
-  Fertilizer agridat::heady.fertilizer
+  Fertilizer - agridat::heady.fertilizer
 
 Vol 34/358. Schwab. Research on Irrigation of Corn and Soybeans At Conesville.
-Page 257. 2 year, 2 loc, 4 rep, 2 nitro. Stand &amp; yield.  
+Page 257. 2 year, 2 loc, 4 rep, 2 nitro. Stand &amp; yield.
   Nice graph of soil moisture deficit (fig 9)
 
 Vol. 34/463. Doll. Fertilizer Production Functions for Corn and Oats.
@@ -339,7 +566,7 @@ Table 14, 1955 McPaul Silt Loam.  N,P.
 Table 25, 1955 corn.  K,P,N.
 Table 31, 1956 oats, K,P,N.  Trends difficult to establish.
 
-Vol 34/472. Pesek. Production Surfaces and Economic Optima For Corn Yields.  
+Vol 34/472. Pesek. Production Surfaces and Economic Optima For Corn Yields.
   Same data published in SSA journal?
 
 Vol 34/488. Walker. Application of Game Theory Models to Decisions.
@@ -354,60 +581,70 @@ Vol 35/503. North Central Regional Potassium Studies with Corn.</code></pre>
 </div>
 <div id="papers" class="section level1">
 <h1>Papers</h1>
-<p><strong>Alencar Xavier, Diego Jarquin, Reka Howard, Vishnu Ramasubramanian, James E. Specht, George L. Graef, William D. Beavis, Brian W. Diers, Qijian Song, Perry B. Cregan, Randall Nelson, Rouf Mian, J. Grover Shannon, Leah McHale, Dechun Wang, William Schapaugh, Aaron J. Lorenz, Shizhong Xu, William M. Muir and Katy M. Rainey</strong>. Genome-Wide Analysis of Grain Yield Stability and Environmental Interactions in a Multiparental Soybean Population, <a href="http://www.g3journal.org/content/8/2/519" class="uri">http://www.g3journal.org/content/8/2/519</a></p>
+<p><strong>Xavier, Alencar et al.</strong>. Genome-Wide Analysis of Grain Yield Stability and Environmental Interactions in a Multiparental Soybean Population, <a href="http://www.g3journal.org/content/8/2/519" class="uri">http://www.g3journal.org/content/8/2/519</a></p>
 <p>Data are in the SoyNAM and NAM packages.</p>
 <p><strong>Barrero, Ivan D. et al</strong>. (2013). A multi-environment trial analysis shows slight grain yield improvement in Texas commercial maize. Field Crops Research, 149, Pages 167-176. <a href="http://doi.org/10.1016/j.fcr.2013.04.017" class="uri">http://doi.org/10.1016/j.fcr.2013.04.017</a></p>
-<p>Note: This is a large (14500 records), multi-year, multi-location, 10-trait data. Sent a note encouraging the authors to formally publish the data. Source: <a href="http://maizeandgenetics.tamu.edu/CTP/CTP.html" class="uri">http://maizeandgenetics.tamu.edu/CTP/CTP.html</a></p>
+<p>This is a large (14500 records), multi-year, multi-location, 10-trait data. Sent a note encouraging the authors to formally publish the data. Source: <a href="http://maizeandgenetics.tamu.edu/CTP/CTP.html" class="uri">http://maizeandgenetics.tamu.edu/CTP/CTP.html</a></p>
 <p><strong>Cleveland, M.A. and John M. Hickey, Selma Forni</strong> (2012). A Common Dataset for Genomic Analysis of Livestock Populations. G3, 2, 429-435. <a href="http://doi.org/10.1534/g3.111.001453" class="uri">http://doi.org/10.1534/g3.111.001453</a></p>
-<p>Note: The supplemental information for this paper contains data for 3534 pigs with high-density genotypes (50000 SNPs), and a pedigree including parents and grandparents of the animals.</p>
+<p>The supplemental information for this paper contains data for 3534 pigs with high-density genotypes (50000 SNPs), and a pedigree including parents and grandparents of the animals.</p>
 <p><strong>Daillant-Spinnler</strong> (1996). Relationships between perceived sensory properties and major preference directions of 12 variaties of apples from the southern hemisphere. Food Quality and Preference, 7(2), 113-126. <a href="http://dx.doi.org/10.1016/0950-3293(95)00043-7" class="uri">http://dx.doi.org/10.1016/0950-3293(95)00043-7</a></p>
-<p>Note: The data are available in ClustVarLV package.</p>
+<p>The data are in <code>ClustVarLV::apples_sh$pref</code> and <code>ClustVarLV::apples_sh$senso</code> 12 apple varieties, 43 traits, 60 consumers</p>
 <p><strong>Gregory, Crowther &amp; Lambert</strong> (1932). The interrelation of factors controlling the production of cotton under irrigation in the Sudan. Jour Agric Sci, 22, p. 617.</p>
-<p><strong>Hedrick</strong> (1920). Twenty years of fertilizers in an apple orchard. <a href="https://books.google.com/books?hl=en&amp;lr" class="uri">https://books.google.com/books?hl=en&amp;lr</a>=&amp;id=SqlJAAAAMAAJ&amp;oi=fnd&amp;pg=PA446 Note: No significant differences between fertilizer treatments.</p>
-<p><strong>Kayad et al</strong>. (2016). Assessing the Spatial Variability of Alfalfa Yield Using Satellite Imagery and Ground-Based Data. . <a href="https://doi.org/10.1371/journal.pone.0157166" class="uri">https://doi.org/10.1371/journal.pone.0157166</a> Supporting information contains yield monitor data for 4 hay harvests on a center-pivot field.</p>
+<p><strong>Hedrick</strong> (1920). Twenty years of fertilizers in an apple orchard. <a href="https://books.google.com/books?hl=en&amp;lr=&amp;id=SqlJAAAAMAAJ&amp;oi=fnd&amp;pg=PA446" class="uri">https://books.google.com/books?hl=en&amp;lr=&amp;id=SqlJAAAAMAAJ&amp;oi=fnd&amp;pg=PA446</a></p>
+<p>The authors found no significant differences between fertilizer treatments.</p>
+<p><strong>Meehan &amp; Gratton</strong> (2016). A Landscape View of Agricultural Insecticide Use across the Conterminous US from 1997 through 2012. PLOS ONE, <a href="https://journals.plos.org/plosone/article?id=10.1371/journal.pone.0166724" class="uri">https://journals.plos.org/plosone/article?id=10.1371/journal.pone.0166724</a></p>
+<p>Supplemental material contains county-level data for each of 4 years. Complete R-INLA code for analysis.</p>
+<p><strong>Monteverde et al</strong> Integrating Molecular Markers and Environmental Covariates To Interpret Genotype by Environment Interaction in Rice (Oryza sativa L.) Grown in Subtropical Areas <a href="https://doi.org/10.1534/g3.119.400064" class="uri">https://doi.org/10.1534/g3.119.400064</a> <a href="https://gsajournals.figshare.com/articles/Supplemental_Material_for_Monteverde_et_al_2019/7685636" class="uri">https://gsajournals.figshare.com/articles/Supplemental_Material_for_Monteverde_et_al_2019/7685636</a></p>
+<p>Supplemental information contains phenotypic data and markers and environmental covariates for PLS analysis.</p>
 <p><strong>Roger W. Hexem, Earl O.Heady, Metin Caglar</strong> (1974) A compendium of experimental data for corn, wheat, cotton and sugar beets grown at selected sites in the western United States and alternative production functions fitted to these data. Technical report: Center for Agricultural and Rural Development, Iowa State University. <a href="https://babel.hathitrust.org/cgi/pt?id=wu.89031116783;view=1up;seq=3" class="uri">https://babel.hathitrust.org/cgi/pt?id=wu.89031116783;view=1up;seq=3</a></p>
 <p>The technical report provides data from experiments on corn, wheat, cotton &amp; sugar beets, each crop tested at several locations over two years, with a factorial structure on irrigation and nitrogen treatments, with replications. Three polynomial functions were fit to the data for each location (quadratic, square root, three-halves).</p>
 <p><strong>Kenward, Michael G.</strong> (1987). A Method for Comparing Profiles of Repeated Measurements. Applied Statistics, 36, 296-308.</p>
-<p>Note: An ante-dependence model is fit to repeated measures of cattle weight. Data available here: <a href="https://faculty.biostat.ucla.edu/robweiss/filedepot_download/87/495" class="uri">https://faculty.biostat.ucla.edu/robweiss/filedepot_download/87/495</a></p>
+<p>An ante-dependence model is fit to repeated measures of cattle weight.</p>
 <p><strong>Klumper &amp; Qaim</strong> (2015). A Meta-Analysis of the Impacts of Genetically Modified Crops. <a href="http://doi.org/10.1371/journal.pone.0111629" class="uri">http://doi.org/10.1371/journal.pone.0111629</a></p>
-<p>Note: Nice meta-analysis dataset. Published data only include differences, not standard-errors. See the comments on PLOS article for some peculiarities in the data.</p>
+<p>Nice meta-analysis dataset. Published data only include differences, not standard-errors. See the comments on PLOS article for some peculiarities in the data.</p>
 <p><strong>Lado, B. et al.</strong> (2013). <em>Increased Genomic Prediction Accuracy in Wheat Breeding Through Spatial Adjustment of Field Trial Data</em>. G3, 3, 2105-2114. <a href="http://doi.org/10.1534/g3.113.007807" class="uri">http://doi.org/10.1534/g3.113.007807</a></p>
-<p>Note: Has a large haplotype data (83 MB) and two-year phenotype data with multiple traits.</p>
+<p>Has a large haplotype dataset (83 MB) and two-year phenotype data with multiple traits.</p>
 <p><strong>Payne, Roger</strong> (2015). The Design and Analysis of Long-Term Rotation Experiments. Agronomy Journal, 107, 772-784. <a href="http://doi.org/10.2134/agronj2012.0411" class="uri">http://doi.org/10.2134/agronj2012.0411</a></p>
-<p>Note: The data and R code appeared in the paper. Free access, but closed copyright.</p>
+<p>The data and R code appeared in the paper. Free access, but closed copyright.</p>
 <p><strong>Snedecor, George and E. S. Haber</strong> (1946). Statistical Methods For an Incomplete Experiment on a Perennial Crop. Biometrics Bulletin, 2, 61-67. <a href="http://doi.org/10.2307/3001959" class="uri">http://doi.org/10.2307/3001959</a></p>
 <p>Harvest of asparagus over 10 years, three cutting dates per year, 6 blocks.</p>
 <p><strong>Technow, Frank, et al.</strong> (2014). Genome Properties and Prospects of Genomic Prediction of Hybrid Performance in a Breeding Program of Maize. August 1, 2014 vol. 197 no. 4 1343-1355. <a href="http://doi.org/10.1534/genetics.114.165860" class="uri">http://doi.org/10.1534/genetics.114.165860</a></p>
-<p>Note: Genotype and phenotype data appears in the sommer package.</p>
+<p>Genotype and phenotype data appears in the sommer package.</p>
 <p><strong>Tian, Ting</strong> (2015). Application of Multiple Imputation for Missing Values in Three-Way Three-Mode Multi-Environment Trial Data. <a href="http://doi.org/10.1371/journal.pone.0144370" class="uri">http://doi.org/10.1371/journal.pone.0144370</a></p>
-<p>Note: Uses agridat::australia.soybean data and one other real dataset with 4 traits that are not identified. All data and code available.</p>
+<p>Uses <code>agridat::australia.soybean</code> data and one other real dataset with 4 traits that are not identified. All data and code available.</p>
 <p><strong>Randall J. Wisser et al.</strong> (2011). Multivariate analysis of maize disease resistances suggests a pleiotropic genetic basis and implicates a GST gene. PNAS. <a href="http://doi.org/10.1073/pnas.1011739108" class="uri">http://doi.org/10.1073/pnas.1011739108</a></p>
-<p>Note: Supplement contains genotype data, but no phenotype data.</p>
+<p>The supplement contains genotype data, but no phenotype data.</p>
+<p><strong>Rife et al.</strong> (2018) Genomic analysis and prediction within a US public collaborative winter wheat regional testing nursery. <a href="https://doi.org/10.5061/dryad.q968v83" class="uri">https://doi.org/10.5061/dryad.q968v83</a></p>
+<p>Large phenotypic dataset with 691 wheat lines, 33 years, 670 environments, 3-4 reps, 120000 datapoints. No genotypic data is included.</p>
+<p><strong>van der Voet et al.</strong> (2017). Equivalence testing using existing reference data: An example with genetically modified and conventional crops in animal feeding studies. <a href="https://doi.org/10.1016/j.fct.2017.09.044" class="uri">https://doi.org/10.1016/j.fct.2017.09.044</a></p>
+<p>The full datasets for the GRACE studies A-E are available here: <a href="https://www.cadima.info/index.php/area/publicAnimalFeedingTrials" class="uri">https://www.cadima.info/index.php/area/publicAnimalFeedingTrials</a> CC license.</p>
 <p><strong>Yan, Weikei</strong> (2002). Singular value partitioning in biplots. Agron Journal.</p>
-<p>Note: Winter wheat, 31 gen in 8 loc. This data is different from Yan’s earlier papers. Unfortunately, the data given in the paper are missing two rows.</p>
+<p>Winter wheat, 31 gen in 8 loc. This data is different from Yan’s earlier papers. Unfortunately, the data given in the paper are missing two rows.</p>
 </div>
-<div id="papers---uniformity-trials" class="section level1">
-<h1>Papers - Uniformity trials</h1>
-<p><strong>Baker, G.A.</strong> (1953). Strawberry uniformity yield trials. Biometrics, Vol. 9, No. 3, pp. 412-421. <a href="http://doi.org/10.2307/3001713" class="uri">http://doi.org/10.2307/3001713</a></p>
-<p>Note: Two small uniformity trials with yield per plant for 200, 500 plants. CVs fairly high and correlation between neighboring plants very low.</p>
-<p><strong>Niels Anton Hansen</strong>, 1914. Prøvedyrkning paa Forsøgsstationen ved Aarslev. <em>Tidsskrift for landbrugets planteavl</em>. <a href="http://dca.au.dk/publikationer/historiske/planteavl/" class="uri">http://dca.au.dk/publikationer/historiske/planteavl/</a> Bind 21, page 553. In Danish. Page 557 might be the table referred to by Eden, except there are 30 plots, not 35. Yields appear to be given as percents.</p>
-<p>See comments by Eden &amp; Maskell found here: <a href="https://archive.org/stream/in.ernet.dli.2015.25895/2015.25895.Journal-Of-Agricultural-Science-Vol-xviii-1928#page/n175" class="uri">https://archive.org/stream/in.ernet.dli.2015.25895/2015.25895.Journal-Of-Agricultural-Science-Vol-xviii-1928#page/n175</a> Page 165: “One of the trials, comprising 35 plots, extended over the years 1907-11 and included oats, rye, barley, roots, barley.” Oats and rye 1907 and 1908 show marked positive correlation. rye and barley 1908 and 1909 no correlation of significance. barley and roots 1909 and 1910 no correlation. roots and barley 1910 and 1911 a significant correlation. rye and roots 1908 and 1910 satisfactory.</p>
-<p><strong>Edmund B. Lambert</strong> (1934). Size and arrangement of plots for yield tests with cultivated mushrooms. Journal of Agricultural Research, Vol 48, 971-980.</p>
-<p>Note: Uniformity trial at three locations for mushrooms in growth houses. <a href="https://naldc.nal.usda.gov/naldc/download.xhtml?id=IND43968493" class="uri">https://naldc.nal.usda.gov/naldc/download.xhtml?id=IND43968493</a></p>
+<div id="r-packages-on-cran-github-etc." class="section level1">
+<h1>R packages on CRAN, Github, etc.</h1>
+<div id="agricensdata" class="section level3">
+<h3>agriCensData</h3>
+<p><a href="https://github.com/OnofriAndreaPG/agriCensData" class="uri">https://github.com/OnofriAndreaPG/agriCensData</a></p>
+<p>Three datasets with censored observations for the paper “Analyzing interval-censored data in agricultural research: A review with examples and software tips”.</p>
 </div>
-<div id="r-packages" class="section level1">
-<h1>R packages</h1>
 <div id="agritutorial" class="section level3">
 <h3>agriTutorial</h3>
+<p><a href="https://myaseen208.github.io/agriTutorial/" class="uri">https://myaseen208.github.io/agriTutorial/</a></p>
 <p>Five datasets used to illustrate analyses.</p>
 </div>
 <div id="agricolae" class="section level3">
 <h3>agricolae</h3>
 <p>Has assorted data and functions for analysis of agricultural data.</p>
 </div>
+<div id="agrobiodata" class="section level3">
+<h3>agroBioData</h3>
+<p><a href="https://github.com/OnofriAndreaPG/agroBioData" class="uri">https://github.com/OnofriAndreaPG/agroBioData</a></p>
+<p>Datasets for agriculture and applied biology. Referenced by this blog: <a href="https://www.statforbiology.com/" class="uri">https://www.statforbiology.com/</a></p>
+</div>
 <div id="aml---adaptive-mixed-lasso" class="section level3">
 <h3>aml - Adaptive Mixed LASSO</h3>
-<p>Data <code>aml::wheat</code> genetic and phenotypic data for wheat.</p>
+<p>Data <code>aml::wheat</code> genetic and phenotypic data for wheat. Modest size.</p>
 </div>
 <div id="bglr---bayesian-generalized-linear-regression." class="section level3">
 <h3>BGLR - Bayesian Generalized Linear Regression.</h3>
@@ -433,13 +670,20 @@ Vol 35/503. North Central Regional Potassium Studies with Corn.</code></pre>
 <h3>drc - Dose response curves</h3>
 <p>Has nice herbicide dose response curves and germination data for mungbean, rice, wheat.</p>
 </div>
-<div id="ephiphy" class="section level3">
-<h3>ephiphy</h3>
-<p>Includes 10 historical datasets for plant disease epidemics. <a href="https://github.com/chgigot/epiphy" class="uri">https://github.com/chgigot/epiphy</a></p>
+<div id="epiphy" class="section level3">
+<h3>epiphy</h3>
+<p><a href="https://github.com/chgigot/epiphy" class="uri">https://github.com/chgigot/epiphy</a></p>
+<p>Contains 10 historical datasets for plant disease epidemics.</p>
 </div>
 <div id="fw---finlay-wilkinson-regression" class="section level3">
 <h3>FW - Finlay-Wilkinson regression</h3>
-<p><a href="https://github.com/lian0090/FW/" class="uri">https://github.com/lian0090/FW/</a> Has phenotype data and marker data for 599 wheat lines in 4 environments.</p>
+<p><a href="https://github.com/lian0090/FW/" class="uri">https://github.com/lian0090/FW/</a></p>
+<p>Has phenotype data and marker data for 599 wheat lines in 4 environments.</p>
+</div>
+<div id="ggenealogy" class="section level3">
+<h3>ggenealogy</h3>
+<p><a href="https://www.jstatsoft.org/article/view/v089i13" class="uri">https://www.jstatsoft.org/article/view/v089i13</a></p>
+<p>Data <code>sbGeneal</code> contains a soybean pedigree with 230 varieties.</p>
 </div>
 <div id="grbase" class="section level3">
 <h3>gRbase</h3>
@@ -455,12 +699,17 @@ Vol 35/503. North Central Regional Potassium Studies with Corn.</code></pre>
 </div>
 <div id="nlraa" class="section level3">
 <h3>nlraa</h3>
-<p>Miguez. Non-linear models in agriculture. <a href="http://r-forge.r-project.org/R/?group_id=1599" class="uri">http://r-forge.r-project.org/R/?group_id=1599</a></p>
+<p><a href="http://r-forge.r-project.org/R/?group_id=1599" class="uri">http://r-forge.r-project.org/R/?group_id=1599</a></p>
+<p>Miguez. Non-linear models in agriculture. <code>nlraa::sm</code> = <code>agridat::miguez.biomass</code></p>
 </div>
 <div id="nlme" class="section level3">
 <h3>nlme</h3>
 <p><code>nlme::Orange</code>: Growth of orange trees</p>
 <p><code>nlme::Soybean</code>: Growth of soybean plants. From the book “Nonlinear Models for Repeated Measurement Data”.</p>
+</div>
+<div id="pbkrtest" class="section level3">
+<h3>pbkrtest</h3>
+<p><code>pbkrtest::beets</code> Yield and percent sugar in split-plot experiment.</p>
 </div>
 <div id="plantbreeding" class="section level3">
 <h3>plantbreeding</h3>
@@ -475,7 +724,11 @@ Data: peanut same as agridat::kang.peanut</code></pre>
 </div>
 <div id="semipar" class="section level3">
 <h3>SemiPar</h3>
-<p>Data: <code>SemiPar::onions</code> is same as <code>agridat::ratkowski.onions</code></p>
+<p>Data: <code>SemiPar::onions</code> is same as agridat::ratkowski.onions</p>
+</div>
+<div id="soildb" class="section level3">
+<h3>soilDB</h3>
+<p><a href="https://ncss-tech.github.io/AQP/soilDB/soilDB-Intro.html" class="uri">https://ncss-tech.github.io/AQP/soilDB/soilDB-Intro.html</a> Soil database interface.</p>
 </div>
 <div id="sommer---solving-mixed-model-equations-in-r" class="section level3">
 <h3>sommer - Solving mixed model equations in R</h3>
@@ -485,6 +738,11 @@ Data: peanut same as agridat::kang.peanut</code></pre>
 <p>Data: FDdata taken from agridat::bond.diallel</p>
 <p>Data: Technow_data. AF=Additive Flint. AD=Additive Dent. MF=Marker Flint. MD=Marker Dent. pheno=phenotype data for 1254 hybrids (GY=yield, GM=moisture). This data is from Technow et al: <a href="http://www.genetics.org/content/197/4/1343.supplemental" class="uri">http://www.genetics.org/content/197/4/1343.supplemental</a></p>
 </div>
+<div id="soynam---soybean-nested-association-mapping" class="section level3">
+<h3>SoyNAM - Soybean nested association mapping</h3>
+<p>Dataset with phenotype data 3 yr, 9 locations, 18 environments, 60 thousand observations for height, maturity, lodging, moisture, protein, oil, fiber, seed size. There are 5000+ strains, 40 families.</p>
+<p>Data formatted for the analysis of the NAM package is available with the following command: <code>SoyNAM::ENV()</code>.</p>
+</div>
 <div id="spdep" class="section level3">
 <h3>spdep</h3>
 <p>Has a vignette ‘The Problem of Spatial Autocorrelation: forty years on’ that examines agriculture in Irish counties. See also the data <code>ade4::irishdata</code>.</p>
@@ -493,10 +751,19 @@ Data: peanut same as agridat::kang.peanut</code></pre>
 <h3>spuRs</h3>
 <p>Data: <code>spuRs::trees</code> has data for 107 trees that were cut into cross sections with the volume calculated at roughly 10-year increments. This is a subset of the much-larger original data from Guttenberg: <a href="https://archive.org/stream/wachstumundertra00gutt" class="uri">https://archive.org/stream/wachstumundertra00gutt</a></p>
 </div>
-<div id="soynam---soybean-nested-association-mapping" class="section level3">
-<h3>SoyNAM - Soybean nested association mapping</h3>
-<p>Dataset with phenotype data 3 yr, 9 locations, 18 environments, 60 thousand observations for height, maturity, lodging, moisture, protein, oil, fiber, seed size. There are 5000+ strains, 40 families.</p>
-<p>Data formatted for the analysis of the NAM package is available with the following command: SoyNAM::ENV().</p>
+<div id="statforbiology" class="section level3">
+<h3>StatForBiology</h3>
+<p><a href="https://www.statforbiology.com/" class="uri">https://www.statforbiology.com/</a></p>
+<p>Blog posts with example analyses.</p>
+</div>
+<div id="statgensta" class="section level3">
+<h3>statgenSTA</h3>
+<p><a href="https://CRAN.R-project.org/package=statgenSTA" class="uri">https://CRAN.R-project.org/package=statgenSTA</a> See vignette: Modeling field trials using statgenSTA</p>
+</div>
+<div id="statgengwas" class="section level3">
+<h3>statgenGWAS</h3>
+<p><a href="https://CRAN.R-project.org/package=statgenGWAS" class="uri">https://CRAN.R-project.org/package=statgenGWAS</a></p>
+<p>Includes a worked example with data from: <a href="https://data.inra.fr/dataset.xhtml?persistentId=doi:10.15454/IASSTN" class="uri">https://data.inra.fr/dataset.xhtml?persistentId=doi:10.15454/IASSTN</a></p>
 </div>
 <div id="st4gi---stat-for-genetic-improvement" class="section level3">
 <h3>st4gi - Stat for genetic improvement</h3>
@@ -505,17 +772,62 @@ Data: peanut same as agridat::kang.peanut</code></pre>
 </div>
 <div id="web-sites" class="section level1">
 <h1>Web sites</h1>
-<div id="ideals" class="section level3">
-<h3>Ideals</h3>
-<p>Data File : Raw data from each ear analyzed each year of the Illinois long-term selection experiment for oil and protein in corn (1896-2004) <a href="https://www.ideals.illinois.edu/handle/2142/3528" class="uri">https://www.ideals.illinois.edu/handle/2142/3528</a></p>
-</div>
 <div id="ars-oat-trials" class="section level3">
 <h3>ARS oat trials</h3>
 <p><a href="http://www.ars.usda.gov/Main/docs.htm?docid=8419&amp;page=4" class="uri">http://www.ars.usda.gov/Main/docs.htm?docid=8419&amp;page=4</a></p>
 </div>
+<div id="betydb" class="section level3">
+<h3>BETYdb</h3>
+<p><a href="https://www.betydb.org/" class="uri">https://www.betydb.org/</a> Biofuel Ecophysiological Traits and Yields Database</p>
+</div>
+<div id="cimmyt-research-data" class="section level3">
+<h3>CIMMYT Research Data</h3>
+<p><a href="https://data.cimmyt.org/dataverse/cimmytdatadvn" class="uri">https://data.cimmyt.org/dataverse/cimmytdatadvn</a></p>
+</div>
+<div id="genomes-to-fields-g2f" class="section level3">
+<h3>Genomes To Fields (G2F)</h3>
+<p><a href="https://www.genomes2fields.org/publications/" class="uri">https://www.genomes2fields.org/publications/</a></p>
+<p><a href="http://datacommons.cyverse.org/browse/iplant/home/shared/commons_repo/curated/Carolyn_Lawrence_Dill_G2F_Nov_2016_V.3" class="uri">http://datacommons.cyverse.org/browse/iplant/home/shared/commons_repo/curated/Carolyn_Lawrence_Dill_G2F_Nov_2016_V.3</a></p>
+<p>Very large GxE data here for 2014 and 2015. Hybrid &amp; inbred phenotype data, weather data, genomic data. Very nice.</p>
+</div>
+<div id="glten-global-long-term-metadal-portal" class="section level3">
+<h3>GLTEN Global Long Term Metadal Portal</h3>
+<p><a href="https://glten.org/" class="uri">https://glten.org/</a></p>
+<p>Links to long-term experiments.</p>
+</div>
+<div id="google-dataset-search" class="section level3">
+<h3>Google dataset search</h3>
+<p><a href="https://toolbox.google.com/datasetsearch" class="uri">https://toolbox.google.com/datasetsearch</a></p>
+</div>
+<div id="grain-genes" class="section level3">
+<h3>Grain genes</h3>
+<ol style="list-style-type: decimal">
+<li><p><a href="https://wheat.pw.usda.gov/ggpages/HxT/" class="uri">https://wheat.pw.usda.gov/ggpages/HxT/</a> The Harrington x TR306 Barley Mapping Population. The genotype and phenotype data comes from Mapmaker, but seems to be in a slightly non-standard format; 145 DH lines, 217 markers, 25 env, 1 rep.</p></li>
+<li><p><a href="https://wheat.pw.usda.gov/ggpages/SxM" class="uri">https://wheat.pw.usda.gov/ggpages/SxM</a>. This data is agridat::steptoe.morex.</p></li>
+</ol>
+</div>
+<div id="ideals" class="section level3">
+<h3>Ideals</h3>
+<p><a href="https://www.ideals.illinois.edu/handle/2142/3528" class="uri">https://www.ideals.illinois.edu/handle/2142/3528</a> Data File : Raw data from each ear analyzed each year of the Illinois long-term selection experiment for oil and protein in corn (1896-2004)</p>
+</div>
+<div id="illinois-corn-hybrid-variety-trials" class="section level3">
+<h3>Illinois Corn Hybrid Variety Trials</h3>
+<p><a href="http://vt.cropsci.illinois.edu/corn.html" class="uri">http://vt.cropsci.illinois.edu/corn.html</a></p>
+</div>
+<div id="ilri-international-livestock-research-institute" class="section level3">
+<h3>ILRI International Livestock Research Institute</h3>
+<p>Case study 4 is a nice diallel example with sheep data. Available as agridat::ilri.sheep</p>
+</div>
+<div id="irri-biometrics-and-breeding-informatics" class="section level3">
+<h3>IRRI Biometrics and Breeding Informatics</h3>
+<p><a href="http://bbi.irri.org/products" class="uri">http://bbi.irri.org/products</a></p>
+<p>STAR, PBTools, CropStat. The STAR user guide has well-documented data (even using 2 from agridat), but the PBTools user guide does not document the data.</p>
+</div>
 <div id="rothamsted-electronic-archive" class="section level3">
 <h3>Rothamsted Electronic Archive</h3>
 <p><a href="http://www.era.rothamsted.ac.uk/index.php" class="uri">http://www.era.rothamsted.ac.uk/index.php</a> Data from Broadbalk and other long-term experiments.</p>
+<p>Twitter: <a href="https://twitter.com/eRA_Curator" class="uri">https://twitter.com/eRA_Curator</a></p>
+<p>Github draft data: <a href="https://github.com/Rothamsted-Ecoinformatics/YieldbookDatasetDrafts" class="uri">https://github.com/Rothamsted-Ecoinformatics/YieldbookDatasetDrafts</a></p>
 </div>
 <div id="rothamsted-documents-archive" class="section level3">
 <h3>Rothamsted Documents Archive</h3>
@@ -537,29 +849,6 @@ Data: peanut same as agridat::kang.peanut</code></pre>
 1937-1939
 1946-1953</code></pre>
 </div>
-<div id="germplasm-enhancement-of-maize-isu" class="section level3">
-<h3>Germplasm Enhancement of Maize (ISU)</h3>
-<p><a href="http://www.public.iastate.edu/~usda-gem/index.htm" class="uri">http://www.public.iastate.edu/~usda-gem/index.htm</a></p>
-<p>Data from trials at multiple locations. Yield, mst, pltht, lodging. No field plans.</p>
-</div>
-<div id="google-datasets-search-engine" class="section level3">
-<h3>Google datasets search engine</h3>
-<p><a href="https://cse.google.com/cse/publicurl?cx=002720237717066476899:v2wv26idk7m" class="uri">https://cse.google.com/cse/publicurl?cx=002720237717066476899:v2wv26idk7m</a></p>
-</div>
-<div id="illinois-corn-hybrid-variety-trials" class="section level3">
-<h3>Illinois Corn Hybrid Variety Trials</h3>
-<p><a href="http://vt.cropsci.illinois.edu/corn.html" class="uri">http://vt.cropsci.illinois.edu/corn.html</a></p>
-</div>
-<div id="ilri-international-livestock-research-institute" class="section level3">
-<h3>ILRI International Livestock Research Institute</h3>
-<p><a href="http://www.ilri.org/biometrics/CS/" class="uri">http://www.ilri.org/biometrics/CS/</a></p>
-<p>Case study 4 is a nice dialel example with sheep data. Available as agridat::ilri.sheep</p>
-</div>
-<div id="irri-biometrics-and-breeding-informatics" class="section level3">
-<h3>IRRI Biometrics and Breeding Informatics</h3>
-<p><a href="http://bbi.irri.org/products" class="uri">http://bbi.irri.org/products</a></p>
-<p>STAR, PBTools, CropStat. The STAR user guide has well-documented data (even using 2 from agridat), but the PBTools user guide does not document the data.</p>
-</div>
 <div id="solcap-solanaceae-coordinated-agricultural-project" class="section level3">
 <h3>SolCAP Solanaceae Coordinated Agricultural Project</h3>
 <p><a href="http://www.solcap.msu.edu/" class="uri">http://www.solcap.msu.edu/</a></p>
@@ -567,8 +856,13 @@ Data: peanut same as agridat::kang.peanut</code></pre>
 </div>
 <div id="statistical-analysis-of-agricultural-experiments-with-r" class="section level3">
 <h3>Statistical Analysis of Agricultural Experiments with R</h3>
-<p>See: rstats4ag.org (no http because of firewall problems).</p>
+<p>rstats4ag.org (no http included here because of firewall problems).</p>
 <p>Datasets for mixed models, ancova, dose response curves, competition.</p>
+</div>
+<div id="syngenta-crop-challenge" class="section level3">
+<h3>Syngenta Crop Challenge</h3>
+<p><a href="https://www.ideaconnection.com/syngenta-crop-challenge/" class="uri">https://www.ideaconnection.com/syngenta-crop-challenge/</a></p>
+<p>Annual Kaggle-style competition sponsored by Syngenta.</p>
 </div>
 <div id="terra-ref" class="section level3">
 <h3>Terra-Ref</h3>
@@ -578,7 +872,7 @@ Data: peanut same as agridat::kang.peanut</code></pre>
 <div id="usda-national-agricultural-statistics-service" class="section level3">
 <h3>USDA National Agricultural Statistics Service</h3>
 <p><a href="http://www.nass.usda.gov" class="uri">http://www.nass.usda.gov</a> <a href="http://quickstats.nass.usda.gov/" class="uri">http://quickstats.nass.usda.gov/</a></p>
-<p>Group: Field Crops Commodity: Corn Category: Area Harvested, Yield Data Item: Corn grain Acres Harvested, Yield Bu/Ac Domain: Total Geography: State See agridat::nass.corn, nass.wheat, etc.</p>
+<p>Group: Field Crops Commodity: Corn Category: Area Harvested, Yield Data Item: Corn grain Acres Harvested, Yield Bu/Ac Domain: Total Geography: State See <code>agridat::nass.corn</code>, nass.wheat, etc.</p>
 </div>
 </div>
 <div id="other" class="section level1">
@@ -602,6 +896,9 @@ Demandt.  1931. One box </code></pre>
 </div>
 </div>
 
+
+
+<!-- code folding -->
 
 
 <!-- dynamically load mathjax for compatibility with self-contained -->

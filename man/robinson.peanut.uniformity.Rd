@@ -27,9 +27,13 @@
   
   Field width: 16 plots * 3 feet = 48 feet
   
-  Widening the plot was not as effective as increasing the plot length in order to reduce error. This agrees with the results of other uniformity studies.
+  Widening the plot was not as effective as increasing the plot length
+  in order to reduce error. This agrees with the results of other
+  uniformity studies.
   
-  Assuming 30 percent of the total cost of an experiment is proportional to the size of the plots used, the optimum plot size is approximately 3.2 units.
+  Assuming 30 percent of the total cost of an experiment is proportional
+  to the size of the plots used, the optimum plot size is approximately
+  3.2 units.
 
 }
 \source{
@@ -43,6 +47,8 @@
 \examples{
 \dontrun{
 
+library(agridat)
+
   data(robinson.peanut.uniformity)
   dat <- robinson.peanut.uniformity
 
@@ -51,8 +57,8 @@
   #     1939     1940 
   # 703.7847 787.8125 
   
-  require(desplot)
-  desplot(yield ~ col*row|year, dat,
+  libs(desplot)
+  desplot(dat, yield ~ col*row|year,
           flip=TRUE, tick=TRUE, aspect=200/48,
           main="robinson.peanut.uniformity")
   

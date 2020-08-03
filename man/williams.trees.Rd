@@ -2,10 +2,10 @@
 \alias{williams.trees}
 \docType{data}
 \title{
-  Height / Survival of 37 tree species at six sites in Thailand
+  Multi-environment trial of trees, height / survival of 37 species at 6 sites in Thailand
 }
 \description{
-  Height / Survival of 37 tree species at six sites in Thailand
+  Multi-environment trial of trees, height / survival of 37 species at 6 sites in Thailand
 }
 
 \format{
@@ -23,6 +23,8 @@
   spacing 2m x 2m.  Measurements collected at 24 months.  The \code{gen}
   column in the data is actually \emph{seedlot}, as some tree species
   have multiple seed lots.  The trees are mostly acacia and eucalyptus.
+
+  Used with permission of Emlyn Williams.
 }
 
 \source{
@@ -32,22 +34,22 @@
     Tropics: Growing Australian Multipurpose Trees and Shrubs in
     Developing Countries}. Pages 145--152.
   http://aciar.gov.au/publication/MN010
-
-  Used with permission of Emlyn Williams.
 }
 
 \references{
   E. R. Williams and A. C. Matheson and C. E Harwood,
-  \emph{Experimental Design and Analysis for Tree Improvement},
+  Experimental Design and Analysis for Tree Improvement.
   CSIRO Publishing, 2002.
 }
 
 \examples{
 
+library(agridat)
+
 data(williams.trees)
 dat <- williams.trees
 
-require(lattice)
+libs(lattice)
 xyplot(survival~height|env,dat, main="williams.trees", xlab="Height",
 ylab="Percent surviving")
 }

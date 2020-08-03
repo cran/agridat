@@ -52,66 +52,70 @@
 }
 
 \examples{
+\dontrun{
 
-data(federer.diagcheck)
-dat <- federer.diagcheck
+  library(agridat)
+  data(federer.diagcheck)
+  dat <- federer.diagcheck
+  dat$check <- ifelse(dat$gen == "G121" | dat$gen=="G122", "C","N")
 
-# Show the layout as in Federer 1998.
-dat$check <- ifelse(dat$gen == "G121" | dat$gen=="G122", "C","N")
-if(require(desplot)){
-  desplot(yield ~ col*row, dat,
+  # Show the layout as in Federer 1998.
+  libs(desplot)
+  desplot(dat, yield ~ col*row,
           text=gen, show.key=FALSE, # aspect unknown
           shorten='no', col=check, cex=.8, col.text=c("yellow","gray"),
           main="federer.diagcheck")
-}
 
 
-# Now reproduce the analysis of Federer 2003.
-
-# Only to match SAS results
-dat$row <- 16 - dat$row
-dat <- dat[order(dat$col, dat$row), ]
-
-# Add row / column polynomials to the data.
-# The scaling factors sqrt() are arbitrary, but used to match SAS
-nr <- length(unique(dat$row))
-nc <- length(unique(dat$col))
-rpoly <- poly(dat$row, degree=10) * sqrt(nc)
-cpoly <- poly(dat$col, degree=10) * sqrt(nr)
-dat <- transform(dat,
-                 c1 = cpoly[,1], c2 = cpoly[,2], c3 = cpoly[,3],
-                 c4 = cpoly[,4], c6 = cpoly[,6], c8 = cpoly[,8],
-                 r1 = rpoly[,1], r2 = rpoly[,2], r3 = rpoly[,3],
-                 r4 = rpoly[,4], r8 = rpoly[,8], r10 = rpoly[,10])
-dat$trtn <- ifelse(dat$gen == "G121" | dat$gen=="G122", dat$gen, "G999")
-dat$new <- ifelse(dat$gen == "G121" | dat$gen=="G122", "N", "Y")
-dat <- transform(dat, trtn=factor(trtn), new=factor(new))
-
-m1 <- lm(yield ~ c1 + c2 + c3 + c4 + c6 + c8
-         + r1 + r2 + r4 + r8 + r10
-         + c1:r1 + c2:r1 + c3:r1 + gen, data = dat)
-# To get Type III SS use the following
-if(require(car)) {
-  Anova(m1, type=3) # Matches PROC GLM output
+  # Now reproduce the analysis of Federer 2003.
+  
+  # Only to match SAS results
+  dat$row <- 16 - dat$row
+  dat <- dat[order(dat$col, dat$row), ]
+  
+  # Add row / column polynomials to the data.
+  # The scaling factors sqrt() are arbitrary, but used to match SAS
+  nr <- length(unique(dat$row))
+  nc <- length(unique(dat$col))
+  rpoly <- poly(dat$row, degree=10) * sqrt(nc)
+  cpoly <- poly(dat$col, degree=10) * sqrt(nr)
+  dat <- transform(dat,
+                   c1 = cpoly[,1], c2 = cpoly[,2], c3 = cpoly[,3],
+                   c4 = cpoly[,4], c6 = cpoly[,6], c8 = cpoly[,8],
+                   r1 = rpoly[,1], r2 = rpoly[,2], r3 = rpoly[,3],
+                   r4 = rpoly[,4], r8 = rpoly[,8], r10 = rpoly[,10])
+  dat$trtn <- ifelse(dat$gen == "G121" | dat$gen=="G122", dat$gen, "G999")
+  dat$new <- ifelse(dat$gen == "G121" | dat$gen=="G122", "N", "Y")
+  dat <- transform(dat, trtn=factor(trtn), new=factor(new))
+  
+  m1 <- lm(yield ~ c1 + c2 + c3 + c4 + c6 + c8
+           + r1 + r2 + r4 + r8 + r10
+           + c1:r1 + c2:r1 + c3:r1 + gen, data = dat)
+  # To get Type III SS use the following
+  # libs(car)
+  # car::Anova(m1, type=3) # Matches PROC GLM output
   ##                Sum Sq  Df  F value    Pr(>F)    
   ## (Intercept)  538948   1 159.5804 3.103e-16 ***
   ## c1            13781   1   4.0806 0.0494940 *  
   ## c2            51102   1  15.1312 0.0003354 ***
   ## c3            45735   1  13.5419 0.0006332 ***
   ## c4            24670   1   7.3048 0.0097349 ** 
-  ## c6            33002   1   9.7719 0.0031359 ** 
-}
+  ## ...
+  
+  
+  # lmer
+  libs(lme4,lucid)
 
-# lmer
-if(require(lme4) & require(lucid)){
-
+  # "group" for all data
   dat$one <- factor(rep(1, nrow(dat)))
-
+  
   # lmer with bobyqa (default)
   m2b <- lmer(yield ~ trtn + (0 + r1 + r2 + r4 + r8 + r10 +
-             c1 + c2 + c3 + c4 + c6 + c8 + r1:c1 + r1:c2 + r1:c3 || one) +
+                                c1 + c2 + c3 + c4 + c6 +
+                                c8 + r1:c1 + r1:c2 + r1:c3 || one) +
                 (1|new:gen),
-              data = dat, control=lmerControl(check.nlev.gtr.1="ignore"))
+              data = dat,
+              control=lmerControl(check.nlev.gtr.1="ignore"))
   vc(m2b)
   ##      grp        var1 var2     vcov  sdcor
   ##  new.gen (Intercept) <NA>   2869    53.57
@@ -131,12 +135,13 @@ if(require(lme4) & require(lucid)){
   ##   one.13          r1 <NA>   9200    95.92
   ## Residual        <NA> <NA>   4412    66.42
   
-  ## lmer with Nelder_Mead gives 'wrong' results
+  # lmer with Nelder_Mead gives 'wrong' results
   ## m2n <- lmer(yield ~ trtn + (0 + r1 + r2 + r4 + r8 + r10 +
   ##             c1 + c2 + c3 + c4 + c6 + c8 + r1:c1 + r1:c2 + r1:c3 || one) +
   ##             (1|new:gen)
   ##             , data = dat,
-  ##             control=lmerControl(optimizer="Nelder_Mead",check.nlev.gtr.1="ignore"))
+  ##             control=lmerControl(optimizer="Nelder_Mead",
+  ##                                 check.nlev.gtr.1="ignore"))
   ## vc(m2n)
   ##    groups        name variance   stddev
   ##  new.gen  (Intercept)   3228    56.82
@@ -155,21 +160,18 @@ if(require(lme4) & require(lucid)){
   ##  one.12   r2             928.2  30.47
   ##  one.13   r1           10360   101.8
   ##  Residual               4127    64.24
+  
+  libs(asreml,lucid)
+  if( utils::packageVersion("asreml") < "4") {
+    # asreml3
 
-}
-
-# ----------------------------------------------------------------------------
-
-\dontrun{
-  # asreml3
-  require(asreml)
-  require(lucid)
-  m3 <- asreml(yield ~ -1 + trtn, data=dat,
-               random = ~ r1 + r2 + r4 + r8 + r10 +
-                 c1 + c2 + c3 + c4 + c6 + c8 + r1:c1 + r1:c2 + r1:c3 + new:gen)
-  coef(m3)
+    m3 <- asreml(yield ~ -1 + trtn, data=dat,
+                 random = ~ r1 + r2 + r4 + r8 + r10 +
+                   c1 + c2 + c3 + c4 + c6 + c8 +
+                   r1:c1 + r1:c2 + r1:c3 + new:gen)
+  ## coef(m3)
   # REML cultivar means.  Very similar to Federer table 2.
-  rev(sort(round(coef(m3)$fixed[3] + coef(m3)$random[137:256,],0)))
+  ## rev(sort(round(coef(m3)$fixed[3] + coef(m3)$random[137:256,],0)))
   ## gen_G060 gen_G021 gen_G011 gen_G099 gen_G002
   ##      974      949      945      944      942
   ## gen_G118 gen_G058 gen_G035 gen_G111 gen_G120
@@ -196,16 +198,17 @@ if(require(lme4) & require(lucid)){
   ##  new:gen!new.var   2869         1367    2.1     pos
   ##       R!variance   4412          915    4.8     pos
 
-}
+  }
 
-# ----------------------------------------------------------------------------
 
-\dontrun{
-  ## require(asreml4)
-  ## require(lucid)
-  ## m3 <- asreml(yield ~ -1 + trtn, data=dat,
-  ##              random = ~ r1 + r2 + r4 + r8 + r10 +
-  ##                c1 + c2 + c3 + c4 + c6 + c8 + r1:c1 + r1:c2 + r1:c3 + new:gen)
+  libs(asreml,lucid)
+  if( utils::packageVersion("asreml") > "4") {
+    # asreml4
+    
+    m3 <- asreml(yield ~ -1 + trtn, data=dat,
+                 random = ~ r1 + r2 + r4 + r8 + r10 +
+                   c1 + c2 + c3 + c4 + c6 + c8 +
+                   r1:c1 + r1:c2 + r1:c3 + new:gen)
   ## coef(m3)
   ## # REML cultivar means.  Very similar to Federer table 2.
   ## rev(sort(round(coef(m3)$fixed[3] + coef(m3)$random[137:256,],0)))
@@ -236,5 +239,6 @@ if(require(lme4) & require(lucid)){
   ## ##       R!variance   4412          915    4.8     pos
 }
 
+}
 }
 \keyword{datasets}

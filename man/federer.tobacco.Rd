@@ -2,10 +2,10 @@
 \alias{federer.tobacco}
 \docType{data}
 \title{
-  Height of tobacco plants exposed to radiation
+  RCB of tobacco, height plants exposed to radiation
 }
 \description{
-  Height of tobacco plants exposed to radiation
+  RCB of tobacco, height plants exposed to radiation
 }
 
 \format{
@@ -47,9 +47,13 @@
   Paul N Hinz, (1987).
   Nearest-Neighbor Analysis in Practice,
   \emph{Iowa State Journal of Research}, 62, 199--217.
+  https://lib.dr.iastate.edu/iowastatejournalofresearch/vol62/iss2/1
 }
 
 \examples{
+\dontrun{
+
+library(agridat)
 
 data(federer.tobacco)
 dat <- federer.tobacco
@@ -61,15 +65,16 @@ m1 <- lm(height ~ blockf + dosef, data=dat)
 anova(m1)
 
 # RCB residuals show strong spatial trends
-if(require(desplot)){
+libs(desplot)
 dat$resid <- resid(m1)
-desplot(resid ~ row * block, data=dat,
+desplot(dat, resid ~ row * block,
         # aspect unknown
         main="federer.tobacco")
-}
+
 
 # Row-column analysis.  Treatment now significant
 m2 <- lm(height ~ rowf + blockf + dosef, data=dat)
 anova(m2)
 
+}
 }

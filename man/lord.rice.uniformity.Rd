@@ -40,16 +40,20 @@
   Lord, L. (1931).
   A Uniformity Trial with Irrigated Broadcast Rice.
   The Journal of Agricultural Science, 21(1), 178-188.
+  https://doi.org/10.1017/S0021859600008029
 }
 \references{
   None
 }
 \examples{
+\dontrun{
+
+library(agridat)
 data(lord.rice.uniformity)
 dat <- lord.rice.uniformity
 
 # match table on page 180
-## require(dplyr)
+## libs(dplyr)
 ## dat %>% group_by(field) %>% dplyr::summarize(grain=sum(grain), straw=sum(straw))
 ##   field grain straw
 ##   <chr> <dbl> <dbl>
@@ -63,19 +67,20 @@ dat <- lord.rice.uniformity
 ## 8 28      530   718
 
 # There are consistently high yields along all edges of the field
-# require(lattice)
+# libs(lattice)
 # bwplot(grain ~ factor(col)|field,dat)
 # bwplot(grain ~ factor(col)|field,dat)
 
 # Heatmaps
-if(require(desplot)){
-  desplot(grain ~ col*row|field, dat,
-          flip=TRUE, aspect=140/50,
-          main="lord.rice.uniformity")
-}
+libs(desplot)
+desplot(dat, grain ~ col*row|field,
+        flip=TRUE, aspect=140/50,
+        main="lord.rice.uniformity")
+
 
 # bivariate scatterplots  
 # xyplot(grain ~ straw|field, dat)
 
+}
 }
 \keyword{datasets}

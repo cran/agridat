@@ -28,27 +28,34 @@
   \emph{Empire Journal of Experimental Agriculture}, 6, 157--175.
 }
 \references{
+  Ron Snee (1980). Graphical Display of Means.
+  \emph{The American Statistician}, 34, 195-199.
+  https://www.jstor.org/stable/2684060 
+  http://doi.org/10.1080/00031305.1980.10483028
+  
   W. Cochran (1940). The analysis of variance when experimental errors
   follow the Poisson or binomial laws.
   \emph{The Annals of Mathematical Statistics}, 11, 335-347.
+  https://www.jstor.org/stable/2235680 
 
   G W Snedecor and W G Cochran, 1980. \emph{Statistical Methods},
   Iowa State University Press.  Page 288.
 }
 
 \examples{
+\dontrun{
 
+library(agridat)
 data(cochran.wireworms)
 dat <- cochran.wireworms
 
-if(require(desplot)){
-  desplot(worms ~ col*row, data=dat,
-          text=trt, cex=1, # aspect unknown
-          main="cochran.wireworms")
-}
+libs(desplot)
+desplot(dat, worms ~ col*row,
+        text=trt, cex=1, # aspect unknown
+        main="cochran.wireworms")
 
 # Trt K is effective, but not the others.  Really, this says it all.
-require(lattice)
+libs(lattice)
 bwplot(worms ~ trt, dat, main="cochran.wireworms", xlab="Treatment")
 
 # Snedecor and Cochran do ANOVA on sqrt(x+1).
@@ -61,7 +68,7 @@ m2 <- glm(worms ~ trt + rowf + colf, data=dat, family="poisson")
 anova(m2)
 
 # GLM with random blocking.
-if(require(lme4)){
+libs(lme4)
 m3 <- glmer(worms ~ -1 +trt +(1|rowf) +(1|colf), data=dat, family="poisson")
 summary(m3)
 ## Fixed effects:
@@ -72,6 +79,5 @@ summary(m3)
 ## trtO   1.7147     0.2275   7.537 4.80e-14 ***
 
 }
-
 }
 \keyword{datasets}

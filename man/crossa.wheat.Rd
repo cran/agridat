@@ -55,20 +55,21 @@
     TC \tab Thailand \tab Chiang Mai \tab 18 820 \cr
   }
 
+  Used with permission of Jose' Crossa.
+
 }
 \source{
   Crossa, J and Fox, PN and Pfeiffer, WH and Rajaram, S and Gauch Jr,
-  HG. (1991). AMMI adjustment for statistical analysis of an
+  HG. (1991).
+  AMMI adjustment for statistical analysis of an
   international wheat yield trial.
-  \emph{Theoretical and Applied Genetics}, 81, 27--37.
+  Theoretical and Applied Genetics, 81, 27--37.
   http://doi.org/10.1007/BF00226108
-
-  Used with permission of Jose' Crossa.
 }
 \references{
   Jean-Louis Laffont, Kevin Wright and Mohamed Hanafi (2013).
   Genotype + Genotype x Block of Environments (GGB) Biplots.
-  \emph{Crop Science}, 53, 2332-2341.
+  Crop Science, 53, 2332-2341.
   http://doi.org/10.2135/cropsci2013.03.0178
 }
 
@@ -80,7 +81,7 @@ data(crossa.wheat)
 dat <- crossa.wheat
 
 # AMMI biplot.  Fig 3 of Crossa et al.
-require(agricolae)
+libs(agricolae)
 m1 <- with(dat, AMMI(E=loc, G=gen, R=1, Y=yield))
 b1 <- m1$biplot[,1:4]
 b1$PC1 <- -1 * b1$PC1 # Flip vertical
@@ -103,9 +104,9 @@ arrows(mn, 0,
 library(agridat)
 data(crossa.wheat)
 dat2 <- crossa.wheat
-library(gge)
+libs(gge)
 # Specify env.group as column in data frame
-m2 <- gge(yield~gen*loc, dat2, env.group=locgroup, scale=FALSE)
+m2 <- gge(dat2, yield~gen*loc, env.group=locgroup, scale=FALSE)
 biplot(m2, main="crossa.wheat - GGB biplot")
 
 }

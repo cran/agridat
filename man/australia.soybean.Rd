@@ -59,59 +59,61 @@ No. \tab Line \cr
 55 \tab Lee  USA \cr
 56 \tab Hood  USA \cr
 57 \tab Ogden  USA \cr
-58 \tab Wayne  USA \cr
+58 \tab Wayne  USA
 }
 
 Note on the data in Basford and Tukey book. The values for line 58 for
-Nambour 1970 and Redland Bay 1971 are
-incorrectly listed on page 477 as 20.490 and 15.070. They should be 17.350 and
-13.000, respectively. In the data set made available here, these values have
-been corrected.
+Nambour 1970 and Redland Bay 1971 are incorrectly listed on page 477 as
+20.490 and 15.070. They should be 17.350 and 13.000, respectively. In
+the data set made available here, these values have been corrected.
+
+  Used with permission of Kaye Basford, Pieter Kroonenberg.
+
 }
 
 \source{
-  Basford, K. E., and Tukey, J. W. (1999). Graphical analysis of multiresponse
-  data illustrated with a plant breeding trial. Chapman and Hall/CRC.
+  Basford, K. E., and Tukey, J. W. (1999).
+  Graphical analysis of multiresponse data illustrated with a plant breeding trial.
+  Chapman and Hall/CRC.
 
   Retrieved from:
   http://three-mode.leidenuniv.nl/data/soybeaninf.htm
-
-  Used with permission of Kaye Basford, Pieter Kroonenberg.
 }
-\references{
-  
-  K E Basford. 1982. The Use of Multidimensional Scaling in Analysing
+\references{  
+  K E Basford (1982). The Use of Multidimensional Scaling in Analysing
   Multi-Attribute Genotype Response Across Environments,
-  \emph{Aust J Agric Res}, 33, 473--480.
+  Aust J Agric Res, 33, 473--480.
 
   Kroonenberg, P. M., & Basford, K. E. B. (1989). An investigation of
   multi-attribute genotype response across environments using three-mode
   principal component analysis.
-  \emph{Euphytica}, 44, 109--123.
+  Euphytica, 44, 109--123.
 
   Marcin Kozak (2010).
   Use of parallel coordinate plots in multi-response selection of
   interesting genotypes.
-  \emph{Communications in Biometry and Crop Science}, 5, 83-95.
+  Communications in Biometry and Crop Science, 5, 83-95.
 
 }
 \examples{
+\dontrun{
+
+library(agridat)
 
 data(australia.soybean)
 dat <- australia.soybean
 
-if(require(reshape2)){
+libs(reshape2)
 dm <- melt(dat, id.var=c('env', 'year','loc','gen'))
 
 # Joint plot of genotypes & traits. Similar to Figure 1 of Kroonenberg 1989
 dmat <- acast(dm, gen~variable, fun=mean)
 dmat <- scale(dmat)
 biplot(princomp(dmat), main="australia.soybean trait x gen biplot", cex=.75)
-}
+
 
 # Figure 1 of Kozak 2010, lines 44-58
-\dontrun{
-  require(agridat); require(reshape2) ; require(lattice); require(latticeExtra)
+  libs(reshape2, lattice, latticeExtra)
   data(australia.soybean)
   dat <- australia.soybean
   dat <- melt(dat, id.var=c('env', 'year','loc','gen'))
@@ -128,7 +130,7 @@ biplot(princomp(dmat), main="australia.soybean trait x gen biplot", cex=.75)
     parallelplot( ~ dat2[,1:6], horiz=FALSE, col="gray80") +
     parallelplot( ~ dat3[,1:6]|dat3$gen,
                  as.table=TRUE, horiz=FALSE, lwd=2)
-}
 
+}
 }
 

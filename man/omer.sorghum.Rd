@@ -2,10 +2,10 @@
 \alias{omer.sorghum}
 \docType{data}
 \title{
-  Yield of sorghum in 3 years, 2 locations
+  Multi-environment trial of sorghum, 6 environments
 }
 \description{
-  Yield of sorghum in 3 years, 2 locations
+  Multi-environment trial of sorghum, 6 environments
 }
 \usage{data("omer.sorghum")}
 \format{
@@ -19,8 +19,9 @@
 }
 \details{
   Trials were conducted in Sudan, 3 years at 2 locations, 4 reps in RCBD
-  at each location.
-
+  at each location. The year and location have been combined to form 6
+  environments. Only environments are given in the data, not the
+  individual year and location.
 }
 \source{
   Siraj Osman Omer, Abdel Wahab Hassan Abdalla, Mohammed Hamza Mohammed, Murari Singh (2015).
@@ -33,16 +34,16 @@
 \references{
 None.
 }
-
 \examples{
-\dontrun{
+
+library(agridat)
 
 data(omer.sorghum)
 dat <- omer.sorghum
 
 # REML approach
-require(lme4)
-require(lucid)
+libs(lme4)
+libs(lucid)
 
 # 1 loc, 2 years. Match Omer table 1.
 m1 <- lmer(yield ~ 1 + env + (1|env:rep) + (1|gen) + (1|gen:env),
@@ -74,6 +75,5 @@ vc(m3)
 ##       gen (Intercept) <NA>  1169  34.2
 ##  Residual        <NA> <NA> 24660 157
 
-}
 }
 \keyword{datasets}
