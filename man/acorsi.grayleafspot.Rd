@@ -33,7 +33,7 @@
   Applying the generalized additive main effects and multiplicative
   interaction model to analysis of maize genotypes resistant to grey leaf spot.
   \emph{Journal of Agricultural Science}.
-  http://doi.org/10.1017/S0021859616001015
+  https://doi.org/10.1017/S0021859616001015
 
   Electronic data and R code kindly provided by Marlon Coan.
 }
@@ -49,6 +49,7 @@ dat <- acorsi.grayleafspot
 
 # Acorsi figure 2. Note: Acorsi used cell means
 op <- par(mfrow=c(2,1), mar=c(5,4,3,2))
+libs(lattice)
 boxplot(y ~ env, dat, las=2,
         xlab="environment", ylab="GLS severity")
 title("acorsi.grayleafspot")

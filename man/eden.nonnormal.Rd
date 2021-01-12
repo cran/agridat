@@ -21,7 +21,7 @@
   This data was used in a very early example of a permutation test.
   
   Eden & Yates used this data to consider the impact of non-normal data
-  on the validitiy of a hypothesis test that assumes normality.  They
+  on the validity of a hypothesis test that assumes normality.  They
   concluded that the skew data did not negatively affect the analysis of
   variance.
 
@@ -121,7 +121,7 @@ histogram( ~ dev, data=dat, breaks=seq(from=-40, to=30, by=2.5),
   fobs <- rep(NA, 1000)
   for(i in 1:1000){
     # randomize treatments within each block
-    # trick from http://stackoverflow.com/questions/25085537
+    # trick from https://stackoverflow.com/questions/25085537
     dat2$trt <- with(dat2, ave(trt, block, FUN = sample))
     fobs[i] <- anova(aov(height ~ block + trt, dat2))["trt","F value"]
   }

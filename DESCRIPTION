@@ -1,6 +1,6 @@
 Package: agridat
 Title: Agricultural Datasets
-Version: 1.17
+Version: 1.18
 Authors@R: person("Kevin","Wright", email="kw.stat@gmail.com",
                   comment=c(ORCID = "0000-0002-0617-8673"),
                   role=c("aut","cre"))
@@ -19,11 +19,12 @@ LazyData: yes
 URL: http://kwstat.github.io/agridat/
 BugReports: https://github.com/kwstat/agridat/issues
 VignetteBuilder: knitr
+Language: en-US
 Encoding: UTF-8
 RoxygenNote: 7.1.1
 NeedsCompilation: no
-Packaged: 2020-07-30 20:44:08 UTC; wrightkevi
+Packaged: 2021-01-11 23:23:06 UTC; wrightkevi
 Author: Kevin Wright [aut, cre] (<https://orcid.org/0000-0002-0617-8673>)
 Maintainer: Kevin Wright <kw.stat@gmail.com>
 Repository: CRAN
-Date/Publication: 2020-08-03 10:10:06 UTC
+Date/Publication: 2021-01-12 09:40:21 UTC

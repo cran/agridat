@@ -45,10 +45,11 @@
 \source{
   A.E. Brandt (1938). Tests of Significance in Reversal or Switchback Trials
   Iowa State College, Agricultural Research Bulletins. Bulletin 234. Book 22.
-  http://lib.dr.iastate.edu/ag_researchbulletins/22/
+  https://lib.dr.iastate.edu/ag_researchbulletins/22/
 }
 \examples{
-
+\dontrun{
+  
 library(agridat)
 
 data(brandt.switchback)
@@ -71,5 +72,6 @@ xyplot(yield~period|group, data=dat, group=cow, type=c('l','r'),
 m1 <- aov(yield~period+group+cow:group+period:group, data=dat)
 anova(m1)
 
+}
 }
 \keyword{datasets}

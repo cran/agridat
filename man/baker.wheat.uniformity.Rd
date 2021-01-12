@@ -39,21 +39,23 @@ Field length: 4 blocks of 40 feet + 3 alleys of 20 feet = 220 feet.
   G. A. Baker, E. B. Roessler (1957).
   Implications of a uniformity trial with small plots of wheat.
   Hilgardia, 27, 183-188.
-  http://hilgardia.ucanr.edu/Abstract/?a=hilg.v27n05p183
+  https://hilgardia.ucanr.edu/Abstract/?a=hilg.v27n05p183
 }
 \references{
   None
 }
 \examples{
+\dontrun{
+  
+  library(agridat)
+  data(baker.wheat.uniformity)
+  dat <- baker.wheat.uniformity
 
-library(agridat)
-data(baker.wheat.uniformity)
-dat <- baker.wheat.uniformity
+  libs(desplot)
+  desplot(dat, yield ~ col*row,
+          flip=TRUE, aspect=1,
+          main="baker.wheat.uniformity")
 
-libs(desplot)
-desplot(dat, yield ~ col*row,
-        flip=TRUE, aspect=1,
-        main="baker.wheat.uniformity")
-
+}
 }
 \keyword{datasets}

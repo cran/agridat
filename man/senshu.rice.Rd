@@ -30,7 +30,7 @@
   Seshu, D. V. and Cady, F. B. 1984.
   Response of rice to solar radiation and temperature estimated from international yield trials.
   \emph{Crop Science}, 24, 649-654.
-  http://doi.org/10.2135/cropsci1984.0011183X002400040006x
+  https://doi.org/10.2135/cropsci1984.0011183X002400040006x
 }
 
 \references{
@@ -39,7 +39,8 @@
 }
 
 \examples{
-
+\dontrun{
+  
 library(agridat)
 
 data(senshu.rice)
@@ -71,5 +72,6 @@ main="senshu.rice: Quadratic fit and Fieller confidence interval",
      xlab="Minimum temperature", ylab="Yield")
 lines(17:32, predict(m2, new=data.frame(mint=17:32)))
 abline(v=ci, col="blue")
+}
 }
 \keyword{datasets}

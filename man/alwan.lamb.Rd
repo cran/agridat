@@ -38,7 +38,7 @@
 \source{
   Mohammed Alwan (1983).
   Studies of the flock mating performance of Booroola merino crossbred ram lambs, and the foot conditions in Booroola merino crossbreds and Perendale sheep grazed on hill country.
-  Thesis, Massey University. http://hdl.handle.net/10179/5900
+  Thesis, Massey University. https://hdl.handle.net/10179/5900
   Appendix I, II.
 }
 \references{
@@ -84,7 +84,7 @@
   m1 <- clmm(shape ~ yr + b1 + b2 + b3 + (1|sire), data=dat,
              weights=count, link="probit", Hess=TRUE)
   summary(m1) # Very similar to Gilmour results
-  ranef(m1) # sign is opposite of SAS
+  ordinal::ranef(m1) # sign is opposite of SAS
 
   ## SAS var of sires .04849
   ## Effect 	Shape 	Estimate 	Standard Error 	DF 	t Value 	Pr > |t|
@@ -105,7 +105,7 @@
 
   # Plot random sire effects with intervals, similar to SAS example
   plot.random <- function(model, random.effect, ylim=NULL, xlab="", main="") {
-    tab <- ranef(model)[[random.effect]]
+    tab <- ordinal::ranef(model)[[random.effect]]
     tab <- data.frame(lab=rownames(tab), est=tab$"(Intercept)")
     tab <- transform(tab,
                      lo = est - 1.96 * sqrt(model$condVar),

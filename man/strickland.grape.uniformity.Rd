@@ -19,7 +19,7 @@
 \details{
   Yields of individual grape vines, planted 8 feet apart in rows 10 feet
   apart.
-  Grown in Rutherglen, North-East Victoria, Australiaj, 1930.
+  Grown in Rutherglen, North-East Victoria, Australia, 1930.
 
   Certain sections were omitted because of missing vines.
 }
@@ -27,7 +27,7 @@
   A. G. Strickland (1932).
   A vine uniformity trial.
   Journal of Agriculture, Victoria, 30, 584-593.
-  http://handle.slv.vic.gov.au/10381/386462
+  https://handle.slv.vic.gov.au/10381/386462
 }
 \references{
   None

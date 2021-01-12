@@ -21,7 +21,7 @@
 
   Note: This data is only 1852-1925.  You can find recent data for these
   experiments at the Electronic Rothamsted Archive:
-  http://www.era.rothamsted.ac.uk/
+  https://www.era.rothamsted.ac.uk/
 
   
   Rothamsted Experiment station conducted wheat experiments on the
@@ -59,14 +59,15 @@
 	\emph{Data: A Collection of Problems from Many Fields for the Student
 	  and Research Worker}.  Springer.
 
-  Retrieved from http://lib.stat.cmu.edu/datasets/Andrews/
+  Retrieved from https://lib.stat.cmu.edu/datasets/Andrews/
 }
 \references{
   Broadbalk Winter Wheat Experiment.
-  http://www.era.rothamsted.ac.uk/index.php?area=home&page=index&dataset=4
+  https://www.era.rothamsted.ac.uk/index.php?area=home&page=index&dataset=4
 }
 \examples{
-
+\dontrun{
+  
 library(agridat)
 data(broadbalk.wheat)
 dat <- broadbalk.wheat
@@ -81,5 +82,6 @@ xyplot(grain~year|plot, dat, type=c('p','smooth'), as.table=TRUE,
 redblue <- colorRampPalette(c("firebrick", "lightgray", "#375997"))
 levelplot(grain~year*plot, dat, main="broadbalk.wheat: Grain", col.regions=redblue)
 
+}
 }
 \keyword{datasets}

@@ -12,10 +12,23 @@
 
 <meta name="author" content="Kevin Wright" />
 
-<meta name="date" content="2020-07-30" />
+<meta name="date" content="2021-01-11" />
 
 <title>Introduction to agridat</title>
 
+<script>// Pandoc 2.9 adds attributes on both header and div. We remove the former (to
+// be compatible with the behavior of Pandoc < 2.8).
+document.addEventListener('DOMContentLoaded', function(e) {
+  var hs = document.querySelectorAll("div.section[class*='level'] > :first-child");
+  var i, h, a;
+  for (i = 0; i < hs.length; i++) {
+    h = hs[i];
+    if (!/^h[1-6]$/i.test(h.tagName)) continue;  // it should be a header h1-h6
+    a = h.attributes;
+    while (a.length > 0) h.removeAttribute(a[0].name);
+  }
+});
+</script>
 <script>// Hide empty <a> tag within highlighted CodeBlock for screen reader accessibility (see https://github.com/jgm/pandoc/issues/6352#issuecomment-626106786) -->
 // v0.0.1
 // Written by JooYoung Seo (jooyoung@psu.edu) and Atsushi Yasumoto on June 1st, 2020.
@@ -32,6 +45,15 @@ document.addEventListener('DOMContentLoaded', function() {
   }
 });
 </script>
+
+<style type="text/css">
+  code{white-space: pre-wrap;}
+  span.smallcaps{font-variant: small-caps;}
+  span.underline{text-decoration: underline;}
+  div.column{display: inline-block; vertical-align: top; width: 50%;}
+  div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+  ul.task-list{list-style: none;}
+      </style>
 
 
 
@@ -231,7 +253,7 @@ code > span.er { color: #a61717; background-color: #e3d2d2; }
 
 <h1 class="title toc-ignore">Introduction to <code>agridat</code></h1>
 <h4 class="author">Kevin Wright</h4>
-<h4 class="date">2020-07-30</h4>
+<h4 class="date">2021-01-11</h4>
 
 
 
@@ -242,7 +264,7 @@ code > span.er { color: #a61717; background-color: #e3d2d2; }
 <p>Box (1957) said, “I had hoped that we had seen the end of the obscene tribal habit practiced by statisticians of continually exhuming and massaging dead data sets after their purpose in life has long since been forgotten and there was no possibility of doing anything useful as a result of this treatment.”</p>
 <p>Massaging these dead data sets will not lead to any of the genetics being released for commercial use. The value of this package is: 1. Validating published analyses. 2. Providing data for testing new analysis methods. 3. Illustrating (and validating) the use of R packages.</p>
 <p>White and van Evert (2008) present some guidelines for publication of data.</p>
-<p>Some of the examples use the <code>asreml</code> package since it is the <em>only</em> R tool for fitting mixed models with complex variance structures to large datasets, and the best option for modelling AR1xAR1 residual variance structures. Commercial use of <code>asreml</code> requires a license: <a href="http://www.vsni.co.uk/downloads/asreml" class="uri">http://www.vsni.co.uk/downloads/asreml</a>.</p>
+<p>Some of the examples use the <code>asreml</code> package since it is the <em>only</em> R tool for fitting mixed models with complex variance structures to large datasets, and the best option for modelling AR1xAR1 residual variance structures. Commercial use of <code>asreml</code> requires a license: <a href="https://www.vsni.co.uk/downloads/asreml" class="uri">https://www.vsni.co.uk/downloads/asreml</a>.</p>
 </div>
 <div id="comments-on-the-package-structure" class="section level1">
 <h1>Comments on the package structure</h1>
@@ -257,8 +279,8 @@ code > span.er { color: #a61717; background-color: #e3d2d2; }
 <div id="references" class="section level1">
 <h1>References</h1>
 <p>G. E. P. Box (1957). Integration of Techniques in Process Development, Transactions of the American Society for Quality Control.</p>
-<p>J. White and Frits van Evert. (2008). Publishing Agronomic Data. Agronomy Journal, 100, 1396-1400. <a href="http://doi.org/10.2134/agronj2008.0080F" class="uri">http://doi.org/10.2134/agronj2008.0080F</a></p>
-<p>Stephen Wolfram (2017). Launching the Wolfram Data Repository: Data Publishing that Really Works. <a href="http://blog.stephenwolfram.com/2017/04/launching-the-wolfram-data-repository-data-publishing-that-really-works/" class="uri">http://blog.stephenwolfram.com/2017/04/launching-the-wolfram-data-repository-data-publishing-that-really-works/</a></p>
+<p>J. White and Frits van Evert. (2008). Publishing Agronomic Data. Agronomy Journal, 100, 1396-1400. <a href="https://doi.org/10.2134/agronj2008.0080F" class="uri">https://doi.org/10.2134/agronj2008.0080F</a></p>
+<p>Stephen Wolfram (2017). Launching the Wolfram Data Repository: Data Publishing that Really Works. <a href="https://writings.stephenwolfram.com/2017/04/launching-the-wolfram-data-repository-data-publishing-that-really-works/" class="uri">https://writings.stephenwolfram.com/2017/04/launching-the-wolfram-data-repository-data-publishing-that-really-works/</a></p>
 </div>
 
 

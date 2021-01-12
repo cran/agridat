@@ -1,3 +1,10 @@
+# agridat 1.18 (Jan 2021)
+
+## New data
+
+damesa.maize, jayaraman.bamboo, nair.turmeric.uniformity, shafi.tomato.uniformity
+
+
 # agridat 1.17 - Jul 2020
 
 ## New data
@@ -31,7 +38,7 @@ alwan.lamb, baker.strawberry.uniformity, besag.checks, bryan.corn.uniformity, da
 
 ## New data
 
-ansari.wheat.uniformity, baker.wheat.uniformity, bancroft.peanut.uniformity, bose.multi.uniformity, christidis.cotton.uniformity, correa.soybean.uniformity, davies.pasture.uniformity, eden.tea.uniformity, hutchinson.cotton.uniformity, igue.sugarcane.uniformity, kulkarni.sorghum.uniformity, lander.multi.uniformity, lord.rice.uniformity, magistad.pineapple.uniformity, nagai.strawberry.uniformity, narain.sorghum.unifomity, robinson.peanut.uniformity, sayer.sugarcane.uniformity, strickland.apple.uniformity, strickland.grape.uniformity, strickland.peach.uniformity, strickland.tomato.uniformity
+ansari.wheat.uniformity, baker.wheat.uniformity, bancroft.peanut.uniformity, bose.multi.uniformity, christidis.cotton.uniformity, correa.soybean.uniformity, davies.pasture.uniformity, eden.tea.uniformity, hutchinson.cotton.uniformity, igue.sugarcane.uniformity, kulkarni.sorghum.uniformity, lander.multi.uniformity, lord.rice.uniformity, magistad.pineapple.uniformity, nagai.strawberry.uniformity, narain.sorghum.uniformity, robinson.peanut.uniformity, sayer.sugarcane.uniformity, strickland.apple.uniformity, strickland.grape.uniformity, strickland.peach.uniformity, strickland.tomato.uniformity
 
 dasilva.maize, mead.turnip
 

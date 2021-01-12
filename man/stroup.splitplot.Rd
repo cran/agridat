@@ -10,7 +10,7 @@
   space, narrow space, etc.).
 
   For example, the density of narrow, intermediate and broad-space
-  predictible function for factor level A1 is shown below (html help only)
+  predictable function for factor level A1 is shown below (html help only)
   \if{html}{\figure{stroupsplitplot.png}{options: width=50\% alt="Figure: stroup.splitplot.png"}}
 
 }
@@ -36,7 +36,7 @@
   Wolfinger, R.D. and Kass, R.E., 2000.
   Nonconjugate Bayesian analysis of variance component models,
   Biometrics, 56, 768--774.
-  http://doi.org/10.1111/j.0006-341X.2000.00768.x
+  https://doi.org/10.1111/j.0006-341X.2000.00768.x
 }
 
 \examples{
