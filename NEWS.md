@@ -1,8 +1,24 @@
-# agridat 1.18 (Jan 2021)
+# agridat 1.19 - Dec 2021
+
+## New data
+
+arankacami.groundnut.uniformity, barrero.maize, buntaran.wheat, gomez.heterogeneity, grover.diallel, grover.rcb.subsample, hadasch.lettuce, hadasch.lettuce.markers, jones.corn.uniformity, petersen.sorghum.cowpea, woodman.pig
+
+## Other notes
+
+* Re-named `mead.cowpeamaize` to `mead.cowpea.maize`.
+
+* Re-named `correa.soybean.uniformity` to `dasilva.soybean.uniformity`.
+
+* There are more than 200 URLs in the vignettes and these were slow to check and generated too many false warnings. Stopped the Rmd to html conversion from creating URL links. 
+
+
+# agridat 1.18 - Jan 2021
 
 ## New data
 
 damesa.maize, jayaraman.bamboo, nair.turmeric.uniformity, shafi.tomato.uniformity
+
 
 
 # agridat 1.17 - Jul 2020
@@ -13,7 +29,7 @@ alwan.lamb, baker.strawberry.uniformity, besag.checks, bryan.corn.uniformity, da
 
 ## Other notes
 
-* Examples using `asreml()` are using asreml version 4. Some examples also have asreml 3 code.
+* Examples using `asreml()` now asreml version 4.
 
 * Re-named `hutchinson.cotton.uniformity` to `panse.cotton.uniformity`.
 
@@ -38,7 +54,7 @@ alwan.lamb, baker.strawberry.uniformity, besag.checks, bryan.corn.uniformity, da
 
 ## New data
 
-ansari.wheat.uniformity, baker.wheat.uniformity, bancroft.peanut.uniformity, bose.multi.uniformity, christidis.cotton.uniformity, correa.soybean.uniformity, davies.pasture.uniformity, eden.tea.uniformity, hutchinson.cotton.uniformity, igue.sugarcane.uniformity, kulkarni.sorghum.uniformity, lander.multi.uniformity, lord.rice.uniformity, magistad.pineapple.uniformity, nagai.strawberry.uniformity, narain.sorghum.uniformity, robinson.peanut.uniformity, sayer.sugarcane.uniformity, strickland.apple.uniformity, strickland.grape.uniformity, strickland.peach.uniformity, strickland.tomato.uniformity
+ansari.wheat.uniformity, baker.wheat.uniformity, bancroft.peanut.uniformity, bose.multi.uniformity, christidis.cotton.uniformity, dasilva.soybean.uniformity, davies.pasture.uniformity, eden.tea.uniformity, hutchinson.cotton.uniformity, igue.sugarcane.uniformity, kulkarni.sorghum.uniformity, lander.multi.uniformity, lord.rice.uniformity, magistad.pineapple.uniformity, nagai.strawberry.uniformity, narain.sorghum.uniformity, robinson.peanut.uniformity, sayer.sugarcane.uniformity, strickland.apple.uniformity, strickland.grape.uniformity, strickland.peach.uniformity, strickland.tomato.uniformity
 
 dasilva.maize, mead.turnip
 
