@@ -13,7 +13,7 @@
     \item{\code{gen}}{genotype, 17 levels}
     \item{\code{env}}{environment, 12 levels}
     \item{\code{yield}}{yield, tonnes/ha}
-    \item{\code{}}{environment, 13 levels}
+    \item{\code{environment}}{environment, 13 levels}
     \item{\code{year}}{year, 85-87}
     \item{\code{loc}}{location, 4 levels}
   }
@@ -31,7 +31,6 @@
   Genotype x environment interaction in maize.
   Agronomy Journal, 81, 662-664.  Table 2.
 }
-
 \examples{
 \dontrun{
 
@@ -65,4 +64,3 @@ covs <- data.frame(env=c("AL85","AL86","AL87", "BR85","BR86","BR87",
 
 }
 }
-
