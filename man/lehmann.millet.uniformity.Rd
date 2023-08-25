@@ -20,15 +20,33 @@
 }
 \details{
 
-The 6th report has a map (only partially scanned in the pdf).
-The ninth report, pages 1-10 has comments. Pages 36-39 have data: Table 1 has grain yield, table 2 total yield.
+  Experiment farm near Bangalore. The plots are 1/10 acre, each 50 links
+  wide and 200 links long. [6th report, p. 2]. The middle part of the
+  field is occupied by buildings.
 
-Experiment farm near Bangalore. The plots are 1/10 acre, each 50 links wide and 200 links long. [6th report, p. 2]
+  The 6th report:
+  Map (only partially scanned in the pdf).
+  "A part of the dry lands nearest the tank, which is not quite as uniform as the remainder, is already excluded from the experimental ground proper".
 
-The season of 1906 was abnormally wet compared with 1905 and 1907. [9th report]
+  The 7th report:
+  P. 12 has grain/straw yield for 1905.
+   
+  The 9th report:
+  P. 1-10 has comments.
+  P. 36-39 have data: Table 1 has grain yield, table 2 total yield of
+  grain and straw. Columns are, left-right, A-F. Rows are, top-bottom,
+  1-22. 
+  
+  The season of 1906 was abnormally wet compared with 1905 and 1907. [9th report]
 
+  Field width: 6 plots * 200 links
+
+  Field length: 22 plots * 50 links
+  
 }
 \source{
+  Lehmann, A.
+  Ninth Annual Report of the Agricultural Chemist For the Year 1907-08.
   Department of Agriculture, Mysore State.
   [2nd-9th] Annual Report of the Agricultural Chemist. 
   https://books.google.com/books?id=u_dHAAAAYAAJ

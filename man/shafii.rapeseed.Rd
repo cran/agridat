@@ -47,11 +47,15 @@
   Using the Posterior Predictive Distribution as a Diagnostic Tool for Mixed Models.
   Joint Statistical Meetings 2018, Biometrics Section.
   https://www.ars.usda.gov/ARSUserFiles/3122/KramerProceedingsJSM2018.pdf
+
+  Reyhaneh Bijari and Sigurdur Olafsson (2022).
+  Accounting for G×E interactions in plant breeding: a probabilistic
+  approach
+  https://doi.org/10.21203/rs.3.rs-2052233/v1
 }
 
 \examples{
-\dontrun{
-  
+
 library(agridat)
 data(shafii.rapeseed)
 dat <- shafii.rapeseed
@@ -90,5 +94,4 @@ dmat <- acast(dm, gen~locyr)
 # AMMI biplot.  Figure 1 of Shafii (1998)
 biplot(prcomp(dmat), main="shafii.rapeseed - AMMI biplot")
 
-}
 }

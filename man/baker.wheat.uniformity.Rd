@@ -13,7 +13,7 @@
   \describe{
     \item{\code{row}}{row}
     \item{\code{col}}{col}
-    \item{\code{yield}}{yield}
+    \item{\code{yield}}{yield (grams)}
   }
 }
 \details{
@@ -28,7 +28,7 @@ Morning glories infested the middle two columns of blocks, uniformly
 over the blocks affected.
 
 The data here include missing values for the alleys so that the field
-map is approximately correct.
+map is approximately the correct shape and size.
 
 Field width: 4 blocks of 40 feet + 3 alleys of 20 feet = 220 feet.
 
@@ -40,6 +40,7 @@ Field length: 4 blocks of 40 feet + 3 alleys of 20 feet = 220 feet.
   Implications of a uniformity trial with small plots of wheat.
   Hilgardia, 27, 183-188.
   https://hilgardia.ucanr.edu/Abstract/?a=hilg.v27n05p183
+  https://doi.org/10.3733/hilg.v27n05p183
 }
 \references{
   None

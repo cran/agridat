@@ -7,6 +7,14 @@
 \description{
   Uniformity trial of barley at Cambridge, England, 1978.
 }
+\format{
+  A data frame with 196 observations on the following 3 variables.
+  \describe{
+    \item{\code{row}}{row}
+    \item{\code{col}}{column}
+    \item{\code{yield}}{grain yield, kg}
+  }
+}
 \details{
   A uniformity trial of spring barley planted in 1978.  Conducted by the
   Plant Breeding Institute in Cambridge, England.
@@ -19,14 +27,6 @@
   
 }
 
-\format{
-  A data frame with 196 observations on the following 3 variables.
-  \describe{
-    \item{\code{row}}{row}
-    \item{\code{col}}{column}
-    \item{\code{yield}}{grain yield, kg}
-  }
-}
 \source{
   R. A. Kempton and C. W. Howes (1981).
   The use of neighbouring plot values in the analysis of variety trials.
@@ -60,7 +60,7 @@
 
   # ----------
 
-  libs(asreml,lucid) # asreml4
+  libs(asreml,lucid)
   
   dat <- transform(dat, xf = factor(col), yf=factor(row))
   m1 <- asreml(yield ~ 1, data=dat, resid = ~ar1(xf):ar1(yf))
