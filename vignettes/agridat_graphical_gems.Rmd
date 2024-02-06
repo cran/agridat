@@ -1,16 +1,15 @@
 ---
 title: "Graphical Gems in the agridat Package"
 author: "Kevin Wright"
-date: "`r Sys.Date()`"
 output: 
   rmarkdown::html_vignette:
     md_extensions: -autolink_bare_uris
-bibliography: agridat.bib
 vignette: >
-  %\VignetteIndexEntry{Graphical Gems in the agridat Package}
-  %\VignetteEncoding{UTF-8} 
+  %\VignetteIndexEntry{Graphical Gems in the agridat Package} 
   %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
 ---
+
 
 The `agridat` package is an extensive collection of data sets that have been previously published in books and journals, primarily from agricultural experiments.
 

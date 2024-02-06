@@ -1,3 +1,18 @@
+# agridat 1.23 (2024-01-30)
+
+## New datasets added
+
+## Other notes
+
+* Removed suggested use of sf/terra packages in examples.
+
+* Add `if(require("asreml", quietly=TRUE))` to example sections. This way we can allow people (or GitHub Actions) to force run the `dontrun` sections, even if `asreml` is not installed.
+
+* cochran.eelworms - Fix a typo reported by U.Genschel, and added more columns for grain yield, straw yield, weeds. Updates to documentation.
+
+* gartner.corn - Remove 'rgdal' package from example (Issue #11).
+
+
 # agridat 1.22 (2023-08-24)
 
 ## New datasets added
@@ -12,7 +27,7 @@
 * hansen.multi.uniformity (multi-year uniformity trials)
 * heath.cabbage.uniformity
 * hutchinson.cotton.uniformity (Data from Rothamsted archive)
-* immer.sugarbeet.uniformity (add 1931 results from Rothamsted archive)
+* immer.sugarbeet.uniformity (add year 1931 results from Rothamsted archive)
 * khan.brassica.uniformity
 * kirk.potato (20 varieties with 15 reps)
 * mckinstry.cotton.uniformity (Data from Rothamsted archive)
@@ -179,7 +194,7 @@ beaven.barley, perry.springwheat, ridout.appleshoots
 
 
 
-# agridat 1.9 - (2014-07-02)
+# agridat 1.9 (2014-07-02)
 
 ## New datasets added
 

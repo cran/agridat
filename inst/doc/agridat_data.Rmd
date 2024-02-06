@@ -1,12 +1,11 @@
 ---
 title: "Additional sources of agricultural data"
 author: "Kevin Wright"
-date: "`r Sys.Date()`"
 output: 
   rmarkdown::html_vignette:
     md_extensions: -autolink_bare_uris
 vignette: >
-  %\VignetteIndexEntry{Additional agricultural data} 
+  %\VignetteIndexEntry{Additional sources of agricultural data} 
   %\VignetteEngine{knitr::rmarkdown}
   %\VignetteEncoding{UTF-8}
 ---

@@ -1,7 +1,6 @@
 ---
 title: "Notes on uniformity data"
 author: "Kevin Wright"
-date: "`r Sys.Date()`"
 output: 
   rmarkdown::html_vignette:
     md_extensions: -autolink_bare_uris
