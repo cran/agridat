@@ -50,11 +50,12 @@ name                                      \tab dimensions \tab other \tab model 
 \link{eden.tea.uniformity}                \tab 12 x 12 \tab xy \tab \cr
 \link{evans.sugarcane.uniformity}         \tab 142 x 5 \tab xy \tab \cr
 \link{forster.wheat.uniformity}           \tab 10 x 16 \tab xy \tab \cr
-\link{garber.multi.uniformity}            \tab 45 x 6 \tab xy, 2 years/crops \tab \cr
+\link{garber.multi.uniformity}            \tab 6 x 45 \tab xy, 5 years/crops \tab \cr
 \link{gomez.rice.uniformity}              \tab 18 x 36 \tab xy \tab aov,smith \cr
 \link{goulden.barley.uniformity}          \tab 48 x 48 \tab xy \tab \cr
-\link{harris.multi.uniformity}            \tab 2 x 23 \tab xy, 23 crops \tab corrgram\cr
 \link{hansen.multi.uniformity}            \tab 6 x 5, 16 x 8 \tab xy, 4-5 yr \tab splom\cr
+\link{haritonenko.sugarbeet.uniformity}               \tab 4 x 104 \tab xy \tab \cr
+\link{harris.multi.uniformity}            \tab 2 x 23 \tab xy, 23 crops \tab corrgram\cr
 \link{hartman.tomato.uniformity}          \tab 12 x 32 \tab xy \tab \cr
 \link{heath.cabbage.uniformity}           \tab 6 x 8   \tab xy \tab \cr
 \link{heath.radish.uniformity}            \tab 10 x 10 \tab xy \tab \cr
@@ -62,6 +63,9 @@ name                                      \tab dimensions \tab other \tab model 
 \link{igue.sugarcane.uniformity}          \tab 36 x 42 \tab xy \tab \cr
 \link{immer.sugarbeet.uniformity}         \tab 10 x 60 \tab xy, 3 traits, 2 yr \tab \cr
 \link{iyer.wheat.uniformity}              \tab 25 x 80 \tab xy \tab \cr
+\link{jones.corn.uniformity}              \tab 12 x 12 \tab xy \tab \cr
+\link{jegorow.oats.uniformity}            \tab 8 x 30 \tab xy \tab \cr
+\link{jurowski.wheat.uniformity}          \tab 4 x 40 \tab xy \tab \cr
 \link{kadam.millet.uniformity}            \tab 8 x 20  \tab xy, 2 expts \tab \cr
 \link{kalamkar.potato.uniformity}         \tab 6 x 96  \tab xy \tab \cr
 \link{kalamkar.wheat.uniformity}          \tab 16 x 80 \tab xy, 2 traits \tab \cr
@@ -109,10 +113,12 @@ name                                      \tab dimensions \tab other \tab model 
 \link{piepho.barley.uniformity}           \tab 30 x 36 \tab xy \tab \cr
 \link{polson.safflower.uniformity}        \tab 52 x 33 \tab xy \tab smith\cr
 \link{robinson.peanut.uniformity}         \tab 16 x 36 \tab xy \tab \cr
+\link{roemer.sugarbeet.uniformity}        \tab 2 x 48  \tab xy \tab \cr
 \link{saunders.maize.uniformity}          \tab 5 x 300 \tab xy, 2 year \tab \cr
 \link{sawyer.multi.uniformity}            \tab 8 x 6   \tab xy, 3 year \tab \cr
 \link{sayer.sugarcane.uniformity}         \tab 8 x 136, 8 x 121 \tab xy, 2 year \tab \cr
 \link{shafi.tomato.uniformity}            \tab 10 x 20 \tab xy \tab \cr
+\link{siao.cotton.uniformity}             \tab 12 x 22 \tab xy \tab \cr
 \link{smith.beans.uniformity}             \tab 18 x 12, 16 x 15 \tab xy, 2 yr, 2 crops \tab \cr
 \link{smith.corn.uniformity}              \tab 6 x 20 \tab xy, 3 years \tab rgl \cr
 \link{smith.wheat.uniformity}             \tab 36 x 30 \tab xy, 2 traits \tab \cr
@@ -123,6 +129,7 @@ name                                      \tab dimensions \tab other \tab model 
 \link{strickland.peach.uniformity}        \tab 8 x 18 \tab xy \tab \cr
 \link{strickland.tomato.uniformity}       \tab 30 x 6 \tab xy \tab \cr
 \link{summerby.multi.uniformity}          \tab 35 x 5 \tab xy \tab 5 years \cr
+\link{tulaikow.wheat.uniformity}          \tab 24 x 10, 15 x 16 \tab xy \tab 5 years \cr
 \link{wassom.brome.uniformity}            \tab 36 x 36 \tab xy, 3 expts \tab \cr
 \link{wiebe.wheat.uniformity}             \tab 12 x 125 \tab xy \tab medianpolish, loess \cr
 \link{wiedemann.safflower.uniformity}     \tab 54 x 33 \tab xy \tab smith \cr
@@ -200,7 +207,7 @@ name                               \tab gen \tab loc\tab reps\tab years \tab trt
 \link{ars.earlywhitecorn96}        \tab 60  \tab 9  \tab     \tab    \tab       \tab 6 traits \tab dotplot \cr
 \link{australia.soybean}           \tab 58  \tab 4  \tab     \tab 2  \tab       \tab 4-way, 6 traits \tab biplot \cr
 \link{bachmaier.nitrogen}          \tab     \tab    \tab 4   \tab    \tab 2,11  \tab \tab quadratic lm\cr
-\link{barrero.maize}               \tab 847 \tab 16 \tab 4   \tab 11 \tab 6     \tab \tab asreml\cr
+\link{barrero.maize}               \tab 847 \tab 16 \tab 4   \tab 11 \tab 6     \tab \tab gain,asreml\cr
 \link{battese.survey}              \tab     \tab 12 \tab 1-5 \tab    \tab 2     \tab \tab lmer \cr
 \link{beall.webworms}              \tab     \tab    \tab 15  \tab    \tab 2,2   \tab xy, split-block \tab glm poisson,nb\cr
 \link{beaven.barley}               \tab  8  \tab    \tab 20  \tab    \tab       \tab xy \tab \cr
