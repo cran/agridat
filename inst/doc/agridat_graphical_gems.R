@@ -232,15 +232,15 @@ if(require("latticeExtra")){
 }
 
 ## ----crossa, eval=FALSE, message=FALSE--------------------------------------------------
-#  library(agridat)
-#  # Specify env.group as column in data frame
-#  data(crossa.wheat)
-#  dat2 <- crossa.wheat
-#  if(require("gge")){
-#    m4 <- gge(yield~gen*loc, dat2, env.group=locgroup, scale=FALSE)
-#    # plot(m4)
-#    biplot(m4, lab.env=TRUE, main="crossa.wheat")
-#  }
+# library(agridat)
+# # Specify env.group as column in data frame
+# data(crossa.wheat)
+# dat2 <- crossa.wheat
+# if(require("gge")){
+#   m4 <- gge(yield~gen*loc, dat2, env.group=locgroup, scale=FALSE)
+#   # plot(m4)
+#   biplot(m4, lab.env=TRUE, main="crossa.wheat")
+# }
 
 ## ----nebr1, eval=TRUE-------------------------------------------------------------------
 
