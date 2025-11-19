@@ -1,7 +1,7 @@
 Type: Package
 Package: agridat
 Title: Agricultural Datasets
-Version: 1.25
+Version: 1.26
 Authors@R: 
     person("Kevin", "Wright", , "kw.stat@gmail.com", role = c("aut", "cre", "cph"),
            comment = c(ORCID = "0000-0002-0617-8673"))
@@ -24,9 +24,9 @@ Language: en-US
 LazyData: true
 RoxygenNote: 7.3.3
 NeedsCompilation: no
-Packaged: 2025-10-07 15:20:11 UTC; wrightkevi
+Packaged: 2025-11-14 21:44:23 UTC; wrightkevi
 Author: Kevin Wright [aut, cre, cph] (ORCID:
     <https://orcid.org/0000-0002-0617-8673>)
 Maintainer: Kevin Wright <kw.stat@gmail.com>
 Repository: CRAN
-Date/Publication: 2025-10-08 16:30:02 UTC
+Date/Publication: 2025-11-19 06:10:48 UTC

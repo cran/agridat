@@ -1,9 +1,9 @@
-6ffffbb5caf1cee2171ff4ad6b35f48f *DESCRIPTION
+b0ff75c116a87486e05c5b6d9e6eb57d *DESCRIPTION
 b6154c068042f28b38d51042c492b780 *LICENSE
 42ca102d6452e8a4fb6114673efd1f24 *NAMESPACE
-40550ca6ec1bdb50f87cf4085fa8d338 *NEWS.md
+0a30c74685304561673da823b37607c4 *NEWS.md
 72cd9ec63d50089c49489692852e3139 *R/libs.R
-f85d538b4696f396a656b8fa94778e63 *build/vignette.rds
+101a99b0dacfcfe2708044aa0de6e79e *build/vignette.rds
 a61bc7d766d1b849769e00e4a6d460e9 *data/aastveit.barley.covs.txt
 98fdcee0ccce4bd4e70142b654913b7f *data/aastveit.barley.height.txt
 a0f97b9f3982f09f76d4610f31b9bade *data/acorsi.grayleafspot.txt
@@ -214,6 +214,7 @@ b5f1365c29a9f4691b4a40b6698f5b4f *data/kempton.competition.txt
 b238fa0fdbc38639fce30835020aff97 *data/khin.rice.uniformity.txt
 4a6bae43eed8c1f239dada51632fd289 *data/kiesselbach.oats.uniformity.txt
 3feee3ae7bb3f7bf70b39cca9df4e227 *data/kirk.potato.txt
+28fb6dba9e47db00211fc7760f719102 *data/kirk.potato.uniformity.txt
 d502d4ec836bd58df6d38177b8048edb *data/kling.augmented.txt
 29673ebbf580a826ce3ef32058714f4f *data/kotowski.potato.uniformity.txt
 44ff818c649f10a5b0d40153ee1535f9 *data/kreusler.maize.txt
@@ -378,6 +379,7 @@ d444a4f9f38ecec346cb1b4502e3866c *data/wallace.iowaland.txt
 ee716f33542402a23420d8ede1ac2b55 *data/wassom.brome.uniformity.txt
 2976d533960c644295e600dfef84e81d *data/waynick.soil.txt
 28343183af755e47e1472418148ab84d *data/wedderburn.barley.txt
+4a89ba2f1043348b6db7f9d78251b518 *data/wehner.cucumber.uniformity.txt
 2ad9e82b8ebbbbdbd0d47101a58009c8 *data/weiss.incblock.txt
 73b229f56f7110fc869bf7680b3ac48e *data/weiss.lattice.txt
 b8c578c9654dd78c7af023d22d3e0822 *data/welch.bermudagrass.txt
@@ -404,8 +406,8 @@ b7511ef3a57f0aa5b856c1719e23c531 *inst/doc/agridat_intro.Rmd
 aebb10b1ee1faac641c6b678be307127 *inst/doc/agridat_mixed_model_example.R
 9eb297b67d289f84376af6c38e228e49 *inst/doc/agridat_mixed_model_example.Rmd
 472dfeec64a33ce2c99abeda858a9d38 *inst/doc/agridat_mixed_model_example.html
-ed1388af8f1be4ec600e7602f762210e *inst/doc/agridat_uniformity_data.Rmd
-798357e02256b1e0ca94b4799c1576cc *inst/doc/agridat_uniformity_data.html
+d87c450387372c05a628cda0c20bb4e6 *inst/doc/agridat_uniformity_data.Rmd
+b88af6efe39ee6e5becb92ad6c0d2e7a *inst/doc/agridat_uniformity_data.html
 54ba18ba9f06de9cbddfd276023643ba *inst/files/gartner.corn.dbf
 c742bee3d4edfc2948a2ad08de1790a5 *inst/files/gartner.corn.prj
 2a5e4156c6d1e686e6e8bca113eac7dd *inst/files/gartner.corn.shp
@@ -414,7 +416,7 @@ b479b7623189b08cb27c3fe417a92d98 *inst/files/theobald.covariate.jag
 5776307d18aadbed5c64c87233ad427a *man/aastveit.barley.Rd
 650747019161095a1f59cf1ac90322a7 *man/acorsi.grayleafspot.Rd
 18373de7ae9cddc6a91b46acc32c34e7 *man/adugna.sorghum.Rd
-15c4738909fcf5a4e32d3b38f30009b8 *man/agridat.Rd
+f03adb7d9dd6f00788063652db976cd7 *man/agridat.Rd
 1105a5f6d4c775dbb58e81ea764341e8 *man/allcroft.lodging.Rd
 d33c81212cb1e318c08ae8d11ac3c6aa *man/alwan.lamb.Rd
 e2287b26bf0bb1fa6176828748ada351 *man/ansari.wheat.uniformity.Rd
@@ -484,7 +486,7 @@ da18470178fe8e4bb77f11b2b0555146 *man/connolly.potato.Rd
 440972dd39f3155948cb16c9d8aff4f6 *man/cox.stripsplit.Rd
 86a3fec289f863fa0f35e655441f7209 *man/cramer.cucumber.Rd
 2c68302d835bb814d7be2b9c354a783d *man/crampton.pig.Rd
-ff66568ba7f172d23592bb5b387cc2b4 *man/crossa.wheat.Rd
+48f48e61d722c339a4471ae6d19ff27f *man/crossa.wheat.Rd
 66dc77cdccbb5efaeb0b716f526f558e *man/crowder.seeds.Rd
 a22198fe7aa55c9acebd7a6f056a9954 *man/cullis.earlygen.Rd
 37984ed5d73ee31b8d100bb5051451b3 *man/damesa.maize.Rd
@@ -548,7 +550,7 @@ f8286f5bc0a02414b95a4869a4cec7d8 *man/gomez.splitsplit.Rd
 3b710d9e7b46ea1df8f2210298c08a06 *man/gomez.stripplot.Rd
 c73b05a3e5e26d8adf152dbd70131974 *man/gomez.stripsplitplot.Rd
 0a949b369133971c7688d26257802d97 *man/gomez.wetdry.Rd
-055a4897f2fabbc9af70d874590493aa *man/gorski.oats.uniformity.Rd
+5b20233c47bd0ddaf722aeb75898cc88 *man/gorski.oats.uniformity.Rd
 01c54fc77b86e7cd830e4c9a49240d7c *man/gotway.hessianfly.Rd
 fd42dff84641e5610167702aa4f8090d *man/goulden.barley.uniformity.Rd
 7b48ae6cf66427a6115a24cdf261e134 *man/goulden.eggs.Rd
@@ -619,15 +621,16 @@ d568c369e7dd4695093f1ffa4f6360ba *man/kempton.slatehall.Rd
 62e37604e85afa9df9c5fa79ee9d784a *man/khan.brassica.uniformity.Rd
 791236a4e8ad240e17eb6dfa2606bf5b *man/khin.rice.uniformity.Rd
 4a81919ba039163581f865e77d2bb0dc *man/kiesselbach.oats.uniformity.Rd
-6e498931b7096eab0909cbeb7fa0b20a *man/kirk.potato.Rd
+2754a419cbde8cc25bc846c4d21d374a *man/kirk.potato.Rd
+fe219f060d6f0d9eb69979f2093e22af *man/kirk.potato.uniformity.Rd
 9e7684908ba373e646b0c5aaf0dd70e4 *man/kling.augmented.Rd
-5dd593ec3fd2611817b3435dfc70886e *man/kotowski.potato.uniformity.Rd
+695cc8118bab092da11204d0d1cb9a1e *man/kotowski.potato.uniformity.Rd
 203ed5997d7d54ff1d07bc2bd5d1eecf *man/kreusler.maize.Rd
 c6f4469542640804d322fdabbef9f84e *man/kristensen.barley.uniformity.Rd
 cd4f0e7f2716acf9119c83203c245aa0 *man/kulkarni.sorghum.uniformity.Rd
 cd699aff00a2b76c10bfb14f7e152701 *man/lambert.soiltemp.Rd
 977ccee22d42b53eaf2b03253027d550 *man/lander.multi.uniformity.Rd
-628e5d56ba1c5cb293ef6fa09c73117c *man/larsen.timothy.uniformity.Rd
+eea749288606911e992ec846d1d9c754 *man/larsen.timothy.uniformity.Rd
 de62cd3162e7f47195b184df89069762 *man/lasrosas.corn.Rd
 740ced21fee95ba9d66444c9eb126386 *man/lavoranti.eucalyptus.Rd
 ee8e25497d955029ce2fade0499addfb *man/laycock.tea.uniformity.Rd
@@ -704,7 +707,7 @@ d80f8c0ecd1c3f68fd23309243402d59 *man/ratkowsky.onions.Rd
 0c481fff5e197d8fa76a6a96a75a25a5 *man/rau.coffee.uniformity.Rd
 c04b5325c22fb16ad163b081c0ea4cd5 *man/reid.grasses.Rd
 69a9bab3f85160b8e0452387255420f5 *man/riddle.wheat.Rd
-2a6c82d5912c1c1443897a386308cd6e *man/ridout.appleshoots.Rd
+6fbdaad483cb778b3d52b67088ac2634 *man/ridout.appleshoots.Rd
 527bf2829b353b3769def24cf6e68cb0 *man/robinson.peanut.uniformity.Rd
 67701c47c72b09346de4be5b5ab36377 *man/roemer.sugarbeet.uniformity.Rd
 04ff6ee251d6b3275a745d6a15379945 *man/rothamsted.brussels.Rd
@@ -737,7 +740,7 @@ d5d64858a65d00af59c5dea8a938106c *man/strickland.apple.uniformity.Rd
 92ccf6d7071352ab54d54166467f90d9 *man/strickland.peach.uniformity.Rd
 aa45a1736989e59c5f90cd1e2a7e07b8 *man/strickland.tomato.uniformity.Rd
 32064c7f0f6c1cf9261a98508c411903 *man/stroup.nin.Rd
-5d0586893256f3b2fab902367ef1a458 *man/stroup.splitplot.Rd
+0cf055ff5b9dfc37bd2686d7fbce350b *man/stroup.splitplot.Rd
 bd4ef141e6809bf40c7d57830b3e93b7 *man/student.barley.Rd
 9a2b0880593173110876979b48c11fcb *man/summerby.multi.uniformity.Rd
 7a642e7c28d7b9a675699561be7d38f9 *man/tai.potato.Rd
@@ -766,6 +769,7 @@ e35e1d72631d980396f58013572629ab *man/wallace.iowaland.Rd
 9d170fd87f8fc9541295e2d7cf14e1df *man/wassom.brome.uniformity.Rd
 620bd01e064f180e48fedcd842942b16 *man/waynick.soil.Rd
 340369c02598e92625bacad73f7f3091 *man/wedderburn.barley.Rd
+0397bf0a6b8e3bad27313cd97ab4d2f9 *man/wehner.cucumber.uniformity.Rd
 3a5f3c0a798c404a95073e0cbe02347f *man/weiss.incblock.Rd
 e91bc16629ca8fd0e413db7ad8a3fef5 *man/weiss.lattice.Rd
 97e2a14036928398e3c30ed514c62845 *man/welch.bermudagrass.Rd
@@ -789,5 +793,5 @@ d775c7780debd847fd61cb58ea84d4c8 *man/yates.missing.Rd
 ea9b292d7edef047a883bb703d34e89b *vignettes/agridat_graphical_gems.Rmd
 b7511ef3a57f0aa5b856c1719e23c531 *vignettes/agridat_intro.Rmd
 9eb297b67d289f84376af6c38e228e49 *vignettes/agridat_mixed_model_example.Rmd
-ed1388af8f1be4ec600e7602f762210e *vignettes/agridat_uniformity_data.Rmd
+d87c450387372c05a628cda0c20bb4e6 *vignettes/agridat_uniformity_data.Rmd
 96ed3e576d8b644edcaa46e9fc20e32b *vignettes/sinclair-clover.png

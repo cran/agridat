@@ -1,3 +1,11 @@
+# agridat 1.26 (2025-11-14)
+
+## New datasets
+
+* kirk.potato.uniformity
+* wehner.cucumber.uniformity
+
+
 # agridat 1.25 (2025-10-06)
 
 ## New datasets
