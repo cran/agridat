@@ -1,3 +1,45 @@
+# agridat 1.27 (2026-11-06)
+
+## New datasets
+
+* aguileracarreras.bean.uniformity
+* alvarezcajas.sugarcane.uniformity
+* andres.rice.uniformity
+* athulya.rice.uniformity
+* baena.bean.uniformity
+* barrantesaguilar.sugarcane.uniformity
+* barrientosgarcia.maize.uniformity
+* barrientosgarcia.sesame.uniformity
+* borden.sugarcane.uniformity
+* buesocampos.tomato.uniformity
+* buesocampos.melon.uniformity
+* cargneluttifilho.chickpea.uniformity
+* clewer.wheat (via P.Schmidt)
+* delgadillolopez.sesame.uniformity
+* desousa.potato
+* garber.frames.uniformity
+* hernandezdavila.potato.uniformity
+* immer.mets
+* lechadolopez.sorghum.uniformity
+* macdonald.cotton.uniformity
+* mamani.bean.uniformity
+* matusgutierrez.maize.uniformity
+* mauricio.maize.uniformity
+* metzger.multi.uniformity
+* morgan.multi.uniformity
+* onyiah.maize (Graeco-Latin square)
+* palenciaortiz.sugarcane.uniformity
+* petersen.wheat (via P.Schmidt)
+* scott.augmented
+* versteeg.maize (Strip-plot)
+
+## Other notes
+
+* Fix typo (#19)
+* sawyer.multi.uniformity has been reshaped to tall format.
+* jayaraman.bamboo bug fix (thanks R.Stern)
+
+
 # agridat 1.26 (2025-11-14)
 
 ## New datasets

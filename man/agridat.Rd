@@ -25,12 +25,20 @@
 
 \tabular{llll}{
 name                                      \tab dimensions \tab other \tab model \cr
+\link{aguileracarreras.bean.uniformity}   \tab 16 x 15 \tab xy \tab \cr
 \link{ansari.wheat.uniformity}            \tab 96 x 8 \tab xy \tab \cr
+\link{andres.rice.uniformity}             \tab 33 x 30 \tab xy \tab \cr
+\link{alvarezcajas.sugarcane.uniformity}  \tab 40 x 15 \tab xy \tab \cr
+\link{athulya.rice.uniformity}            \tab 20 x 20 \tab xy \tab \cr
+\link{baena.bean.uniformity}              \tab 36 x 36 \tab xy \tab \cr
 \link{bailey.cotton.uniformity}           \tab 8 x 20 \tab xy, 5 envts \tab \cr
 \link{baker.barley.uniformity}            \tab 3 x 19 \tab xy, 10 years \tab \cr
+\link{barrantesaguilar.sugarcane.uniformity} \tab 40 x 40 \tab xy \tab \cr
 \link{baker.strawberry.uniformity}        \tab 10 x 50 \tab xy \tab \cr
 \link{baker.wheat.uniformity}             \tab 12 x 12 \tab xy \tab \cr
 \link{bancroft.peanut.uniformity}         \tab 6 x 18 \tab xy, 2 blocks \tab \cr
+\link{barrientosgarcia.maize.uniformity}  \tab 18 x 24 \tab xy \tab \cr
+\link{barrientosgarcia.sesame.uniformity}  \tab 20 x 25 \tab xy \tab \cr
 \link{batchelor.apple.uniformity}         \tab 8 x 28 \tab xy \tab \cr
 \link{batchelor.lemon.uniformity}         \tab 14 x 16 \tab xy \tab \cr
 \link{batchelor.navel1.uniformity}        \tab 20 x 50 \tab xy \tab \cr
@@ -39,19 +47,25 @@ name                                      \tab dimensions \tab other \tab model 
 \link{batchelor.walnut.uniformity}        \tab 10 x 28 \tab xy \tab \cr
 \link{beckett.maize.uniformity}           \tab 6 x 19 \tab xy \tab \cr
 \link{bose.multi.uniformity}              \tab 15 x 26 \tab xy, 3 years \tab \cr
+\link{borden.sugarcane.uniformity}        \tab 4 x 12 \tab xy \tab \cr
 \link{bradley.multi.uniformity}           \tab 10 x 11 \tab xy \tab \cr
 \link{bryan.corn.uniformity}              \tab 6 x 48 \tab xy \tab \cr
+\link{buesocampos.melon.uniformity}       \tab 20 x 24 \tab xy \tab \cr
+\link{cargneluttifilho.chickpea.uniformity}\tab 6 x 6 \tab xy, 3 trials \tab \cr
+\link{buesocampos.tomato.uniformity}      \tab 10 x 26 \tab xy \tab \cr
 \link{christidis.cotton.uniformity}       \tab 16 x 16 \tab xy, 4 blocks \tab \cr
 \link{christidis.wheat.uniformity}        \tab 12 x 24 \tab xy \tab \cr
 \link{coombs.rice.uniformity}             \tab 3 x 18 \tab xy \tab \cr
 \link{dasilva.soybean.uniformity}         \tab 24 x 48 \tab xy \tab \cr
 \link{davies.pasture.uniformity}          \tab 19 x 40 \tab xy \tab \cr
 \link{day.wheat.uniformity}               \tab 31 x 100 \tab xy \tab \cr
+\link{delgadillolopez.sesame.uniformity}  \tab 16 x 24 \tab xy \tab \cr
 \link{draper.safflower.uniformity}        \tab 18 x 16 \tab xy, 2 expt \tab smith\cr
 \link{ducker.groundnut.uniformity}        \tab 44 x 5 \tab xy \tab \cr
 \link{eden.tea.uniformity}                \tab 12 x 12 \tab xy \tab \cr
 \link{evans.sugarcane.uniformity}         \tab 142 x 5 \tab xy \tab \cr
 \link{forster.wheat.uniformity}           \tab 10 x 16 \tab xy \tab \cr
+\link{garber.frames.uniformity}           \tab 30 x 1 \tab xy, 2 crops \tab \cr
 \link{garber.multi.uniformity}            \tab 6 x 45 \tab xy, 5 years/crops \tab \cr
 \link{gomez.rice.uniformity}              \tab 18 x 36 \tab xy \tab aov,smith \cr
 \link{gorski.oats.uniformity}             \tab 10 x 20, 15 x 20 \tab xy \tab \cr
@@ -62,6 +76,7 @@ name                                      \tab dimensions \tab other \tab model 
 \link{hartman.tomato.uniformity}          \tab 12 x 32 \tab xy \tab \cr
 \link{heath.cabbage.uniformity}           \tab 6 x 8   \tab xy \tab \cr
 \link{heath.radish.uniformity}            \tab 10 x 10 \tab xy \tab \cr
+\link{hernandezdavila.potato.uniformity}  \tab 12 x 42 \tab xy, 2 expts \tab \cr
 \link{holtsmark.timothy.uniformity}       \tab 6 x 40  \tab xy \tab \cr
 \link{hutchinson.cotton.uniformity}       \tab 36 x 42 \tab xy \tab \cr
 \link{igue.sugarcane.uniformity}          \tab 36 x 42 \tab xy \tab \cr
@@ -85,6 +100,7 @@ name                                      \tab dimensions \tab other \tab model 
 \link{lander.multi.uniformity}            \tab 5 x 39 \tab xy, 4 years \tab \cr
 \link{larsen.timothy.uniformity}          \tab 12 x 80 \tab xy \tab \cr
 \link{laycock.tea.uniformity}             \tab 6 x 9  \tab xy, 2 locations \tab \cr
+\link{lechadolopez.sorghum.uniformity}    \tab 32 x 16 \tab xy \tab \cr
 \link{lehmann.millet.uniformity}          \tab 6 x 22 \tab xy, 3 years \tab \cr
 \link{lehmann.rice.uniformity}            \tab 2 x 17 \tab xy, 4 years \tab \cr
 \link{lessman.sorghum.uniformity}         \tab 46 x 60 \tab xy \tab \cr
@@ -94,11 +110,16 @@ name                                      \tab dimensions \tab other \tab model 
 \link{love.cotton.uniformity}             \tab 16 x 10 \tab xy \tab \cr
 \link{love.sugarcane.uniformity}          \tab 20 x 20 \tab xy \tab \cr
 \link{lyon.potato.uniformity}             \tab 34 x 6 \tab xy \tab \cr
+\link{macdonald.cotton.uniformity}        \tab 4 x 144 \tab xy \tab \cr
 \link{magistad.pineapple.uniformity}      \tab 5 x 5 \tab xy \tab \cr
+\link{mamani.bean.uniformity}             \tab 84 x 20 \tab xy \tab \cr
 \link{masood.rice.uniformity}             \tab 12 x 24 \tab xy \tab \cr
+\link{matusgutierrez.maize.uniformity}    \tab 16 x 36 \tab xy \tab \cr
+\link{mauricio.maize.uniformity}          \tab 26 x 26 \tab xy \tab \cr
 \link{mcclelland.corn.uniformity}         \tab 2 x 44 \tab xy \tab \cr
 \link{mckinstry.cotton.uniformity}        \tab 24 x 20 \tab xy \tab \cr
 \link{mercer.mangold.uniformity}          \tab 10 x 20 \tab xy \tab \cr
+\link{metzger.multi.uniformity}           \tab 3 x 12 \tab xy, 9 years \tab \cr
 \link{mercer.wheat.uniformity}            \tab 25 x 20 \tab xy, 2 traits \tab spplot \cr
 \link{montgomery.wheat.uniformity}        \tab 14 x 16 \tab xy, 2 years \tab lm \cr
 \link{moore.polebean.uniformity}          \tab 12 x 12 \tab xy \tab \cr
@@ -108,6 +129,7 @@ name                                      \tab dimensions \tab other \tab model 
 \link{moore.springcauliflower.uniformity} \tab 12 x 20 \tab xy \tab \cr
 \link{moore.fallcauliflower.uniformity}   \tab 12 x 20 \tab xy \tab \cr
 \link{nagai.strawberry.uniformity}        \tab 18 x 24 \tab xy \tab \cr
+\link{morgan.multi.uniformity}            \tab 1 x 63 \tab xy \tab 2 crops\cr
 \link{nair.turmeric.uniformity}           \tab 72 x 12 \tab xy \tab \cr
 \link{narain.sorghum.uniformity}          \tab 10 x 16 \tab xy \tab \cr
 \link{nonnecke.peas.uniformity}           \tab 15 x 18 \tab xy, 2 traits \tab \cr
@@ -118,6 +140,7 @@ name                                      \tab dimensions \tab other \tab model 
 \link{oliveira.lupin.uniformity}          \tab 10 x 40 \tab xy \tab \cr
 \link{oliveira.potato.uniformity}         \tab  5 x 40 \tab xy \tab \cr
 \link{paez.coffee.uniformity}             \tab 32 x 36 \tab xy, 5 yr \tab \cr
+\link{palenciaortiz.sugarcane.uniformity} \tab 18 x 26 \tab xy \tab \cr
 \link{panse.cotton.uniformity}            \tab 32 x 40 \tab xy \tab \cr
 \link{parker.orange.uniformity}           \tab 10 x 27 \tab xy, 6 yr \tab \cr
 \link{piepho.barley.uniformity}           \tab 30 x 36 \tab xy \tab \cr
@@ -139,9 +162,10 @@ name                                      \tab dimensions \tab other \tab model 
 \link{strickland.apple.uniformity}        \tab 11 x 18 \tab xy \tab \cr
 \link{strickland.grape.uniformity}        \tab 5 x 31 \tab xy \tab \cr
 \link{strickland.peach.uniformity}        \tab 8 x 18 \tab xy \tab \cr
-\link{strickland.tomato.uniformity}       \tab 30 x 6 \tab xy \tab \cr
-\link{summerby.multi.uniformity}          \tab 35 x 5 \tab xy \tab 5 years \cr
-\link{tulaikow.wheat.uniformity}          \tab 24 x 10, 15 x 16 \tab xy \tab 5 years \cr
+  \link{strickland.tomato.uniformity}       \tab 30 x 6 \tab xy \tab \cr
+  \link{summerby.multi.uniformity}          \tab 35 x 5 \tab xy \tab 5 years \cr
+  \link{trought.cotton.uniformity}          \tab 8 x 24 \tab xy \tab \cr
+  \link{tulaikow.wheat.uniformity}          \tab 24 x 10, 15 x 16 \tab xy \tab 5 years \cr
 \link{vishnaadevi.rice.uniformity}        \tab 12 x 24 \tab xy \tab \cr
 \link{wassom.brome.uniformity}            \tab 36 x 36 \tab xy, 3 expts \tab \cr
 \link{wehner.cucumber.uniformity}         \tab 6 x 25 \tab xy \tab \cr
@@ -223,7 +247,7 @@ name                               \tab gen \tab loc\tab reps\tab years \tab trt
 \link{bachmaier.nitrogen}          \tab     \tab    \tab 4   \tab    \tab 2,11  \tab \tab quadratic lm\cr
 \link{barrero.maize}               \tab 847 \tab 16 \tab 4   \tab 11 \tab 6     \tab \tab gain,asreml\cr
 \link{battese.survey}              \tab     \tab 12 \tab 1-5 \tab    \tab 2     \tab \tab lmer \cr
-\link{beall.webworms}              \tab     \tab    \tab 15  \tab    \tab 2,2   \tab xy, split-block \tab glm poisson,nb\cr
+\link{beall.webworms}              \tab     \tab    \tab 15  \tab    \tab 2,2   \tab xy, strip-plot/split-block \tab glm poisson,nb\cr
 \link{beaven.barley}               \tab  8  \tab    \tab 20  \tab    \tab       \tab xy \tab \cr
 \link{belamkar.augmented}          \tab 273 \tab 8  \tab     \tab    \tab       \tab xy, incblock\tab asreml \cr
 \link{besag.bayesian}              \tab 75  \tab    \tab 3   \tab    \tab       \tab xy \tab asreml \cr
@@ -249,6 +273,7 @@ name                               \tab gen \tab loc\tab reps\tab years \tab trt
 \link{chakravertti.factorial}      \tab 3   \tab    \tab 3   \tab    \tab 3,5,3,3 \tab factorial \tab aov\cr
 \link{chinloy.fractionalfactorial} \tab     \tab    \tab 9   \tab    \tab 1/3 3^5 = 3,3,3,3 \tab xy,factorial \tab aov\cr
 \link{christidis.competition}      \tab 9   \tab    \tab 5   \tab    \tab       \tab xy \tab \cr
+\link{clewer.wheat}                \tab 4   \tab    \tab 3   \tab    \tab       \tab xy \tab \cr
 \link{cochran.beets}               \tab     \tab    \tab 6   \tab    \tab 7     \tab \tab \cr
 \link{cochran.bib}                 \tab 13  \tab 13 \tab     \tab    \tab       \tab bib \tab aov, lme \cr
 \link{cochran.crd}                 \tab     \tab    \tab     \tab    \tab 7     \tab xy, crd\tab aov \cr
@@ -263,14 +288,14 @@ name                               \tab gen \tab loc\tab reps\tab years \tab trt
 \link{cramer.cucumber}             \tab     \tab    \tab 8   \tab    \tab       \tab \tab pathcoef \cr
 \link{crossa.wheat}                \tab 18  \tab 25 \tab     \tab    \tab       \tab \tab ammi \cr
 \link{crowder.seeds}               \tab 2   \tab    \tab 21  \tab    \tab 2     \tab \tab glm,INLA,jags \cr
-\link{cox.stripsplit}              \tab     \tab    \tab  4  \tab    \tab 3,4,2 \tab split-block \tab aov \cr
+\link{cox.stripsplit}              \tab     \tab    \tab  4  \tab    \tab 3,4,2 \tab strip-plot/split-block \tab aov \cr
 \link{cullis.earlygen}             \tab 532 \tab    \tab     \tab    \tab       \tab xy \tab asreml \cr
 \link{damesa.maize}                \tab 22  \tab 4  \tab 3   \tab    \tab       \tab xy,incblock,twostage \tab asreml \cr
 \link{dasilva.maize}               \tab 55  \tab 9  \tab 3   \tab    \tab       \tab \tab \cr
 \link{darwin.maize}                \tab     \tab    \tab 12  \tab    \tab 2     \tab \tab t.test \cr
 \link{davidian.soybean}            \tab 2   \tab    \tab     \tab 3  \tab       \tab \tab nlme \cr
 \link{denis.missing}               \tab 5   \tab 26 \tab     \tab    \tab       \tab \tab lme \cr
-\link{denis.ryegrass}              \tab 21  \tab 7  \tab     \tab    \tab       \tab \tab aov \cr
+\link{desousa.potato}              \tab 11  \tab 168 \tab     \tab    tab       \tab \tab PlackettLuce \cr
 \link{digby.jointregression}       \tab 10  \tab 17 \tab     \tab    \tab 4     \tab \tab lm \cr
 \link{durban.competition}          \tab 36  \tab    \tab 3   \tab    \tab       \tab xy, competition \tab lm \cr
 \link{durban.rowcol}               \tab 272 \tab    \tab 2   \tab    \tab       \tab xy \tab lm, gam, asreml \cr
@@ -302,7 +327,7 @@ name                               \tab gen \tab loc\tab reps\tab years \tab trt
 \link{gomez.seedrate}              \tab     \tab    \tab 4   \tab    \tab 6     \tab rate \tab lm\cr
 \link{gomez.splitplot.subsample}   \tab     \tab    \tab 3   \tab    \tab 8,4   \tab subsample \tab aov \cr
 \link{gomez.splitsplit}            \tab 3   \tab    \tab 3   \tab    \tab       \tab xy, nitro, mgmt \tab aov, lmer \cr
-\link{gomez.stripplot}             \tab 6   \tab    \tab 3   \tab    \tab       \tab xy, nitro \tab aov \cr
+\link{gomez.stripplot}             \tab 6   \tab    \tab 3   \tab    \tab       \tab xy, nitro, strip-plot/split-block \tab aov \cr
 \link{gomez.stripsplitplot}        \tab 6   \tab    \tab 3   \tab    \tab       \tab xy, nitro\tab aov \cr
 \link{gomez.wetdry}                \tab     \tab    \tab 3   \tab 2  \tab 5     \tab nitro\tab lmer \cr
 \link{gotway.hessianfly}           \tab 16  \tab    \tab 4   \tab    \tab       \tab xy \tab lmer \cr
@@ -324,6 +349,7 @@ name                               \tab gen \tab loc\tab reps\tab years \tab trt
 \link{huehn.wheat}                 \tab 20  \tab 10 \tab     \tab    \tab       \tab  \tab huehn\cr
 \link{hughes.grapes}               \tab     \tab    \tab 3   \tab    \tab 6     \tab binomial \tab lmer, aod, glmm\cr
 \link{hunter.corn}                 \tab     \tab 12 \tab     \tab 3  \tab 1     \tab rsm1 \tab xyplot \cr
+\link{immer.mets}                  \tab 5   \tab 4  \tab 3   \tab 3  \tab       \tab 2 crops \tab aov\cr
 \link{ivins.herbs}                 \tab 13  \tab    \tab 6   \tab    \tab       \tab 2 traits \tab lm, friedman\cr
 \link{jansen.apple}                \tab 3   \tab    \tab 4   \tab    \tab 3     \tab binomial \tab glmer\cr
 \link{jansen.carrot}               \tab 16  \tab    \tab 3   \tab    \tab 2     \tab binomial \tab glmer\cr
@@ -346,8 +372,8 @@ name                               \tab gen \tab loc\tab reps\tab years \tab trt
 \link{lillemo.wheat}               \tab 24  \tab 13 \tab     \tab 7  \tab       \tab qq \tab medpolish, huehn\cr
 \link{lin.superiority}             \tab 33  \tab 12 \tab     \tab    \tab       \tab \tab superiority \cr
 \link{lin.unbalanced}              \tab 33  \tab 18 \tab     \tab    \tab       \tab \tab superiority \cr
-\link{linder.wheat}                \tab  9  \tab  7 \tab  4  \tab    \tab       \tab \tab gge\cr
-\link{little.splitblock}           \tab     \tab    \tab 4   \tab    \tab 4,5   \tab xy, split-block\tab aov\cr
+\link{linder.wheat}                \tab  9  \tab  7 \tab 4   \tab    \tab       \tab \tab gge\cr
+\link{little.splitblock}           \tab     \tab    \tab 4   \tab    \tab 4,5   \tab xy, strip-plot/split-block\tab aov\cr
 \link{lonnquist.maize}             \tab 11  \tab    \tab     \tab    \tab       \tab diallel \tab asreml \cr
 \link{lyons.wheat}                 \tab     \tab 12 \tab     \tab 4  \tab       \tab \tab \cr
 \link{lu.stability}                \tab 5   \tab 6  \tab     \tab    \tab       \tab \tab huehn\cr
@@ -362,13 +388,15 @@ name                               \tab gen \tab loc\tab reps\tab years \tab trt
 \link{minnesota.barley.weather}    \tab     \tab 6  \tab     \tab 10 \tab       \tab \tab \cr
 \link{minnesota.barley.yield}      \tab 22  \tab 6  \tab     \tab 10 \tab       \tab \tab dotplot\cr
 \link{omer.sorghum}                \tab 18  \tab 6  \tab 4   \tab    \tab       \tab \tab jags\cr
-\link{onofri.winterwheat}          \tab 8   \tab    \tab 3   \tab 7  \tab       \tab \tab ammi\cr
-\link{ortiz.tomato}                \tab 15  \tab 18 \tab     \tab    \tab 16     \tab env*gen~env*cov \tab pls \cr
+\link{onyiah.maize}                \tab 5   \tab 5  \tab     \tab    \tab 5,5   \tab graeco \tab aov\cr
+\link{ortiz.tomato}                \tab 15  \tab 18 \tab     \tab    \tab 16    \tab env*gen~env*cov \tab pls \cr
+\link{ortiz.tomato}                \tab 15  \tab 18 \tab     \tab    \tab 16    \tab env*gen~env*cov \tab pls \cr
 \link{pacheco.soybean}             \tab 18  \tab 11 \tab     \tab    \tab       \tab \tab ammi\cr
 \link{payne.wheat}                 \tab     \tab    \tab     \tab 20 \tab 6     \tab rotation\tab asreml\cr
 \link{pederson.lettuce.repeated}   \tab     \tab    \tab 18  \tab    \tab 3     \tab \tab nlme\cr
 \link{perry.springwheat}           \tab 28  \tab 5  \tab     \tab 4  \tab       \tab gain \tab lm,lmer,asreml\cr
 \link{petersen.sorghum.cowpea}     \tab 2   \tab    \tab 4   \tab 7  \tab 4     \tab intercrop \tab \cr
+\link{petersen.wheat}              \tab 33  \tab    \tab 1   \tab    \tab      \tab augmented \tab \cr
 \link{piepho.cocksfoot}            \tab 25  \tab    \tab     \tab 7  \tab       \tab \tab mumm\cr
 \link{ratkowsky.onions}            \tab     \tab    \tab     \tab    \tab       \tab \tab lm\cr
 \link{reid.grasses}                \tab 4   \tab    \tab     \tab 3  \tab 21    \tab \tab nlme SSfpl \cr
@@ -378,6 +406,7 @@ name                               \tab gen \tab loc\tab reps\tab years \tab trt
 \link{rothamsted.oats}             \tab     \tab    \tab 8   \tab    \tab 9     \tab rcb \tab \cr
 \link{ryder.groundnut}             \tab 5   \tab    \tab 4   \tab    \tab       \tab xy, rcb \tab lm \cr
 \link{salmon.bunt}                 \tab 10  \tab    \tab 2   \tab    \tab 20    \tab \tab betareg \cr
+\link{scott.augmented}             \tab 17  \tab    \tab 3   \tab    \tab       \tab augmented\tab asreml,lmer \cr
 \link{senshu.rice}                 \tab     \tab 40 \tab     \tab    \tab       \tab \tab lm,Fieller \cr
 \link{shafii.rapeseed}             \tab 6   \tab 14 \tab 3   \tab 3  \tab       \tab \tab biplot \cr
 \link{shaw.oats}                   \tab 13  \tab 2  \tab 5   \tab 3  \tab       \tab \tab aov \cr
@@ -405,6 +434,7 @@ name                               \tab gen \tab loc\tab reps\tab years \tab trt
 \link{vargas.wheat2}               \tab 8   \tab 7  \tab     \tab    \tab       \tab env*gen~env*cov \tab pls \cr
 \link{vargas.txe}                  \tab     \tab    \tab     \tab 10 \tab 24    \tab yr*trt~yr*cov \tab pls \cr
 \link{verbyla.lupin}               \tab 9   \tab 8  \tab 3   \tab 2  \tab 7     \tab rsm1, xy, density\tab asreml\cr
+\link{versteeg.maize}              \tab 3   \tab 25 \tab     \tab    \tab 2     \tab strip-plot/split-block \tab aov\cr
 \link{vold.longterm}               \tab     \tab    \tab     \tab 19 \tab 4     \tab rsm1 \tab nls,nlme \cr
 \link{vsn.lupin3}                  \tab 336 \tab 3  \tab     \tab    \tab       \tab xy \tab asreml\cr
 \link{wedderburn.barley}           \tab 10  \tab 9  \tab     \tab    \tab       \tab percent \tab glm/gnm \cr
@@ -482,18 +512,19 @@ Factorial experiments:
 \link{yates.missing}               \tab     \tab    \tab 10  \tab    \tab 3^2 = 3,3 \tab factorial \tab lm, pca \cr
 }
 
-Multi-environment trials with multi-genotype,loc,rep,year:
+Multi-environment trials with multi genotype,loc,rep,year:
 
 \tabular{llllllll}{
-  name                               \tab gen \tab loc\tab reps\tab years \tab trt \tab other \tab model \cr
-  \link{barrero.maize}               \tab 847 \tab 16 \tab 4   \tab 11    \tab 6  \tab \tab asreml\cr
-  \link{edwards.oats}                \tab 80  \tab 5  \tab 3   \tab 7     \tab       \tab \tab \cr
-  \link{gauch.soy}                   \tab 7   \tab 7  \tab 4   \tab 12    \tab       \tab \tab ammi \cr
-  \link{george.wheat}                \tab 211 \tab 9  \tab 4   \tab 15    \tab       \tab \tab \cr
-  \link{shafii.rapeseed}             \tab 6   \tab 14 \tab 3   \tab 3     \tab       \tab \tab biplot \cr
-  \link{shaw.oats}                   \tab 13  \tab 2  \tab 5   \tab 3     \tab       \tab \tab aov \cr
-  \link{tesfaye.millet}              \tab 47  \tab 2  \tab 2-3 \tab 2     \tab 4     \tab xy,FA \tab asreml \cr
-  \link{verbyla.lupin}               \tab 9   \tab 8  \tab 3   \tab 2     \tab 7     \tab rsm1, xy, density \tab asreml
+  name                               \tab gen \tab loc \tab reps\tab years \tab trt \tab other \tab model \cr
+  \link{barrero.maize}               \tab 847 \tab 16  \tab 4   \tab 11    \tab 6   \tab \tab asreml\cr
+  \link{edwards.oats}                \tab 80  \tab 5   \tab 3   \tab 7     \tab     \tab \tab \cr
+  \link{gauch.soy}                   \tab 7   \tab 7   \tab 4   \tab 12    \tab     \tab \tab ammi \cr
+  \link{george.wheat}                \tab 211 \tab 9   \tab 4   \tab 15    \tab     \tab \tab \cr
+  \link{immer.mets}                  \tab 5   \tab 4   \tab 3   \tab 3     \tab     \tab 2 crops \tab aov\cr
+  \link{shafii.rapeseed}             \tab 6   \tab 14  \tab 3   \tab 3     \tab     \tab \tab biplot \cr
+  \link{shaw.oats}                   \tab 13  \tab 2   \tab 5   \tab 3     \tab     \tab \tab aov \cr
+  \link{tesfaye.millet}              \tab 47  \tab 2   \tab 2-3 \tab 2     \tab 4   \tab xy,FA \tab asreml \cr
+  \link{verbyla.lupin}               \tab 9   \tab 8   \tab 3   \tab 2     \tab 7   \tab rsm1, xy, density \tab asreml
 }
 
 Data with markers: hadasch.lettuce.markers, steptoe.morex.geno

@@ -25,7 +25,8 @@
 
   Gorski & Stefaniow (1917) does not show the layout of the plots. They
   say more details are given in the journal "Roczniki nauk rolniczych".
-  (Not yet found) 
+  (Not yet found)
+  
   Kotowski (1924) does shows the layout of the plots.
 
   Field F1
@@ -45,7 +46,7 @@
 
   The loess field used "Ligowo" oats on 300 9 sq m plots.
 
-  Transcription details: Data were typed and checked by K.Wright 2024.12.11.
+  Data provenance: Data were typed and checked by K.Wright 2024.12.11.
   Text translation via Google Translate.
   The actual plot dimensions are not given, but 3m by 3m is a good
   approximation or may be exact.

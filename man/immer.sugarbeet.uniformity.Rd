@@ -5,7 +5,7 @@
   Uniformity trial of sugarbeets, measurements of yield, sugar, purity
 }
 \description{
-  Uniformity trial of sugarbeets, at Minnesota, 1930, with measurements
+  Uniformity trial of sugarbeets, at Minnesota, with measurements
   of yield, sugar, purity.
 }
 
@@ -78,6 +78,7 @@
 }
 
 \examples{
+\dontrun{
 
 library(agridat)
 
@@ -106,6 +107,6 @@ library(agridat)
   desplot(dat, yield~col*row, subset=year==1931,
           aspect=110/348, tick=TRUE, flip=TRUE, # true aspect
           main="immer.sugarbeet.uniformity - 1931 yield")
-
+}
 }
 \keyword{datasets}
